@@ -42,7 +42,26 @@ public class ProductPostDAO {
 	}
 
 
-	public void postDetailFind() {
+	public void postDetailFind() throws SQLException {
+		
+		//제목부분을 클릭한다고 가정
+		//누르면 조회수도 하나 올려주고.
+		ResultSet rs = null;
+		PreparedStatement pst = null;
+		Connection con = null;
+		ProductPostVO pp= new ProductPostVO();
+		try {
+			con = getConnection();
+			String sql = "select * from Nongshim_product_post where post_no=?";
+			pst = con.prepareStatement(sql);
+			rs = pst.executeQuery();
+			if(rs.next()) {
+				
+			}
+		} finally {
+			closeAll(rs, pst, con);
+		}
+		
 
 	}
 
