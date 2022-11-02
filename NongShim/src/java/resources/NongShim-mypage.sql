@@ -4,7 +4,7 @@ drop table like_product;
 CREATE TABLE like_product(
   post_no NUMBER NOT NULL,
   id VARCHAR2(100) NOT NULL,
-   CONSTRAINT post_no_fk FOREIGN KEY (post_no) REFERENCES NongShim_productPost(post_no),
+   CONSTRAINT post_no_fk FOREIGN KEY (post_no) REFERENCES NongShim_product_Post(post_no),
     CONSTRAINT id_fk FOREIGN KEY (id) REFERENCES NongShim_Member(id),
     CONSTRAINT like_product_pk PRIMARY KEY (post_no, id)
 )
@@ -31,7 +31,7 @@ create table buy_product_list(
 	status varchar2(100) not null,
 	amount number not null,
 	constraint buy_product_id_fk foreign key(id) references NongShim_Member(id),
-	constraint buy_product_product_no_fk foreign key(post_no) references NongShim_productPost(post_no),
+	constraint buy_product_product_no_fk foreign key(post_no) references NongShim_product_Post(post_no),
 	constraint buy_product_pk primary key (id,post_no,ns_date)
 )
 
@@ -44,7 +44,7 @@ create table sell_product_list(
 	post_no number not null,
 	status varchar2(100) not null,
 	constraint sell_product_id_fk foreign key(id) references NongShim_Member(id),
-	constraint sell_product_product_no_fk foreign key(post_no) references NongShim_productPost(post_no),
+	constraint sell_product_product_no_fk foreign key(post_no) references NongShim_product_Post(post_no),
 	constraint sell_product_pk primary key (id,post_no)
 )
 
@@ -58,6 +58,6 @@ create table confirm_list(
 	product_amount varchar2(100) not null,
 	post_status varchar2(100) not null,
 	constraint confirm_id_fk foreign key(id) references NongShim_Member(id),
-	constraint confirm_product_fk foreign key(post_no) references NongShim_productPost(post_no),
+	constraint confirm_product_fk foreign key(post_no) references NongShim_product_Post(post_no),
 	constraint confirm_product_pk primary key(id,post_no)
 )
