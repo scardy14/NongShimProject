@@ -1,4 +1,4 @@
-package member;
+package model;
 
 public class testMember {
 
