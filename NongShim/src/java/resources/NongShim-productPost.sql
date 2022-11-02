@@ -1,4 +1,4 @@
-drop sequence post_No_seq
+drop sequence postNo_seq
 drop table NongShim_product_Post
 
 -- 2. Product Post 상품 게시판 글
