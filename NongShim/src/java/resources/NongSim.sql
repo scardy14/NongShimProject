@@ -12,8 +12,8 @@ CREATE TABLE NongShim_Member(
 	accountNo VARCHAR2(100)	
 )
 
-drop table NongSim_Member;
-drop sequence NongSim_Member_seq;
+drop table NongSim_Member; 
+drop sequence NongSim_Member_seq; 
 
 insert into NongShim_Member(id,password,name,address,nickName,tel,sellerInfo,adminiInfo,email,point,accountNo) 
 values('java','a','홍주영','길동','홍','010','판매자1','관리자','daum',0,'356');
