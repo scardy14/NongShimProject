@@ -11,9 +11,7 @@ CREATE TABLE NongShim_Member(
 	point NUMBER DEFAULT 0,
 	accountNo VARCHAR2(100)	
 )
-
-drop table NongSim_Member; 
-drop sequence NongSim_Member_seq;   
+create sequence NongShim_Member_seq;
 
 insert into NongShim_Member(id,password,name,address,nickName,tel,sellerInfo,adminiInfo,email,point,accountNo) 
 values('java','a','홍주영','길동','홍','010','판매자1','관리자','daum',0,'356');
@@ -22,5 +20,4 @@ values('spring','a','홍주영','길동','홍','011','판매자1','관리자','d
 insert into NongShim_Member(id,password,name,address,nickName,tel,sellerInfo,adminiInfo,email,point,accountNo) 
 values('del','a','홍주영','길동','홍','012','판매자1','관리자','daum',0,'356');
 
-
-create sequence NongShim_Member_seq;
+select*from NongShim_Member;
