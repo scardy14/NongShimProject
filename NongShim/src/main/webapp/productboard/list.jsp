@@ -8,7 +8,8 @@
 		</tr>
 	</thead>
 	<tbody>
-		<c:forEach></c:forEach>
+		<c:forEach i>
+		</c:forEach>
 	</tbody>
 </table>
 번호	카테고리	 상태	제목 	작성자 	등록일자	조회수 
