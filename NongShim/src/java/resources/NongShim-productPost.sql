@@ -22,6 +22,8 @@ max_Customer number not null,
 CONSTRAINT fk_pp FOREIGN KEY(id) REFERENCES NongShim_Member(id)
 );
 
+INSERT INTO NongShim_product_Post(post_No, title, content, id, hits, nickname,comments,category,status,product_Name,product_Point,duration,min_Customer,max_Customer)
+VALUES (select title, content, id, hits, nickname,comments,category,status,product_Name,product_Point,duration,min_Customer,max_Customer from NongShim_product_Post)
 -- 2.1 시퀀스 생성
 create sequence postNo_seq;
 
@@ -38,11 +40,10 @@ commit
 
 -- 2.3 product post 
 <<<<<<< HEAD
-select * from NongShim_productpost
+select * from NongShim_product_Post
 
 SELECT post_No, title, hits, TO_CHAR(register_Date, 'YYYY-MM-DD') AS register_Date, category, nickname, status FROM NongShim_productpost
 =======
 select * from NongShim_product_post
 >>>>>>> refs/heads/main
 
-INSERT INTO NongShim_productPost VALUES (SELECT * FROM NongShim_productPost)

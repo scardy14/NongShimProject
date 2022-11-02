@@ -31,3 +31,8 @@ commit
 
 --1.2 회원정보 select
 select*from NongShim_Member;
+
+DROP TABLE NongShim_member
+DROP TABLE NongShim_productpost
+DROP TABLE NongShimmember
+DROP TABLE NongShimproductinfo

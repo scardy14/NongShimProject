@@ -126,7 +126,7 @@ public class ProductPostDAO {
 		int totalpostcount = 0;
 		try {
 			con = getConnection();
-			String sql = "SELECT COUNT(*) FROM NongShim_productPost";
+			String sql = "SELECT COUNT(*) FROM NongShim_product_Post";
 			pst = con.prepareStatement(sql);
 			rs = pst.executeQuery();
 			if(rs.next()) {
@@ -150,7 +150,7 @@ public class ProductPostDAO {
 			con = getConnection();
 			StringBuilder sb = new StringBuilder("");
 			sb.append("SELECT post_No, title, hits, TO_CHAR(register_Date, 'YYYY-MM-DD') ");
-			sb.append("AS register_Date, category, nickname, status FROM NongShim_productpost");
+			sb.append("AS register_Date, category, nickname, status FROM NongShim_product_Post");
 			pst = con.prepareStatement(sb.toString());
 			rs = pst.executeQuery();
 			while(rs.next()) {
