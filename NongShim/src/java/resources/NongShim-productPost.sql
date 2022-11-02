@@ -1,23 +1,23 @@
-drop sequence postNo_seq
-drop table NongShim_productPost
+drop sequence post_No_seq
+drop table NongShim_product_Post
+
 -- 2. Product Post 상품 게시판 글
 create table NongShim_productPost(
-postNo number primary key,
+post_No number primary key,
 title varchar2(100) not null,
 content clob not null,
 id varchar2(100) not null,
 hits number default 0 not null,
 nickname varchar2(100) not null,
 comments varchar2(100) not null,
-registerDate date not null,
+register_Date date not null,
 category varchar2(100) not null,
 status varchar2(100)not null,
-productName varchar2(100) not null,
-productPoint number not null,
+product_Name varchar2(100) not null,
+product_Point number not null,
 duration date not null,
-minCustomer number not null,
-maxCustomer number not null,
-
+min_Customer number not null,
+max_Customer number not null,
 CONSTRAINT fk_pp FOREIGN KEY(id) REFERENCES NongShim_Member(id)
 );
 
@@ -38,4 +38,10 @@ commit
 -- 2.3 product post 
 select * from NongShim_productpost
 
+<<<<<<< HEAD
 SELECT postNo,title,hits,TO_CHAR(registerDate,'YYYY.MM.DD') as date,category,nickName,status FROM NongShim_productpost
+=======
+
+
+
+>>>>>>> refs/heads/main
