@@ -9,6 +9,7 @@ constraint comments_id_fk foreign key(id) references NongShim_Member(id),
 constraint comments_post_no_fk foreign key(post_no) references NongShim_productPost(postno),
 constraint comments_pk primary key(id, post_no,comments_date)
 )
+DROP TABLE NongShim_productPostComments;
 
 select * from NONGSHIM_PRODUCTPOSTCOMMENTS 
 

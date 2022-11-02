@@ -12,7 +12,7 @@ CREATE TABLE NongShim_Member(
 	point NUMBER DEFAULT 0,
 	account_No VARCHAR2(100) constraint account_uq unique(account_no)
 )
-
+DROP TABLE NongShim_Member
 --1.1 회원정보 데이터 insert
 insert into NongShim_Member(id,password,name,address,nickName,tel,seller_Info,admin_Info,email,point,account_No) 
 values('java','a','홍주영','서울','주영','010','daum',0,'356');
