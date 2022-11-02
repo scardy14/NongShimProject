@@ -46,6 +46,7 @@ public class ProductPostDAO {
 		
 		//제목부분을 클릭한다고 가정
 		//누르면 조회수도 하나 올려주고.
+		//updateHits도 만들어야할듯
 		ResultSet rs = null;
 		PreparedStatement pst = null;
 		Connection con = null;
