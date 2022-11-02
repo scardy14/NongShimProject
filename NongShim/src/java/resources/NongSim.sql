@@ -1,4 +1,4 @@
-CREATE TABLE NongSimMember(
+CREATE TABLE NongShim_Member(
 	id VARCHAR2(100) PRIMARY KEY,
 	password VARCHAR2(100) NOT NULL,
 	name VARCHAR2(100) NOT NULL,
@@ -6,18 +6,21 @@ CREATE TABLE NongSimMember(
 	nickName VARCHAR2(100) NOT NULL,
 	tel VARCHAR2(100) NOT NULL,
 	sellerInfo VARCHAR2(100) NOT NULL,
-	adminINfo VARCHAR2(100) NOT NULL,
+	adminiINfo VARCHAR2(100) NOT NULL,
 	email VARCHAR2(100) NOT NULL,
 	point NUMBER DEFAULT 0,
 	accountNo VARCHAR2(100)	
 )
 
-CREATE TABLE NongSimProductInfo(
-	productNO NUMBER PRIMARY KEY,
-	productName VARCHAR2(100) NOT NULL,
-	productPoint NUMBER NOT NULL,
-	minimumPerson NUMBER NOT NULL,
-	duration DATE NOT NULL,
-	category VARCHAR2(100) NOT NULL,
-	maxPerson NUMBER NOT NULL
-)
+drop table NongSim_Member;
+drop sequence NongSim_Member_seq;
+
+insert into NongShim_Member(id,password,name,address,nickName,tel,sellerInfo,adminiInfo,email,point,accountNo) 
+values('java','a','홍주영','길동','홍','010','판매자1','관리자','daum',0,'356');
+insert into NongShim_Member(id,password,name,address,nickName,tel,sellerInfo,adminiInfo,email,point,accountNo) 
+values('spring','a','홍주영','길동','홍','011','판매자1','관리자','daum',0,'356');
+insert into NongShim_Member(id,password,name,address,nickName,tel,sellerInfo,adminiInfo,email,point,accountNo) 
+values('del','a','홍주영','길동','홍','012','판매자1','관리자','daum',0,'356');
+
+
+create sequence NongSim_Member_seq;
