@@ -13,6 +13,22 @@ public class ProductPostVO {
 	private String status;
 	
 	public ProductPostVO() {}
+	
+	
+	
+	public ProductPostVO(long postNo, String title, long hits, String date, String category, String nickName,
+			String status) {
+		super();
+		this.postNo = postNo;
+		this.title = title;
+		this.hits = hits;
+		this.date = date;
+		this.category = category;
+		this.nickName = nickName;
+		this.status = status;
+	}
+
+
 
 	public ProductPostVO(long postNo, String title, String content, long hits, String comment, String date,
 			String category, String nickName, String id, String status) {

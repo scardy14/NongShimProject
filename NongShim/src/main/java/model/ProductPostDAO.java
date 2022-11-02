@@ -146,14 +146,15 @@ public class ProductPostDAO {
 		ResultSet rs = null;
 		PreparedStatement pst = null;
 		Connection con = null;
-		int totalpostcount = 0;
 		try {
 			con = getConnection();
-			String sql = "SELECT COUNT(*) FROM NongShim_productPost";
-			pst = con.prepareStatement(sql);
+			StringBuilder sb = new StringBuilder("");
+			sb.append("SELECT postNo,title,hits,TO_CHAR(time_posted,'YYYY.MM.DD') as date,category,nickName,status ");
+			sb.append("FROM NongShim_productPost");
+			pst = con.prepareStatement(sb.toString());
 			rs = pst.executeQuery();
-			if(rs.next()) {
-				totalpostcount = rs.getInt(1);
+			while(rs.next()) {
+				list.add(new ProductPostVO(rs.getLong(1), rs.getString(2), rs.getLong(3), rs.getString(4), rs.getString(5),rs.getString(6),rs.getString(7)));
 			}
 		} finally {
 			closeAll(rs, pst, con);

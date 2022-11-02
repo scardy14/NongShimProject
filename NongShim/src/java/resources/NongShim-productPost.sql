@@ -38,3 +38,4 @@ commit
 -- 2.3 product post 
 select * from NongShim_productpost
 
+SELECT postNo,title,hits,TO_CHAR(registerDate,'YYYY.MM.DD') as date,category,nickName,status FROM NongShim_productpost
