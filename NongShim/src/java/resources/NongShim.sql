@@ -23,4 +23,4 @@ insert into NongShim_Member(id,password,name,address,nickName,tel,sellerInfo,adm
 values('del','a','홍주영','길동','홍','012','판매자1','관리자','daum',0,'356');
 
 
-create sequence NongSim_Member_seq;
+create sequence NongShim_Member_seq;
