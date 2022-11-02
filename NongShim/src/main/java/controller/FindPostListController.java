@@ -14,8 +14,10 @@ public class FindPostListController implements Controller{
 		ProductPostDAO dao = ProductPostDAO.getInstance();
 		
 		String pageNo=request.getParameter("pageNo");
+		System.out.println(pageNo);
 		Pagination pagination=null;
 		int totalPostCount=dao.getTotalPostCount();
+		System.out.println(totalPostCount);
 		if(pageNo==null) {
 			pagination=new Pagination(totalPostCount);
 		}else {

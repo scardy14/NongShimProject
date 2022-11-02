@@ -41,42 +41,6 @@ public class ProductPostDAO {
 		return dataSource.getConnection();
 	}
 
-	@SuppressWarnings("null")
-	public ArrayList<ProductPostVO> postFindList() throws SQLException {
-
-		ArrayList<ProductPostVO> list = null;
-		ProductPostVO pv = null;
-
-		// 2가지 만들어야함
-		// 검색버튼을 눌렀을때 보여주는 리스트와
-		// 메인 페이지에서 검색없이 최신순으로 리스트 보여주는.
-
-		// 1.검색창에 입력을 하고 검색버튼 눌므
-		// 2. 검색차엥 입력된 입력어가 포함된 자료들을 리스트로 불러온다.
-		// 3. return ArrayList
-		// 4. 실행될 sql문은 그 포함뭐시기뭐시기... 그거 써야할듯
-
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		try {
-			con = getConnection();
-			String sql = "select 번호(rownum으로 가져와야할듯), 카테고리, 제목, 작성자, 등록일자, 조회수";
-			pstmt = con.prepareStatement(sql);
-			// pstmt.setString(1, id);
-			// pstmt.setString(2, password);
-			rs = pstmt.executeQuery();
-			while (rs.next()) {
-				
-				pv = new ProductPostVO();
-				list.add(pv);
-
-			}
-		} finally {
-			closeAll(rs, pstmt, con);
-		}
-		return list;
-	}
 
 	public void postDetailFind() {
 
@@ -150,12 +114,14 @@ public class ProductPostDAO {
 			con = getConnection();
 			StringBuilder sb = new StringBuilder("");
 			sb.append("SELECT post_No, title, hits, TO_CHAR(register_Date, 'YYYY-MM-DD') ");
-			sb.append("AS register_Date, category, nickname, status FROM NongShim_product_Post");
+			sb.append("AS register_Date, category, nickname, status FROM NongShim_product_Post ");
+			sb.append("WHERE post_No BETWEEN ? AND ?");
 			pst = con.prepareStatement(sb.toString());
+			pst.setLong(1, pagination.getStartRowNumber() );
+			pst.setLong(2, pagination.getEndRowNumber());
 			rs = pst.executeQuery();
 			while(rs.next()) {
 				list.add(new ProductPostVO(rs.getLong(1), rs.getString(2), rs.getLong(3), rs.getString(4), rs.getString(5),rs.getString(6),rs.getString(7)));
-				System.out.println(new ProductPostVO(rs.getLong(1), rs.getString(2), rs.getLong(3), rs.getString(4), rs.getString(5),rs.getString(6),rs.getString(7)));
 			}
 		} finally {
 			closeAll(rs, pst, con);
