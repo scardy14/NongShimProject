@@ -121,7 +121,7 @@ public class ProductPostDAO {
 			pst.setLong(2, pagination.getEndRowNumber());
 			rs = pst.executeQuery();
 			while(rs.next()) {
-				list.add(new ProductPostVO(rs.getLong(1), rs.getString(2), rs.getLong(3), rs.getString(4), rs.getString(5),rs.getString(6),rs.getString(7)));
+				//list.add(new ProductPostVO(rs.getLong(1), rs.getString(2), rs.getLong(3), rs.getString(4), rs.getString(5),rs.getString(6),rs.getString(7)));
 			}
 		} finally {
 			closeAll(rs, pst, con);
