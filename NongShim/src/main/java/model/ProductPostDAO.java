@@ -116,4 +116,49 @@ public class ProductPostDAO {
 
 	}
 
+	public int getTotalPostCount() throws SQLException {
+		//데이터베이스의 NongShim_productPost 테이블의 총 개시물 수를 불러옴
+		//입력값: 없음
+		//출력값: 총 개시물 수 
+		ResultSet rs = null;
+		PreparedStatement pst = null;
+		Connection con = null;
+		int totalpostcount = 0;
+		try {
+			con = getConnection();
+			String sql = "SELECT COUNT(*) FROM NongShim_productPost";
+			pst = con.prepareStatement(sql);
+			rs = pst.executeQuery();
+			if(rs.next()) {
+				totalpostcount = rs.getInt(1);
+			}
+		} finally {
+			closeAll(rs, pst, con);
+		}
+		return totalpostcount;
+	}
+
+	public ArrayList<ProductPostVO> findPostList(Pagination pagination) throws SQLException {
+		//pagination의 시작값과 끝값을 바탕으로 NongShim_productPost에서 정해진 개수만큼의 게시글을 불러옴
+		//입력값: pagination
+		//출력값: 페이지 정보인 productpostvo 가 담긴 list를 반환
+		ArrayList<ProductPostVO> list = new ArrayList<>();
+		ResultSet rs = null;
+		PreparedStatement pst = null;
+		Connection con = null;
+		int totalpostcount = 0;
+		try {
+			con = getConnection();
+			String sql = "SELECT COUNT(*) FROM NongShim_productPost";
+			pst = con.prepareStatement(sql);
+			rs = pst.executeQuery();
+			if(rs.next()) {
+				totalpostcount = rs.getInt(1);
+			}
+		} finally {
+			closeAll(rs, pst, con);
+		}
+		return list;
+	}
+
 }
