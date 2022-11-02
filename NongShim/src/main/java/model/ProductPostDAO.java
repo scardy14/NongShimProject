@@ -149,12 +149,13 @@ public class ProductPostDAO {
 		try {
 			con = getConnection();
 			StringBuilder sb = new StringBuilder("");
-			sb.append("SELECT postNo,title,hits,TO_CHAR(time_posted,'YYYY.MM.DD') as date,category,nickName,status ");
-			sb.append("FROM NongShim_productPost");
+			sb.append("SELECT post_No, title, hits, TO_CHAR(register_Date, 'YYYY-MM-DD') ");
+			sb.append("AS register_Date, category, nickname, status FROM NongShim_productpost");
 			pst = con.prepareStatement(sb.toString());
 			rs = pst.executeQuery();
 			while(rs.next()) {
 				list.add(new ProductPostVO(rs.getLong(1), rs.getString(2), rs.getLong(3), rs.getString(4), rs.getString(5),rs.getString(6),rs.getString(7)));
+				System.out.println(new ProductPostVO(rs.getLong(1), rs.getString(2), rs.getLong(3), rs.getString(4), rs.getString(5),rs.getString(6),rs.getString(7)));
 			}
 		} finally {
 			closeAll(rs, pst, con);

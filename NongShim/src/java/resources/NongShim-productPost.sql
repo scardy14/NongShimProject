@@ -38,10 +38,6 @@ commit
 -- 2.3 product post 
 select * from NongShim_productpost
 
-<<<<<<< HEAD
-SELECT postNo,title,hits,TO_CHAR(registerDate,'YYYY.MM.DD') as date,category,nickName,status FROM NongShim_productpost
-=======
+SELECT post_No, title, hits, TO_CHAR(register_Date, 'YYYY-MM-DD') AS register_Date, category, nickname, status FROM NongShim_productpost
 
-
-
->>>>>>> refs/heads/main
+INSERT INTO NongShim_productPost VALUES (SELECT * FROM NongShim_productPost)

@@ -14,23 +14,19 @@
 		</tr>
 	</thead>
 	<tbody>
-		<c:forEach items="${list}" var="post">
+		<c:forEach items="${list}" var="ProductPostVO">
 			<tr>
-				<td>${post.no}</td>
-				<td><c:choose>
-						<c:when test="${sessionScope.mvo==null}">${post.title}</c:when>
-						<c:otherwise>
-							<a href="PostDetailController.do?no=${post.no}">${post.title}</a>
-						</c:otherwise>
-					</c:choose></td>
-				<td>${post.memberVO.name}</td>
-				<td>${post.timePosted}</td>
-				<td>${post.hits}</td>
+				<td>${ProductPostVO.postNo}</td>
+				<td>${ProductPostVO.category}</td>
+				<td>${ProductPostVO.status}</td>
+				<td>${ProductPostVO.title}</td>
+				<td>${ProductPostVO.nickName}</td>
+				<td>${ProductPostVO.date}</td>
+				<td>${ProductPostVO.hits}</td>
 			</tr>
 		</c:forEach>
 	</tbody>
 </table>
-${pagination.nowPage}
 <!--
       pagination 
 -->
