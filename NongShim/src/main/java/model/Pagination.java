@@ -4,7 +4,7 @@ package model;
  * @author KOSTA
  *
  */
-public class PaginationDemo {
+public class Pagination {
 	/**
 	 * 현재 페이지
 	 */
@@ -22,10 +22,10 @@ public class PaginationDemo {
 	 */
 	private int totalPostCount;
 	
-	public PaginationDemo(int totalPostCount) {
+	public Pagination(int totalPostCount) {
 		this.totalPostCount=totalPostCount;
 	}
-	public PaginationDemo(int totalPostCount,int nowPage) {
+	public Pagination(int totalPostCount,int nowPage) {
 		this.totalPostCount=totalPostCount;
 		this.nowPage=nowPage;
 	}
