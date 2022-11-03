@@ -141,12 +141,41 @@ public class ProductPostDAO {
 			pst.setLong(2, pagination.getEndRowNumber());
 			rs = pst.executeQuery();
 			while(rs.next()) {
-				//list.add(new ProductPostVO(rs.getLong(1), rs.getString(2), rs.getLong(3), rs.getString(4), rs.getString(5),rs.getString(6),rs.getString(7)));
+				list.add(new ProductPostVO(rs.getLong(1), rs.getString(2), rs.getLong(3), rs.getString(4), rs.getString(5),rs.getString(6),rs.getString(7)));
 			}
 		} finally {
 			closeAll(rs, pst, con);
 		}
 		return list;
+	}
+
+	public ArrayList<ProductPostVO> findPostListByCheckbox(Pagination pagination, String checkbox) throws SQLException {
+		//pagination의 시작값과 끝값을 바탕으로 NongShim_productPost에서 정해진 개수만큼의 게시글을 불러옴
+				//입력값: pagination
+				//출력값: 페이지 정보인 productpostvo 가 담긴 list를 반환
+				ArrayList<ProductPostVO> list = new ArrayList<>();
+				ResultSet rs = null;
+				PreparedStatement pst = null;
+				Connection con = null;
+				try {
+					con = getConnection();
+					StringBuilder sb = new StringBuilder("");
+					sb.append("SELECT rownum, post_No, title, hits, TO_CHAR(register_Date, 'YYYY-MM-DD') AS register_Date, category, nickname, status ");
+					sb.append("FROM NongShim_product_Post ");
+					sb.append("WHERE category = ? AND rownum BETWEEN ? AND ?");
+					pst = con.prepareStatement(sb.toString());
+					pst.setString(1, checkbox);
+					pst.setLong(2, pagination.getStartRowNumber() );
+					pst.setLong(3, pagination.getEndRowNumber());
+					rs = pst.executeQuery();
+					while(rs.next()) {
+						list.add(new ProductPostVO(rs.getLong(2), rs.getString(3), rs.getLong(4), rs.getString(5), rs.getString(6),rs.getString(7),rs.getString(8)));
+						System.out.println(rs.getLong(2)+ rs.getString(3)+ rs.getLong(4)+ rs.getString(5)+ rs.getString(6)+rs.getString(7)+rs.getString(8));
+					}
+				} finally {
+					closeAll(rs, pst, con);
+				}
+				return list;
 	}
 
 }
