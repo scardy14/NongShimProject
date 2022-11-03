@@ -8,12 +8,12 @@ public class ProductPostVO {
 	private long hits;
 	private String nickName;
 	private String comments;
-	private String date;
+	private String date; //이거 등록하는 날짜
 	private String category;
 	private String status;
 	private String productName;
 	private long productPoint;
-	private String duration;
+	private String duration; //마감까지 날짜.
 	private long minCustomer;
 	private long maxCustomer;
 	
@@ -62,11 +62,44 @@ public class ProductPostVO {
 		this.status = status;
 		this.nickName = nickname;
 	}
+	
+	//김민석 개인적으로 만든거. 위와 같은 이유로 냅둘것.
+	
+	public ProductPostVO(String title, String content, long hits, String nickName, String comments, String date,
+			String category, String productName, long productPoint, String duration, long minCustomer,
+			long maxCustomer) {
+		super();
+		this.title = title;
+		this.content = content;
+		this.hits = hits;
+		this.nickName = nickName;
+		this.comments = comments;
+		this.date = date;
+		this.category = category;
+		this.productName = productName;
+		this.productPoint = productPoint;
+		this.duration = duration;
+		this.minCustomer = minCustomer;
+		this.maxCustomer = maxCustomer;
+	}
 
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	public long getPostNo() {
 		return postNo;
 	}
 
+
+
+	
 	public void setPostNo(long postNo) {
 		this.postNo = postNo;
 	}
