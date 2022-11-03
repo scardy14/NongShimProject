@@ -4,10 +4,8 @@
 <form action = "" >
 <h3 style="display: inline;">공구게시판</h3> &nbsp;&nbsp;<input type = "text" style="width: 700px; height: 45px;"><br>
 </form>
-<form action = "FindPostListController.do" id = "checkboxform">
-<input type='checkbox' name='checkbox' value='all' onclick='checkOnlyOne(this); sendinfo()'/> 전체
-</form>
 <form action = "FindPostListByCheckbox.do" id = "checkboxform">
+<input type='checkbox' name='checkbox' value='all' onclick='checkOnlyOne(this); sendinfo()'/> 전체
 <input type='checkbox' name='checkbox' value='곡물' onclick='checkOnlyOne(this); sendinfo()'/> 곡물
 <input type='checkbox' name='checkbox' value='야채' onclick='checkOnlyOne(this); sendinfo()'/> 야채
 <input type='checkbox' name='checkbox' value='과일' onclick='checkOnlyOne(this); sendinfo()'/> 과일
