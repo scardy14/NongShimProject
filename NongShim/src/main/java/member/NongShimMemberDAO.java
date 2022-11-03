@@ -7,6 +7,7 @@ import java.sql.SQLException;
 
 import javax.sql.DataSource;
 
+
 import model.DataSourceManager;
 
 
@@ -58,7 +59,124 @@ public class NongShimMemberDAO {
 		}
 		return nongShimMemberVO;
 	}	
+	public void registerMember(NongShimMemberVO vo) throws SQLException {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		try {
+			con=getConnection();
+			String sql="insert into NongShim_Member values(?,?,?,?,?,?,DEFAULT,DEFAULT,?,default,?)";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, vo.getId());
+			pstmt.setString(2, vo.getPassword());
+			pstmt.setString(3, vo.getName());
+			pstmt.setString(4, vo.getAddress());
+			pstmt.setString(5, vo.getNickName());
+			pstmt.setString(6,vo.getTel());
+			pstmt.setString(7,vo.getEmail());
+			pstmt.setString(8,vo.getAccountNo());
+			pstmt.executeUpdate();
+		}finally {
+			closeAll(pstmt, con);
+		}
+	}
 	
+	public boolean checkId(String id) throws SQLException {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		boolean result=false;
+		try {
+			con=getConnection();
+			String sql="select count(*) from NongShim_Member where id=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs=pstmt.executeQuery();
+			if(rs.next()&&rs.getInt(1)>0) {
+				result=true;
+			}
+		}finally {
+			closeAll(rs, pstmt, con);
+		}
+		return result;
+	}
+	
+	public boolean checkTel(int tel) throws SQLException {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		boolean result=false;
+		try {
+			con=getConnection();
+			String sql="select count(*) from NongShim_Member where tel=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, tel);
+			rs=pstmt.executeQuery();
+			if(rs.next()&&rs.getInt(1)>0) {
+				result=true;
+			}
+		}finally {
+			closeAll(rs, pstmt, con);
+		}
+		return result;
+	}
+	
+	public boolean check_account_No(String account_No) throws SQLException {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		boolean result=false;
+		try {
+			con=getConnection();
+			String sql="select count(*) from NongShim_Member where account_No=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, account_No);
+			rs=pstmt.executeQuery();
+			if(rs.next()&&rs.getInt(1)>0) {
+				result=true;
+			}
+		}finally {
+			closeAll(rs, pstmt, con);
+		}
+		return result;
+	}
+	public boolean checkEmail(String email) throws SQLException {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		boolean result=false;
+		try {
+			con=getConnection();
+			String sql="select count(*) from NongShim_Member where email=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, email);
+			rs=pstmt.executeQuery();
+			if(rs.next()&&rs.getInt(1)>0) {
+				result=true;
+			}
+		}finally {
+			closeAll(rs, pstmt, con);
+		}
+		return result;
+	}
+	public boolean checkNickName(String nickName) throws SQLException {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		boolean result=false;
+		try {
+			con=getConnection();
+			String sql="select count(*) from NongShim_Member where nickName=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, nickName);
+			rs=pstmt.executeQuery();
+			if(rs.next()&&rs.getInt(1)>0) {
+				result=true;
+			}
+		}finally {
+			closeAll(rs, pstmt, con);
+		}
+		return result;
+	}
 	
 	
 }
