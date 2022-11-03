@@ -38,21 +38,41 @@ values (postNo_seq.nextval, '맛있는 햅쌀', '꼬들꼬들합니다','jdbc',d
 commit
 
 
+
+
+
 -- 2.3 product post 
-<<<<<<< HEAD
+
 select * from NongShim_product_Post
 
 SELECT rownum from NongShim_product_Post
 
-SELECT rownum, post_No, title, hits, TO_CHAR(register_Date, 'YYYY-MM-DD') AS register_Date, category, nickname, status
-  FROM NongShim_product_Post
- WHERE category = '과일' AND rownum BETWEEN 1 AND 5
+SELECT post_No, title, hits, register_Date, category, nickname, status
+  FROM (SELECT rownum, post_No, title, hits, TO_CHAR(register_Date, 'YYYY-MM-DD') AS register_Date, category, nickname, status
+  		  FROM NongShim_product_post)
+ WHERE rownum BETWEEN 5 AND 10
   
-=======
+
 select * from NongShim_product_post
+<<<<<<< HEAD
 >>>>>>> refs/heads/main
 
 -- 2.4 product post data 입력 (write)									
 insert into NongShim_product_Post 
 values (postNo_seq.nextval, '탐스런 과일', '크고 달아요','java',default,'짱아','맛있네요',sysdate,'과일','status','청포도',100,sysdate,10,30);
+=======
+>>>>>>> refs/heads/main
+
+
+
+
+
+--아래거가 완성본
+SELECT post_No, title, hits, register_Date, category, nickname, status
+  FROM (SELECT row_number() over(ORDER BY post_No DESC) AS rnum,
+  post_No, title, hits, TO_CHAR(register_Date, 'YYYY-MM-DD') AS register_Date, category, nickname, status 
+  		  FROM NongShim_product_post)
+  WHERE rnum BETWEEN 1 AND 5
+  
+  SELECT ROW_NUMBER() OVER(ORDER BY post_No) AS rnum, category FROM NongShim_product_post
 
