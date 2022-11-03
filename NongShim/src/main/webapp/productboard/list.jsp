@@ -81,10 +81,17 @@
 		checkboxform.submit();
 	}
 	function sendpageandinfo(element) {
-		let checkboxes = document.getElementsByName("checkbox").length;
+		let checkboxes = document.getElementsByName("checkbox");
+		let loop = checkboxes.length;
+		let checkbox = null;
+		for(let i = 0; i<loop;i++) {
+			if(checkboxes[i].checked) {
+				checkbox = checkboxes[i].value;
+			}
+		}
 		
 		
-		location.href="FindPostListByValueController.do?pageNo="+element;
+		location.href="FindPostListByValueController.do?pageNo="+element+"&checkbox="+checkbox;
 	}
 	
 </script>
