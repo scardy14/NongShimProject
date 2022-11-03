@@ -17,7 +17,7 @@
 <div class="container pt-3">
 <form method="post" action="WritePostController.do">
 		
-			<input type = "text" name = "tag" required="required" placeholder="카테고리"  list="taglist" style="width: 90px; height: 23px;">
+			<input type = "text" name = "tag" required="required" placeholder="카테고리"  list="taglist" style="width: 95px; height: 29px;">
      			 <datalist id="taglist">
           			<option value="곡물"></option>
            			<option value="야채"></option>
@@ -25,9 +25,9 @@
            			<option value="기타"></option>       
          </datalist>
          <input type="text" name="title" placeholder="최소인원수" required="required">
-         <input type="text" name="title" placeholder="최대인원수" required="required"><br>
+         <input type="text" name="title" placeholder="최대인원수" required="required"><br><br>
         
-			<textarea rows="10" cols="50" name="content" placeholder="제목을 입력해주세요" required="required"></textarea><br>
+			<textarea rows="1" cols="50" name="content" placeholder="제목을 입력해주세요" required="required"></textarea><br>
 		
 			<textarea rows="10" cols="50" name="content" placeholder="내용을 입력하세요" required="required"></textarea>
 
