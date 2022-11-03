@@ -3,21 +3,17 @@ package mypage;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import model.BuyProductVO;
 import model.MyPageDAO;
+import model.MyPageProductPostVO;
 
-
-public class TestCaseMyBuyProductList {
+public class TestCaseMySellProductListTotal {
 	public static void main(String[] args) {
-		String status="확인중";
 		String id="java";
-		ArrayList<BuyProductVO> list = new ArrayList<>();
 		try {
-			list =MyPageDAO.getInstance().myBuyProductList(status,id);
+			ArrayList<MyPageProductPostVO> list = MyPageDAO.getInstance().mySellProductListTotal(id);
 			System.out.println(list.toString());
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
 	}
 }
