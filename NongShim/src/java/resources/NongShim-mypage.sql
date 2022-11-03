@@ -39,6 +39,15 @@ create table buy_product_list(
 	constraint buy_product_pk primary key (id,post_no,ns_date)
 )
 
+insert into buy_product_list values ('jdbc','10',sysdate,'발송중',15);
+insert into buy_product_list values ('jdbc','11',sysdate,'발송완료',20);
+insert into buy_product_list values ('java','12',sysdate,'발송중',15);
+insert into buy_product_list values ('java','13',sysdate,'발송완료',20);
+insert into buy_product_list values ('spring','14',sysdate,'발송중',15);
+insert into buy_product_list values ('spring','15',sysdate,'발송완료',20);
+
+commit
+
 -- 3.3 판매중인 목록: member(id), product_info(product_no) fk 및 pk
 
 drop table sell_product_list
@@ -56,6 +65,7 @@ create table sell_product_list(
 
 drop table confirm_list
 
+-- 추가할 메서드 id 말구 sysdate 추가하기
 create table confirm_list(
 	id varchar2(100) not null,
 	post_no number not null,
@@ -66,12 +76,21 @@ create table confirm_list(
 	constraint confirm_product_pk primary key(id,post_no)
 )
 
+insert into confirm_list values ('java','11','30','확인중');
+insert into confirm_list values ('spring','12','30','확인중');
+insert into confirm_list values ('jdbc','13','30','발송');
+insert into confirm_list values ('jdbc','14','18','발송');
+insert into confirm_list values ('spring','14','18','발송');
 
--- 판매중만 불러오기
+commit
+
 insert into NongShim_product_Post
-values (postNo_seq.nextval, '초록빛깔 샐러리', '신선하고 맛있습니다','spring',default,'민석짱','코멘트부분',sysdate,'야채','판매종료','딸기',100,sysdate,7,10);
+values (postNo_seq.nextval, '초록빛깔 샐러리', '신선하고 맛있습니다','spring',default,'민석짱','코멘트부분',sysdate,'야채','판매종료','딸기',100,sysdate+7,7,10);
 insert into NongShim_product_Post
-values (postNo_seq.nextval, '노란 배추', '신선하고 맛있습니다','jdbc',default,'민석짱','코멘트부분',sysdate,'야채','판매종료','딸기',178,sysdate,7,10);
+values (postNo_seq.nextval, '노란 배추', '신선하고 맛있습니다','jdbc',default,'민석짱','코멘트부분',sysdate,'야채','판매종료','딸기',178,sysdate+7,7,10);
+insert into NongShim_product_Post
+values (postNo_seq.nextval, '노란 배추', '신선하고 맛있습니다','jdbc',default,'jdk','jdk',sysdate,'야채','판매중','딸기',178,sysdate+7,7,10);
+
 
 -- MySellProductList : 특정 상태인 판매목록(최신순)
 select post_no,id,register_date,category,status,product_name,product_point,duration,min_customer,max_customer 
@@ -85,4 +104,15 @@ from NongShim_product_Post where status='판매종료' AND  id='jdbc';
 select post_no,id,register_date,category,status,product_name,product_point,duration,min_customer,max_customer 
 from NongShim_product_Post where id='java' order by register_date desc;
 
---
+--findCustomerConfirmListbyidandpostno() : 매칭 고객 정보 테이블의 발송 여부 컬럼의 데이터가 '발송'이 이면
+select post_status from confirm_list where id='jdbc'and post_no='13';
+
+-- ChangeBuyState() : 위의 메서드로 true를 반환 받으면 구매목록 리스트의 상태를 '발송완료'로 바꿔줌
+select * from buy_product_list where id='spring' and post_no='14';
+update buy_product_list set status='발송완료' where id='jdbc' and post_no='10';
+
+-- dateCompare()
+select * from NongShim_product_Post where duration <= sysdate;
+select * from NongShim_product_Post
+select * from NongShim_product_Post where nickname='jdk';
+update NongShim_product_Post set status='판매종료' where duration <= sysdate;
