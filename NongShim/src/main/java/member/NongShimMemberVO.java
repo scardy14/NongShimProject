@@ -34,6 +34,8 @@ public class NongShimMemberVO implements Serializable{
 		this.point = point;
 		this.accountNo = accountNo;
 	}
+	
+	//로그인 생성자
 	public NongShimMemberVO(String id, String password) {
 		super();
 		this.id = id;
@@ -45,6 +47,36 @@ public class NongShimMemberVO implements Serializable{
 		this.name = name;
 		this.password = password;
 	}
+	
+	
+	public NongShimMemberVO(String id, String name, String password, String address, String nickName, String tel,
+			String email) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.password = password;
+		this.address = address;
+		this.nickName = nickName;
+		this.tel = tel;
+		this.email = email;
+	}
+	
+	
+	//회원가입 생성자
+	public NongShimMemberVO(String id, String name, String password, String address, String nickName, String tel,
+			String email, int point, String accountNo) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.password = password;
+		this.address = address;
+		this.nickName = nickName;
+		this.tel = tel;
+		this.email = email;
+		this.point = point;
+		this.accountNo = accountNo;
+	}
+	
 	public String getId() {
 		return id;
 	}

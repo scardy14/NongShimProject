@@ -119,6 +119,29 @@ public class ProductPostDAO {
 	}
 
 	public void addComment() {
+		/*
+		 * ResultSet rs = null; PreparedStatement pst = null; Connection con = null; try
+		 * { con = getConnection(); String sql =
+		 * "select title,content, hits,nickname,comments,register_date,category,product_name,product_point,duration,min_customer,max_customer from NongShim_product_Post where post_no=?"
+		 * ; pst = con.prepareStatement(sql); pst.setString(1, no); rs =
+		 * pst.executeQuery(); if (rs.next()) { String title = rs.getString(1); String
+		 * content = rs.getString(2); long hits = rs.getLong(3); String nick =
+		 * rs.getString(4); String comments = rs.getString(5); String regdate =
+		 * rs.getString(6); String category = rs.getString(7); String pname =
+		 * rs.getString(8); long ppoint = rs.getLong(9); String duration =
+		 * rs.getString(10); long mincustomer = rs.getLong(11); long maxcustomer =
+		 * rs.getLong(12);
+		 * 
+		 * pp = new ProductPostVO(title, content, hits, nick, comments, regdate,
+		 * category, pname, ppoint, duration, mincustomer, maxcustomer);
+		 * 
+		 * } } finally { closeAll(rs, pst, con); }
+		 * 
+		 * return pp;
+		 */
+	//}
+		
+		
 
 	}
 
