@@ -143,31 +143,26 @@ public class ProductPostDAO {
 					sb.append("SELECT post_No, title, hits, register_Date, category, nickname, status ");
 					sb.append("FROM (SELECT row_number() over(ORDER BY post_No DESC) AS rnum, ");
 					sb.append("post_No, title, hits, TO_CHAR(register_Date, 'YYYY-MM-DD') AS register_Date, category, nickname, status ");
-					sb.append("FROM NongShim_product_post) ");
+					sb.append("FROM NongShim_product_post ");
 					if(value==null) {
-						sb.append("WHERE rnum BETWEEN ? AND ?");
+						sb.append(") WHERE rnum BETWEEN ? AND ?");
 						pst = con.prepareStatement(sb.toString());
 						pst.setLong(1, pagination.getStartRowNumber());
-							System.out.println("dao pagination start row" + pagination.getStartRowNumber());
 						pst.setLong(2, pagination.getEndRowNumber());
-							System.out.println("dao pagination end row" + pagination.getEndRowNumber());
 					} else if(value.equals("곡물")|value.equals("과일")|value.equals("야채")) {
-						sb.append("WHERE category = ? AND rnum BETWEEN ? AND ?");
+						sb.append("WHERE category = ?) WHERE rnum BETWEEN ? AND ?");
 						pst = con.prepareStatement(sb.toString());
 						pst.setString(1, value);
 						pst.setLong(2, pagination.getStartRowNumber() );
 						pst.setLong(3, pagination.getEndRowNumber());
 					} else {
-						sb.append("WHERE rnum BETWEEN ? AND ?");
+						sb.append(") WHERE rnum BETWEEN ? AND ?");
 						pst = con.prepareStatement(sb.toString());
 						pst.setLong(1, pagination.getStartRowNumber() );
 						pst.setLong(2, pagination.getEndRowNumber());
 					}
-					System.out.println("rs전");
 					rs = pst.executeQuery();
-					System.out.println("rs후");
 					while(rs.next()) {
-						System.out.println("1");
 						list.add(new ProductPostVO(rs.getLong(1), rs.getString(2), rs.getLong(3), rs.getString(4), rs.getString(5),rs.getString(6),rs.getString(7)));
 					}
 				} finally {

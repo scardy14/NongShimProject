@@ -5,7 +5,7 @@
 <h3 style="display: inline;">공구게시판</h3> &nbsp;&nbsp;<input type = "text" style="width: 700px; height: 45px;"><br>
 </form>
 <form action = "FindPostListByValueController.do" id = "checkboxform">
-	<c:forEach items="${checkboxlist }" var="checkbox">
+	<c:forEach items="${checkboxlist }" var="checkbox" varStatus="checkboxno">
 		<c:choose>
 			<c:when test="${checkbox==checkedbox }">
 				<input type='checkbox' name='checkbox' value='${checkbox }' onclick='checkOnlyOne(this); sendinfo()' checked/> ${checkbox }
@@ -14,7 +14,6 @@
 				<input type='checkbox' name='checkbox' value='${checkbox }' onclick='checkOnlyOne(this); sendinfo()'/> ${checkbox }
 			</c:otherwise>
 		</c:choose>
-	
 	</c:forEach>
 </form>
 <br>
@@ -49,21 +48,21 @@
 -->
 <ul class="pagination justify-content-center" style="margin:20px 0">	
 	<c:if test="${pagination.previousPageGroup}">
-	<li class="page-item"><a class="page-link" href="FindPostListByValueController.do?pageNo=${pagination.startPageOfPageGroup-1}&checkbox=${checkbox }">Previous</a></li>
+	<li class="page-item"><a class="page-link" onclick="sendpageandinfo(${pagination.endPageOfPageGroup-1})">Previous</a></li>
 	</c:if>
 	<c:forEach begin="${pagination.startPageOfPageGroup}" 
 	end="${pagination.endPageOfPageGroup}" var="page">
 	<c:choose>
 		<c:when test="${pagination.nowPage==page}">
-		<li class="page-item active"><a class="page-link" href="FindPostListByValueController.do?pageNo=${page}">${page}</a></li>
+		<li class="page-item active"><a class="page-link" onclick="sendpageandinfo(${page})">${page}</a></li>
 		</c:when>
 		<c:otherwise>
-		<li class="page-item"><a class="page-link" href="FindPostListByValueController.do?pageNo=${page}">${page}</a></li>
+		<li class="page-item"><a class="page-link" onclick="sendpageandinfo(${page})">${page}</a></li>
 		</c:otherwise>
 	</c:choose>	
 	</c:forEach>
 	<c:if test="${pagination.nextPageGroup}">
-  	<li class="page-item"><a class="page-link" href="FindPostListByValueController.do?pageNo=${pagination.endPageOfPageGroup+1}">Next</a></li>     
+  	<li class="page-item"><a class="page-link" onclick="sendpageandinfo(${pagination.endPageOfPageGroup+1})">Next</a></li>     
   	</c:if>	
 </ul>
 
@@ -80,6 +79,12 @@
 	function sendinfo() {
 		let checkboxform = document.getElementById("checkboxform");
 		checkboxform.submit();
+	}
+	function sendpageandinfo(element) {
+		let checkboxes = document.getElementsByName("checkbox").length;
+		
+		
+		location.href="FindPostListByValueController.do?pageNo="+element;
 	}
 	
 </script>
