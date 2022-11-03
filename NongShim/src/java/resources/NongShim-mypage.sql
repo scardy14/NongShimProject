@@ -92,15 +92,15 @@ insert into NongShim_product_Post
 values (postNo_seq.nextval, '노란 배추', '신선하고 맛있습니다','jdbc',default,'jdk','jdk',sysdate,'야채','판매중','딸기',178,sysdate+7,7,10);
 
 
--- MySellProductList : 특정 상태인 판매목록(최신순)
+-- MySellProductList : 게시판 특정 상태인 판매목록(최신순)
 select post_no,id,register_date,category,status,product_name,product_point,duration,min_customer,max_customer 
 from NongShim_product_Post where status='판매중' AND  id='java' order by register_date desc;
 
--- MySellProductListCount : 특정 상태인 판매목록 수
+-- MySellProductListCount : 게시판 특정 상태인 판매목록 수
 select count(*)
 from NongShim_product_Post where status='판매종료' AND  id='jdbc';
 
--- MySellProductListTotal : 내 판매 상품 전체 조회(최신순)
+-- MySellProductListTotal : 게시판 내 판매 상품 전체 조회(최신순)
 select post_no,id,register_date,category,status,product_name,product_point,duration,min_customer,max_customer 
 from NongShim_product_Post where id='java' order by register_date desc;
 
@@ -111,8 +111,12 @@ select post_status from confirm_list where id='jdbc'and post_no='13';
 select * from buy_product_list where id='spring' and post_no='14';
 update buy_product_list set status='발송완료' where id='jdbc' and post_no='10';
 
--- dateCompare()
+-- StatusUpdatebyDuration() : post_product 테이블의 duration과 오늘 날짜를 비교하였을 때, 
+-- 											   조회 되는 데이터가 있으면 이 데이터들의 status는 '판매종료'로 업데이트
 select * from NongShim_product_Post where duration <= sysdate;
 select * from NongShim_product_Post
 select * from NongShim_product_Post where nickname='jdk';
 update NongShim_product_Post set status='판매종료' where duration <= sysdate;
+
+-- MyBuyProductList() : 특정 상태인 구매목록(최신순)
+

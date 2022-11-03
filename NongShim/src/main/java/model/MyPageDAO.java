@@ -47,6 +47,7 @@ public class MyPageDAO {
 	 * 
 	 * NongShim_product_Post 에서 status 가 '판매완료' or '판매중'인데이터만 조회하여 불러옴 요청한 유저의 id와
 	 * status를 통해 데이터를 조회함 ArrayList<product post vo>를 리턴해 준다
+	 * @jdk
 	 */
 
 	public ArrayList<MyPageProductPostVO> MySellProductList(String status, String id) throws SQLException {
@@ -79,6 +80,7 @@ public class MyPageDAO {
 
 	/**
 	 * MySellProductListCount(status,id) : 상태에 따른 나의 판매 물품 수
+	 * @jdk
 	 */
 	public int MySellProductListCount(String status, String id) throws SQLException {
 		int count = 0;
@@ -103,6 +105,7 @@ public class MyPageDAO {
 
 	/**
 	 * MySellProductListTotal(id) : 내 전체 상품 조회
+	 * @jdk
 	 */
 
 	public ArrayList<MyPageProductPostVO> MySellProductListTotal(String id) throws SQLException {
@@ -134,6 +137,7 @@ public class MyPageDAO {
 	/**
 	 * findCustomerConfirmListbyidandpostno(findCustomer) : '발송'인지 아닌지 확인 매칭 고객 정보
 	 * 테이블의 발송 여부 컬럼의 데이터가 '발송'이 이면, true를 반환
+	 * @jdk
 	 */
 	public boolean findCustomerConfirmListbyidandpostno(String customerId, long post_no) throws SQLException {
 		boolean flag = false;
@@ -167,13 +171,14 @@ public class MyPageDAO {
 	 * 구매상품목록 테이블의 상태가 '확인중'에서 '발송완료'로 바뀐다. flag를 true로 던져줘서 구매 목록 리스트를 다시 불러오게함
 	 * 
 	 * >> 배송상태 확인 하는 버튼 만들어서 넣어줘야 위 메서드로 상태 변화를 시킬 수 있음 ( post 팀에 요청)
+	 * @jdk
 	 */
 
 	public boolean changeBuyState(String id, long post_no) throws SQLException {
 		boolean flag = false;
+		int result = 0;
 		Connection con = null;
 		PreparedStatement pstmt = null;
-		int result = 0;
 		try {
 			if (findCustomerConfirmListbyidandpostno(id, post_no) == true) {
 				con = dataSource.getConnection();
@@ -191,6 +196,30 @@ public class MyPageDAO {
 			closeAll(pstmt, con);
 		}
 		return flag;
+	}
+	/**
+	 * 		StatusUpdatebyDuration() : 판매기간이 종료 되면 자동으로 판매 종료로 UPDATE
+	  													post_product 테이블의 duration과 오늘 날짜를 비교하였을 때,
+					  									(= 오늘 날짜와 판매기간을 비교하였을 때,)
+					  									조회 되는 데이터가 있으면 이 데이터들의 status는 '판매종료'로 업데이트
+	 * @throws SQLException 
+	 * 
+	 * @jdk
+	 */
+
+	public int StatusUpdatebyDuration() throws SQLException {
+		int result=0;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			con = dataSource.getConnection();
+			String sql="update NongShim_product_Post set status='판매완료' where duration <= sysdate";
+			pstmt=con.prepareStatement(sql);
+			result=pstmt.executeUpdate();
+		} finally {
+			closeAll(pstmt, con);
+		}
+		return result;
 	}
 
 	
