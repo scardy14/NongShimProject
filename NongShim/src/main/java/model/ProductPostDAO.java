@@ -46,8 +46,16 @@ public class ProductPostDAO {
 
 	}
 
-	public void writePost() {
-
+	public void writePost(ProductPostVO productpostVO) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			con=dataSource.getConnection();
+			
+		}finally {
+			closeAll(pstmt, con);
+		}
+		
 	}
 	
 
