@@ -38,12 +38,28 @@ values (postNo_seq.nextval, '맛있는 햅쌀', '꼬들꼬들합니다','jdbc',d
 commit
 
 
+
+
+
 -- 2.3 product post 
 <<<<<<< HEAD
 select * from NongShim_product_Post
 
-SELECT post_No, title, hits, TO_CHAR(register_Date, 'YYYY-MM-DD') AS register_Date, category, nickname, status FROM NongShim_productpost
+SELECT rownum from NongShim_product_Post
+
+SELECT post_No, title, hits, register_Date, category, nickname, status
+  FROM (SELECT rownum, post_No, title, hits, TO_CHAR(register_Date, 'YYYY-MM-DD') AS register_Date, category, nickname, status
+  		  FROM NongShim_product_post)
+ WHERE rownum BETWEEN 5 AND 10
+  
 =======
 select * from NongShim_product_post
 >>>>>>> refs/heads/main
-
+--아래거가 완성본
+SELECT post_No, title, hits, register_Date, category, nickname, status
+  FROM (SELECT row_number() over(ORDER BY post_No DESC) AS rnum,
+  post_No, title, hits, TO_CHAR(register_Date, 'YYYY-MM-DD') AS register_Date, category, nickname, status 
+  		  FROM NongShim_product_post)
+  WHERE rnum BETWEEN 1 AND 5
+  
+  SELECT ROW_NUMBER() OVER(ORDER BY post_No) AS rnum, category FROM NongShim_product_post
