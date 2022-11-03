@@ -50,7 +50,7 @@ public class MyPageDAO {
 	 * @jdk
 	 */
 
-	public ArrayList<MyPageProductPostVO> MySellProductList(String status, String id) throws SQLException {
+	public ArrayList<MyPageProductPostVO> mySellProductList(String status, String id) throws SQLException {
 		ArrayList<MyPageProductPostVO> list = new ArrayList<>();
 		MyPageProductPostVO productPostVO = null;
 		Connection con = null;
@@ -82,7 +82,7 @@ public class MyPageDAO {
 	 * MySellProductListCount(status,id) : 상태에 따른 나의 판매 물품 수
 	 * @jdk
 	 */
-	public int MySellProductListCount(String status, String id) throws SQLException {
+	public int mySellProductListCount(String status, String id) throws SQLException {
 		int count = 0;
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -108,7 +108,7 @@ public class MyPageDAO {
 	 * @jdk
 	 */
 
-	public ArrayList<MyPageProductPostVO> MySellProductListTotal(String id) throws SQLException {
+	public ArrayList<MyPageProductPostVO> mySellProductListTotal(String id) throws SQLException {
 		ArrayList<MyPageProductPostVO> list = new ArrayList<>();
 		MyPageProductPostVO myPageProductPostVO = null;
 		Connection con = null;
@@ -207,7 +207,7 @@ public class MyPageDAO {
 	 * @jdk
 	 */
 
-	public int StatusUpdatebyDuration() throws SQLException {
+	public int statusUpdatebyDuration() throws SQLException {
 		int result=0;
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -220,6 +220,29 @@ public class MyPageDAO {
 			closeAll(pstmt, con);
 		}
 		return result;
+	}
+
+	public ArrayList<BuyProductVO> myBuyProductList(String status, String id) throws SQLException {
+		ArrayList<BuyProductVO> list = new ArrayList<>();
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			con=dataSource.getConnection();
+			String sql="select * from buy_product_list where id=? and status=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.setString(2, status);
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				BuyProductVO buyProductVO=new BuyProductVO(rs.getString(1),rs.getLong(2),rs.getLong(3),rs.getString(4),rs.getLong(5));
+				list.add(buyProductVO);
+				System.out.println(buyProductVO);
+			}
+		} finally {
+			closeAll(rs, pstmt, con);
+		}
+		return list;
 	}
 
 	

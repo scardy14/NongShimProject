@@ -9,7 +9,7 @@ public class TestMySellProductListCount {
 		String status="판매중";
 		String id="java";
 		try {
-			int listCount=MyPageDAO.getInstance().MySellProductListCount(status,id);
+			int listCount=MyPageDAO.getInstance().mySellProductListCount(status,id);
 			System.out.println(listCount);
 		} catch (SQLException e) {
 			e.printStackTrace();

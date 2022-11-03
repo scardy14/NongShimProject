@@ -10,7 +10,7 @@ public class TestCaseMySellProductListTotal {
 	public static void main(String[] args) {
 		String id="java";
 		try {
-			ArrayList<MyPageProductPostVO> list = MyPageDAO.getInstance().MySellProductListTotal(id);
+			ArrayList<MyPageProductPostVO> list = MyPageDAO.getInstance().mySellProductListTotal(id);
 			System.out.println(list.toString());
 		} catch (SQLException e) {
 			e.printStackTrace();

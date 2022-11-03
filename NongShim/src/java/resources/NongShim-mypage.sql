@@ -39,11 +39,11 @@ create table buy_product_list(
 	constraint buy_product_pk primary key (id,post_no,ns_date)
 )
 
-insert into buy_product_list values ('jdbc','10',sysdate,'발송중',15);
+insert into buy_product_list values ('jdbc','10',sysdate,'확인중',15);
 insert into buy_product_list values ('jdbc','11',sysdate,'발송완료',20);
-insert into buy_product_list values ('java','12',sysdate,'발송중',15);
+insert into buy_product_list values ('java','12',sysdate,'확인중',15);
 insert into buy_product_list values ('java','13',sysdate,'발송완료',20);
-insert into buy_product_list values ('spring','14',sysdate,'발송중',15);
+insert into buy_product_list values ('spring','14',sysdate,'확인중',15);
 insert into buy_product_list values ('spring','15',sysdate,'발송완료',20);
 
 commit
@@ -60,6 +60,7 @@ create table sell_product_list(
 	constraint sell_product_product_no_fk foreign key(post_no) references NongShim_product_Post(post_no),
 	constraint sell_product_pk primary key (id,post_no)
 )
+
 
 --3.4 구매 확인 리스트: member(id), product_info(product_no) fk 및 pk
 
@@ -119,4 +120,5 @@ select * from NongShim_product_Post where nickname='jdk';
 update NongShim_product_Post set status='판매종료' where duration <= sysdate;
 
 -- MyBuyProductList() : 특정 상태인 구매목록(최신순)
-
+select * from buy_product_list
+select * from buy_product_list where id='jdbc' and status='확인중';
