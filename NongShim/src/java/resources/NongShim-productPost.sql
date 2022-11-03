@@ -42,7 +42,7 @@ commit
 
 
 -- 2.3 product post 
-<<<<<<< HEAD
+
 select * from NongShim_product_Post
 
 SELECT rownum from NongShim_product_Post
@@ -52,9 +52,13 @@ SELECT post_No, title, hits, register_Date, category, nickname, status
   		  FROM NongShim_product_post)
  WHERE rownum BETWEEN 5 AND 10
   
-=======
+
 select * from NongShim_product_post
->>>>>>> refs/heads/main
+
+
+
+
+
 --아래거가 완성본
 SELECT post_No, title, hits, register_Date, category, nickname, status
   FROM (SELECT row_number() over(ORDER BY post_No DESC) AS rnum,
@@ -63,3 +67,4 @@ SELECT post_No, title, hits, register_Date, category, nickname, status
   WHERE rnum BETWEEN 1 AND 5
   
   SELECT ROW_NUMBER() OVER(ORDER BY post_No) AS rnum, category FROM NongShim_product_post
+

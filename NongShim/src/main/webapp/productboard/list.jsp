@@ -36,7 +36,7 @@
 				<td>${ProductPostVO.postNo}</td>
 				<td>${ProductPostVO.category}</td>
 				<td>${ProductPostVO.status}</td>
-				<td>${ProductPostVO.title}</td>
+				<td><a href="ProductDetailController.do?postno=${ProductPostVO.postNo}">${ProductPostVO.title}</a></td>
 				<td>${ProductPostVO.nickName}</td>
 				<td>${ProductPostVO.date}</td>
 				<td>${ProductPostVO.hits}</td>
