@@ -13,8 +13,30 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
-<div class="container pt-3">
 
+<div class="container pt-3">
+<form method="post" action="WritePostController.do">
+		
+			<input type = "text" name = "tag" required="required" placeholder="카테고리"  list="taglist" style="width: 90px; height: 23px;">
+     			 <datalist id="taglist">
+          			<option value="곡물"></option>
+           			<option value="야채"></option>
+           			<option value="과일"></option>       
+           			<option value="기타"></option>       
+         </datalist>
+         <input type="text" name="title" placeholder="최소인원수" required="required">
+         <input type="text" name="title" placeholder="최대인원수" required="required"><br>
+        
+			<textarea rows="10" cols="50" name="content" placeholder="제목을 입력해주세요" required="required"></textarea><br>
+		
+			<textarea rows="10" cols="50" name="content" placeholder="내용을 입력하세요" required="required"></textarea>
+
+	<div	class="text-center">
+		<button type="submit" class="btn btn-success">등록</button>
+		<button type="submit" class="btn btn-success">목록</button>	
+	</div>
+	</form>
+	
 </div>
 </body>
 </html>
