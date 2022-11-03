@@ -123,8 +123,14 @@ public class MyPageDAO {
 	}
 	
 	/*
-	 * 		My
+	 * 	 findCustomerConfirmListbyidandpostno(findCustomer) : '발송'인지 아닌지 확인
+	 * 																							매칭 고객 정보 테이블의 발송 여부 컬럼의 데이터가 '발송'이 이면,	 
 	 */
+	public boolean findCustomerConfirmListbyidandpostno(String findCustomer) {		
+		return false;
+	}
+	
+	
 	
 
 	
