@@ -42,7 +42,12 @@ commit
 <<<<<<< HEAD
 select * from NongShim_product_Post
 
-SELECT post_No, title, hits, TO_CHAR(register_Date, 'YYYY-MM-DD') AS register_Date, category, nickname, status FROM NongShim_productpost
+SELECT rownum from NongShim_product_Post
+
+SELECT rownum, post_No, title, hits, TO_CHAR(register_Date, 'YYYY-MM-DD') AS register_Date, category, nickname, status
+  FROM NongShim_product_Post
+ WHERE category = '과일' AND rownum BETWEEN 1 AND 5
+  
 =======
 select * from NongShim_product_post
 >>>>>>> refs/heads/main

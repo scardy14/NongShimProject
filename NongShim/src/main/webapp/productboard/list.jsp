@@ -1,6 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<form action = "" >
+<h3 style="display: inline;">공구게시판</h3> &nbsp;&nbsp;<input type = "text" style="width: 700px; height: 45px;"><br>
+</form>
+<form action = "FindPostListByCheckbox.do" id = "checkboxform">
+<input type='checkbox' name='checkbox' value='all' onclick='checkOnlyOne(this); sendinfo()'/> 전체
+<input type='checkbox' name='checkbox' value='곡물' onclick='checkOnlyOne(this); sendinfo()'/> 곡물
+<input type='checkbox' name='checkbox' value='야채' onclick='checkOnlyOne(this); sendinfo()'/> 야채
+<input type='checkbox' name='checkbox' value='과일' onclick='checkOnlyOne(this); sendinfo()'/> 과일
+</form>
+
+<br>
 <table class="table table-bordered table-hover boardlist">
 	<thead>
 		<tr style="background-color: #d0fd7d">
@@ -49,3 +60,19 @@
   	<li class="page-item"><a class="page-link" href="FindPostListController.do?pageNo=${pagination.endPageOfPageGroup+1}">Next</a></li>     
   	</c:if>	
 </ul>
+
+<hr>
+
+<script>
+	function checkOnlyOne(element) {
+		  const checkboxes = document.getElementsByName("checkbox");
+		  checkboxes.forEach((cb) => {
+		    cb.checked = false;
+		  })
+		  element.checked = true;
+		}
+	function sendinfo() {
+		let checkboxform = document.getElementById("checkboxform");
+		checkboxform.submit();
+	}
+</script>

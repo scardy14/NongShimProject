@@ -50,5 +50,137 @@ public class ProductPostVO {
 				+ productPoint + ", duration=" + duration + ", minCustomer=" + minCustomer + ", maxCustomer="
 				+ maxCustomer + "]";
 	}
+	//홍주영 개인적으로 만든거. 게시물 리스트 보여줄 떄 필요한 요소로 게시물번호, 제목, 조회수, 날짜, 카테고리, 닉네임, 상태값을 가져옴
+	//이거 삭제하면 당장 공구게시판 안돌아가니 일단 내둘것.
+	public ProductPostVO(long postNo, String title, long hits, String date, String category, String nickname, String status) {
+		super();
+		this.postNo = postNo;
+		this.title = title;
+		this.hits = hits;
+		this.date = date;
+		this.category = category;
+		this.status = status;
+		this.nickName = nickname;
+	}
+
+	public long getPostNo() {
+		return postNo;
+	}
+
+	public void setPostNo(long postNo) {
+		this.postNo = postNo;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public long getHits() {
+		return hits;
+	}
+
+	public void setHits(long hits) {
+		this.hits = hits;
+	}
+
+	public String getNickName() {
+		return nickName;
+	}
+
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
+	}
+
+	public String getComments() {
+		return comments;
+	}
+
+	public void setComments(String comments) {
+		this.comments = comments;
+	}
+
+	public String getDate() {
+		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
+	}
+
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public String getProductName() {
+		return productName;
+	}
+
+	public void setProductName(String productName) {
+		this.productName = productName;
+	}
+
+	public long getProductPoint() {
+		return productPoint;
+	}
+
+	public void setProductPoint(long productPoint) {
+		this.productPoint = productPoint;
+	}
+
+	public String getDuration() {
+		return duration;
+	}
+
+	public void setDuration(String duration) {
+		this.duration = duration;
+	}
+
+	public long getMinCustomer() {
+		return minCustomer;
+	}
+
+	public void setMinCustomer(long minCustomer) {
+		this.minCustomer = minCustomer;
+	}
+
+	public long getMaxCustomer() {
+		return maxCustomer;
+	}
+
+	public void setMaxCustomer(long maxCustomer) {
+		this.maxCustomer = maxCustomer;
+	}
 	
 }

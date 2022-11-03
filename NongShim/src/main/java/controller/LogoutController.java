@@ -2,12 +2,22 @@ package controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-public class LoginControllerMove implements Controller {
+public class LogoutController implements Controller {
 
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		request.setAttribute("url", "login/login-form.jsp");  
-		return "mainpage.jsp";
+		
+		HttpSession session=request.getSession(false);
+		if(session!=null)
+			session.invalidate();
+		return "redirect:index.jsp";
 	}
 }
+
+
+
+
+
+
