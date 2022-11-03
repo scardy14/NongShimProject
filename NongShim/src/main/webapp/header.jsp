@@ -31,7 +31,7 @@
 		<td rowspan="2"><img src="images/꾸깃.png" style="width: 60px; height: 60px;"></td>
 	</tr>
 	<tr>
-		<td><a href="">공지사항</a></td><td><a href="">공구게시판	</a></td><td><a href="">자유게시판</a></td><td><a href="">포인트복권</a></td>
+		<td><a href="">공지사항</a></td><td><a href="FindPostListController.do">공구게시판	</a></td><td><a href="">자유게시판</a></td><td><a href="">포인트복권</a></td>
 	</tr>
 </table>
 
