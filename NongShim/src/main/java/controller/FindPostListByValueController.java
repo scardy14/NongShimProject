@@ -13,6 +13,9 @@ public class FindPostListByValueController implements Controller {
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ProductPostDAO dao = ProductPostDAO.getInstance();
 		String checkbox = request.getParameter("checkbox");
+		if(checkbox==null) {
+			checkbox="all";
+		}
 		String pageNo=request.getParameter("pageNo");
 		Pagination pagination=null;
 		int totalPostCount;
