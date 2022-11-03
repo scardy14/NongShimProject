@@ -17,9 +17,7 @@ public class FindPostListByValueController implements Controller {
 		Pagination pagination=null;
 		int totalPostCount;
 		
-		if(checkbox==null) {
-			totalPostCount =dao.getTotalPostCount();
-		} else if (checkbox.equals("all")) {
+		if (checkbox.equals("all")) {
 			totalPostCount =dao.getTotalPostCount();
 		} else {
 			totalPostCount = dao.getTotalPostCountValue(checkbox);
