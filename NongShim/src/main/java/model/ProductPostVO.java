@@ -51,4 +51,15 @@ public class ProductPostVO {
 				+ maxCustomer + "]";
 	}
 	
+
+
+
+
+
+
+
+
+
+
 }
+
