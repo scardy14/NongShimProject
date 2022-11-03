@@ -1,7 +1,7 @@
 drop sequence postNo_seq
 drop table NongShim_product_Post
 drop table productpost1
-
+pst_no,title,content,id,hits,nickname,comments,register,category,status,product_name,product_point
 -- 2. Product Post 상품 게시판 글
 create table NongShim_product_Post(
 post_No number primary key,
@@ -51,10 +51,8 @@ SELECT rownum, post_No, title, hits, TO_CHAR(register_Date, 'YYYY-MM-DD') AS reg
 =======
 select * from NongShim_product_post
 >>>>>>> refs/heads/main
-											
-insert into NongShim_product_post(post_no,category,status,title,content,id,nickname,sysdate,hits,min_Customer,max_Customer)
-values(postNo_seq.nextval,'과일','status','꿀맛 청포도','크고 달아요','java','짱아',sysdate,default,5,10)
 
+-- 2.4 product post data 입력 (write)									
 insert into NongShim_product_Post 
-values (postNo_seq.nextval, '탐스런 과일', '꿀맛청포도','java',default,'짱아','크고 달아요',sysdate,'과일','status','쌀',150,sysdate,50,100);
+values (postNo_seq.nextval, '탐스런 과일', '크고 달아요','java',default,'짱아','맛있네요',sysdate,'과일','status','청포도',100,sysdate,10,30);
 
