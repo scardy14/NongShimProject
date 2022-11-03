@@ -51,7 +51,7 @@ public class ProductPostVO {
 				+ maxCustomer + "]";
 	}
 	//홍주영 개인적으로 만든거. 게시물 리스트 보여줄 떄 필요한 요소로 게시물번호, 제목, 조회수, 날짜, 카테고리, 닉네임, 상태값을 가져옴
-
+	//이거 삭제하면 당장 공구게시판 안돌아가니 일단 내둘것.
 	public ProductPostVO(long postNo, String title, long hits, String date, String category, String nickname, String status) {
 		super();
 		this.postNo = postNo;
