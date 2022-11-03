@@ -2,6 +2,6 @@ package mypage;
 
 public class TestCasefindCustomerConfirmListbyidandpostno {
 	public static void main(String[] args) {
-		String findCustomer="";
+		String findCustomer="발송";
 	}
 }
