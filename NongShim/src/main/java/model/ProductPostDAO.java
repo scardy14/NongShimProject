@@ -80,8 +80,33 @@ public class ProductPostDAO {
 
 		return pp;
 	}
+	
+	public void writePost(ProductPostVO productpostVO) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			con=dataSource.getConnection();
+			String sql="INSERT INTO NongShim_product_Post VALUES (postNo_seq.nextval,?,?,?,default,?,?,sysdate,?,?,?,?,sysdate,?,? )";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, productpostVO.getTitle());
+			pstmt.setString(2, productpostVO.getContent());
+			pstmt.setString(3, productpostVO.getId());
+			pstmt.setString(4, productpostVO.getNickName());
+			pstmt.setString(5, productpostVO.getComments());
+			pstmt.setString(6, productpostVO.getCategory());
+			pstmt.setString(7, productpostVO.getStatus());
+			pstmt.setString(8, productpostVO.getProductName());
+			pstmt.setLong(9, productpostVO.getProductPoint());
+			pstmt.setLong(10, productpostVO.getMinCustomer());
+			pstmt.setLong(11, productpostVO.getMaxCustomer());
+			pstmt.executeUpdate();
+		}finally {
+			closeAll(pstmt, con);
+		}
+	}
 
 	public void writePost() {
+
 
 	}
 

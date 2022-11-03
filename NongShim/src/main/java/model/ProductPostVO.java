@@ -62,6 +62,22 @@ public class ProductPostVO {
 		this.status = status;
 		this.nickName = nickname;
 	}
+
+	// 장지영이 만든거에영 , WritePost 하기 위해 postNO 만 빼서 생성했삼
+	public ProductPostVO(String title, String content, String id, long hits, String nickName, String comments,
+			String date, String category, String status, String productName, long productPoint, String duration,
+			long minCustomer, long maxCustomer) {
+		super();
+		this.title = title;
+		this.content = content;
+		this.id = id;
+		this.nickName = nickName;
+		this.comments = comments;
+		this.category = category;
+		this.status = status;
+		this.productName = productName;
+		this.productPoint = productPoint;
+	}
 	
 	//김민석 개인적으로 만든거. 위와 같은 이유로 냅둘것.
 	
