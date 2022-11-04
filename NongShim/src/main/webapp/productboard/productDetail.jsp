@@ -17,15 +17,50 @@
 		<td style="background-color: #d0fd7d;">최소공구인원</td><td>${vo.minCustomer}</td><td style="background-color: #d0fd7d;">주문가능인원</td><td>${vo.maxCustomer}</td>
 	</tr>
 </table>
+<<<<<<< HEAD
 ${vo.content}
 <hr>
 <form action="">
 <input type = "text" style="width: 90%; height: 50px;"><button type ="submit" style="width: 10%; height: 50px;">댓글등록!</button>
+=======
+
+<form>
+댓글<br>
+<input type = "text">
+<button>문의등록</button>
+<button>후기등록</button>
+
+>>>>>>> refs/heads/main
 </form>
 <br>
 
 ${vo.comments}<br>
 <br>
+
+<table class="table table-bordered table-hover boardlist">	
+ 	<thead>
+		<tr style="background-color: #d0fd7d">
+			<th>번호</th>
+			<th>내용</th>
+			<th>카테고리</th>
+			<th>작성자</th>
+			<th>작성일</th>
+		</tr>
+	</thead>
+	<tbody>
+		
+			<tr>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				
+				
+			</tr>
+		
+	</tbody> 
+</table>
 
 
 <br>
