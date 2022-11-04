@@ -61,8 +61,11 @@ public class AnnouncePostDAO {
 		Connection con = null;
 		try {
 			con = dataSource.getConnection();
-			String sql = "SELECT post_No, title, hits, nickname, register_Date FROM NongShim_Announce_Post";
-			pst = con.prepareStatement(sql);
+			StringBuilder sb = new StringBuilder("");
+			sb.append("SELECT post_No, title, hits, nickname, register_Date ");
+			sb.append("FROM ( SELECT ROW_NUMBER() OVER(ORDER BY post_No DESC) AS rnum, post_No, title, hits, nickname, TO_CHAR(register_Date, 'YYYY-MM-DD') AS register_Date ");
+			sb.append("");
+			pst = con.prepareStatement(sb.toString());
 			rs= pst.executeQuery();
 			while(rs.next()) {
 				list.add(new AnnouncePostVO(rs.getLong(1), rs.getString(2), rs.getLong(3), rs.getString(4), rs.getString(5)));

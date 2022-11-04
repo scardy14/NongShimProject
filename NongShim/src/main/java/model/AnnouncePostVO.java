@@ -50,6 +50,90 @@ public class AnnouncePostVO {
 		this.nickname = nickname;
 		this.register_Date = register_Date;
 	}
+	
+
+
+	public Long getPost_No() {
+		return post_No;
+	}
+
+
+
+	public void setPost_No(Long post_No) {
+		this.post_No = post_No;
+	}
+
+
+
+	public String getId() {
+		return id;
+	}
+
+
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+
+
+	public String getTitle() {
+		return title;
+	}
+
+
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+
+
+	public String getContent() {
+		return content;
+	}
+
+
+
+	public void setContent(String content) {
+		this.content = content;
+	}
+
+
+
+	public Long getHits() {
+		return hits;
+	}
+
+
+
+	public void setHits(Long hits) {
+		this.hits = hits;
+	}
+
+
+
+	public String getNickname() {
+		return nickname;
+	}
+
+
+
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
+
+
+
+	public String getRegister_Date() {
+		return register_Date;
+	}
+
+
+
+	public void setRegister_Date(String register_Date) {
+		this.register_Date = register_Date;
+	}
 
 
 
