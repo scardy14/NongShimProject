@@ -20,8 +20,9 @@ public class MyPagecustomerController implements Controller {
 		System.out.println(id);
 		ArrayList<BuyProductVO> list=MyPageDAO.getInstance().myBuyProductListTotal(id);
 		request.setAttribute("list", list);
-		request.setAttribute("url", "mypage/1customer.jsp");
-		return "mypage/0mypagemain.jsp";
+		//request.setAttribute("url2", "mypage/1customer.jsp");
+		request.setAttribute("url","mypage/2mypagecustomer.jsp");
+		return "mainpage.jsp";
 	}
 
 }
