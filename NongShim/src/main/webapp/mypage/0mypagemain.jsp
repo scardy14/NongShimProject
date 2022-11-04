@@ -30,7 +30,7 @@
 				<th>발송완료 value</th>
 			<tr>
 				<th><a href="">내 정보</a></th>
-				<td colspan="2" rowspan="3">내 정보 임포트</td>
+				<td colspan="2" rowspan="3"><c:import url="${requestScope.url }"/></td>
 			</tr>
 			<tr>
 				<th><a href="MyPagecustomerController.do">구매</a></th>

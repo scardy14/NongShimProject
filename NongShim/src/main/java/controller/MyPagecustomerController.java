@@ -21,7 +21,7 @@ public class MyPagecustomerController implements Controller {
 		ArrayList<BuyProductVO> list=MyPageDAO.getInstance().myBuyProductListTotal(id);
 		request.setAttribute("list", list);
 		request.setAttribute("url", "mypage/1customer.jsp");
-		return "mypage/mypagemain.jsp";
+		return "mypage/0mypagemain.jsp";
 	}
 
 }
