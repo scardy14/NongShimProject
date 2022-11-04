@@ -67,4 +67,6 @@ public class MyPageProductPostVO {
 				+ maxCustomer + "]";
 	}
 	
+	//판매자 인증 체크
+	
 }
