@@ -26,3 +26,6 @@ select * from NONGSHIM_PRODUCTPOSTCOMMENTS
 
 --4.4 게시판 삭제
 drop table NongShim_productPostComments
+
+--걍 test 부분 -- 
+select content, category,id,
