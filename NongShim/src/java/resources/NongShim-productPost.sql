@@ -93,3 +93,7 @@ FROM NongShim_product_post
 WHERE title LIKE '%햅쌀%') WHERE rnum BETWEEN 1 AND 5
 
 SELECT COUNT(*) FROM NongShim_product_Post WHERE title like '%햅쌀%'
+
+
+-- 상품게시판 수정 삭제
+update NongShim_product_Post set 

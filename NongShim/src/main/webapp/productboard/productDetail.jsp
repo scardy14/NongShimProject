@@ -62,6 +62,14 @@
 	</tbody> 
 </table>
 
+<form>
+
+<input type = "text" >
+<button>댓글등록!</button>
+
+</form>
+
+
 </div>
 </body>
 </html>

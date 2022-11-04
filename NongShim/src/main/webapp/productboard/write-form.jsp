@@ -21,7 +21,7 @@
 				<input type="hidden" name="id" value="${SessionScope.id}">
 				<input type="hidden" name="nickname" value="${SessionScope.nickname}">
 				</td>
-			</tr>	
+			</tr>
 			<input type = "text" name = "tag" required="required" placeholder="카테고리"  list="taglist" style="width: 95px; height: 29px;">
      			 <datalist id="taglist">
           			<option value="곡물"></option>
