@@ -80,7 +80,7 @@ public class ProductPostDAO {
 
 		return pp;
 	}
-
+	// 지영 세션 완성 진행중
 	public void writePost(ProductPostVO productpostVO) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -105,16 +105,29 @@ public class ProductPostDAO {
 		}
 	}
 
-	public void writePost() {
-
+	//지영 수정중
+	public void deletePost(long no) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt=null;
+		try {
+			con=dataSource.getConnection();
+			String sql="delete NongShim_product_Post Product where no=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setLong(1,no);
+			pstmt.executeUpdate();
+		}finally{
+			closeAll(pstmt,con);
+		}
 	}
 
-	public void deletePost() {
-
-	}
-
-	public void updatePost() {
-
+	public void updatePost() throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			con=dataSource.getConnection();
+		} finally {
+			closeAll(pstmt,con);
+		}
 	}
 
 	public void addCommentInMoon(String id, long postno, String comment) throws SQLException {
