@@ -64,8 +64,11 @@ public class AnnouncePostDAO {
 			StringBuilder sb = new StringBuilder("");
 			sb.append("SELECT post_No, title, hits, nickname, register_Date ");
 			sb.append("FROM ( SELECT ROW_NUMBER() OVER(ORDER BY post_No DESC) AS rnum, post_No, title, hits, nickname, TO_CHAR(register_Date, 'YYYY-MM-DD') AS register_Date ");
-			sb.append("");
+			sb.append("FROM NongShim_Announce_Post) ");
+			sb.append("WHERE rnum BETWEEN ? AND ?");
 			pst = con.prepareStatement(sb.toString());
+			pst.setInt(1, pagination.getStartRowNumber());
+			pst.setInt(2, pagination.getEndRowNumber());
 			rs= pst.executeQuery();
 			while(rs.next()) {
 				list.add(new AnnouncePostVO(rs.getLong(1), rs.getString(2), rs.getLong(3), rs.getString(4), rs.getString(5)));
@@ -74,5 +77,28 @@ public class AnnouncePostDAO {
 			closeAll(rs, pst, con);
 		}
 		return list;
+	}
+	
+	public AnnouncePostVO findAnnouncePostDetail(Long post_No) throws SQLException {
+		AnnouncePostVO  announcePostVO = null;
+		ResultSet rs = null;
+		PreparedStatement pst = null;
+		Connection con = null;
+		try {
+			con = dataSource.getConnection();
+			StringBuilder sb = new StringBuilder("");
+			sb.append("SELECT post_No, id, title, content, hits, nickname, TO_CHAR(register_Date, 'YYYY-MM-DD') AS register_Date ");
+			sb.append("FROM NongShim_Announce_Post ");
+			sb.append("WHERE post_No = ?");
+			pst = con.prepareStatement(sb.toString());
+			pst.setLong(1, post_No);
+			rs= pst.executeQuery();
+			if(rs.next()) {
+				announcePostVO = new AnnouncePostVO(rs.getLong(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getLong(5), rs.getString(6), rs.getString(7));
+			}
+		} finally {
+			closeAll(rs, pst, con);
+		}
+		return announcePostVO;
 	}
 }

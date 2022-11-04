@@ -21,7 +21,7 @@ public class FindAnnouncePostListController implements Controller{
 		}		
 		request.setAttribute("url", "announceboard/announcepostlist.jsp");
 		request.setAttribute("list", dao.findAnnouncePostList(pagination));
-		System.out.println(dao.findAnnouncePostList(pagination));
+		request.setAttribute("pagination", pagination);
 		return "mainpage.jsp";
 	}
 

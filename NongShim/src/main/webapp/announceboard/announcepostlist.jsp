@@ -15,7 +15,7 @@
 		<c:forEach items="${list}" var="AnnouncePostVO">
 			<tr>
 				<td>${AnnouncePostVO.post_No}</td>
-				<td>${AnnouncePostVO.title}</td>
+				<td><a href="FindAnnouncePostDetailController.do?post_No=${AnnouncePostVO.post_No}">${AnnouncePostVO.title}</a></td>
 				<td>${AnnouncePostVO.nickname}</td>
 				<td>${AnnouncePostVO.register_Date}</td>
 				<td>${AnnouncePostVO.hits}</td>

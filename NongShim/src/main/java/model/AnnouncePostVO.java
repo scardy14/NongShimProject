@@ -22,23 +22,7 @@ public class AnnouncePostVO {
 	}
 
 	
-
 	//게시물 상세보기에서 필요한 생성자
-	public AnnouncePostVO(Long post_No, String title, String content, Long hits, String nickname,
-			String register_Date) {
-		super();
-		this.post_No = post_No;
-		this.title = title;
-		this.content = content;
-		this.hits = hits;
-		this.nickname = nickname;
-		this.register_Date = register_Date;
-	}
-
-
-
-
-	//글 작성할 때 필요한 생성자
 	public AnnouncePostVO(Long post_No, String id, String title, String content, Long hits, String nickname,
 			String register_Date) {
 		super();
@@ -50,14 +34,10 @@ public class AnnouncePostVO {
 		this.nickname = nickname;
 		this.register_Date = register_Date;
 	}
-	
-
 
 	public Long getPost_No() {
 		return post_No;
 	}
-
-
 
 	public void setPost_No(Long post_No) {
 		this.post_No = post_No;
