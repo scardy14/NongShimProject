@@ -7,7 +7,7 @@ public class MyPageMainToMainpageMove implements Controller {
 
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		request.setAttribute("url", "mypage/mypagemain.jsp");
+		request.setAttribute("url", "mypage/0mypagemain.jsp");
 		return "mainpage.jsp";
 	}
 

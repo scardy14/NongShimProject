@@ -33,10 +33,10 @@
 				<td colspan="2" rowspan="3">내 정보 임포트</td>
 			</tr>
 			<tr>
-				<th><a herf="">구매</a></th>
+				<th><a href="MyPagecustomerController.do">구매</a></th>
 			</tr>
 			<tr>
-				<th><a herf="">판매</a></th>
+				<th><a href="">판매</a></th>
 			</tr>
 		</table>
 	</div>

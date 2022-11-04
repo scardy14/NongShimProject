@@ -15,10 +15,10 @@
 <body>
 <div class="container pt-3">
 <table class="table">
-<c:forEach items="" var="p" varStatus="order"> <%-- items 내 목록 --%>
+<c:forEach items="${requestScope.list}" var="list" varStatus="order"> <%-- items 내 목록 --%>
  	 <tr>
  	 	<td rowspan="6">${order.count}</td>
-        <td><a href="">[{발송완료}:상태] {게시물명}</a></td>
+        <td><a href="">[${list.buyProductVO.status}:상태] 게시글명 게시글로 제목 찾아오는 메서드 postDetailFind 에서 제목만 가져오는 메서드 ${list.buyProductVO}</a></td>
       </tr>
       <tr>
       	<td>구매 수량: {}</td>
