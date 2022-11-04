@@ -19,8 +19,8 @@ public class WritePostController implements Controller {
 		String content = request.getParameter("content");
 		String id = memberVO.getId();
 		String nickname = memberVO.getNickName();
-		String comments = "맛있네요";
 		String category = request.getParameter("category");
+		String comments = "맛있네요";
 		String status = "판매중";
 		String productname = "청포도";
 		long productpoint = Long.parseLong(request.getParameter("productPoint"));
