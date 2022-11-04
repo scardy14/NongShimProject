@@ -14,7 +14,7 @@ public class HooCommentController implements Controller {
 		String comment= request.getParameter("comment");
 		
 		
-		ProductPostDAO.getInstance().addCommentInMoon(id, no, comment);
+		ProductPostDAO.getInstance().addCommentInHoo(id, no, comment);
 		//request.setAttribute("url", "ProductDetailController");
 		return "ProductDetailController.do";
 		

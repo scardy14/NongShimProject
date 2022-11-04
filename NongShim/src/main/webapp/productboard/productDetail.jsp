@@ -32,7 +32,7 @@ ${vo.content}
 <hr>
 
 댓글 쓰기
-<input type="text" style="width: 90%; height: 50px;" id="comment">
+<input type="text" style="width: 90%; height: 50px;" id="comment" required="required">
 <br>
 <br>
 
@@ -97,6 +97,11 @@ ${vo.content}
 	function moon() {
 
 		let comment = document.getElementById("comment").value;
+		if(comment.length==0){
+			alert("입력된게 없습니다.")
+			return;
+			
+		}
 		let postno = document.getElementById("postno").value;
 		location.href = "MoonCommentController.do?comment=" + comment
 				+ "&postno=" + postno;
@@ -105,6 +110,11 @@ ${vo.content}
 	function hoo() {
 
 		let comment = document.getElementById("comment").value;
+		if(comment.length==0){
+			alert("입력된게 없습니다.")
+			return;
+			
+		}
 		let postno = document.getElementById("postno").value;
 		location.href = "HooCommentController.do?comment=" + comment
 		+ "&postno=" + postno;;
