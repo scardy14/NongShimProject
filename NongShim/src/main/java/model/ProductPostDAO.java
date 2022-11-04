@@ -125,7 +125,6 @@ public class ProductPostDAO {
 		PreparedStatement pstmt = null;
 		try {
 			con=dataSource.getConnection();
-			String sql="update"
 		} finally {
 			closeAll(pstmt,con);
 		}

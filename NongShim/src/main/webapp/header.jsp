@@ -7,7 +7,7 @@
 <c:when test="${sessionScope.mvo==null}">
 	<a href="LoginControllerMove.do"><span style="color: white;">로그인</span></a> &nbsp;&nbsp;
 	<a href="RegisterControllerMove.do"><span style="color: white;">회원가입</span></a>&nbsp;&nbsp;
-	<a href="WritePostController.do"><span style="color: white;">고객센터</span></a>&nbsp;&nbsp;
+	<a href="WritePostFormController.do"><span style="color: white;">고객센터</span></a>&nbsp;&nbsp;
 </c:when> 
 <c:otherwise>
 <span style="color: white;">이름:${sessionScope.mvo.name}</span>&nbsp;&nbsp;

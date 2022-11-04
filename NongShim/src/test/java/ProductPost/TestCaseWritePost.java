@@ -9,7 +9,7 @@ public class TestCaseWritePost {
 			String title="탐스런 과일";
 			String content="크고 달아요";
 			String id="java";
-			String nickName="짱아";
+			String nickName="jdbc";
 			String comments="맛있네요";
 			String category="과일";
 			String status="status";

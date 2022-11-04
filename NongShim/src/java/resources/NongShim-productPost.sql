@@ -61,8 +61,8 @@ select * from NongShim_product_post
 insert into NongShim_product_Post 
 values (postNo_seq.nextval, '탐스런 과일', '크고 달아요','java',default,'짱아','맛있네요',sysdate,'과일','status','청포도',100,sysdate,10,30);
 =======
->>>>>>> refs/heads/main
-
+>>>>>>> refs/heads/main	
+select * from NongShim_product_post where id='java' and nickname='짱아';
 
 
 
@@ -95,5 +95,9 @@ WHERE title LIKE '%햅쌀%') WHERE rnum BETWEEN 1 AND 5
 SELECT COUNT(*) FROM NongShim_product_Post WHERE title like '%햅쌀%'
 
 
--- 상품게시판 수정 삭제
-update NongShim_product_Post set 
+-- 상품게시판 수정 삭제 (수정중)
+update NongShim_product_Post set category 
+
+
+category,mixPerson,MaxPerson,point,duartion,
+title, content

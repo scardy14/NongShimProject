@@ -77,6 +77,9 @@ public class ProductPostVO {
 		this.status = status;
 		this.productName = productName;
 		this.productPoint = productPoint;
+		this.minCustomer = minCustomer;
+		this.maxCustomer = maxCustomer;
+
 	}
 	
 	//김민석 개인적으로 만든거. 위와 같은 이유로 냅둘것.

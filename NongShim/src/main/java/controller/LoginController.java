@@ -19,7 +19,7 @@ public class LoginController implements Controller {
 		NongShimMemberVO mvo=NongShimMemberDAO.getInstance().login(id, password);
 		String viewPath=null;
 		if(mvo==null) {
-			viewPath="login/login-fail.jsp";
+			viewPath="login/login-fail.jsp"; 
 		}else {
 			viewPath="index.jsp";
 			HttpSession session=request.getSession();

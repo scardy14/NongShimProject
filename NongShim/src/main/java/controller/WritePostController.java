@@ -5,20 +5,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import member.NongShimMemberVO;
 import model.ProductPostDAO;
+import model.ProductPostVO;
 
 public class WritePostController implements Controller {
 
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		if(request.getMethod().equalsIgnoreCase("POST")==false)
-			throw new ServletException(getClass().getName()+" POST METHOD 방식만 가능합니다");
 		
 		HttpSession session=request.getSession(false);
-		MemberVO memberVO = session.getAttribute("mvo");
-		PostVO postVO=new PostVO();
-		ProductPostDAO.getInstance().writePost(postVO);
-				
+		NongShimMemberVO memberVO = (NongShimMemberVO) session.getAttribute("mvo");
+		ProductPostVO productpostVO= new ProductPostVO();
+		ProductPostDAO.getInstance().writePost(productpostVO);
 		return "redirect:FindPostListController.do"; 
 	}
 }
