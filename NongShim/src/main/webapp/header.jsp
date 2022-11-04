@@ -27,8 +27,20 @@
 				<button type = "button" onclick="search()" style="border: none; width: 45px;"><img src="images/search.png" style="width: 45px; height: 40px; display: inline;"></button>
 			</form>
 		</td>
-		<td rowspan="2"><img src="images/MyNongShim.PNG" style="width: 60px; height: 80px;"></td>
+	
+		
+<c:choose>
+<c:when test="${sessionScope.mvo==null}">
+	 	<td rowspan="2"><img src="images/MyNongShim.PNG" style="width: 60px; height: 80px;"></td>			 	
+</c:when> 
+<c:otherwise>
+		<td rowspan="2"><a href="UpdateMemberMove.do" ><img src="images/MyNongShim.PNG" style="width: 60px; height: 80px;"></a></td>		
+</c:otherwise>
+</c:choose>
+
+
 		<td rowspan="2"><img src="images/ShoppingCart.PNG" style="width: 60px; height: 80px;"></td>
+
 	</tr>
 	<tr>
 		<td><a href="">공지사항</a></td><td><a href="FindPostListByValueController.do">공구게시판	</a></td><td><a href="">자유게시판</a></td><td><a href="">포인트복권</a></td>

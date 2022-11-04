@@ -77,6 +77,9 @@ public class NongShimMemberVO implements Serializable{
 		this.accountNo = accountNo;
 	}
 	
+	
+	
+	
 	public String getId() {
 		return id;
 	}
