@@ -1,6 +1,5 @@
 package controller;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -13,11 +12,26 @@ public class WritePostController implements Controller {
 
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		
 		HttpSession session=request.getSession(false);
-		NongShimMemberVO memberVO = (NongShimMemberVO) session.getAttribute("mvo");
-		ProductPostVO productpostVO= new ProductPostVO();
+		Object object = session.getAttribute("mvo");
+		NongShimMemberVO memberVO = (NongShimMemberVO) object;
+		String title = request.getParameter("title");
+		String content = request.getParameter("content");
+		String id = memberVO.getId();
+		String nickname = memberVO.getNickName();
+		String comments = "맛있네요";
+		String category = request.getParameter("category");
+		String status = "판매중";
+		String productname = "청포도";
+		long productpoint = Long.parseLong(request.getParameter("productPoint"));
+		long mincustomer = Long.parseLong(request.getParameter("minCustomer"));
+		long maxcustomer = Long.parseLong(request.getParameter("maxCustomer"));
+		
+		ProductPostVO productpostVO= new ProductPostVO(title,content,id,nickname,comments,category,status,
+				productname,productpoint,mincustomer,maxcustomer);
+		System.out.println(productpostVO + "확인");
 		ProductPostDAO.getInstance().writePost(productpostVO);
-		return "redirect:FindPostListController.do"; 
+
+		return "WritePostFormController.do"; 
 	}
 }
