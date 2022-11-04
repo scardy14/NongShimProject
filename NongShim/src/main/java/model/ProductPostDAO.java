@@ -230,34 +230,30 @@ public class ProductPostDAO {
 		}
 		return totalpostcount;
 	}
-
-	public ArrayList<ProductPostVO> findPostList(Pagination pagination) throws SQLException {
-		// pagination의 시작값과 끝값을 바탕으로 NongShim_productPost에서 정해진 개수만큼의 게시글을 불러옴
-		// 입력값: pagination
-		// 출력값: 페이지 정보인 productpostvo 가 담긴 list를 반환
-		ArrayList<ProductPostVO> list = new ArrayList<>();
+	
+	public int getTotalPostCountSearch(String inputvalue) throws SQLException {
+		// 데이터베이스의 NongShim_productPost 테이블의 총 개시물 수를 불러옴
+		// 입력값: 없음
+		// 출력값: 총 개시물 수
 		ResultSet rs = null;
 		PreparedStatement pst = null;
 		Connection con = null;
+		int totalpostcount = 0;
 		try {
 			con = getConnection();
-			StringBuilder sb = new StringBuilder("");
-			sb.append("SELECT post_No, title, hits, TO_CHAR(register_Date, 'YYYY-MM-DD') ");
-			sb.append("AS register_Date, category, nickname, status FROM NongShim_product_Post ");
-			sb.append("WHERE post_No BETWEEN ? AND ?");
-			pst = con.prepareStatement(sb.toString());
-			pst.setLong(1, pagination.getStartRowNumber());
-			pst.setLong(2, pagination.getEndRowNumber());
+			String sql = "SELECT COUNT(*) FROM NongShim_product_Post WHERE title like ?";
+			pst = con.prepareStatement(sql);
+			pst.setString(1, '%'+inputvalue+'%');
 			rs = pst.executeQuery();
-			while (rs.next()) {
-				list.add(new ProductPostVO(rs.getLong(1), rs.getString(2), rs.getLong(3), rs.getString(4),
-						rs.getString(5), rs.getString(6), rs.getString(7)));
+			if (rs.next()) {
+				totalpostcount = rs.getInt(1);
 			}
 		} finally {
 			closeAll(rs, pst, con);
 		}
-		return list;
+		return totalpostcount;
 	}
+
 
 	public ArrayList<ProductPostVO> findPostListByCheckbox(Pagination pagination, String checkbox) throws SQLException {
 		// pagination의 시작값과 끝값을 바탕으로 NongShim_productPost에서 정해진 개수만큼의 게시글을 불러옴
@@ -290,6 +286,9 @@ public class ProductPostDAO {
 		}
 		return list;
 	}
+
+
+
 
 	public ArrayList<ProductPostVO> findPostListByValue(Pagination pagination, String value) throws SQLException {
 		// pagination의 시작값과 끝값을 바탕으로 NongShim_productPost에서 정해진 개수만큼의 게시글을 불러옴
@@ -333,6 +332,36 @@ public class ProductPostDAO {
 			closeAll(rs, pst, con);
 		}
 		return list;
+	}
+	
+	public ArrayList<ProductPostVO> findPostListBySearch(Pagination pagination, String inputvalue) throws SQLException {
+		//pagination의 시작값과 끝값을 바탕으로 NongShim_productPost에서 정해진 개수만큼의 게시글을 불러옴
+				//입력값: pagination, 검색창에 넣은 검색값
+				//출력값: 검색 단어가 제목에 포함된 페이지 정보인 productpostvo 가 담긴 list를 반환
+				ArrayList<ProductPostVO> list = new ArrayList<>();
+				ResultSet rs = null;
+				PreparedStatement pst = null;
+				Connection con = null;				
+				try {
+					con = getConnection();
+					StringBuilder sb = new StringBuilder("");
+					sb.append("SELECT post_No, title, hits, register_Date, category, nickname, status ");
+					sb.append("FROM (SELECT row_number() over(ORDER BY post_No DESC) AS rnum, ");
+					sb.append("post_No, title, hits, TO_CHAR(register_Date, 'YYYY-MM-DD') AS register_Date, category, nickname, status ");
+					sb.append("FROM NongShim_product_post ");
+					sb.append("WHERE title LIKE ?) WHERE rnum BETWEEN ? AND ?");
+					pst = con.prepareStatement(sb.toString());
+					pst.setString(1, '%'+inputvalue+'%');
+					pst.setLong(2, pagination.getStartRowNumber() );
+					pst.setLong(3, pagination.getEndRowNumber());
+					rs = pst.executeQuery();
+					while(rs.next()) {
+						list.add(new ProductPostVO(rs.getLong(1), rs.getString(2), rs.getLong(3), rs.getString(4), rs.getString(5),rs.getString(6),rs.getString(7)));
+					}
+				} finally {
+					closeAll(rs, pst, con);
+				}
+				return list;
 	}
 
 }

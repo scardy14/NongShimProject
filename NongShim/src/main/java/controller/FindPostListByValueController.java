@@ -37,6 +37,7 @@ public class FindPostListByValueController implements Controller {
 		String[] checkboxlist = {"all","곡물","야채","과일"};
 		request.setAttribute("checkboxlist", checkboxlist);
 		request.setAttribute("checkedbox", checkbox);
+		request.setAttribute("mode", "value");
 		return "mainpage.jsp";
 	}
 

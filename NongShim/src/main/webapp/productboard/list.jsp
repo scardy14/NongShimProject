@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<form action = "" >
-<h3 style="display: inline;">공구게시판</h3> &nbsp;&nbsp;<input type = "text" style="width: 700px; height: 45px;"><br>
+<form action = "FindPostListBySearchController.do" >
+<h3 style="display: inline;">공구게시판</h3> &nbsp;&nbsp;<input type = "text" style="width: 700px; height: 45px;" id = "inputbox" name ="inputbox" value = "${inputvalue }">
+<button type = "submit">검색</button><br>
 </form>
 <form action = "FindPostListByValueController.do" id = "checkboxform">
 	<c:forEach items="${checkboxlist }" var="checkbox" varStatus="checkboxno">
@@ -46,25 +47,48 @@
 <!--
       pagination 
 -->
-<ul class="pagination justify-content-center" style="margin:20px 0">	
-	<c:if test="${pagination.previousPageGroup}">
-	<li class="page-item"><a class="page-link" onclick="sendpageandinfo(${pagination.endPageOfPageGroup-1})">Previous</a></li>
-	</c:if>
-	<c:forEach begin="${pagination.startPageOfPageGroup}" 
-	end="${pagination.endPageOfPageGroup}" var="page">
-	<c:choose>
-		<c:when test="${pagination.nowPage==page}">
-		<li class="page-item active"><a class="page-link" onclick="sendpageandinfo(${page})">${page}</a></li>
-		</c:when>
-		<c:otherwise>
-		<li class="page-item"><a class="page-link" onclick="sendpageandinfo(${page})">${page}</a></li>
-		</c:otherwise>
-	</c:choose>	
-	</c:forEach>
-	<c:if test="${pagination.nextPageGroup}">
-  	<li class="page-item"><a class="page-link" onclick="sendpageandinfo(${pagination.endPageOfPageGroup+1})">Next</a></li>     
-  	</c:if>	
-</ul>
+<c:choose>
+	<c:when test="${mode =='value' }">
+		<ul class="pagination justify-content-center" style="margin:20px 0">	
+			<c:if test="${pagination.previousPageGroup}">
+				<li class="page-item"><a class="page-link" onclick="sendpageandinfo(${pagination.endPageOfPageGroup-1})">Previous</a></li>
+			</c:if>
+			<c:forEach begin="${pagination.startPageOfPageGroup}" end="${pagination.endPageOfPageGroup}" var="page">
+			<c:choose>
+				<c:when test="${pagination.nowPage==page}">
+					<li class="page-item active"><a class="page-link" onclick="sendpageandinfo(${page})">${page}</a></li>
+				</c:when>
+				<c:otherwise>
+					<li class="page-item"><a class="page-link" onclick="sendpageandinfo(${page})">${page}</a></li>
+				</c:otherwise>
+			</c:choose>	
+			</c:forEach>
+			<c:if test="${pagination.nextPageGroup}">
+		  		<li class="page-item"><a class="page-link" onclick="sendpageandinfo(${pagination.endPageOfPageGroup+1})">Next</a></li>     
+		  	</c:if>	
+		</ul>
+	</c:when>
+	<c:otherwise>
+		<ul class="pagination justify-content-center" style="margin:20px 0">	
+			<c:if test="${pagination.previousPageGroup}">
+				<li class="page-item"><a class="page-link" onclick="sendpageandsearch(${pagination.endPageOfPageGroup-1})">Previous</a></li>
+			</c:if>
+			<c:forEach begin="${pagination.startPageOfPageGroup}" end="${pagination.endPageOfPageGroup}" var="page">
+			<c:choose>
+				<c:when test="${pagination.nowPage==page}">
+					<li class="page-item active"><a class="page-link" onclick="sendpageandsearch(${page})">${page}</a></li>
+				</c:when>
+				<c:otherwise>
+					<li class="page-item"><a class="page-link" onclick="sendpageandsearch(${page})">${page}</a></li>
+				</c:otherwise>
+			</c:choose>	
+			</c:forEach>
+			<c:if test="${pagination.nextPageGroup}">
+		  		<li class="page-item"><a class="page-link" onclick="sendpageandsearch(${pagination.endPageOfPageGroup+1})">Next</a></li>     
+		  	</c:if>	
+		</ul>	
+	</c:otherwise>
+</c:choose>
 
 <hr>
 
@@ -82,6 +106,7 @@
 	}
 	function sendpageandinfo(element) {
 		let checkboxes = document.getElementsByName("checkbox");
+		
 		let loop = checkboxes.length;
 		let checkbox = null;
 		for(let i = 0; i<loop;i++) {
@@ -89,9 +114,11 @@
 				checkbox = checkboxes[i].value;
 			}
 		}
-		
-		
 		location.href="FindPostListByValueController.do?pageNo="+element+"&checkbox="+checkbox;
+	}
+	function sendpageandsearch(element) {
+		let inputbox = document.getElementById("inputbox").value;
+		location.href="FindPostListBySearchController.do?pageNo="+element+"&inputbox="+inputbox;		
 	}
 	
 </script>
