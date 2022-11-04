@@ -130,24 +130,69 @@ public class ProductPostDAO {
 		}
 	}
 
-	public void addComment(String id, long postno, String comment, String category) throws SQLException {
+	public void addCommentInMoon(String id, long postno, String comment) throws SQLException {
 
 		PreparedStatement pst = null;
 		Connection con = null;
 		try {
 			con = getConnection();
-			String sql = "insert into NONGSHIM_PRODUCTPOSTCOMMENTS values (?,?,sysdate,?,?)";
+			String sql = "insert into NONGSHIM_PRODUCTPOSTCOMMENTS values (?,?,sysdate,?,'문의')";
 			pst = con.prepareStatement(sql);
 			pst.setString(1, id);
 			pst.setLong(2, postno);
 			pst.setString(3, comment);
-			pst.setString(4, category);
 			pst.executeUpdate();
 
 		} finally {
 			closeAll(pst, con);
 		}
 
+	}
+	
+	public void addCommentInHoo(String id, long postno, String comment) throws SQLException {
+
+		PreparedStatement pst = null;
+		Connection con = null;
+		try {
+			con = getConnection();
+			String sql = "insert into NONGSHIM_PRODUCTPOSTCOMMENTS values (?,?,sysdate,?,'후기')";
+			pst = con.prepareStatement(sql);
+			pst.setString(1, id);
+			pst.setLong(2, postno);
+			pst.setString(3, comment);
+			pst.executeUpdate();
+
+		} finally {
+			closeAll(pst, con);
+		}
+
+	}
+	
+	public ArrayList<CommentVO> showAllCommentByPostNo(long postno) throws SQLException {
+		
+		ArrayList<CommentVO> list = new ArrayList<>();
+		ResultSet rs = null;
+		PreparedStatement pst = null;
+		Connection con = null;
+		try {
+			con = getConnection();
+			String sql= "select * from NongShim_productPostComments where post_No=?";
+			pst = con.prepareStatement(sql);
+			pst.setLong(1, postno);
+			rs = pst.executeQuery();
+			while (rs.next()) {
+				list.add(new CommentVO(rs.getString(1), rs.getLong(2), rs.getString(3), rs.getString(4),
+						rs.getString(5)));
+			}
+		} finally {
+			closeAll(rs, pst, con);
+		}
+		return list;
+		
+		
+		
+		
+		
 	}
 
 	public void updateComment(String content, String id, long no, String date) throws SQLException {

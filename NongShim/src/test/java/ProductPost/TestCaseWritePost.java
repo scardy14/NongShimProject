@@ -6,7 +6,7 @@ import model.ProductPostVO;
 public class TestCaseWritePost {
 	public static void main(String[] args) {
 		try {
-			String title="탐스런 과일";
+			String title="청포도 팔아여";
 			String content="크고 달아요";
 			String id="java";
 			String nickName="jdbc";

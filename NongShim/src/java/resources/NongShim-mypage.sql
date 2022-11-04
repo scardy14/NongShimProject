@@ -18,7 +18,7 @@ CREATE TABLE like_product(
 drop table seller_ide
 
 create table seller_ide(
-	id varchar2(100) not null,
+	id varchar2(100) primary key,
 	company_register_num varchar2(100) not null,
 	constraint seller_id_fk foreign key (id) references NongShim_Member(id)
 )
@@ -45,6 +45,7 @@ insert into buy_product_list values ('java','12',sysdate,'확인중',15);
 insert into buy_product_list values ('java','13',sysdate,'발송완료',20);
 insert into buy_product_list values ('spring','14',sysdate,'확인중',15);
 insert into buy_product_list values ('spring','15',sysdate,'발송완료',20);
+
 
 commit
 
@@ -93,32 +94,58 @@ insert into NongShim_product_Post
 values (postNo_seq.nextval, '노란 배추', '신선하고 맛있습니다','jdbc',default,'jdk','jdk',sysdate,'야채','판매중','딸기',178,sysdate+7,7,10);
 
 
--- MySellProductList : 게시판 특정 상태인 판매목록(최신순)
+--1. MySellProductList : 게시판 특정 상태인 판매목록(최신순)
 select post_no,id,register_date,category,status,product_name,product_point,duration,min_customer,max_customer 
 from NongShim_product_Post where status='판매중' AND  id='java' order by register_date desc;
 
--- MySellProductListCount : 게시판 특정 상태인 판매목록 수
+--2. MySellProductListCount : 게시판 특정 상태인 판매목록 수
 select count(*)
 from NongShim_product_Post where status='판매종료' AND  id='jdbc';
 
--- MySellProductListTotal : 게시판 내 판매 상품 전체 조회(최신순)
+--3. MySellProductListTotal : 게시판 내 판매 상품 전체 조회(최신순)
 select post_no,id,register_date,category,status,product_name,product_point,duration,min_customer,max_customer 
 from NongShim_product_Post where id='java' order by register_date desc;
 
---findCustomerConfirmListbyidandpostno() : 매칭 고객 정보 테이블의 발송 여부 컬럼의 데이터가 '발송'이 이면
+--4. findCustomerConfirmListbyidandpostno() : 매칭 고객 정보 테이블의 발송 여부 컬럼의 데이터가 '발송'이 이면
 select post_status from confirm_list where id='jdbc'and post_no='13';
 
--- ChangeBuyState() : 위의 메서드로 true를 반환 받으면 구매목록 리스트의 상태를 '발송완료'로 바꿔줌
+--5. ChangeBuyState() : 위의 메서드로 true를 반환 받으면 구매목록 리스트의 상태를 '발송완료'로 바꿔줌
 select * from buy_product_list where id='spring' and post_no='14';
 update buy_product_list set status='발송완료' where id='jdbc' and post_no='10';
 
--- StatusUpdatebyDuration() : post_product 테이블의 duration과 오늘 날짜를 비교하였을 때, 
+--6. StatusUpdatebyDuration() : post_product 테이블의 duration과 오늘 날짜를 비교하였을 때, 
 -- 											   조회 되는 데이터가 있으면 이 데이터들의 status는 '판매종료'로 업데이트
 select * from NongShim_product_Post where duration <= sysdate;
 select * from NongShim_product_Post
 select * from NongShim_product_Post where nickname='jdk';
 update NongShim_product_Post set status='판매종료' where duration <= sysdate;
 
--- MyBuyProductList() : 특정 상태인 구매목록(최신순)
+--7. MyBuyProductList() : 특정 상태인 구매목록(최신순)
 select * from buy_product_list
-select * from buy_product_list where id='jdbc' and status='확인중';
+select * from buy_product_list where id='jdbc' and status='확인중' order by ns_date desc;
+
+--8. MyBuyProductListCount : 특정 상태인 구매목록 수
+select count(*) from buy_product_list
+select count(*) from buy_product_list where id='jdbc' and status='확인중';
+
+--9. MyBuyProductListTotal : 내 구매 상품 전체 조회(최신순)
+select * from buy_product_list where id='java' order by ns_date desc;
+
+-- 10. InsertSellerCheck : 사업자등록번호를 seller_ide에 등록하는 메서드를 위해 작성한 sql
+delete seller_ide
+select * from seller_ide
+insert into seller_ide values('java',1234567890);
+insert into seller_ide values('jdbc',1234567890);
+insert into seller_ide values('spring',1234567890); 
+insert into seller_ide values('jdk',1234567890); --블락
+
+-- 11.1. sellerCheck : 아이디를 통해서 seller_ide의 정보를 불러옴
+select * from seller_ide where id='java';
+-- 11.2. sellercheckUpdate : seller_ide에 정보가 저장되면 동시에 update 됨
+update NongShim_Member set seller_info='일반' where id='java';
+select * from NongShim_Member where id='java';
+
+-- 12. AdministratorCheck : 체크만 하면 됨 seller_ide
+insert into NongShim_Member values('jdk','a','정다경','성남','다경','017',DEFAULT,'관리자','gmail',default,'356-4');
+select id,admin_INfo from NongShim_Member where id='jdk'
+

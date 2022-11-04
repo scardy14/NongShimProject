@@ -7,7 +7,6 @@ import java.sql.SQLException;
 
 import javax.sql.DataSource;
 
-
 import model.DataSourceManager;
 
 
@@ -45,15 +44,17 @@ public class NongShimMemberDAO {
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		try {
-			con=getConnection();
-			String sql="select * from NongShim_Member where id=? and password=?";
+			con=dataSource.getConnection();
+			String sql="select*from NongShim_Member where id=? and password=?";
+
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, id);
 			pstmt.setString(2, password);
 			rs=pstmt.executeQuery();
 			if(rs.next()) {
 				nongShimMemberVO=new NongShimMemberVO(rs.getString(1), rs.getString(2), rs.getString(3),rs.getString(4),
-		                rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8),rs.getString(9),rs.getInt(10),rs.getString(11)); ;
+
+		                rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8),rs.getString(9),rs.getInt(10),rs.getString(11));
 			}
 			
 		}finally {
@@ -65,7 +66,7 @@ public class NongShimMemberDAO {
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		try {
-			con=getConnection();
+			con=dataSource.getConnection();
 			String sql="insert into NongShim_Member values(?,?,?,?,?,?,DEFAULT,DEFAULT,?,default,?)";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, vo.getId());
@@ -88,7 +89,7 @@ public class NongShimMemberDAO {
 		ResultSet rs=null;
 		boolean result=false;
 		try {
-			con=getConnection();
+			con=dataSource.getConnection();
 			String sql="select count(*) from NongShim_Member where id=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, id);
@@ -108,7 +109,7 @@ public class NongShimMemberDAO {
 		ResultSet rs=null;
 		boolean result=false;
 		try {
-			con=getConnection();
+			con=dataSource.getConnection();
 			String sql="select count(*) from NongShim_Member where tel=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, tel);
@@ -122,16 +123,18 @@ public class NongShimMemberDAO {
 		return result;
 	}
 	
-	public boolean check_account_No(String account_No) throws SQLException {
+	public boolean check_Regist(String account_No,String email,String nickName) throws SQLException {
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		boolean result=false;
 		try {
 			con=getConnection();
-			String sql="select count(*) from NongShim_Member where account_No=?";
+			String sql="select count(*) from NongShim_Member where account_No=? and  email=? and nickName=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, account_No);
+			pstmt.setString(2, email);
+			pstmt.setString(3,nickName );
 			rs=pstmt.executeQuery();
 			if(rs.next()&&rs.getInt(1)>0) {
 				result=true;
@@ -141,44 +144,27 @@ public class NongShimMemberDAO {
 		}
 		return result;
 	}
-	public boolean checkEmail(String email) throws SQLException {
+
+	
+	public int updateMember(NongShimMemberVO nongShimMemberVO) throws SQLException{
 		Connection con=null;
 		PreparedStatement pstmt=null;
-		ResultSet rs=null;
-		boolean result=false;
 		try {
 			con=getConnection();
-			String sql="select count(*) from NongShim_Member where email=?";
-			pstmt=con.prepareStatement(sql);
-			pstmt.setString(1, email);
-			rs=pstmt.executeQuery();
-			if(rs.next()&&rs.getInt(1)>0) {
-				result=true;
-			}
+			String sql="update NongShim_Member set password=?,name=?,address=?,nickName=?,tel=?,email=?,account_No=? where id=?";
+			pstmt=con.prepareStatement(sql);			
+			pstmt.setString(1, nongShimMemberVO.getPassword());
+			pstmt.setString(2, nongShimMemberVO.getName());
+			pstmt.setString(3, nongShimMemberVO.getAddress());
+			pstmt.setString(4, nongShimMemberVO.getNickName());
+			pstmt.setString(5, nongShimMemberVO.getTel());
+			pstmt.setString(6, nongShimMemberVO.getEmail());
+			pstmt.setString(7, nongShimMemberVO.getAccountNo());
+			pstmt.setString(8, nongShimMemberVO.getId());
+			return pstmt.executeUpdate();
 		}finally {
-			closeAll(rs, pstmt, con);
+			closeAll(pstmt, con);
 		}
-		return result;
 	}
-	public boolean checkNickName(String nickName) throws SQLException {
-		Connection con=null;
-		PreparedStatement pstmt=null;
-		ResultSet rs=null;
-		boolean result=false;
-		try {
-			con=getConnection();
-			String sql="select count(*) from NongShim_Member where nickName=?";
-			pstmt=con.prepareStatement(sql);
-			pstmt.setString(1, nickName);
-			rs=pstmt.executeQuery();
-			if(rs.next()&&rs.getInt(1)>0) {
-				result=true;
-			}
-		}finally {
-			closeAll(rs, pstmt, con);
-		}
-		return result;
-	}
-	
-	
+
 }

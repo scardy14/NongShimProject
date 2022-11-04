@@ -1,4 +1,4 @@
-package member;
+package model;
 
 import java.io.Serializable;
 
@@ -76,9 +76,6 @@ public class NongShimMemberVO implements Serializable{
 		this.point = point;
 		this.accountNo = accountNo;
 	}
-	
-	
-	
 	
 	public String getId() {
 		return id;

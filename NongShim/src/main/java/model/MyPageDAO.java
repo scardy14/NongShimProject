@@ -1,5 +1,6 @@
 package model;
 
+import java.lang.reflect.Array;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -41,7 +42,7 @@ public class MyPageDAO {
 	}
 
 	/**
-	 * MySellProductList() : 나의 상태에 따른 판매 목록
+	 * MySellProductList(String status, String id) : 나의 상태에 따른 판매 목록
 	 * 
 	 * Logic:
 	 * 
@@ -79,7 +80,7 @@ public class MyPageDAO {
 	}
 
 	/**
-	 * MySellProductListCount(status,id) : 상태에 따른 나의 판매 물품 수
+	 * MySellProductListCount(String status, String id) : 상태에 따른 나의 판매 물품 수
 	 * @jdk
 	 */
 	public int mySellProductListCount(String status, String id) throws SQLException {
@@ -104,7 +105,7 @@ public class MyPageDAO {
 	}
 
 	/**
-	 * MySellProductListTotal(id) : 내 전체 상품 조회
+	 * MySellProductListTotal(String id) : 내 전체 상품 조회
 	 * @jdk
 	 */
 
@@ -135,7 +136,7 @@ public class MyPageDAO {
 	}
 
 	/**
-	 * findCustomerConfirmListbyidandpostno(findCustomer) : '발송'인지 아닌지 확인 매칭 고객 정보
+	 * FindCustomerConfirmListbyidandpostno(String customerId, long post_no) : '발송'인지 아닌지 확인 매칭 고객 정보
 	 * 테이블의 발송 여부 컬럼의 데이터가 '발송'이 이면, true를 반환
 	 * @jdk
 	 */
@@ -162,7 +163,7 @@ public class MyPageDAO {
 	}
 
 	/**
-	 * -- ChangeBuyState() : 구매 작업에서 참여하기 눌렀으면 디폴트가 확인중이므로, 매칭 고객정보에서 발송여부가 바뀌었을 때,
+	 * -- ChangeBuyState(String id, long post_no) : 구매 작업에서 참여하기 눌렀으면 디폴트가 확인중이므로, 매칭 고객정보에서 발송여부가 바뀌었을 때,
 	 * 확인 중에서 발송완료로 변화
 	 * 
 	 * findCustomerConfirmListbyidandpostno() 로 '발송'인지 아닌지 확인 매칭 고객 정보 테이블의 발송 여부
@@ -222,6 +223,14 @@ public class MyPageDAO {
 		return result;
 	}
 
+	/**
+	 * -- MyBuyProductList(String status, String id) : 특정 상태인 구매목록(최신순)
+	 * @param status
+	 * @param id
+	 * @return
+	 * @throws SQLException
+	 */
+	
 	public ArrayList<BuyProductVO> myBuyProductList(String status, String id) throws SQLException {
 		ArrayList<BuyProductVO> list = new ArrayList<>();
 		Connection con = null;
@@ -229,15 +238,76 @@ public class MyPageDAO {
 		ResultSet rs = null;
 		try {
 			con=dataSource.getConnection();
-			String sql="select * from buy_product_list where id=? and status=?";
+			String sql="select * from buy_product_list where id=? and status=? order by ns_date desc";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, id);
 			pstmt.setString(2, status);
 			rs=pstmt.executeQuery();
 			while(rs.next()) {
-				BuyProductVO buyProductVO=new BuyProductVO(rs.getString(1),rs.getLong(2),rs.getLong(3),rs.getString(4),rs.getLong(5));
+				BuyProductVO buyProductVO=new BuyProductVO(rs.getString(1),rs.getLong(2),rs.getString(3),rs.getString(4),rs.getLong(5));
 				list.add(buyProductVO);
-				System.out.println(buyProductVO);
+			}
+		} finally {
+			closeAll(rs, pstmt, con);
+		}
+		return list;
+	}
+	
+	/**
+	 * 
+		MyBuyProductListCount(String status, String id) : 특정 상태인 구매목록 수
+		
+		
+	 * @param status
+	 * @param id
+	 * @return
+	 * @throws SQLException
+	 */
+
+	public int myBuyProductListCount(String status, String id) throws SQLException {
+		int result=0;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			con=dataSource.getConnection();
+			String sql="select count(*) from buy_product_list where id=? and status=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.setString(2, status);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				result=rs.getInt(1);
+			}
+		} finally {
+			closeAll(rs, pstmt, con);
+		}
+		return result;
+	}
+
+	/**
+	 * MyBuyProductListTotal(String id) : 나의 구매목록 전체 불러오기
+	 * @param id
+	 * @return
+	 * @throws SQLException
+	 */
+	
+	
+	public ArrayList<BuyProductVO> myBuyProductListTotal(String id) throws SQLException {
+		ArrayList<BuyProductVO> list=new ArrayList<>();
+		BuyProductVO buyProductVO=null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			con=dataSource.getConnection();
+			String sql="select * from buy_product_list where id=? order by ns_date desc";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1,id);
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				buyProductVO=new BuyProductVO(rs.getString(1),rs.getLong(2),rs.getString(3),rs.getString(4),rs.getLong(5));
+				list.add(buyProductVO);
 			}
 		} finally {
 			closeAll(rs, pstmt, con);
@@ -245,6 +315,123 @@ public class MyPageDAO {
 		return list;
 	}
 
+	/**
+	 * 		InsertSellerCheck(SellerIdeVO sellerIdeVO) : 판매자 인증 버튼 클릭 후 사업자 번호를 등록 할때 사용하는 메서드
+	 * 										아이디와 사업자 인증번호를 입력 받아 seller_ide 테이블에 insert 한다
+	 * 										유일값에 특정 값 보다 작으면 block 10자리(jsp)
+	 * @param id
+	 * @param sellerNum
+	 * @return
+	 * @throws SQLException
+	 */
+	public boolean insertSellerCheck(SellerIdeVO sellerIdeVO) throws SQLException {
+		boolean flag=false;
+		int result=0;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			con=dataSource.getConnection();
+			String sql="insert into seller_ide values(?,?)";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, sellerIdeVO.getId());
+			pstmt.setString(2, sellerIdeVO.getCompanyRegisterNum());
+			result=pstmt.executeUpdate();
+			if(result>0) {
+				flag=true;
+				sellercheckUpdate(sellerIdeVO.getId());
+			}
+		} finally {
+			closeAll(pstmt, con);
+		}
+		return flag;
+	}
+
 	
 	
+	
+	
+	/**
+	 * 	sellerCheck(String id) : 아이디를 통해서 seller_ide의 정보를 불러옴
+	 * @param id
+	 * @return
+	 * @throws SQLException
+	 */
+	public SellerIdeVO sellerCheck(String id) throws SQLException {
+		SellerIdeVO sellerIdeVO=null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			con=dataSource.getConnection();
+			String sql="select * from seller_ide where id=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				sellerIdeVO = new SellerIdeVO(rs.getString(1),rs.getString(2));
+			}
+		} finally {
+			closeAll(rs, pstmt, con);
+		}
+		return sellerIdeVO;
+	}
+	
+	/**
+	 * 
+	 * sellercheckUpdate(String id) : seller_ide에 정보가 저장되면 동시에 update 됨
+	 * 									InsertSellerCheck 가 true 상태이면 업데이트 됨
+	 * @param id
+	 * @return
+	 * @throws SQLException
+	 */
+
+	public boolean sellercheckUpdate(String id) throws SQLException {
+		boolean flag=false;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		int result=0;
+		try {
+			con=dataSource.getConnection();
+			String sql="update NongShim_Member set seller_info='판매자' where id=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			result=pstmt.executeUpdate();
+			if(result>0) {
+				flag=true;
+			}
+		} finally {
+			closeAll(pstmt, con);
+		}
+		return flag;
+	}
+	
+	
+/**
+ * 
+ * 	AdministratorCheck(String id) : 체크만 하면 됨 seller_ide
+ * 									  member 테이블의 정보를 가져와서 id와 관리자 정보를 가져옴
+ * @param id
+ * @return
+ * @throws SQLException
+ * 
+ */
+	public MyPageMemberVO administratorCheck(String id) throws SQLException {
+		MyPageMemberVO myPageMemberVO=null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			con=dataSource.getConnection();
+			String sql="select id,admin_INfo from NongShim_Member where id=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				myPageMemberVO=new MyPageMemberVO(rs.getString(1),rs.getString(2));
+			}
+		} finally {
+			closeAll(rs, pstmt, con);
+		}
+		return myPageMemberVO;
+	}
 }

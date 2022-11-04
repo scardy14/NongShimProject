@@ -1,7 +1,7 @@
 -- 4.1 게시판 댓글 
 create table NongShim_productPostComments(
 id varchar2(100) not null,
-post_No4 number not null,
+post_No number not null,
 comments_date date not null,
 content clob not null,
 category varchar2(100) not null,
@@ -26,3 +26,6 @@ select * from NONGSHIM_PRODUCTPOSTCOMMENTS
 
 --4.4 게시판 삭제
 drop table NongShim_productPostComments
+
+--걍 test 부분 -- 
+select content, category,id,
