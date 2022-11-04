@@ -27,7 +27,7 @@
 				<button type = "button" onclick="search()" style="border: none; width: 45px;"><img src="images/search.png" style="width: 45px; height: 40px; display: inline;"></button>
 			</form>
 		</td>
-		<td rowspan="2"><img src="images/MyNongShim.PNG" style="width: 60px; height: 80px;"></td>
+		<td rowspan="2"><a href="MyPageMainToMainpageMove.do"><img src="images/MyNongShim.PNG" style="width: 60px; height: 80px;"></a></td>
 		<td rowspan="2"><img src="images/ShoppingCart.PNG" style="width: 60px; height: 80px;"></td>
 	</tr>
 	<tr>
