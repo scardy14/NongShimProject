@@ -9,12 +9,7 @@ public class WritePostFormController implements Controller {
 
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		if(request.getMethod().equalsIgnoreCase("POST")==false)
-			throw new ServletException(getClass().getName()+" POST METHOD 방식만 가능합니다");
-		
-		HttpSession session=request.getSession(false);
-		
-		return null;
-	}
-
+			request.setAttribute("url", "productboard/write-form.jsp");
+			return "mainpage.jsp";
+		}
 }

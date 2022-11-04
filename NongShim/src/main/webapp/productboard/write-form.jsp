@@ -16,7 +16,12 @@
 
 <div class="container pt-3">
 <form method="post" action="WritePostController.do">
-		
+			<tr>
+				<td>
+				<input type="hidden" name="id" value="${SessionScope.id}">
+				<input type="hidden" name="nickname" value="${SessionScope.nickname}">
+				</td>
+			</tr>	
 			<input type = "text" name = "tag" required="required" placeholder="카테고리"  list="taglist" style="width: 95px; height: 29px;">
      			 <datalist id="taglist">
           			<option value="곡물"></option>
@@ -25,11 +30,12 @@
            			<option value="기타"></option>       
          </datalist>
          <input type="text" name="title" placeholder="최소인원수" required="required">
-         <input type="text" name="title" placeholder="최대인원수" required="required"><br><br>
+         <input type="text" name="title" placeholder="최대인원수" required="required">
+         <input type="text" name="title" placeholder="포인트" required="required">
+         <input type="text" name="title" placeholder="판매기간" required="required"><br><br>
         
 			<textarea rows="1" cols="50" name="content" placeholder="제목을 입력해주세요" required="required"></textarea><br>
-		
-			<textarea rows="10" cols="50" name="content" placeholder="내용을 입력하세요" required="required"></textarea>
+			<textarea rows="10" cols="50" name="content" placeholder="내용을 입력하세요" required="required"></textarea><br>
 
 	<div	class="text-center">
 		<button type="submit" class="btn btn-success">등록</button>

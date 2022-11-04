@@ -104,14 +104,19 @@ public class ProductPostDAO {
 			closeAll(pstmt, con);
 		}
 	}
-
-	public void writePost() {
-
-
-	}
-
-	public void deletePost() {
-
+	
+	public void deletePost(long no) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt=null;
+		try {
+			con=dataSource.getConnection();
+			String sql="delete NongShim_product_Post Product where no=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setLong(1,no);
+			pstmt.executeUpdate();
+		}finally{
+			closeAll(pstmt,con);
+		}
 	}
 
 	public void updatePost() {
