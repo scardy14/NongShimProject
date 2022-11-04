@@ -28,15 +28,8 @@
 			</form>
 		</td>
 	
-		
-<c:choose>
-<c:when test="${sessionScope.mvo==null}">
+
 	 	<td rowspan="2"><img src="images/MyNongShim.PNG" style="width: 60px; height: 80px;"></td>			 	
-</c:when> 
-<c:otherwise>
-		<td rowspan="2"><a href="UpdateMemberMove.do" ><img src="images/MyNongShim.PNG" style="width: 60px; height: 80px;"></a></td>		
-</c:otherwise>
-</c:choose>
 
 
 		<td rowspan="2"><img src="images/ShoppingCart.PNG" style="width: 60px; height: 80px;"></td>
