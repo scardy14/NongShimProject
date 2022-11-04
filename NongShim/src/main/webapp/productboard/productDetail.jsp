@@ -63,11 +63,37 @@
 </table>
 
 <form>
-
-<input type = "text" >
-<button>댓글등록!</button>
+댓글<br>
+<input type = "text">
+<button>문의등록</button>
+<button>후기등록</button>
 
 </form>
+
+<table class="table table-bordered table-hover boardlist">	
+ 	<thead>
+		<tr style="background-color: #d0fd7d">
+			<th>번호</th>
+			<th>내용</th>
+			<th>카테고리</th>
+			<th>작성자</th>
+			<th>작성일</th>
+		</tr>
+	</thead>
+	<tbody>
+		
+			<tr>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				
+				
+			</tr>
+		
+	</tbody> 
+</table>
 
 
 </div>

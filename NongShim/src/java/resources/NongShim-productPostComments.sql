@@ -1,7 +1,7 @@
 -- 4.1 게시판 댓글 
 create table NongShim_productPostComments(
 id varchar2(100) not null,
-post_No4 number not null,
+post_No number not null,
 comments_date date not null,
 content clob not null,
 category varchar2(100) not null,
