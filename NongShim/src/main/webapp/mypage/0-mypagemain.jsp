@@ -19,7 +19,7 @@
 
 <body>
 	<div class="container pt-3">
-		<table class="table table-hover" style="text-align: center;">
+		<table class="table" style="text-align: center;">
 			<tr style="background-color: #d0fd7d">
 				<th rowspan="2" style="width: 20%">마이농심</th>
 				<th style="width: 40%">확인중</th>
@@ -29,14 +29,14 @@
 				<th>확인중 value</th>
 				<th>발송완료 value</th>
 			<tr>
-				<th>내 정보</th>
+				<th><a href="">내 정보</a></th>
 				<td colspan="2" rowspan="3">내 정보 임포트</td>
 			</tr>
 			<tr>
-				<th>구매</th>
+				<th><a herf="">구매</a></th>
 			</tr>
 			<tr>
-				<th>판매</th>
+				<th><a herf="">판매</a></th>
 			</tr>
 		</table>
 	</div>
