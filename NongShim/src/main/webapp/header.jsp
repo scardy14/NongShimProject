@@ -43,7 +43,7 @@
 
 	</tr>
 	<tr>
-		<td><a href="">공지사항</a></td><td><a href="FindPostListByValueController.do">공구게시판	</a></td><td><a href="">자유게시판</a></td><td><a href="">포인트복권</a></td>
+		<td><a href="FindAnnouncePostListController.do">공지사항</a></td><td><a href="FindPostListByValueController.do">공구게시판	</a></td><td><a href="FindFreePostListController.do">자유게시판</a></td><td><a href="">포인트복권</a></td>
 	</tr>
 </table>
 <br>
