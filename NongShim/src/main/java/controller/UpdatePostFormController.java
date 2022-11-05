@@ -7,7 +7,11 @@ public class UpdatePostFormController implements Controller {
 
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		return null;
+		request.setAttribute("no",request.getParameter("no"));
+		request.setAttribute("title",request.getParameter("title"));
+		request.setAttribute("content",request.getParameter("content"));
+		request.setAttribute("url", "productboard/update-form.jsp");
+		return "productDetail.jsp";
 	}
 
 }

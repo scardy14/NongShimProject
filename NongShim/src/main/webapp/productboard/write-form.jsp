@@ -27,8 +27,8 @@
          <input type="number" name="maxCustomer" placeholder="최대인원수" required="required">
          <input type="number" name="productPoint" placeholder="포인트" required="required">
          <input type="text" name="duration" placeholder="판매기간" required="required"><br><br>
-         <input style="width: 700px; height: 100px;" name="title" placeholder="제목을 입력해주세요" required="required" ><br>
-         <input style="width: 700px; height: 700px;" name="content" placeholder="내용을 입력해주세요" required="required" ><br>
+         <input style="width: 700px; height: 40px;" name="title" placeholder="제목을 입력해주세요" required="required" ><br><br>
+         <input style="width: 700px; height: 400px;" name="content" placeholder="내용을 입력해주세요" required="required" ><br><br>
 
 	<div class="text-center">
 		<button type="submit" class="btn btn-success">등록</button>

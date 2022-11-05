@@ -90,6 +90,12 @@
 	</c:otherwise>
 </c:choose>
 
+
+<button type="button" onclick="location.href='productboard/write-form';">글쓰기</button>
+
+
+
+
 <hr>
 
 <script>

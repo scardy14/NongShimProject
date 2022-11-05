@@ -96,7 +96,8 @@ SELECT COUNT(*) FROM NongShim_product_Post WHERE title like '%햅쌀%'
 
 
 -- 상품게시판 수정 삭제 (수정중)
-update NongShim_product_Post set category 
+update NongShim_product_Post set title='과일맛나 수정',content='과일맛나지만수정할거야' where post_No=10;
+
 
 
 category,mixPerson,MaxPerson,point,duartion,
