@@ -16,5 +16,8 @@ SELECT post_No, title, hits, nickname, register_Date
   FROM ( SELECT ROW_NUMBER() OVER(ORDER BY post_No DESC) AS rnum, post_No, title, hits, nickname, TO_CHAR(register_Date, 'YYYY-MM-DD') AS register_Date
   		   FROM NongShim_Announce_Post)
   WHERE rnum BETWEEN 1 AND 5
+  
+  
+  drop table NongShim_Announce_Post;
   		   
   		 

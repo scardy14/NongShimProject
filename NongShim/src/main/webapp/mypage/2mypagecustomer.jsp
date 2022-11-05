@@ -29,11 +29,33 @@
 				<th>확인중 value</th>
 				<th>발송완료 value</th>
 			<tr>
-				<th><a href="UpdateMemberMove.do">내 정보</a></th>
-				<td colspan="2" rowspan="3"></td>
+				<th><a href="">내 정보</a></th>
+				<td colspan="2" rowspan="3"><table class="table">
+						<c:forEach items="${requestScope.list}" var="product" varStatus="order">
+							<%-- items 내 목록 --%>
+							<tr>
+								<td rowspan="6">${order.count}</td>
+								<td><a href="">[${product.status}:상태] 게시글명
+										게시글로 제목 찾아오는 메서드 postDetailFind 에서 제목만 가져오는 메서드
+										${product.amount}</a></td>
+							</tr>
+							<tr>
+								<td>구매 수량: ${product.amount}</td>
+							</tr>
+							<tr>
+								<td>배송지:{} 내정보 가져오기</td>
+							</tr>
+							<tr>
+								<td>수령인:{} 내정보 가져오기</td>
+							</tr>
+							<tr>
+								<td>연락처:{} 내정보 가져오기</td>
+							</tr>
+						</c:forEach>
+					</table></td>
 			</tr>
 			<tr>
-				<th><a href="MyPagecustomerController.do">구매</a></th>
+				<th><a href="">구매</a></th>
 			</tr>
 			<tr>
 				<th><a href="">판매</a></th>

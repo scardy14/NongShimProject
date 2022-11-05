@@ -27,7 +27,15 @@
 				<button type = "button" onclick="search()" style="border: none; width: 45px;"><img src="images/search.png" style="width: 45px; height: 40px; display: inline;"></button>
 			</form>
 		</td>
+<c:choose>	
+		<c:when test="${sessionScope.mvo==null}">
+		<td rowspan="2"><img src="images/MyNongShim.PNG" style="width: 60px; height: 80px;"></td>
+		</c:when>
+		<c:otherwise>
 		<td rowspan="2"><a href="MyPageMainToMainpageMove.do"><img src="images/MyNongShim.PNG" style="width: 60px; height: 80px;"></a></td>
+		</c:otherwise>
+</c:choose>			
+		
 		<td rowspan="2"><img src="images/ShoppingCart.PNG" style="width: 60px; height: 80px;"></td>
 	</tr>
 	<tr>
