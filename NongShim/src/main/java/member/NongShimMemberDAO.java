@@ -129,7 +129,7 @@ public class NongShimMemberDAO {
 		ResultSet rs=null;
 		boolean result=false;
 		try {
-			con=getConnection();
+			con=dataSource.getConnection();
 			String sql="select count(*) from NongShim_Member where account_No=? and  email=? and nickName=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, account_No);
@@ -150,7 +150,7 @@ public class NongShimMemberDAO {
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		try {
-			con=getConnection();
+			con=dataSource.getConnection();
 			String sql="update NongShim_Member set password=?,name=?,address=?,nickName=?,tel=?,email=?,account_No=? where id=?";
 			pstmt=con.prepareStatement(sql);			
 			pstmt.setString(1, nongShimMemberVO.getPassword());
@@ -166,5 +166,20 @@ public class NongShimMemberDAO {
 			closeAll(pstmt, con);
 		}
 	}
+	
+	public int deleteMemberById(String id) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			con=dataSource.getConnection();
+			String sql = "delete from NongShim_Member where id=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			return pstmt.executeUpdate();
+		}finally {
+			closeAll(pstmt, con);
+		}
+	}
+	
 
 }
