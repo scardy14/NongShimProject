@@ -65,7 +65,8 @@ ${vo.content}
 				<td>${commentlist.postno}</td>
 				<td>${commentlist.content}</td>
 				<td>${commentlist.category}</td>
-				<td>${commentlist.id}</td>
+<%--				<td>${commentlist.id}</td>  --%>
+				<td>${sessionScope.mvo.nickName}</td>
 				<td>${commentlist.writtenDate}</td>
 			</tr>
 		</c:forEach>
