@@ -44,10 +44,10 @@
 					<table class="headertable">
 						<thead>
 							<tr style="background-color: #00ac00; color: white;" align="center">
-								<td>판매 중</td><td>판매종료</td>
+								<td>확인 중</td><td>발송완료</td>
 							</tr>
 							<tr align="center">
-								<td>판매중value</td><td>판매종료value</td>
+								<td>확인 중value</td><td>발송완료value</td>
 							</tr>
 						</thead>
 					</table>

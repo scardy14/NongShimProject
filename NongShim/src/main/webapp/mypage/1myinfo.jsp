@@ -41,7 +41,6 @@
 	<div class="col-lg-12">
 		<div class="section-title text-left">
 			<div class="title-text">
-				<h2>내 판매 목록</h2>
 			</div>
 		</div>
 	</div>
