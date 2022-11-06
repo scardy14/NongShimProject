@@ -76,8 +76,7 @@
 								</thead>
 								<%-- items 내 목록 --%>
 								<tbody class="text-left">
-									<c:forEach items="${requestScope.list}" var="product"
-										varStatus="order">
+									<c:forEach items="${requestScope.list}" var="product" varStatus="order">
 										<tr class="inner-box">
 											<th scope="row" class="text-center">
 												<div class="event-date">

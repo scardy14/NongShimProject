@@ -21,7 +21,7 @@
 		class="collapse d-lg-block sidebar collapse bg-white">
 		<div class="position-sticky float:left">
 			<div class="list-group list-group-flush mx-3 mt-4">
-				<a href="UpdateMemberMove.do"
+				<a href="MyPageUpdateMemberController.do"
 					class="list-group-item list-group-item-action py-2 ripple active">
 					<i class="fas fa-chart-area fa-fw me-3"></i><span>내 정보</span></a> 
 				<a href="MyPagecustomerController.do"
