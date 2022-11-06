@@ -95,10 +95,11 @@ public class ProductPostVO {
 	
 	//김민석 개인적으로 만든거. 위와 같은 이유로 냅둘것.
 	
-	public ProductPostVO(String title, String content, long hits, String nickName, String comments, String date,
+	public ProductPostVO(long postNo,String title, String content, long hits, String nickName, String comments, String date,
 			String category, String productName, long productPoint, String duration, long minCustomer,
 			long maxCustomer) {
 		super();
+		this.postNo = postNo;
 		this.title = title;
 		this.content = content;
 		this.hits = hits;
