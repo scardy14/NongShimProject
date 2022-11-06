@@ -90,23 +90,13 @@
 													</h4>
 													<div class="meta">
 														<div class="organizers">
-															<span>판매수량:${product.amount}</span>
-														</div>
-														<div class="categories">
-															<span>참여자 수:</span>
-														</div>
-														<div class="time">
-															<span>판매종료 기간:</span>
-														</div>
-														<div class="progress position-relative">
-															<div class="progress-bar" role="progressbar"
-																style="width: 60%" aria-valuenow="60" aria-valuemin="0"
-																aria-valuemax="100" align="center"></div>
-															<small
-																class="justify-content-center d-flex position-absolute w-100">current/max</small>
+															<span>구매 수량:${product.amount}</span>
 														</div>
 														<div>
-															<span>최대인원:</span>
+															<span>배송지:</span>
+														</div>
+														<div>
+															<span>수령인:</span>
 														</div>
 														<div>
 															<span>최소인원:</span>
