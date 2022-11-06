@@ -41,6 +41,6 @@
 	}
 	function deletepost() {
 		let deleteform = document.getElementById("deleteform");
-		deketeform.submit();
+		deleteform.submit();
 	}
 </script>
