@@ -17,12 +17,10 @@ public class MyPagecustomerController implements Controller {
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		//세션-- > 연결해야함
 		//HttpSession session=request.getSession(false);
-		//String id=session.getId();
 		String id="java";
 		//테스트
 		ArrayList<BuyProductVO> list=MyPageDAO.getInstance().myBuyProductListTotal(id);
 		request.setAttribute("list", list);
-		//request.setAttribute("url2", "mypage/1customer.jsp");
 		request.setAttribute("url","mypage/2customer.jsp");
 		return "mainpage.jsp";
 	}
