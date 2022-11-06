@@ -152,5 +152,7 @@ register_Date date not null,
 CONSTRAINT fk_anounce_post FOREIGN KEY(id) REFERENCES NongShim_Member(id)
 );
 CREATE SEQUENCE announce_seq;
+
+SELECT * FROM NongShim_Announce_Post
 ----------------------------------------------------------------------------------------------------------
 

@@ -34,94 +34,71 @@ public class AnnouncePostVO {
 		this.nickname = nickname;
 		this.register_Date = register_Date;
 	}
-
-	public Long getPost_No() {
-		return post_No;
-	}
-
-	public void setPost_No(Long post_No) {
-		this.post_No = post_No;
-	}
-
-
-
-	public String getId() {
-		return id;
-	}
-
-
-
-	public void setId(String id) {
+	
+	
+	//게시글 작성할 때 필요한 생성자
+	public AnnouncePostVO(String id, String title, String content) {
+		super();
 		this.id = id;
-	}
-
-
-
-	public String getTitle() {
-		return title;
-	}
-
-
-
-	public void setTitle(String title) {
 		this.title = title;
+		this.content = content;
 	}
 
-
-
-	public String getContent() {
-		return content;
-	}
-
-
-
-	public void setContent(String content) {
+	
+	//게시글 업데이트 할 때 데이터 이동에 필요한 생성자
+	public AnnouncePostVO(Long post_No, String title, String content) {
+		super();
+		this.post_No = post_No;
+		this.title = title;
 		this.content = content;
 	}
 
 
-
+	public Long getPost_No() {
+		return post_No;
+	}
+	public void setPost_No(Long post_No) {
+		this.post_No = post_No;
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public String getContent() {
+		return content;
+	}
+	public void setContent(String content) {
+		this.content = content;
+	}
 	public Long getHits() {
 		return hits;
 	}
-
-
-
 	public void setHits(Long hits) {
 		this.hits = hits;
 	}
-
-
-
 	public String getNickname() {
 		return nickname;
 	}
-
-
-
 	public void setNickname(String nickname) {
 		this.nickname = nickname;
 	}
-
-
-
 	public String getRegister_Date() {
 		return register_Date;
 	}
-
-
-
 	public void setRegister_Date(String register_Date) {
 		this.register_Date = register_Date;
 	}
-
-
-
 	@Override
 	public String toString() {
 		return "AnnouncePostVO [post_No=" + post_No + ", id=" + id + ", title=" + title + ", content=" + content
 				+ ", hits=" + hits + ", nickname=" + nickname + ", register_Date=" + register_Date + "]";
-	}
-	
-	
+	}		
 }
