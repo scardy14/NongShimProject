@@ -10,7 +10,7 @@ public class UpdatePostFormController implements Controller {
 
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		String no="54";
+		long no=54;
 		ProductPostVO productpostvo = ProductPostDAO.getInstance().postDetailFind(no);
 		request.setAttribute("title",productpostvo.getTitle());
 		request.setAttribute("content",productpostvo.getContent());

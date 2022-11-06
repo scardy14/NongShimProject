@@ -13,21 +13,23 @@ public class ProductDetailController implements Controller {
 
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		String postno= request.getParameter("postno");
+		long postno= Long.parseLong(request.getParameter("postno")); 
+				
+				
 		
 		//**********여기서부터 시험해보는거임**********************
 		
 		
-		long postNo=Long.parseLong(postno);
+		
 		//실수로 어떤메서드에는 String no가 들어가고 어떤 곳에는 long no가 들어감 ㅠㅠ ㅅㅂ
 		//한번에 맞출떄 통일하겠3
 		HttpSession session=request.getSession(false);
 		
 		@SuppressWarnings("unchecked")
 		ArrayList<Long> list1=(ArrayList<Long>)session.getAttribute("hitboard");
-		if(list1.contains(postNo)==false) {
-			ProductPostDAO.getInstance().updateHits(postNo);
-			list1.add(postNo);// 조회수를 증가한 게시글번호를 리스트에 저장한다 
+		if(list1.contains(postno)==false) {
+			ProductPostDAO.getInstance().updateHits(postno);
+			list1.add(postno);// 조회수를 증가한 게시글번호를 리스트에 저장한다 
 		}
 		
 		
@@ -36,7 +38,7 @@ public class ProductDetailController implements Controller {
 		//***시험 끝***************
 		
 		ProductPostVO vo= ProductPostDAO.getInstance().postDetailFind(postno);
-		ArrayList<CommentVO> list= ProductPostDAO.getInstance().showAllCommentByPostNo(Long.parseLong(postno));
+		ArrayList<CommentVO> list= ProductPostDAO.getInstance().showAllCommentByPostNo(postno);
 		request.setAttribute("list1", list);
 		request.setAttribute("vo",vo);
 		request.setAttribute("postno",postno);
