@@ -21,7 +21,7 @@
 		<input type="text" name = "content" value = "${postvo.content}"> --%>
 	</form>
 	<form action="DeletePostController.do" method="post" id="delete1">
-		<input type="hidden" name="no" value="${postvo.no}"> 
+		<input type="hidden" name="no" value="${vo.postNo}"> 
 	</form>
 
 
