@@ -50,6 +50,7 @@ public class ProductPostDAO {
 	      PreparedStatement pst = null;
 	      Connection con = null;
 	      ProductPostVO pp = new ProductPostVO();
+	      long no1=Long.parseLong(no);
 	      try {
 	         con = getConnection();
 	         String sql = "select title,content, hits,nickname,comments,register_date,category,product_name,product_point,duration,min_customer,max_customer from NongShim_product_Post where post_no=?";
@@ -70,7 +71,7 @@ public class ProductPostDAO {
 	            long mincustomer = rs.getLong(11);
 	            long maxcustomer = rs.getLong(12);
 
-	            pp = new ProductPostVO(title, content, hits, nick, comments, regdate, category, pname, ppoint, duration,
+	            pp = new ProductPostVO(no1,title, content, hits, nick, comments, regdate, category, pname, ppoint, duration,
 	                  mincustomer, maxcustomer);
 
 	         }
@@ -180,13 +181,17 @@ public class ProductPostDAO {
 		Connection con = null;
 		try {
 			con = getConnection();
-			String sql= "select * from NongShim_productPostComments where post_No=?";
+			//String sql= "select * from NongShim_productPostComments where post_No=?";
+			String sql= "select row_number() over(order by comments_date) as rnum,content,category,id,comments_date from NongShim_productPostComments where post_no=?";
 			pst = con.prepareStatement(sql);
 			pst.setLong(1, postno);
 			rs = pst.executeQuery();
+			
+			// select row_number() over(order by comments_date) as rnum,content,category,id,comments_date from NongShim_productPostComments where post_no=? ;
+			
 			while (rs.next()) {
-				list.add(new CommentVO(rs.getString(1), rs.getLong(2), rs.getString(3), rs.getString(4),
-						rs.getString(5)));
+				list.add(new CommentVO(rs.getString(4), rs.getLong(1), rs.getString(5), rs.getString(2),
+						rs.getString(3)));
 			}
 		} finally {
 			closeAll(rs, pst, con);
@@ -423,5 +428,31 @@ public class ProductPostDAO {
 				}
 				return list;
 	}
+	
+	
+	public void updateHits(long postno) throws SQLException {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		try {
+			con=dataSource.getConnection();
+			String sql="UPDATE NongShim_product_Post SET hits=hits+1 WHERE post_No=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setLong(1, postno);
+			pstmt.executeUpdate();
+		}finally {
+			closeAll(pstmt, con);
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 }

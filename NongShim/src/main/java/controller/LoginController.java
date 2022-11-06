@@ -1,5 +1,7 @@
 package controller;
 
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,6 +24,10 @@ public class LoginController implements Controller {
 			viewPath="index.jsp";
 			HttpSession session=request.getSession();
 			session.setAttribute("mvo", mvo);
+			
+			//민석이가 조회수 기능을 위해 한줄 추가했습니다.
+			session.setAttribute("hitboard", new ArrayList<Long>());
+			
 		}
 		
 		return viewPath;
