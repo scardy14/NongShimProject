@@ -47,7 +47,7 @@
 								<td>판매 중</td><td>판매종료</td>
 							</tr>
 							<tr align="center">
-								<td>판매중value</td><td>판매종료value</td>
+								<td>${requestScope.selling}</td><td>${requestScope.sell}</td>
 							</tr>
 						</thead>
 					</table>
@@ -86,7 +86,7 @@
 											<td>
 												<div class="event-wrap">
 													<h4>
-														<a href="#">[${seller.status}] ${seller.title}</a>
+														<a href="ProductDetailController.do?postno="+${seller.postNo}>[${seller.status}] ${seller.title}</a>
 													</h4>
 													<div class="meta">
 														<div class="organizers">
@@ -96,20 +96,20 @@
 															<span>참여자 수:</span>
 														</div>
 														<div class="time">
-															<span>판매종료 기간:${seller.duration}</span>
+															<span>판매종료 기간: ${seller.title}</span>
 														</div>
 														<div class="progress position-relative">
 															<div class="progress-bar" role="progressbar"
 																style="width: 60%" aria-valuenow="60" aria-valuemin="0"
 																aria-valuemax="100" align="center"></div>
 															<small
-																class="justify-content-center d-flex position-absolute w-100">${seller.maxCustomer}/${product.minCustomer}</small>
+																class="justify-content-center d-flex position-absolute w-100">current/</small>
 														</div>
 														<div>
-															<span>최대인원:${seller.maxCustomer}</span>
+															<span>최대인원:</span>
 														</div>
 														<div>
-															<span>최소인원:${seller.minCustomer}</span>
+															<span>최소인원:</span>
 														</div>
 													</div>
 												</div>
