@@ -5,6 +5,8 @@
 <h3 style="display: inline;">공구게시판</h3> &nbsp;&nbsp;<input type = "text" style="width: 700px; height: 45px;" id = "inputbox" name ="inputbox" value = "${inputvalue }">
 <button type = "submit">검색</button><br>
 </form>
+
+
 <form action = "FindPostListByValueController.do" id = "checkboxform">
 	<c:forEach items="${checkboxlist }" var="checkbox" varStatus="checkboxno">
 		<c:choose>
@@ -18,6 +20,12 @@
 	</c:forEach>
 </form>
 <br>
+
+<div style="text-align: right;">
+<button onclick="location.href='WritePostFormController.do'" style="background-color: #00ac00; color: white; width: 8%; height: 30px;">글쓰기</button><br><br>
+</div>
+
+
 <table class="table table-bordered table-hover boardlist">
 	<thead>
 		<tr style="background-color: #d0fd7d">

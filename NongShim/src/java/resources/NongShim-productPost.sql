@@ -96,9 +96,28 @@ WHERE title LIKE '%햅쌀%') WHERE rnum BETWEEN 1 AND 5
 SELECT COUNT(*) FROM NongShim_product_Post WHERE title like '%햅쌀%'
 
 
--- 상품게시판 수정 삭제 (수정중)
-update NongShim_product_Post set category 
+-- 상품게시판 수정 
+UPDATE NongShim_product_Post SET title='과일맛나 수정',content='과일맛나지만수정할거야',category='야채'
+status='판매완료', product_Name='수박', product_Point=500, min_Customer=20, max_Customer=100
+WHERE post_No=33;
+
+post_No number primary key,
+title varchar2(100) not null,
+content clob not null,
+category varchar2(100) not null,
+status varchar2(100)not null,
+product_Name varchar2(100) not null,
+product_Point number not null,
+duration date not null,
+min_Customer number not null,
+max_Customer number not null,
 
 
-category,mixPerson,MaxPerson,point,duartion,
-title, content
+
+
+
+
+
+--상품게시판 삭제
+DELETE NongShim_product_Post WHERE post_No=30;
+

@@ -43,44 +43,44 @@ public class ProductPostDAO {
 
 	public ProductPostVO postDetailFind(String no) throws SQLException {
 
-		// 제목부분을 클릭한다고 가정
-		// 누르면 조회수도 하나 올려주고.
-		// updateHits도 만들어야할듯
-		ResultSet rs = null;
-		PreparedStatement pst = null;
-		Connection con = null;
-		ProductPostVO pp = new ProductPostVO();
-		try {
-			con = getConnection();
-			String sql = "select title,content, hits,nickname,comments,register_date,category,product_name,product_point,duration,min_customer,max_customer from NongShim_product_Post where post_no=?";
-			pst = con.prepareStatement(sql);
-			pst.setString(1, no);
-			rs = pst.executeQuery();
-			if (rs.next()) {
-				String title = rs.getString(1);
-				String content = rs.getString(2);
-				long hits = rs.getLong(3);
-				String nick = rs.getString(4);
-				String comments = rs.getString(5);
-				String regdate = rs.getString(6);
-				String category = rs.getString(7);
-				String pname = rs.getString(8);
-				long ppoint = rs.getLong(9);
-				String duration = rs.getString(10);
-				long mincustomer = rs.getLong(11);
-				long maxcustomer = rs.getLong(12);
+	      // 제목부분을 클릭한다고 가정
+	      // 누르면 조회수도 하나 올려주고.
+	      // updateHits도 만들어야할듯
+	      ResultSet rs = null;
+	      PreparedStatement pst = null;
+	      Connection con = null;
+	      ProductPostVO pp = new ProductPostVO();
+	      long no1=Long.parseLong(no);
+	      try {
+	         con = getConnection();
+	         String sql = "select title,content, hits,nickname,comments,register_date,category,product_name,product_point,duration,min_customer,max_customer from NongShim_product_Post where post_no=?";
+	         pst = con.prepareStatement(sql);
+	         pst.setString(1, no);
+	         rs = pst.executeQuery();
+	         if (rs.next()) {
+	            String title = rs.getString(1);
+	            String content = rs.getString(2);
+	            long hits = rs.getLong(3);
+	            String nick = rs.getString(4);
+	            String comments = rs.getString(5);
+	            String regdate = rs.getString(6);
+	            String category = rs.getString(7);
+	            String pname = rs.getString(8);
+	            long ppoint = rs.getLong(9);
+	            String duration = rs.getString(10);
+	            long mincustomer = rs.getLong(11);
+	            long maxcustomer = rs.getLong(12);
 
-				pp = new ProductPostVO(title, content, hits, nick, comments, regdate, category, pname, ppoint, duration,
-						mincustomer, maxcustomer);
+	            pp = new ProductPostVO(no1,title, content, hits, nick, comments, regdate, category, pname, ppoint, duration,
+	                  mincustomer, maxcustomer);
 
-			}
-		} finally {
-			closeAll(rs, pst, con);
-		}
+	         }
+	      } finally {
+	         closeAll(rs, pst, con);
+	      }
 
-		return pp;
-	}
-	// 지영 세션 완성 진행중
+	      return pp;
+	   }
 	public void writePost(ProductPostVO productpostVO) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -105,27 +105,32 @@ public class ProductPostDAO {
 		}
 	}
 
-	//지영 수정중
+	public void updatePost(ProductPostVO productpostVO) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			con=dataSource.getConnection();
+			String sql="update NongShim_product_Post set title=?,content=? where post_No=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1,productpostVO.getTitle());
+			pstmt.setString(2,productpostVO.getContent());
+			pstmt.setLong(3,productpostVO.getPostNo());
+			pstmt.executeQuery();
+		} finally {
+			closeAll(pstmt,con);
+		}
+	}
+	
 	public void deletePost(long no) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt=null;
 		try {
 			con=dataSource.getConnection();
-			String sql="delete NongShim_product_Post Product where no=?";
+			String sql="DELETE NongShim_product_Post WHERE post_No=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setLong(1,no);
 			pstmt.executeUpdate();
 		}finally{
-			closeAll(pstmt,con);
-		}
-	}
-
-	public void updatePost() throws SQLException {
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		try {
-			con=dataSource.getConnection();
-		} finally {
 			closeAll(pstmt,con);
 		}
 	}
@@ -176,13 +181,17 @@ public class ProductPostDAO {
 		Connection con = null;
 		try {
 			con = getConnection();
-			String sql= "select * from NongShim_productPostComments where post_No=?";
+			//String sql= "select * from NongShim_productPostComments where post_No=?";
+			String sql= "select row_number() over(order by comments_date) as rnum,content,category,id,comments_date from NongShim_productPostComments where post_no=?";
 			pst = con.prepareStatement(sql);
 			pst.setLong(1, postno);
 			rs = pst.executeQuery();
+			
+			// select row_number() over(order by comments_date) as rnum,content,category,id,comments_date from NongShim_productPostComments where post_no=? ;
+			
 			while (rs.next()) {
-				list.add(new CommentVO(rs.getString(1), rs.getLong(2), rs.getString(3), rs.getString(4),
-						rs.getString(5)));
+				list.add(new CommentVO(rs.getString(4), rs.getLong(1), rs.getString(5), rs.getString(2),
+						rs.getString(3)));
 			}
 		} finally {
 			closeAll(rs, pst, con);
@@ -211,8 +220,6 @@ public class ProductPostDAO {
 		} finally {
 			closeAll(pst, con);
 		}
-		
-
 	}
 
 	public void deleteComment(String id, long no, String date) throws SQLException {
@@ -421,5 +428,31 @@ public class ProductPostDAO {
 				}
 				return list;
 	}
+	
+	
+	public void updateHits(long postno) throws SQLException {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		try {
+			con=dataSource.getConnection();
+			String sql="UPDATE NongShim_product_Post SET hits=hits+1 WHERE post_No=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setLong(1, postno);
+			pstmt.executeUpdate();
+		}finally {
+			closeAll(pstmt, con);
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 }

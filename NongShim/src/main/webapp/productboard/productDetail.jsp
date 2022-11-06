@@ -1,6 +1,33 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+
+<c:choose>
+		<c:when test="${sessionScope.mvo.nickName==vo.nickName}">	 
+				<td>
+					<div style="text-align: right;">
+					<button onclick="location.href='FindPostListByValueController.do'" style="background-color: #00ac00; color: white; width: 5%; height: 30px;">목록</button>
+					<button onclick="location.href='WritePostFormController.do'" style="background-color: #00ac00; color: white; width: 8%; height: 30px;">글쓰기</button>
+					<button type="button" style="background-color: #00ac00; color: white; width: 5%; height: 30px;" onclick="update()">수정</button>
+					<button type="button" style="background-color: #00ac00; color: white; width: 5%; height: 30px;" onclick="delete1()">삭제</button>
+					</div>
+				</td>
+		</c:when>
+</c:choose>
+
+	<form action="UpdatePostFormController.do" method="post" id="update">
+		<%-- <input type="text" name = "no" value = "${postvo.no}">
+		<input type="text" name = "title" value = "${postvo.title}">
+		<input type="text" name = "content" value = "${postvo.content}"> --%>
+	</form>
+	<form action="DeletePostController.do" method="post" id="delete1">
+		<input type="hidden" name="no" value="${postvo.no}"> 
+	</form>
+
+
+>>>>>>> refs/heads/main
+
 <h3>${vo.title}</h3>
 <table class="table table-bordered">
 	<tr>
@@ -30,6 +57,9 @@
 
 ${vo.content}
 <hr>
+
+
+
 
 댓글 쓰기
 <input type="text" style="width: 90%; height: 50px;" id="comment" required="required">
@@ -65,18 +95,13 @@ ${vo.content}
 				<td>${commentlist.postno}</td>
 				<td>${commentlist.content}</td>
 				<td>${commentlist.category}</td>
-				<td>${commentlist.id}</td>
+<%--				<td>${commentlist.id}</td>  --%>
+				<td>${sessionScope.mvo.nickName}</td>
 				<td>${commentlist.writtenDate}</td>
 			</tr>
 		</c:forEach>
 	</tbody>
 </table>
-
-
-
-
-
-
 
 
 
@@ -119,6 +144,20 @@ ${vo.content}
 		location.href = "HooCommentController.do?comment=" + comment
 		+ "&postno=" + postno;;
 	}
+	      function update() {
+	  	    let id = document.getElementById("update");
+	  	      let result = confirm("게시물을 수정하시겠습니까?");
+	  	      if(result) {
+	  	          id.submit();
+	  	    }
+	  	}
+	  	  function delete1() {   
+	  	      let id = document.getElementById("delete1");
+	  	      let result = confirm("게시물을 삭제하시겠습니까?");
+	  	      if(result) {
+	  		         id.submit();
+	  	      }
+	  	  }
 </script>
 
 

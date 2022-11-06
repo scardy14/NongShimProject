@@ -18,9 +18,8 @@ public class ProductPostVO {
 	private long maxCustomer;
 	
 	public ProductPostVO() {
-		super();
 	}
-
+	
 	public ProductPostVO(long postNo, String title, String content, String id, long hits, String nickName,
 			String comments, String date, String category, String status, String productName, long productPoint,
 			String duration, long minCustomer, long maxCustomer) {
@@ -63,7 +62,7 @@ public class ProductPostVO {
 		this.nickName = nickname;
 	}
 
-	// 장지영이 만든거에영 , WritePost 하기 위해 postNO 만 빼서 생성했삼
+	// 장지영이 만든거에영 , WritePost 하기 위해 
 	public ProductPostVO(String title, String content, String id, String nickName, String comments, String category,
 			String status, String productName, long productPoint, long minCustomer, long maxCustomer) {
 		super();
@@ -80,12 +79,27 @@ public class ProductPostVO {
 		this.maxCustomer = maxCustomer;
 	}
 	
+	// 장지영 상품게시판 글 수정
+		public ProductPostVO(long postNo, String title, String content, String category, long productPoint, String duration,
+			long minCustomer, long maxCustomer) {
+		super();
+		this.postNo = postNo;
+		this.title = title;
+		this.content = content;
+		this.category = category;
+		this.productPoint = productPoint;
+		this.duration = duration;
+		this.minCustomer = minCustomer;
+		this.maxCustomer = maxCustomer;
+	}
+	
 	//김민석 개인적으로 만든거. 위와 같은 이유로 냅둘것.
 	
-	public ProductPostVO(String title, String content, long hits, String nickName, String comments, String date,
+	public ProductPostVO(long postNo,String title, String content, long hits, String nickName, String comments, String date,
 			String category, String productName, long productPoint, String duration, long minCustomer,
 			long maxCustomer) {
 		super();
+		this.postNo = postNo;
 		this.title = title;
 		this.content = content;
 		this.hits = hits;
@@ -100,14 +114,12 @@ public class ProductPostVO {
 		this.maxCustomer = maxCustomer;
 	}
 
+	public ProductPostVO(long no) {
+	}
 
-	
 	public long getPostNo() {
 		return postNo;
 	}
-
-
-
 	
 	public void setPostNo(long postNo) {
 		this.postNo = postNo;
