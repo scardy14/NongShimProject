@@ -5,6 +5,8 @@
 <h3 style="display: inline;">공구게시판</h3> &nbsp;&nbsp;<input type = "text" style="width: 700px; height: 45px;" id = "inputbox" name ="inputbox" value = "${inputvalue }">
 <button type = "submit">검색</button><br>
 </form>
+
+
 <form action = "FindPostListByValueController.do" id = "checkboxform">
 	<c:forEach items="${checkboxlist }" var="checkbox" varStatus="checkboxno">
 		<c:choose>
