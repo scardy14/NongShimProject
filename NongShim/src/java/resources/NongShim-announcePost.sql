@@ -19,5 +19,6 @@ SELECT post_No, title, hits, nickname, register_Date
   
   
   drop table NongShim_Announce_Post;
-  		   
-  		 
+ALTER TABLE NongShim_Announce_Post DROP CONSTRAINT fk_anounce_post;
+   
+

@@ -22,6 +22,9 @@ max_Customer number not null,
 CONSTRAINT fk_pp FOREIGN KEY(id) REFERENCES NongShim_Member(id) ON DELETE CASCADE
 );
 
+
+
+
 INSERT INTO NongShim_product_Post(post_No, title, content, id, hits, nickname,comments,category,status,product_Name,product_Point,duration,min_Customer,max_Customer)
 VALUES (select title, content, id, hits, nickname,comments,category,status,product_Name,product_Point,duration,min_Customer,max_Customer from NongShim_product_Post)
 -- 2.1 시퀀스 생성
@@ -31,14 +34,12 @@ create sequence postNo_seq;
 insert into NongShim_product_Post
 values (postNo_seq.nextval, '초록빛깔 상추', '신선하고 맛있습니다','java',default,'민석짱','코멘트부분',sysdate,'야채','status','상추',50,sysdate,5,10);
 insert into NongShim_product_Post
-values (postNo_seq.nextval, '사과사과', '달콤하고 맛있습니다','spring',default,'민석짱2','코멘트부분',sysdate,'과일','사과',200,sysdate,10,30);
+values (postNo_seq.nextval, '사과사과', '달콤하고 맛있습니다','spring',default,'민석짱2','코멘트부분',sysdate,'과일','status','사과',200,sysdate,10,30);
 insert into NongShim_product_Post 
 values (postNo_seq.nextval, '맛있는 햅쌀', '꼬들꼬들합니다','jdbc',default,'민석짱3','코멘트부분',sysdate,'곡물','status','쌀',150,sysdate,50,100);
-
+insert into NongShim_product_Post 
+values (postNo_seq.nextval, '탐스런 과일', '크고 달아요','java',default,'짱아','맛있네요',sysdate,'과일','status','청포도',100,sysdate,10,30);
 commit
-
-
-
 
 
 -- 2.3 product post 

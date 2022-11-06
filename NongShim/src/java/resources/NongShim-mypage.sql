@@ -39,12 +39,12 @@ create table buy_product_list(
 	constraint buy_product_pk primary key (id,post_no,ns_date)
 )
 
-insert into buy_product_list values ('jdbc','10',sysdate,'확인중',15);
-insert into buy_product_list values ('jdbc','11',sysdate,'발송완료',20);
-insert into buy_product_list values ('java','12',sysdate,'확인중',15);
-insert into buy_product_list values ('java','13',sysdate,'발송완료',20);
-insert into buy_product_list values ('spring','14',sysdate,'확인중',15);
-insert into buy_product_list values ('spring','15',sysdate,'발송완료',20);
+insert into buy_product_list values ('java','21',sysdate,'확인중',15);
+insert into buy_product_list values ('java','22',sysdate,'발송완료',20);
+insert into buy_product_list values ('jdbc','23',sysdate,'확인중',15);
+insert into buy_product_list values ('jdbc','24',sysdate,'발송완료',20);
+insert into buy_product_list values ('spring','25',sysdate,'확인중',15);
+insert into buy_product_list values ('spring','26',sysdate,'발송완료',20);
 
 commit
 
