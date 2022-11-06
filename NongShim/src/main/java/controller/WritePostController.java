@@ -28,7 +28,7 @@ public class WritePostController implements Controller {
 		long maxcustomer = Long.parseLong(request.getParameter("maxCustomer"));
 		System.out.println(title + content + id + nickname+ comments+ category + status + productname + productpoint + mincustomer + maxcustomer);
 		ProductPostVO productpostVO= new ProductPostVO(title,content,id,nickname,comments,category,status,
-				productname,productpoint,mincustomer,maxcustomer);
+				productname,productpoint,mincustomer,maxcustomer);  
 		ProductPostDAO.getInstance().writePost(productpostVO);
 		return "FindPostListByValueController.do"; 
 	}
