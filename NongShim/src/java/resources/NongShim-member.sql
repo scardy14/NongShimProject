@@ -29,6 +29,7 @@ values('jdbc','a','김민석','대구','민석','012',DEFAULT,DEFAULT,'hanmail',
 
 commit
 
+ALERT NongShim_Member SET admin_Info = '운영자' WHERE id = 'java'
 --1.2 회원정보 select
 select*from NongShim_Member;
 
