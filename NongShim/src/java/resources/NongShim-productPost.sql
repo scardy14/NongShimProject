@@ -19,7 +19,7 @@ product_Point number not null,
 duration date not null,
 min_Customer number not null,
 max_Customer number not null,
-CONSTRAINT fk_pp FOREIGN KEY(id) REFERENCES NongShim_Member(id)
+CONSTRAINT fk_pp FOREIGN KEY(id) REFERENCES NongShim_Member(id) ON DELETE CASCADE
 );
 
 INSERT INTO NongShim_product_Post(post_No, title, content, id, hits, nickname,comments,category,status,product_Name,product_Point,duration,min_Customer,max_Customer)

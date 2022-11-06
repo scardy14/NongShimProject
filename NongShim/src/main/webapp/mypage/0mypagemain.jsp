@@ -29,7 +29,7 @@
 				<th>확인중 value</th>
 				<th>발송완료 value</th>
 			<tr>
-				<th><a href="">내 정보</a></th>
+				<th><a href="UpdateMemberMove.do">내 정보</a></th>
 				<td colspan="2" rowspan="3"></td>
 			</tr>
 			<tr>
