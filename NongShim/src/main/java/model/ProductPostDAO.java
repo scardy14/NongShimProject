@@ -41,7 +41,7 @@ public class ProductPostDAO {
 		return dataSource.getConnection();
 	}
 
-	public ProductPostVO postDetailFind(String no) throws SQLException {
+	public ProductPostVO postDetailFind(long no) throws SQLException {
 
 	      // 제목부분을 클릭한다고 가정
 	      // 누르면 조회수도 하나 올려주고.
@@ -50,12 +50,12 @@ public class ProductPostDAO {
 	      PreparedStatement pst = null;
 	      Connection con = null;
 	      ProductPostVO pp = new ProductPostVO();
-	      long no1=Long.parseLong(no);
+	      
 	      try {
 	         con = getConnection();
 	         String sql = "select title,content, hits,nickname,comments,register_date,category,product_name,product_point,duration,min_customer,max_customer from NongShim_product_Post where post_no=?";
 	         pst = con.prepareStatement(sql);
-	         pst.setString(1, no);
+	         pst.setLong(1, no);
 	         rs = pst.executeQuery();
 	         if (rs.next()) {
 	            String title = rs.getString(1);
@@ -71,7 +71,7 @@ public class ProductPostDAO {
 	            long mincustomer = rs.getLong(11);
 	            long maxcustomer = rs.getLong(12);
 
-	            pp = new ProductPostVO(no1,title, content, hits, nick, comments, regdate, category, pname, ppoint, duration,
+	            pp = new ProductPostVO(no,title, content, hits, nick, comments, regdate, category, pname, ppoint, duration,
 	                  mincustomer, maxcustomer);
 
 	         }
