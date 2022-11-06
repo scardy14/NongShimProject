@@ -28,7 +28,9 @@
 <table class="table table-bordered">
 	<tr>
 		<td style="width: 15%; background-color: #d0fd7d;">작성자</td>
-		<td colspan="4">${vo.nickName}</td>
+		<td>${vo.nickName}</td>
+		<td style="background-color: #d0fd7d;">판매가격</td>
+		<td>${vo.productPoint}</td>
 	</tr>
 
 	<tr>
@@ -75,7 +77,7 @@ ${vo.content}
 <br>
 
 
-<table class="table table-bordered table-hover boardlist">
+<table class="table   boardlist">
 	<thead>
 		<tr style="background-color: #d0fd7d">
 			<th>번호</th>
