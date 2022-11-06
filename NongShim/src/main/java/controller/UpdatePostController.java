@@ -18,7 +18,7 @@ public class UpdatePostController implements Controller {
 		String duration=request.getParameter("duration");
 		String title=request.getParameter("title");
 		String content=request.getParameter("content");
-		System.out.println(no + title + content + category + productpoint + duration + mincustomer + maxcustomer);
+		System.out.println(no + category + mincustomer + maxcustomer +productpoint +duration+title+content+"엏ㅇㅁ나");
 		ProductPostVO productpostVO = new ProductPostVO(no,title,content,category,productpoint,duration,mincustomer,maxcustomer);
 		ProductPostDAO.getInstance().updatePost(productpostVO);
 		return "redirect:ProductDetailController.do";
