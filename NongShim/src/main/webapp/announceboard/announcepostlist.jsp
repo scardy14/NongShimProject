@@ -23,9 +23,12 @@
 		</c:forEach>
 	</tbody>
 </table>
+
 <c:choose>
-	<c:when test="${sessionScope.mvo.id=='운영자'}">
-		<button type = "button" onclick="write()">글쓰기</button>
+	<c:when test="${sessionScope.mvo.adminiInfo=='운영자'}">
+		<div style="text-align: right;">
+			<button type = "button" onclick="writeannounce()" style="background-color: #d0fd7d; color: 00ac00; border-radius: 10px; width: 80px; height: 40px; border: none;">글쓰기</button>
+		</div>
 	</c:when>
 </c:choose>
 <ul class="pagination justify-content-center" style="margin:20px 0">	
@@ -47,7 +50,7 @@
   	</c:if>	
 </ul>
 <script>
-	function write() {
-		location.href="writeannounce.jsp";
+	function writeannounce() {
+		location.href="WriteAnnouncePostControllerMove.do";
 	}
 </script>
