@@ -20,7 +20,13 @@ public class MyPagecustomerController implements Controller {
 		String id="java";
 		//테스트
 		ArrayList<BuyProductVO> list=MyPageDAO.getInstance().myBuyProductListTotal(id);
+		String buying="구매중";
+		String buy="구매완료";
+		int buyingCount =MyPageDAO.getInstance().myBuyProductListCount(buying, id);
+		int buyCount=MyPageDAO.getInstance().myBuyProductListCount(buy, id);
 		request.setAttribute("list", list);
+		request.setAttribute("buyingCount", buyingCount);
+		request.setAttribute("buyCount", buyCount);
 		request.setAttribute("url","mypage/2customer.jsp");
 		return "mainpage.jsp";
 	}

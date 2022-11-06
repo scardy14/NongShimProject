@@ -118,15 +118,14 @@ public class MyPageDAO {
 		try {
 			con = dataSource.getConnection();
 			StringBuilder sb = new StringBuilder(
-					"select post_no,id,register_date,category,status,product_name,product_point,duration,min_customer,max_customer ");
+					"select post_no,title,id,register_date,status,duration,min_customer,max_customer ");
 			sb.append("from NongShim_product_Post where id=? order by register_date desc");
 			pstmt = con.prepareStatement(sb.toString());
 			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				myPageProductPostVO = new MyPageProductPostVO(rs.getLong(1), rs.getString(2), rs.getString(3),
-						rs.getString(4), rs.getString(5), rs.getString(6), rs.getLong(7), rs.getString(8),
-						rs.getLong(9), rs.getLong(10));
+						rs.getString(4), rs.getString(5), rs.getString(6), rs.getLong(7), rs.getLong(8));
 				list.add(myPageProductPostVO);
 			}
 		} finally {

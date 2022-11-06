@@ -47,7 +47,7 @@
 								<td>확인 중</td><td>발송완료</td>
 							</tr>
 							<tr align="center">
-								<td>확인 중value</td><td>발송완료value</td>
+								<td>${requestScope.buyingCount}</td><td>${requestScope.buyCount}</td>
 							</tr>
 						</thead>
 					</table>
@@ -102,11 +102,6 @@
 															<span>최소인원:</span>
 														</div>
 													</div>
-												</div>
-											</td>
-											<td>
-												<div class="primary-btn">
-													<a class="btn btn-primary" href="#">구매자 목록</a>
 												</div>
 											</td>
 										</tr>
