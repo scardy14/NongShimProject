@@ -7,6 +7,7 @@ public class FindFreePostListController implements Controller {
 
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
 		return null;
 		
 	}
