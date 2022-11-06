@@ -23,7 +23,7 @@ public class DataSourceManager {
 		//apache tomcat dbcp 구현체를 이용한다 
 		BasicDataSource dbcp=new BasicDataSource();
 		dbcp.setDriverClassName("oracle.jdbc.OracleDriver");
-		dbcp.setUrl("jdbc:oracle:thin:@127.0.0.1:1521:xe");
+		dbcp.setUrl("jdbc:oracle:thin:@54.180.2.161:1521:xe");
 		dbcp.setUsername("scott");
 		dbcp.setPassword("tiger");	
 		dbcp.setMaxTotal(30);//자신의 환경에 맞게 컨넥션 수를 조정할 수 있다 

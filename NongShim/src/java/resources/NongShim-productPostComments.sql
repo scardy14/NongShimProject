@@ -29,3 +29,50 @@ drop table NongShim_productPostComments
 
 --걍 test 부분 -- 
 select content, category,id,
+
+---------------------공지사항게시판-------------------
+ALTER TABLE NongShim_Announce_Post DROP CONSTRAINT fk_anounce_post;
+
+ALTER TABLE NongShim_Announce_Post
+ADD CONSTRAINT fk_anounce_post FOREIGN KEY(id)
+REFERENCES NongShim_Member(id) ON DELETE CASCADE;
+----------------------------------------------------
+---------------------상품정포게시판-------------------
+ALTER TABLE NongShim_product_Post DROP CONSTRAINT fk_pp;
+
+ALTER TABLE NongShim_product_Post
+ADD CONSTRAINT fk_pp FOREIGN KEY(id)
+REFERENCES NongShim_Member(id) ON DELETE CASCADE;
+----------------------------------------------------
+---------------------상품정포게시판-------------------
+ALTER TABLE like_product DROP CONSTRAINT id_fk;
+
+ALTER TABLE like_product
+ADD CONSTRAINT id_fk FOREIGN KEY(id)
+REFERENCES NongShim_Member(id) ON DELETE CASCADE;
+
+ALTER TABLE seller_ide DROP CONSTRAINT seller_id_fk;
+
+ALTER TABLE seller_ide
+ADD CONSTRAINT seller_id_fk FOREIGN KEY(id)
+REFERENCES NongShim_Member(id) ON DELETE CASCADE;
+
+ALTER TABLE buy_product_list DROP CONSTRAINT buy_product_id_fk;
+
+ALTER TABLE buy_product_list
+ADD CONSTRAINT buy_product_id_fk FOREIGN KEY(id)
+REFERENCES NongShim_Member(id) ON DELETE CASCADE;
+
+ALTER TABLE confirm_list DROP CONSTRAINT confirm_id_fk;
+
+ALTER TABLE confirm_list
+ADD CONSTRAINT confirm_id_fk FOREIGN KEY(id)
+REFERENCES NongShim_Member(id) ON DELETE CASCADE;
+----------------------------------------------------
+---------------------상품정포댓글게시판-------------------
+ALTER TABLE NongShim_productPostComments DROP CONSTRAINT comments_id_fk;
+
+ALTER TABLE NongShim_productPostComments
+ADD CONSTRAINT comments_id_fk FOREIGN KEY(id)
+REFERENCES NongShim_Member(id) ON DELETE CASCADE;
+----------------------------------------------------
