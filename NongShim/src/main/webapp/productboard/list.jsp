@@ -19,9 +19,7 @@
 </form>
 <br>
 
-<div style="text-align: right;">
-<button onclick="location.href='WritePostFormController.do'" style="background-color: #00ac00; color: white; width: 8%; height: 30px;">글쓰기</button><br><br>
-</div>
+
 
 
 <table class="table table-bordered table-hover boardlist">
@@ -50,6 +48,9 @@
 		</c:forEach>
 	</tbody>
 </table>
+<div style="text-align: right;">
+	<button onclick="location.href='WritePostFormController.do'" style="background-color: #00ac00; color: white; width: 8%; height: 30px;">글쓰기</button><br><br>
+</div>
 <!--
       pagination 
 -->
