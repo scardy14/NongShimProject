@@ -90,7 +90,7 @@
 													</h4>
 													<div class="meta">
 														<div class="organizers">
-															<span>판매수량:${seller.amount}</span>
+															<span>판매수량:</span>
 														</div>
 														<div class="categories">
 															<span>참여자 수:</span>
