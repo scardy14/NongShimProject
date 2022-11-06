@@ -46,7 +46,6 @@ insert into buy_product_list values ('java','13',sysdate,'발송완료',20);
 insert into buy_product_list values ('spring','14',sysdate,'확인중',15);
 insert into buy_product_list values ('spring','15',sysdate,'발송완료',20);
 
-
 commit
 
 -- 3.3 판매중인 목록: member(id), product_info(product_no) fk 및 pk
@@ -105,6 +104,8 @@ from NongShim_product_Post where status='판매종료' AND  id='jdbc';
 --3. MySellProductListTotal : 게시판 내 판매 상품 전체 조회(최신순)
 select post_no,id,register_date,category,status,product_name,product_point,duration,min_customer,max_customer 
 from NongShim_product_Post where id='java' order by register_date desc;
+
+--3.1 
 
 --4. findCustomerConfirmListbyidandpostno() : 매칭 고객 정보 테이블의 발송 여부 컬럼의 데이터가 '발송'이 이면
 select post_status from confirm_list where id='jdbc'and post_no='13';

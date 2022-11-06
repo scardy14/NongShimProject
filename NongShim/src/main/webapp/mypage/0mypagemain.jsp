@@ -16,8 +16,8 @@
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 </head>
-
 <body>
+
 	<div class="container pt-3">
 		<table class="table" style="text-align: center;">
 			<tr style="background-color: #d0fd7d">
@@ -36,7 +36,7 @@
 				<th><a href="MyPagecustomerController.do">구매</a></th>
 			</tr>
 			<tr>
-				<th><a href="">판매</a></th>
+				<th><a href="MyPageSellerTotalController.do">판매</a></th>
 			</tr>
 		</table>
 	</div>
