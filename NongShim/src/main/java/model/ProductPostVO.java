@@ -107,6 +107,9 @@ public class ProductPostVO {
 		this.maxCustomer = maxCustomer;
 	}
 
+	public ProductPostVO(long no) {
+	}
+
 	public long getPostNo() {
 		return postNo;
 	}

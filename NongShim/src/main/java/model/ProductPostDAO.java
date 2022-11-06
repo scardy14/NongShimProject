@@ -125,7 +125,7 @@ public class ProductPostDAO {
 		PreparedStatement pstmt=null;
 		try {
 			con=dataSource.getConnection();
-			String sql="delete NongShim_product_Post Product where no=?";
+			String sql="DELETE NongShim_product_Post WHERE post_No=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setLong(1,no);
 			pstmt.executeUpdate();
