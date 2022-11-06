@@ -80,12 +80,18 @@ public class ProductPostVO {
 	}
 	
 	// 장지영 상품게시판 글 수정
-		public ProductPostVO(long postNo, String title, String content) {
-			super();
-			this.postNo = postNo;
-			this.title = title;
-			this.content = content;
-		}
+		public ProductPostVO(long postNo, String title, String content, String category, long productPoint, String duration,
+			long minCustomer, long maxCustomer) {
+		super();
+		this.postNo = postNo;
+		this.title = title;
+		this.content = content;
+		this.category = category;
+		this.productPoint = productPoint;
+		this.duration = duration;
+		this.minCustomer = minCustomer;
+		this.maxCustomer = maxCustomer;
+	}
 	
 	//김민석 개인적으로 만든거. 위와 같은 이유로 냅둘것.
 	

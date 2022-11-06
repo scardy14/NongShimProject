@@ -3,11 +3,11 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <c:choose>
-		<c:when test="${sessionScope.mvo.id==pvo.memberVO.id}">		
+		<c:when test="${sessionScope.mvo.nickName==vo.nickName}">	 
 				<td>
 					<div style="text-align: right;">
 					<button onclick="location.href='FindPostListByValueController.do'" style="background-color: #00ac00; color: white; width: 5%; height: 30px;">목록</button>
-					<button type="button" style="background-color: #00ac00; color: white; width: 6%; height: 30px;" onclick="write()">글쓰기</button>
+					<button onclick="location.href='WritePostFormController.do'" style="background-color: #00ac00; color: white; width: 8%; height: 30px;">글쓰기</button>
 					<button type="button" style="background-color: #00ac00; color: white; width: 5%; height: 30px;" onclick="update()">수정</button>
 					<button type="button" style="background-color: #00ac00; color: white; width: 5%; height: 30px;" onclick="delete1()">삭제</button>
 					</div>
@@ -15,28 +15,13 @@
 		</c:when>
 </c:choose>
 
-
-	<form action="WritePostFormController.do" id="write">
-		<input type="hidden" name = "title" value = "${postvo.title}">
-		<input type="hidden" name = "content" value = "${postvo.content}">
-		<input type="hidden" name = "id" value = "${postvo.id}">
-		<input type="hidden" name = "nickname" value = "${postvo.nickname}">
-		<input type="hidden" name = "comments" value = "${postvo.comments}">
-		<input type="hidden" name = "category" value = "${postvo.category}">
-		<input type="hidden" name = "status" value = "${postvo.status}">
-		<input type="hidden" name = "productName" value = "${postvo.productName}">
-		<input type="hidden" name = "productPoint" value = "${postvo.productPoint}">
-		<input type="hidden" name = "minCustomer" value = "${postvo.minCustomer}">
-		<input type="hidden" name = "maxCustomer" value = "${postvo.maxCustomer}">	
-	</form>
-
 	<form action="UpdatePostFormController.do" method="post" id="update">
-		<input type="hidden" name = "no" value = "${postvo.no}">
-		<input type="hidden" name = "title" value = "${postvo.title}">
-		<input type="hidden" name = "content" value = "${postvo.content}">
+		<%-- <input type="text" name = "no" value = "${postvo.no}">
+		<input type="text" name = "title" value = "${postvo.title}">
+		<input type="text" name = "content" value = "${postvo.content}"> --%>
 	</form>
-	<form action="DeletePostController.do?" method="post" id="delete1">
-		<input type="hidden" name="no" value = "${postvo.no}">
+	<form action="DeletePostController.do" method="post" id="delete1">
+		<%-- <input type="text" name="no" value = "${postvo.no}"> --%>
 	</form>
 
 
@@ -127,12 +112,6 @@ ${vo.content}
 
 
 
-
-
-
-
-
-
 <br>
 <br>
 
@@ -162,15 +141,6 @@ ${vo.content}
 		location.href = "HooCommentController.do?comment=" + comment
 		+ "&postno=" + postno;;
 	}
-	
-	function update() {
-	    let id = document.getElementById("write");
-	      let result = confirm("게시물을 수정하시겠습니까?");
-	      if(result) {
-	          id.submit();
-	    }
-	}
-
 	      function update() {
 	  	    let id = document.getElementById("update");
 	  	      let result = confirm("게시물을 수정하시겠습니까?");

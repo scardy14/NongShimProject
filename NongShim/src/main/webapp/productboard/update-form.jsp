@@ -15,16 +15,16 @@
 			<input type="text" name="mincustomer" value="${requestScope.mincustomer}">
 			<input type="text" name="maxcustomer" value="${requestScope.maxcustomer}">
 			<input type="text" name="productpoint" value="${requestScope.productpoint}">
-			<input type="text" name="duration" value="${requestScope.duration}">
-			<input type="text" name="title" value="${requestScope.title}" required="required">
-			<input type="text" name="content" value="${requestScope.content}">
+			<input type="text" name="duration" value="${requestScope.duration}"><br><br>
+			<input style="width: 700px; height: 40px;" type="text" name="title" value="${requestScope.title}" required="required"><br><br>
+			<input style="width: 700px; height: 400px;" type="text" name="content" value="${requestScope.content}"><br>
 			<input type="hidden" name="no" value="${requestScope.no}">
 				</td>
 			</tr>
 		
 		</table>
 		<div class="text-center">
-			<button type="submit" class="btn btn-success">확인</button>
+			<button type="submit" class="btn btn-success">등록</button>
 			<button type="reset" class="btn btn-success">취소</button>
 		</div>
 </form>

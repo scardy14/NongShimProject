@@ -3,18 +3,29 @@ package controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.ProductPostDAO;
+import model.ProductPostVO;
+
 public class UpdatePostFormController implements Controller {
 
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		request.setAttribute("category",request.getParameter("category"));
-		request.setAttribute("mincustomer",request.getParameter("mincustomer"));
-		request.setAttribute("maxcustomer",request.getParameter("maxcustomer"));
-		request.setAttribute("productpoint",request.getParameter("productpoint"));
-		request.setAttribute("duration",request.getParameter("duration"));
-		request.setAttribute("title",request.getParameter("title"));
-		request.setAttribute("content",request.getParameter("content"));
-		request.setAttribute("no",request.getParameter("no"));
+		String no="50";
+		ProductPostVO productpostvo = ProductPostDAO.getInstance().postDetailFind(no);
+		request.setAttribute("title",productpostvo.getTitle());
+		request.setAttribute("content",productpostvo.getContent());
+		request.setAttribute("hits",productpostvo.getHits());
+		request.setAttribute("nick",productpostvo.getNickName());
+		request.setAttribute("comments",productpostvo.getComments());
+		request.setAttribute("regdate",productpostvo.getDate());
+		request.setAttribute("category",productpostvo.getCategory());
+		request.setAttribute("pname",productpostvo.getProductName());
+		request.setAttribute("ppoint",productpostvo.getProductPoint());
+		request.setAttribute("duration",productpostvo.getDuration());
+		request.setAttribute("mincustomer",productpostvo.getMinCustomer());
+		request.setAttribute("maxcustomer",productpostvo.getMaxCustomer());
+		
+		System.out.println(productpostvo.getTitle());
 		request.setAttribute("url", "productboard/update-form.jsp");
 		return "mainpage.jsp";
 	}
