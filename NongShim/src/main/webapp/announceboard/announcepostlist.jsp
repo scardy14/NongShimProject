@@ -23,21 +23,34 @@
 		</c:forEach>
 	</tbody>
 </table>
+
+<c:choose>
+	<c:when test="${sessionScope.mvo.adminiInfo=='운영자'}">
+		<div style="text-align: right;">
+			<button type = "button" onclick="writeannounce()" style="background-color: #d0fd7d; color: 00ac00; border-radius: 10px; width: 80px; height: 40px; border: none;">글쓰기</button>
+		</div>
+	</c:when>
+</c:choose>
 <ul class="pagination justify-content-center" style="margin:20px 0">	
-			<c:if test="${pagination.previousPageGroup}">
-				<li class="page-item"><a class="page-link" onclick="sendpageandinfo(${pagination.endPageOfPageGroup-1})">Previous</a></li>
-			</c:if>
-			<c:forEach begin="${pagination.startPageOfPageGroup}" end="${pagination.endPageOfPageGroup}" var="page">
-			<c:choose>
-				<c:when test="${pagination.nowPage==page}">
-					<li class="page-item active"><a class="page-link" onclick="sendpageandinfo(${page})">${page}</a></li>
-				</c:when>
-				<c:otherwise>
-					<li class="page-item"><a class="page-link" onclick="sendpageandinfo(${page})">${page}</a></li>
-				</c:otherwise>
-			</c:choose>	
-			</c:forEach>
-			<c:if test="${pagination.nextPageGroup}">
-		  		<li class="page-item"><a class="page-link" onclick="sendpageandinfo(${pagination.endPageOfPageGroup+1})">Next</a></li>     
-		  	</c:if>	
-		</ul>
+	<c:if test="${pagination.previousPageGroup}">
+		<li class="page-item"><a class="page-link" onclick="sendpageandinfo(${pagination.endPageOfPageGroup-1})">Previous</a></li>
+	</c:if>
+	<c:forEach begin="${pagination.startPageOfPageGroup}" end="${pagination.endPageOfPageGroup}" var="page">
+		<c:choose>
+			<c:when test="${pagination.nowPage==page}">
+				<li class="page-item active"><a class="page-link" onclick="sendpageandinfo(${page})">${page}</a></li>
+			</c:when>
+			<c:otherwise>
+				<li class="page-item"><a class="page-link" onclick="sendpageandinfo(${page})">${page}</a></li>
+			</c:otherwise>
+		</c:choose>	
+	</c:forEach>
+	<c:if test="${pagination.nextPageGroup}">
+  		<li class="page-item"><a class="page-link" onclick="sendpageandinfo(${pagination.endPageOfPageGroup+1})">Next</a></li>     
+  	</c:if>	
+</ul>
+<script>
+	function writeannounce() {
+		location.href="WriteAnnouncePostControllerMove.do";
+	}
+</script>

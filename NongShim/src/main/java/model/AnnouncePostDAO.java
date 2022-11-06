@@ -86,6 +86,11 @@ public class AnnouncePostDAO {
 		Connection con = null;
 		try {
 			con = dataSource.getConnection();
+			String sql = "UPDATE NongShim_Announce_Post SET hits=hits +1 WHERE post_No = ? ";
+			pst = con.prepareStatement(sql);
+			pst.setLong(1, post_No);
+			pst.executeUpdate();
+			pst.close();
 			StringBuilder sb = new StringBuilder("");
 			sb.append("SELECT post_No, id, title, content, hits, nickname, TO_CHAR(register_Date, 'YYYY-MM-DD') AS register_Date ");
 			sb.append("FROM NongShim_Announce_Post ");
@@ -100,5 +105,75 @@ public class AnnouncePostDAO {
 			closeAll(rs, pst, con);
 		}
 		return announcePostVO;
+	}
+	
+	public boolean writeAnnouncePost(AnnouncePostVO announcePostVO) throws SQLException {
+		boolean result = false;
+		int rs;
+		PreparedStatement pst = null;
+		Connection con = null;
+		try {
+			con = dataSource.getConnection();
+			StringBuilder sb = new StringBuilder("");
+			sb.append("INSERT INTO NongShim_Announce_Post ");
+			sb.append("VALUES (announce_seq.nextval,?,?,?,DEFAULT,DEFAULT,SYSDATE)");
+			pst = con.prepareStatement(sb.toString());
+			pst.setString(1, announcePostVO.getId());
+			pst.setString(2, announcePostVO.getTitle());
+			pst.setString(3, announcePostVO.getContent());
+			rs= pst.executeUpdate();
+			if(rs==1) {
+				result = true;
+			}
+		} finally {
+			closeAll(pst, con);
+		}
+		return result;
+	}
+	
+	public boolean updateAnnouncePost(AnnouncePostVO announcePostVO) throws SQLException {
+		boolean result = false;
+		int rs;
+		PreparedStatement pst = null;
+		Connection con = null;
+		try {
+			con = dataSource.getConnection();
+			StringBuilder sb = new StringBuilder("");
+			sb.append("UPDATE NongShim_Announce_Post ");
+			sb.append("SET title = ?, content = ? WHERE post_No = ?");
+			pst = con.prepareStatement(sb.toString());
+			pst.setString(1, announcePostVO.getTitle());
+			pst.setString(2, announcePostVO.getContent());
+			pst.setLong(3, announcePostVO.getPost_No());
+			rs= pst.executeUpdate();
+			if(rs==1) {
+				result = true;
+			}
+		} finally {
+			closeAll(pst, con);
+		}
+		return result;
+	}
+	
+	public boolean deleteAnnouncePost(Long post_No ) throws SQLException {
+		boolean result = false;
+		int rs;
+		PreparedStatement pst = null;
+		Connection con = null;
+		try {
+			con = dataSource.getConnection();
+			StringBuilder sb = new StringBuilder("");
+			sb.append("DELETE FROM NongShim_Announce_Post ");
+			sb.append("WHERE post_No = ?");
+			pst = con.prepareStatement(sb.toString());
+			pst.setLong(1, post_No);
+			rs= pst.executeUpdate();
+			if(rs==1) {
+				result = true;
+			}
+		} finally {
+			closeAll(pst, con);
+		}
+		return result;
 	}
 }

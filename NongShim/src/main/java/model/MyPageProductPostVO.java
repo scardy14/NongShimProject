@@ -66,6 +66,126 @@ public class MyPageProductPostVO {
 				+ productPoint + ", duration=" + duration + ", minCustomer=" + minCustomer + ", maxCustomer="
 				+ maxCustomer + "]";
 	}
+
+	public long getPostNo() {
+		return postNo;
+	}
+
+	public void setPostNo(long postNo) {
+		this.postNo = postNo;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public long getHits() {
+		return hits;
+	}
+
+	public void setHits(long hits) {
+		this.hits = hits;
+	}
+
+	public String getNickName() {
+		return nickName;
+	}
+
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
+	}
+
+	public String getComments() {
+		return comments;
+	}
+
+	public void setComments(String comments) {
+		this.comments = comments;
+	}
+
+	public String getDate() {
+		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
+	}
+
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public String getProductName() {
+		return productName;
+	}
+
+	public void setProductName(String productName) {
+		this.productName = productName;
+	}
+
+	public long getProductPoint() {
+		return productPoint;
+	}
+
+	public void setProductPoint(long productPoint) {
+		this.productPoint = productPoint;
+	}
+
+	public String getDuration() {
+		return duration;
+	}
+
+	public void setDuration(String duration) {
+		this.duration = duration;
+	}
+
+	public long getMinCustomer() {
+		return minCustomer;
+	}
+
+	public void setMinCustomer(long minCustomer) {
+		this.minCustomer = minCustomer;
+	}
+
+	public long getMaxCustomer() {
+		return maxCustomer;
+	}
+
+	public void setMaxCustomer(long maxCustomer) {
+		this.maxCustomer = maxCustomer;
+	}
 	
 	//판매자 인증 체크
 	

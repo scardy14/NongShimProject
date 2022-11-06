@@ -39,13 +39,12 @@ create table buy_product_list(
 	constraint buy_product_pk primary key (id,post_no,ns_date)
 )
 
-insert into buy_product_list values ('jdbc','10',sysdate,'확인중',15);
-insert into buy_product_list values ('jdbc','11',sysdate,'발송완료',20);
-insert into buy_product_list values ('java','12',sysdate,'확인중',15);
-insert into buy_product_list values ('java','13',sysdate,'발송완료',20);
-insert into buy_product_list values ('spring','14',sysdate,'확인중',15);
-insert into buy_product_list values ('spring','15',sysdate,'발송완료',20);
-
+insert into buy_product_list values ('java','21',sysdate,'확인중',15);
+insert into buy_product_list values ('java','22',sysdate,'발송완료',20);
+insert into buy_product_list values ('jdbc','23',sysdate,'확인중',15);
+insert into buy_product_list values ('jdbc','24',sysdate,'발송완료',20);
+insert into buy_product_list values ('spring','25',sysdate,'확인중',15);
+insert into buy_product_list values ('spring','26',sysdate,'발송완료',20);
 
 commit
 
@@ -105,6 +104,8 @@ from NongShim_product_Post where status='판매종료' AND  id='jdbc';
 --3. MySellProductListTotal : 게시판 내 판매 상품 전체 조회(최신순)
 select post_no,id,register_date,category,status,product_name,product_point,duration,min_customer,max_customer 
 from NongShim_product_Post where id='java' order by register_date desc;
+
+--3.1 
 
 --4. findCustomerConfirmListbyidandpostno() : 매칭 고객 정보 테이블의 발송 여부 컬럼의 데이터가 '발송'이 이면
 select post_status from confirm_list where id='jdbc'and post_no='13';
