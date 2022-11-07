@@ -12,23 +12,20 @@
        			<option value="과일"></option>       
        			<option value="기타"></option>       
         	 </datalist>
-			<input type="text" name="mincustomer" value="${productpostvo.mincustomer}">
-			<input type="text" name="maxcustomer" value="${productpostvo.maxcustomer}">
-			<input type="text" name="productpoint" value="${productpostvo.productpoint}">
-			<input type="text" name="duration" value="${productpostvo.duration}"><br><br>
-			<input style="width: 700px; height: 40px;" type="text" name="title" value="${productpostvo.title}" required="required"><br><br>
-			<input style="width: 700px; height: 400px;" type="text" name="content" value="${productpostvo.content}"><br>
+			<input type="text" name="mincustomer" value="${productpostvo.minCustomer}" required="required" placeholder="최소인원수">
+			<input type="text" name="maxcustomer" value="${productpostvo.maxCustomer}" required="required" placeholder="최대인원수">
+			<input type="text" name="productpoint" value="${productpostvo.productPoint}" required="required" placeholder="포인트">
+			<input type="text" name="duration" value="${productpostvo.duration}" required="required" placeholder="최소인원수"><br><br>
+			<input style="width: 700px; height: 40px;" type="text" name="title" value="${productpostvo.title}" required="required" placeholder="제목을 입력해주세요"><br><br>
+			<input style="width: 700px; height: 400px;" type="text" name="content" value="${productpostvo.content}" required="required" placeholder="내용을 입력해주세요"><br>
 			<input type="hidden" name="no" value="${productpostvo.postNo}">
 				</td>
 			</tr>
 		
 		</table>
 		<span style="text-align: center;">
+				<button type="submit" style="background-color: #00ac00; color: white; width: 5%; height: 30px;">등록</button>
 				<button onclick="location.href='FindPostListByValueController.do'" style="background-color: #00ac00; color: white; width: 5%; height: 30px;">목록</button>
-				<button type="submit" class="btn btn-success">취소</button>
 		</span>
-		<div class="text-center">
-			<button type="submit" class="btn btn-success">취소</button>
-		</div>
 </form>
 

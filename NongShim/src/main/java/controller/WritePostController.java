@@ -30,6 +30,6 @@ public class WritePostController implements Controller {
 		ProductPostVO productpostVO= new ProductPostVO(title,content,id,nickname,comments,category,status,
 				productname,productpoint,mincustomer,maxcustomer);  
 		ProductPostDAO.getInstance().writePost(productpostVO);
-		return "FindPostListByValueController.do"; 
+		return "redirect:FindPostListByValueController.do"; 
 	}
 }

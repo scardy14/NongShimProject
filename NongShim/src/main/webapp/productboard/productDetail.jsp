@@ -17,8 +17,7 @@
 
 	<form action="UpdatePostFormController.do" method="post" id="update">
 		<input type="hidden" name = "no" value = "${vo.postNo}">
-<%-- 		<input type="hidden" name = "title" value = "${vo.title}">
-		<input type="hidden" name = "content" value = "${vo.content}"> --%>
+
 	</form>
 	<form action="DeletePostController.do" method="post" id="delete1">
 		<input type="hidden" name="no" value="${vo.postNo}"> 
