@@ -111,13 +111,7 @@ public class ProductPostDAO {
 		PreparedStatement pstmt = null;
 		try {
 
-			con = dataSource.getConnection();
-			String sql = "update NongShim_product_Post set title=?,content=? where post_No=?";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, productpostVO.getTitle());
-			pstmt.setString(2, productpostVO.getContent());
-			pstmt.setLong(3, productpostVO.getPostNo());
-			pstmt.executeQuery();
+		
 
 			con=dataSource.getConnection();
 			String sql="update NongShim_product_Post set title=?,content=?,category=?,product_Point=?, duration=?, min_Customer=?,max_Customer=? where post_No=?";
@@ -131,7 +125,7 @@ public class ProductPostDAO {
 			pstmt.setLong(7,productpostVO.getMaxCustomer());
 			pstmt.setLong(8,productpostVO.getPostNo());
 			pstmt.executeUpdate();
->>>>>>> refs/heads/main
+
 		} finally {
 			closeAll(pstmt, con);
 		}
