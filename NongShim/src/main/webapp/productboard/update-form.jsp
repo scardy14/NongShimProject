@@ -23,8 +23,12 @@
 			</tr>
 		
 		</table>
+		<span style="text-align: center;">
+				<button onclick="location.href='FindPostListByValueController.do'" style="background-color: #00ac00; color: white; width: 5%; height: 30px;">목록</button>
+				<button type="submit" class="btn btn-success">취소</button>
+		</span>
 		<div class="text-center">
-			<button type="submit" class="btn btn-success">등록</button>
-			<button type="reset" class="btn btn-success">취소</button>
+			<button type="submit" class="btn btn-success">취소</button>
 		</div>
 </form>
+

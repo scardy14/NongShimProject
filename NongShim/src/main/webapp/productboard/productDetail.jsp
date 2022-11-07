@@ -16,9 +16,9 @@
 </c:choose>
 
 	<form action="UpdatePostFormController.do" method="post" id="update">
-		<%-- <input type="text" name = "no" value = "${postvo.no}">
-		<input type="text" name = "title" value = "${postvo.title}">
-		<input type="text" name = "content" value = "${postvo.content}"> --%>
+		<input type="hidden" name = "no" value = "${vo.postNo}">
+<%-- 		<input type="hidden" name = "title" value = "${vo.title}">
+		<input type="hidden" name = "content" value = "${vo.content}"> --%>
 	</form>
 	<form action="DeletePostController.do" method="post" id="delete1">
 		<input type="hidden" name="no" value="${vo.postNo}"> 
