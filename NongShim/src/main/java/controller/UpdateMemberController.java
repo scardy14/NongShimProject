@@ -20,7 +20,7 @@ public class UpdateMemberController implements Controller {
 		String accountNo=request.getParameter("accountNo");
 		NongShimMemberDAO.getInstance().updateMember
 		(new NongShimMemberVO(id, name, password, address, nickname, tel, email, 0, accountNo));
-		
+		System.out.println(address);
 		return "redirect:login/update-result.jsp";
 	}
 
