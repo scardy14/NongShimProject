@@ -14,7 +14,8 @@ public class LikeController implements Controller {
 		long no= Long.parseLong(request.getParameter("postno12"));
 		String id= request.getParameter("id12");
 		ProductPostDAO.getInstance().likePostPush(no,id);
-		
+		System.out.println("제대로 찍혓는가" + no);
+		System.out.println(id);
 		//2. 누적된 좋아요 값을 출력한다.
 		
 		

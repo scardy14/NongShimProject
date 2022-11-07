@@ -27,8 +27,8 @@
 <h3>${vo.title}</h3>
 
 <div style="text-align: right;">
-<form action="LikeController.do?postno12=${vo.postNo}&id12=${sessionScope.mvo.id }">
-<button>
+<form action="LikeController.do?postno12=${vo.postNo}&id12=${sessionScope.mvo.id}">
+<button type="submit">
 좋아요
 </button>
 ${requestScope.likeTotal}

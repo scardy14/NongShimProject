@@ -508,5 +508,20 @@ public class ProductPostDAO {
 
 	}
 
+	public void likeCancel(long postno, String id) throws SQLException {
 
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			con = dataSource.getConnection();
+			String sql = "delete from LIKE_PRODUCT where post_no=? and id=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setLong(1, postno);
+			pstmt.setString(2, id);
+			pstmt.executeUpdate();
+		} finally {
+			closeAll(pstmt, con);
+		}
+
+	}
 }
