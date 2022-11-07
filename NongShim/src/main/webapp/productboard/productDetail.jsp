@@ -2,32 +2,83 @@
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-	<c:choose>
-		<c:when test="${sessionScope.mvo.nickName==vo.nickName}">	 
-				<td>
-					<div style="text-align: right;">
-					<button onclick="location.href='FindPostListByValueController.do'" style="background-color: #00ac00; color: white; width: 5%; height: 30px;">목록</button>
-					<button onclick="location.href='WritePostFormController.do'" style="background-color: #00ac00; color: white; width: 8%; height: 30px;">글쓰기</button>
-					<button type="button" style="background-color: #00ac00; color: white; width: 5%; height: 30px;" onclick="update()">수정</button>
-					<button type="button" style="background-color: #00ac00; color: white; width: 5%; height: 30px;" onclick="delete1()">삭제</button>
-					</div>
-				</td>
-		</c:when>
-				<c:otherwise>
-					<button onclick="location.href='FindPostListByValueController.do'" style="background-color: #00ac00; color: white; width: 5%; height: 30px;">목록</button>
-				</c:otherwise> 
-	</c:choose>
+<c:choose>
+	<c:when test="${sessionScope.mvo.nickName==vo.nickName}">
+		<td>
+			<div style="text-align: right;">
+				<button onclick="location.href='FindPostListByValueController.do'"
+					style="background-color: #00ac00; color: white; width: 5%; height: 30px;">목록</button>
+				<button onclick="location.href='WritePostFormController.do'"
+					style="background-color: #00ac00; color: white; width: 8%; height: 30px;">글쓰기</button>
+				<button type="button"
+					style="background-color: #00ac00; color: white; width: 5%; height: 30px;"
+					onclick="update()">수정</button>
+				<button type="button"
+					style="background-color: #00ac00; color: white; width: 5%; height: 30px;"
+					onclick="delete1()">삭제</button>
+			</div>
+		</td>
+	</c:when>
+	<c:otherwise>
+		<button onclick="location.href='FindPostListByValueController.do'"
+			style="background-color: #00ac00; color: white; width: 5%; height: 30px;">목록</button>
+	</c:otherwise>
+</c:choose>
 
-	<form action="UpdatePostFormController.do" method="post" id="update">
-		<input type="hidden" name = "no" value = "${vo.postNo}">
-		<input type="hidden" name = "title" value = "${vo.title}">
-		<input type="hidden" name = "content" value = "${vo.content}">
-	</form>
-	<form action="DeletePostController.do" method="post" id="delete1">
-		<input type = "hidden" name = "no" value = "${vo.postNo }">
-	</form>
+<form action="UpdatePostFormController.do" method="post" id="update">
+	<input type="hidden" name="no" value="${vo.postNo}"> <input
+		type="hidden" name="title" value="${vo.title}"> <input
+		type="hidden" name="content" value="${vo.content}">
+</form>
+<form action="DeletePostController.do" method="post" id="delete1">
+	<input type="hidden" name="no" value="${vo.postNo }">
+</form>
 
 <h3>${vo.title}</h3>
+
+<div style="text-align: right;">
+	<form>
+
+		<input type="hidden" id="postno12" value="${vo.postNo}"> <input
+			type="hidden" id="id12" value="${sessionScope.mvo.id}">
+		
+		<button type="button" onclick="startAjax12()">좋아요♥</button>
+		<span id="likeCount">${requestScope.cocount}</span>
+
+	</form>
+</div>
+
+<script>
+function startAjax12() {
+	//alert("눌렷는가");
+ 	let postno=document.getElementById("postno12");
+	let id=document.getElementById("id12");
+	let countSpan=document.getElementById("likeCount");
+	let xhr=new XMLHttpRequest();
+		xhr.onreadystatechange=function(){
+			
+			if(xhr.readyState==4&&xhr.status==200){
+				//alert(xhr.responseText);
+				/*
+				if(xhr.responseText=="pushok"){
+					countSpan.innerHTML="${requestScope.likeTotal}";
+					
+				}else{
+					countSpan.innerHTML="${requestScope.likeTotal}";
+				}
+				
+			
+			*/
+				countSpan.innerHTML=xhr.responseText;
+			}
+		}//function
+		xhr.open("get","LikeController.do?postno123="+postno.value+"&id123="+id.value);
+		xhr.send();
+
+}//startAjax12
+</script>
+
+<br>
 <table class="table table-bordered">
 	<tr>
 		<td style="width: 15%; background-color: #d0fd7d;">작성자</td>
@@ -62,37 +113,52 @@ ${vo.content}
 <br>
 <c:choose>
 	<c:when test="${sessionScope.mvo !=null}">
-		<button style="background-color: #d0fd7d;border-radius: 10px; width: 500px; height: 50px; border: none;" onclick="buyproduct(true)">구매하기</button><br>
+		<button
+			style="background-color: #d0fd7d; border-radius: 10px; width: 500px; height: 50px; border: none;"
+			onclick="buyproduct(true)">구매하기</button>
+		<br>
 	</c:when>
 	<c:otherwise>
-		<button style="background-color: #d0fd7d;border-radius: 10px; width: 500px; height: 50px; border: none;" onclick="buyproduct(false)">구매하기</button><br>
+		<button
+			style="background-color: #d0fd7d; border-radius: 10px; width: 500px; height: 50px; border: none;"
+			onclick="buyproduct(false)">구매하기</button>
+		<br>
 	</c:otherwise>
 </c:choose>
 
-<br>	
+<br>
 <hr>
 
 
-<input type="text" style="width: 100%; height: 50px;" id="comment" required="required" placeholder="댓글입력">
+<input type="text" style="width: 100%; height: 50px;" id="comment"
+	required="required" placeholder="댓글입력">
 <br>
 <br>
 
 
 <input type="hidden" value="${postno}" id="postno">
-<button type="button"  style="background-color: #d0fd7d;border-radius: 10px; height:40px ; border: none;" onclick="moon()">문의글작성</button>
-<button type="button"  style="background-color: #d0fd7d;border-radius: 10px; height:40px ; border: none; " onclick="hoo()">후기글작성</button>
+<button type="button"
+	style="background-color: #d0fd7d; border-radius: 10px; height: 40px; border: none;"
+	onclick="moon()">문의글작성</button>
+<button type="button"
+	style="background-color: #d0fd7d; border-radius: 10px; height: 40px; border: none;"
+	onclick="hoo()">후기글작성</button>
 
 <div style="text-align: right;">
-<c:choose>
-	<c:when test="${commentMode=='hoo' }">
-		<input type = "checkbox" name = "checkbox" value = "hoo"  onclick= "commentMode(${vo.postNo },'hoo')" checked>후기
-		<input type = "checkbox" name = "checkbox" value = "moon" onclick = "commentMode(${vo.postNo },'moon')">문의
+	<c:choose>
+		<c:when test="${commentMode=='hoo' }">
+			<input type="checkbox" name="checkbox" value="hoo"
+				onclick="commentMode(${vo.postNo },'hoo')" checked>후기
+		<input type="checkbox" name="checkbox" value="moon"
+				onclick="commentMode(${vo.postNo },'moon')">문의
 	</c:when>
-	<c:otherwise>
-		<input type = "checkbox" name = "checkbox" value = "hoo"  onclick= "commentMode(${vo.postNo },'hoo')" >후기
-		<input type = "checkbox" name = "checkbox" value = "moon" onclick = "commentMode(${vo.postNo },'moon')" checked>문의
+		<c:otherwise>
+			<input type="checkbox" name="checkbox" value="hoo"
+				onclick="commentMode(${vo.postNo },'hoo')">후기
+		<input type="checkbox" name="checkbox" value="moon"
+				onclick="commentMode(${vo.postNo },'moon')" checked>문의
 	</c:otherwise>
-</c:choose>
+	</c:choose>
 </div>
 
 <br>
@@ -124,9 +190,9 @@ ${vo.content}
 
 
 
-<form id = "buyform" action="BuyProductController.do">
-	<input type = "hidden" name = "id" value = "${sessionScope.mvo.id }">
-	<input type = "hidden" name = "post_No" value = "${vo.postNo }">
+<form id="buyform" action="BuyProductController.do">
+	<input type="hidden" name="id" value="${sessionScope.mvo.id }">
+	<input type="hidden" name="post_No" value="${vo.postNo }">
 </form>
 
 
