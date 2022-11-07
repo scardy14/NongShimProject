@@ -15,7 +15,7 @@ public class UpdatePostController implements Controller {
 		 long mincustomer = Long.parseLong(request.getParameter("minCustomer")); 
 		 long maxcustomer = Long.parseLong(request.getParameter("maxCustomer")); 
 		 long productpoint = Long.parseLong(request.getParameter("productPoint"));
-		 String duration=request.getParameter("duration");
+		 String duration= request.getParameter("duration");
 		 String title=request.getParameter("title");
 		 String content=request.getParameter("content"); 		 	
 		ProductPostVO productpostVO = new ProductPostVO(no,title,content,category,productpoint,duration,mincustomer,maxcustomer);
