@@ -70,7 +70,7 @@
 								<thead>
 									<!-- 표 head -->
 									<tr>
-										<th class="text-center" scope="col">번호</th>
+										<th class="text-center" scope="col">순번</th>
 										<th scope="col">아이디</th>
 										<th class="text-center" scope="col">이름</th>
 										<th>상품수량</th>
@@ -85,7 +85,7 @@
 										<tr class="inner-box">
 											<th scope="row" class="text-center">
 												<div>
-													<span>상품 번호 ${order.count}</span>
+													<span>${order.count}</span>
 												</div>
 											</th>
 											<td>${confirm.id}</td><td>${confirm.name}</td><td>${confirm.amount}</td><td>${confirm.status}</td><td>${confirm.address}</td><td>${confirm.tel}</td>
