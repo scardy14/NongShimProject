@@ -21,7 +21,7 @@
 		class="collapse d-lg-block sidebar collapse bg-white">
 		<div class="position-sticky float:left">
 			<div class="list-group list-group-flush mx-3 mt-4">
-				<a href="MyPageUpdateMemberController.do"
+				<a href="MyPageUpdateMemberControllerMove.do"
 					class="list-group-item list-group-item-action py-2 ripple active">
 					<i class="fas fa-chart-area fa-fw me-3"></i><span>내 정보</span>
 				</a> <a href="MyPagecustomerController.do"
@@ -68,7 +68,7 @@
 							value="${sessionScope.mvo.address}"><br> 닉네임:<input
 							type="text" name="nickname" required="required" placeholder="닉네임"
 							style="height: 40px;" value="${sessionScope.mvo.nickName}"><br>
-	이메일:					<input type="text" name="email" required="required"
+						이메일:<input type="text" name="email" required="required"
 							placeholder="이메일" style="height: 40px;"
 							value="${sessionScope.mvo.email}"><br> 전화번호:<input
 							type="text" name="tel" id="memberTel" required="required"
