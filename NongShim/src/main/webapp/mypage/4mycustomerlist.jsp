@@ -52,7 +52,7 @@
 					<table class="headertable">
 					<br><br>
 					<h3>
-						<a href="ProductDetailController.do?postno=${postVO.postNo}">[상태 넣을까?]${postVO.title}</a>
+						<a href="ProductDetailController.do?postno=${postVO.postNo}">[${status}]${postVO.title}</a>
 					</h3>
 					</div>
 				</div>

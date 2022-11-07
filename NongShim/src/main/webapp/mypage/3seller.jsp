@@ -98,11 +98,7 @@
 													</h4>
 													<div class="meta">
 														<div class="organizers">
-															<span>최소/최대: ${seller.minCustomer}/${seller.maxCustomer}</span>
-														</div>
-														<div class="categories">
-															<span>구매자 수: inner join 써야할듯</span>
-															<span>판매 수: </span>
+															<span>최소/최대 인원수: ${seller.minCustomer}/${seller.maxCustomer}</span>
 														</div>
 														<div class="time">
 															<span>판매종료 기간: ${seller.duration}</span>
@@ -118,9 +114,14 @@
 												</div>
 											</td>
 											<td>
-												<div class="primary-btn">
+												<%-- <div class="primary-btn">
 													<a class="btn btn-primary" href="MyPageMyCustomerListController.do?postNo=${seller.postNo}">구매자 목록</a>
-												</div>
+												</div> --%>
+												<form action="MyPageMyCustomerListController.do">
+													<button>구매자 목록</button>
+													<input type="hidden" name="status" value="${seller.status}">
+													<input type="hidden" name="postNo" value="${seller.postNo}">
+												</form>
 											</td>
 										</tr>
 									</c:forEach>

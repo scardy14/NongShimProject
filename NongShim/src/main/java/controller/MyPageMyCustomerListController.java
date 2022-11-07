@@ -24,10 +24,11 @@ public class MyPageMyCustomerListController implements Controller {
 		ArrayList<ConfirmListVO> list=MyPageDAO.getInstance().confirmListbyIdandPostNo(request.getParameter("postNo"));
 		int postno=(int) Long.parseLong(request.getParameter("postNo"));
 		ProductPostVO postVO= ProductPostDAO.getInstance().postDetailFind(postno);
-		request.setAttribute("url","mypage/4mycustomerlist.jsp");
+		request.setAttribute("status", request.getParameter("status"));
 		request.setAttribute("list", list);
 		request.setAttribute("postVO", postVO);
 		request.setAttribute("postNo", postno);
+		request.setAttribute("url","mypage/4mycustomerlist.jsp");
 		return "mainpage.jsp";
 	}
 
