@@ -24,12 +24,14 @@
 				<div class="list-group list-group-flush mx-3 mt-4">
 					<a href="MyPageUpdateMemberController.do"
 						class="list-group-item list-group-item-action py-2 ripple"
-						aria-current="true"> <i
-						class="fas fa-tachometer-alt fa-fw me-3"></i><span>내 정보</span>
-					</a> <a href="MyPagecustomerController.do"
+						aria-current="true"> <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>내 정보</span></a> 
+					<a href="MyPagecustomerController.do"
 						class="list-group-item list-group-item-action py-2 ripple">
-						<i class="fas fa-chart-area fa-fw me-3"></i><span>구매</span>
-					</a> <a href="MyPageSellerTotalController.do"
+						<i class="fas fa-chart-area fa-fw me-3"></i><span>구매</span></a>
+					<a href="MyPageSellerCheckMoveController.do"
+						class="list-group-item list-group-item-action py-2 ripple">
+						<i class="fas fa-chart-area fa-fw me-3"></i><span>판매인증</span></a> 
+					<a href="MyPageSellerTotalController.do"
 						class="list-group-item list-group-item-action py-2 ripple active"><i
 						class="fas fa-lock fa-fw me-3"></i><span>판매</span></a>
 				</div>
@@ -47,7 +49,7 @@
 								<td>판매 중</td><td>판매종료</td>
 							</tr>
 							<tr align="center">
-								<td>판매중value</td><td>판매종료value</td>
+								<td>${requestScope.selling}</td><td>${requestScope.sell}</td>
 							</tr>
 						</thead>
 					</table>
@@ -86,37 +88,32 @@
 											<td>
 												<div class="event-wrap">
 													<h4>
-														<a href="#">[${seller.status}] ${seller.title}</a>
+														<a href="ProductDetailController.do?postno=${seller.postNo}">[${seller.status}] ${seller.title}</a>
 													</h4>
 													<div class="meta">
 														<div class="organizers">
-															<span>판매수량:</span>
+															<span>최소/최대: ${seller.minCustomer}/${seller.maxCustomer}</span>
 														</div>
 														<div class="categories">
-															<span>참여자 수:</span>
+															<span>구매자 수: inner join 써야할듯</span>
+															<span>판매 수: </span>
 														</div>
 														<div class="time">
-															<span>판매종료 기간:${seller.duration}</span>
+															<span>판매종료 기간: ${seller.duration}</span>
 														</div>
 														<div class="progress position-relative">
 															<div class="progress-bar" role="progressbar"
-																style="width: 60%" aria-valuenow="60" aria-valuemin="0"
+																style="width: ${seller.productPoint}%" aria-valuenow="${seller.productPoint}" aria-valuemin="0"
 																aria-valuemax="100" align="center"></div>
 															<small
-																class="justify-content-center d-flex position-absolute w-100">${seller.maxCustomer}/${product.minCustomer}</small>
-														</div>
-														<div>
-															<span>최대인원:${seller.maxCustomer}</span>
-														</div>
-														<div>
-															<span>최소인원:${seller.minCustomer}</span>
+																class="justify-content-center d-flex position-absolute w-100"></small>
 														</div>
 													</div>
 												</div>
 											</td>
 											<td>
 												<div class="primary-btn">
-													<a class="btn btn-primary" href="#">구매자 목록</a>
+													<a class="btn btn-primary" href="MyPageMyCustomerListController.do?postNo=${seller.postNo}">구매자 목록</a>
 												</div>
 											</td>
 										</tr>
