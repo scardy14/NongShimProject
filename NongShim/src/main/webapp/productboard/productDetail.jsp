@@ -32,31 +32,37 @@
 <div style="text-align: right;">
 <form action="LikeController.do">
 
-<input type="hidden" name="postno12" value="${vo.postNo}">
-<input type="hidden" name="id12" value="${sessionScope.mvo.id}">
+<input type="hidden" id="postno12" value="${vo.postNo}">
+<input type="hidden" id="id12" value="${sessionScope.mvo.id}">
 
-<button type="submit">
+<button type="button" onclick="startAjax12()">
 좋아요
 </button>
-${requestScope.likeTotal}
+<span id="likeCount"></span>
 
 </form>
 </div>
 
 <script>
-
-function likemethod(){
-	alert("좋아요를 누르셨습니다!")
-	location.href="LikeController.do"
-	//세션 mvo.id 로 아이디
-	//
-	
-	
-	
+function startAjax12(){
+	let no=document.getElementById("postno12");
+	let id =document.getElementById("id12");
+	let xhr= new XMLHttpRequest();
+	xhr.onreadystatechange=function(){
+		if(xhr.status==200&&xhr.readyState==4){
+			let likes=JSON.parse(xhr.responseText);
+			
+			document.getElementById("likeCount").innerHTML = ??여기 뭐 들어가야함?
+			
+			
+			
+		}
+		
+		
+	}
+	xhr.open("get","JSONObjectServlet12?pontno123=" + no +"&id123=" +id);
+    xhr.send();
 }
-
-
-
 </script>
 
 <br>

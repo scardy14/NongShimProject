@@ -12,3 +12,5 @@ update NONGSHIM_PRODUCTPOSTCOMMENTS set content = '바뀐 내용 입니다.' whe
 
 select row_number() over(order by comments_date) as rnum,content,category,id,comments_date 
 from NongShim_productPostComments where post_no=1 and id='spring' ;
+
+select count(*) from LIKE_PRODUCT;
