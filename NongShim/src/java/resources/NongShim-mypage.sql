@@ -129,8 +129,11 @@ select * from buy_product_list where id='jdbc' and status='확인중' order by n
 select count(*) from buy_product_list
 select count(*) from buy_product_list where id='jdbc' and status='확인중';
 
---9. MyBuyProductListTotal : 내 구매 상품 전체 조회(최신순)
-select * from buy_product_list where id='java' order by ns_date desc;
+--****-9. MyBuyProductListTotal : 내 구매 상품 전체 조회(최신순)
+select b.id, b.post_no,b.ns_date,b.status,b.amount, p.title
+from (select * from buy_product_list where id='java') b
+inner join NongShim_product_Post p on b.post_no=p.post_no order by ns_date desc;
+
 
 -- 10. InsertSellerCheck : 사업자등록번호를 seller_ide에 등록하는 메서드를 위해 작성한 sql
 delete seller_ide
@@ -150,3 +153,30 @@ select * from NongShim_Member where id='java';
 insert into NongShim_Member values('jdk','a','정다경','성남','다경','017',DEFAULT,'관리자','gmail',default,'356-4');
 select id,admin_INfo from NongShim_Member where id='jdk'
 
+--13 ConfirmListbyIdandPostNo
+select * from confirm_list
+
+--안됨
+select c.id, m.name, c.product_amount, c.post_status, m.address, m.tel
+from (select * from confirm_list where id='spring' and post_no='14') c
+inner join  NongShim_Member m on c.id=m.id;
+
+-- 안됨
+select c.id, m.name, c.product_amount, c.post_status, m.address, m.tel from confirm_list c inner join  NongShim_Member m on c.id=m.id where c.id='spring' and post_no='14';
+
+--14. sysdate
+
+select duration, to_char() from NongShim_product_Post where id='spring'
+
+select duration,(7-(to_date(duration,'yyyy-mm-dd')-to_date(sysdate,'yyyy-mm-dd')))/7*100 as diff
+from NongShim_product_Post where id='spring' and status='판매중';
+
+insert into NongShim_product_Post
+values (postNo_seq.nextval, '초록빛깔 상추', '신선하고 맛있습니다','java',default,'민석짱','코멘트부분',sysdate,'야채','판매중','상추',50,sysdate+7,5,10);
+insert into NongShim_product_Post
+values (postNo_seq.nextval, '사과사과', '달콤하고 맛있습니다','spring',default,'민석짱2','코멘트부분',sysdate,'과일','판매중','사과',200,sysdate+7,10,30);
+insert into NongShim_product_Post 
+values (postNo_seq.nextval, '맛있는 햅쌀', '꼬들꼬들합니다','jdbc',default,'민석짱3','코멘트부분',sysdate,'곡물','판매중','쌀',150,sysdate+7,50,100);
+insert into NongShim_product_Post 
+values (postNo_seq.nextval, '탐스런 과일', '크고 달아요','java',default,'짱아','맛있네요',sysdate,'과일','판매중','청포도',100,sysdate+7,10,30);
+commit

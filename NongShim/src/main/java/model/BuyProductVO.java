@@ -6,16 +6,18 @@ public class BuyProductVO {
 	private String nsDate;
 	private String status;
 	private long amount;
+	private String title;
 	public BuyProductVO() {
 		super();
 	}
-	public BuyProductVO(String id, long postNo, String nsDate, String status, long amount) {
+	public BuyProductVO(String id, long postNo, String nsDate, String status, long amount, String title) {
 		super();
 		this.id = id;
 		this.postNo = postNo;
 		this.nsDate = nsDate;
 		this.status = status;
 		this.amount = amount;
+		this.title = title;
 	}
 	public String getId() {
 		return id;
@@ -47,10 +49,16 @@ public class BuyProductVO {
 	public void setAmount(long amount) {
 		this.amount = amount;
 	}
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
 	@Override
 	public String toString() {
 		return "BuyProductVO [id=" + id + ", postNo=" + postNo + ", nsDate=" + nsDate + ", status=" + status
-				+ ", amount=" + amount + "]";
+				+ ", amount=" + amount + ", title=" + title + "]";
 	}
 
 }
