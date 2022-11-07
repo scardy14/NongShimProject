@@ -96,17 +96,14 @@
 															<span>참여자 수:</span>
 														</div>
 														<div class="time">
-															<span>판매종료 기간: ${seller.title}</span>
+															<span>판매종료 기간: ${seller.duration}</span>
 														</div>
 														<div class="progress position-relative">
 															<div class="progress-bar" role="progressbar"
 																style="width: 60%" aria-valuenow="60" aria-valuemin="0"
 																aria-valuemax="100" align="center"></div>
 															<small
-																class="justify-content-center d-flex position-absolute w-100">current/</small>
-														</div>
-														<div>
-															<span>최대인원:</span>
+																class="justify-content-center d-flex position-absolute w-100">current/${seller.maxCustomer}</small>
 														</div>
 														<div>
 															<span>최소인원:</span>

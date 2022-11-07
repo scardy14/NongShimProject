@@ -200,7 +200,4 @@ public class MyPageProductPostVO {
 				+ productPoint + ", duration=" + duration + ", minCustomer=" + minCustomer + ", maxCustomer="
 				+ maxCustomer + "]";
 	}
-	
-	//판매자 인증 체크
-	
 }

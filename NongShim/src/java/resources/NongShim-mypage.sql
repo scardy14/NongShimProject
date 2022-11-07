@@ -159,6 +159,6 @@ from (select * from confirm_list where id='spring' and post_no='14') c
 inner join  NongShim_Member m on c.id=m.id;
 
 -- 안됨
-select c.id, m.name, c.product_amount, c.post_status, m.address, m.tel from (select * from confirm_list) c inner join  NongShim_Member m on c.id=m.id where c.id='spring' and post_no='14';
+select c.id, m.name, c.product_amount, c.post_status, m.address, m.tel from confirm_list c inner join  NongShim_Member m on c.id=m.id where c.id='spring' and post_no='14';
 
 

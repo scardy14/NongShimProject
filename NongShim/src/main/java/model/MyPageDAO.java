@@ -458,7 +458,7 @@ public class MyPageDAO {
 			 * sb.append("inner join  NongShim_Member m on c.id=m.id ");
 			 * sb.append("where c.id=? and post_no=?");
 			 */
-			String sql="select c.id, m.name, c.product_amount, c.post_status, m.address, m.tel from (select * from confirm_list) c inner join  NongShim_Member m on c.id=m.id where c.id=? and post_no=?";
+			String sql="select c.id, m.name, c.product_amount, c.post_status, m.address, m.tel from confirm_list c inner join  NongShim_Member m on c.id=m.id where c.id=? and post_no=?";
 			pstmt=con.prepareStatement(sql);
 			//System.out.println(sb.toString());
 			pstmt.setString(1,id);
