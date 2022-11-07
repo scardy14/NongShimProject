@@ -30,9 +30,8 @@ public class MyPagecustomerController implements Controller {
 		HttpSession session=request.getSession(false);
 		NongShimMemberVO mvo=(NongShimMemberVO) session.getAttribute("mvo");
 		String id=mvo.getId();
-		//System.out.println("*"+id);
-		
-		//테스트
+		String mode = request.getParameter("mode");
+
 		 ArrayList<BuyProductVO> list=MyPageDAO.getInstance().myBuyProductListTotal(id); 
 		 String buying="구매중";
 		 String buy="구매완료"; 

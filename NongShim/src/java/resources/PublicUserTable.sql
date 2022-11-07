@@ -102,17 +102,18 @@ create table buy_product_list(
 	id varchar2(100) not null,
 	post_no number not null,
 	ns_date date not null,
-	status varchar2(100) DEFAULT '판매중'not null,
+	status varchar2(100) DEFAULT '발송전'not null,
 	amount number DEFAULT 1 not null,
 	constraint buy_product_id_fk foreign key(id) references NongShim_Member(id) ON DELETE CASCADE,
 	constraint buy_product_product_no_fk foreign key(post_no) references NongShim_product_Post(post_no) ON DELETE CASCADE,
 	constraint buy_product_pk primary key (id,post_no,ns_date)
 )
+
 --sell_product_list는 안쓴는 테이블, 흔적은 남겨둠
 create table sell_product_list(
 	id varchar2(100) not null,
 	post_no number not null,
-	status varchar2(100) not null,
+	status varchar2(100) DEFAULT '판매중' not null,
 	constraint sell_product_id_fk foreign key(id) references NongShim_Member(id) ON DELETE CASCADE,
 	constraint sell_product_product_no_fk foreign key(post_no) references NongShim_product_Post(post_no),
 	constraint sell_product_pk primary key (id,post_no)
@@ -122,7 +123,7 @@ create table confirm_list(
 	id varchar2(100) not null,
 	post_no number not null,
 	product_amount varchar2(100) DEFAULT 1 not null,
-	post_status varchar2(100) DEFAULT '판매중' not null ,
+	post_status varchar2(100) DEFAULT '발송전' not null ,
 	constraint confirm_id_fk foreign key(id) references NongShim_Member(id) ON DELETE CASCADE,
 	constraint confirm_product_fk foreign key(post_no) references NongShim_product_Post(post_no) ON DELETE CASCADE,
 	constraint confirm_product_pk primary key(id,post_no)
