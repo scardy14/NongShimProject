@@ -9,17 +9,17 @@ import model.MyPageDAO;
 import model.SellerIdeVO;
 
 public class MyPageSellerCheckController implements Controller {
-
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session=request.getSession(false);
-		NongShimMemberVO memberVO=(NongShimMemberVO) request.getAttribute("mvo");
-		String id=memberVO.getId();
-		System.out.println("id:"+id);
-		System.out.println("sellerNumber:"+request.getParameter("sellerNumber"));
+		NongShimMemberVO memberVO=(NongShimMemberVO) session.getAttribute("mvo");
+		//String id=memberVO.getId();
+		//System.out.println("id:"+id);
+		//System.out.println("sellerNumber:"+request.getParameter("sellerNumber"));
 		SellerIdeVO sellerIdeVO=new SellerIdeVO(memberVO.getId(),request.getParameter("sellerNumber"));
 		MyPageDAO.getInstance().insertSellerCheck(sellerIdeVO);
-		request.setAttribute("url","/1myinfo.jsp" );
+		MyPageDAO.getInstance().sellercheckUpdate(memberVO.getId());
+		request.setAttribute("url","mypage/1myinfo.jsp" );
 		return "mainpage.jsp";
 	}
 }
