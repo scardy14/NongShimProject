@@ -58,8 +58,6 @@ ${vo.content}
 <br>
 <br>
 <button style="background-color: #d0fd7d;border-radius: 10px; width: 500px; height: 50px; border: none;" onclick="buyproduct()">구매하기</button><br>
-
-
 <br>	
 <hr>
 
@@ -101,7 +99,7 @@ ${vo.content}
 		</tr>
 	</thead>
 	<tbody>
-		<c:forEach items="${list1}" var="commentlist">
+		<c:forEach items="${commentlist}" var="commentlist">
 			<tr>
 				<td>${commentlist.postno}</td>
 				<td>${commentlist.content}</td>
@@ -164,10 +162,15 @@ ${vo.content}
 		}
 	}
 	function buyproduct() {
-		let result = confirm("상품을 구매하시겠습니까?");
-		let buyform = document.getElementById("buyform");
-		if(result) {
-			buyform.submit();
+		alert(mvo);
+		if(id=="") {
+			alert("로그인 후 이용해주세요");
+		} else {
+			let result = confirm("상품을 구매하시겠습니까?");
+			let buyform = document.getElementById("buyform");
+			if(result) {
+				buyform.submit();
+			}
 		}
 	}
 	function commentMode(postno, mode) {
