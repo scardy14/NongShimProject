@@ -182,4 +182,51 @@ public class NongShimMemberDAO {
 	}
 	
 
+
+	public NongShimMemberVO findIdByNameEmail(String name, String email) throws SQLException {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		NongShimMemberVO vo =null;
+		try {
+			con=dataSource.getConnection();
+			String sql="select id from NongShim_Member where name=? AND email=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1,name);
+			pstmt.setString(2,email);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				vo= new NongShimMemberVO(rs.getString(1),null);
+			//	rs.getString(1);
+			}
+		}finally {
+			closeAll(rs, pstmt, con);
+		}
+		return vo;
+	}
+	
+	
+	public NongShimMemberVO findPasswordByIdAccountNo(String password, String accountNo) throws SQLException {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		NongShimMemberVO vo =null;
+		try {
+			con=dataSource.getConnection();
+			String sql="select password from NongShim_Member where id=? AND account_No=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1,password);
+			pstmt.setString(2,accountNo);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				vo= new NongShimMemberVO(rs.getString(1),null);
+			//	rs.getString(1);
+			}
+		}finally {
+			closeAll(rs, pstmt, con);
+		}
+		return vo;
+	}
+	
+	
 }
