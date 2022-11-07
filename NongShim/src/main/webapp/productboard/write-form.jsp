@@ -5,12 +5,12 @@
 <div class="container pt-3">
 <form method="post" action="WritePostController.do">
 	<input type = "text" name = "category" required="required" placeholder="카테고리"  list="taglist" style="width: 95px; height: 29px;">
-   			 <datalist id="taglist">
+   			 <select id="taglist">
        			<option value="곡물"></option>
        			<option value="야채"></option>
        			<option value="과일"></option>       
        			<option value="기타"></option>       
-        	 </datalist>
+        	 </select>
          <input type="number" name="minCustomer" placeholder="최소인원수" required="required">
          <input type="number" name="maxCustomer" placeholder="최대인원수" required="required">
          <input type="number" name="productPoint" placeholder="포인트" required="required">
