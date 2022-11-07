@@ -267,7 +267,7 @@ public class ProductPostDAO {
 	public int getTotalPostCount() throws SQLException {
 		// 데이터베이스의 NongShim_productPost 테이블의 총 개시물 수를 불러옴
 		// 입력값: 없음
-		// 출력값: 총 개시물 수
+		// 출력값: 총 게시물 수
 		ResultSet rs = null;
 		PreparedStatement pst = null;
 		Connection con = null;
