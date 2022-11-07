@@ -9,27 +9,27 @@ public class LikeController implements Controller {
 
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
+
+		// 1. 좋아요 누르면 값을 집어넣는다.
+		long no = Long.parseLong(request.getParameter("postno12"));
+		String id = request.getParameter("id12");
+
+		//
+
+		if (ProductPostDAO.getInstance().checkLikes(no, id) == true) {
+			ProductPostDAO.getInstance().likeCancel(no, id);
+		} else {
+
+			ProductPostDAO.getInstance().likePostPush(no, id);
 		
-		//1. 좋아요 누르면 값을 집어넣는다.
-		long no= Long.parseLong(request.getParameter("postno12"));
-		String id= request.getParameter("id12");
-		ProductPostDAO.getInstance().likePostPush(no,id);
-		System.out.println("제대로 찍혓는가" + no);
-		System.out.println(id);
-		//2. 누적된 좋아요 값을 출력한다.
-		
-		
-		long totalLikes=ProductPostDAO.getInstance().showTotalLike(no);
+		}
+
+		// 2. 누적된 좋아요 값을 출력한다.
+
+		long totalLikes = ProductPostDAO.getInstance().showTotalLike(no);
 		request.setAttribute("likeTotal", totalLikes);
 		request.setAttribute("url", "productboard/productDetail.jsp");
 		return "mainpage.jsp";
-		
-		
-		
-		
-		
-		
-		
 
 	}
 

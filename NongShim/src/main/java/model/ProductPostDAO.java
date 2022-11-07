@@ -502,7 +502,7 @@ public class ProductPostDAO {
 			}
 
 		} finally {
-			closeAll(pstmt, con);
+			closeAll(rs,pstmt, con);
 		}
 		return totalLikes;
 
@@ -522,6 +522,37 @@ public class ProductPostDAO {
 		} finally {
 			closeAll(pstmt, con);
 		}
+
+	}
+	//반환값이 true이면 이미 좋아요 누른거 false이면 좋아요 한적 없는거.
+	public boolean checkLikes(long postno, String id) throws SQLException {
+        boolean check=false;
+		Connection con = null;
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
+		try {
+			con = dataSource.getConnection();
+			String sql = "select * from LIKE_PRODUCT where post_no=? and id=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setLong(1, postno);
+			pstmt.setString(2, id);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				
+				check=true;
+				
+				
+				
+				
+			}else {
+				check=false;
+			}
+			
+			
+		} finally {
+			closeAll(rs,pstmt, con);
+		}
+		return check;
 
 	}
 }
