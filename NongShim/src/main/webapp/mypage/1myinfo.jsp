@@ -23,18 +23,15 @@
 			<div class="list-group list-group-flush mx-3 mt-4">
 				<a href="MyPageUpdateMemberController.do"
 					class="list-group-item list-group-item-action py-2 ripple active">
-					<i class="fas fa-chart-area fa-fw me-3"></i><span>내 정보</span></a> 
-				<a href="MyPagecustomerController.do"
+					<i class="fas fa-chart-area fa-fw me-3"></i><span>내 정보</span>
+				</a> <a href="MyPagecustomerController.do"
 					class="list-group-item list-group-item-action py-2 ripple"><i
-					class="fas fa-lock fa-fw me-3"></i><span>구매</span></a>
-									<a href="MyPageSellerCheckMoveController.do"
-						class="list-group-item list-group-item-action py-2 ripple">
-						<i class="fas fa-chart-area fa-fw me-3"></i><span>판매인증</span></a> 
-				<a href="MyPageSellerTotalController.do"
+					class="fas fa-lock fa-fw me-3"></i><span>구매</span></a> <a
+					href="MyPageSellerTotalController.do"
 					class="list-group-item list-group-item-action py-2 ripple"
 					aria-current="true"> <i
 					class="fas fa-tachometer-alt fa-fw me-3"></i><span>판매</span>
-				</a> 	
+				</a>
 			</div>
 		</div>
 	</nav>
@@ -44,6 +41,7 @@
 	<div class="col-lg-12">
 		<div class="section-title text-left">
 			<div class="title-text">
+				<h2>내 판매 목록</h2>
 			</div>
 		</div>
 	</div>
@@ -58,23 +56,24 @@
 				<div class="table-responsive">
 					<form action="MyPageUpdateMemberController.do" method="post">
 						<input type="hidden" name="id" value="${sessionScope.mvo.id}">
-						<input type="password" name="password" required="required"
+						비밀번호:<input type="password" name="password" required="required"
 							placeholder="비밀번호" style="height: 40px;" id="password"><br>
-						<input type="password" name="passwordcheck" required="required"
-							placeholder="비밀번호확인" style="height: 40px;" id="passwordcheck"><br>
-						<input type="text" name="name" required="required"
-							placeholder="이름" style="height: 40px;"
-							value="${sessionScope.mvo.name}"><br> <input
-							type="text" name="address" required="required" placeholder="주소"
-							style="height: 40px;" value="${sessionScope.mvo.address}"><br>
-						<input type="text" name="nickname" required="required"
-							placeholder="닉네임" style="height: 40px;"
-							value="${sessionScope.mvo.nickName}"><br> <input
-							type="text" name="email" required="required" placeholder="이메일"
-							style="height: 40px;" value="${sessionScope.mvo.email}"><br>
-						<input type="text" name="tel" id="memberTel" required="required"
+						비밀번호 확인:<input type="password" name="passwordcheck"
+							required="required" placeholder="비밀번호확인" style="height: 40px;"
+							id="passwordcheck"><br> 이름:<input type="text"
+							name="name" required="required" placeholder="이름"
+							style="height: 40px;" value="${sessionScope.mvo.name}"><br>
+						주소:<input type="text" name="address" required="required"
+							placeholder="주소" style="height: 40px;"
+							value="${sessionScope.mvo.address}"><br> 닉네임:<input
+							type="text" name="nickname" required="required" placeholder="닉네임"
+							style="height: 40px;" value="${sessionScope.mvo.nickName}"><br>
+	이메일:					<input type="text" name="email" required="required"
+							placeholder="이메일" style="height: 40px;"
+							value="${sessionScope.mvo.email}"><br> 전화번호:<input
+							type="text" name="tel" id="memberTel" required="required"
 							placeholder="전화번호" onkeyup="checkTel()" style="height: 40px;"
-							value="${sessionScope.mvo.tel}"><br> <input
+							value="${sessionScope.mvo.tel}"><br> 계좌번호:<input
 							type="text" name="accountNo" required="required"
 							placeholder="계좌번호" style="height: 40px;"
 							value="${sessionScope.mvo.accountNo}"><br> <input
