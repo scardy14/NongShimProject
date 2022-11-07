@@ -56,10 +56,9 @@
 		<div class="tab-content" id="myTabContent">
 			<div class="tab-pane fade active show" id="home" role="tabpanel">
 				<div class="table-responsive">
-					<form action="MyPageSellerCheckController.do" method="post">
+					<form action="MyPageSellerCheckController.do">
 						<input type="text" name="name" required="required" placeholder="이름" style="height: 40px;" value="${sessionScope.mvo.name}" readonly="readonly">
-						<input type="hidden" name="id" value="${sessionScope.mvo.id}">
-						<input type="text" name="sellerNumber" required="required" placeholder="사업자등록번호" style="height: 40px;" onkeyup="longCheck()">
+						<input type="text" name="sellerNumber" id="sellerNumber" required="required" placeholder="사업자등록번호" style="height: 40px;" onkeyup="longCheck()">
 						<span id="checkResult"></span>
 						<br><br>
 						<button type="submit" style="width: 190px; background-color: #00ac00; color: white;">판매자 인증</button>
@@ -68,8 +67,7 @@
 						function longCheck(){
 							let sellerNumber=document.getElementById("sellerNumber").value; 
 							let checkResultSpan=document.getElementById("checkResult");
-
-							if(memberId.length<10){
+							if(sellerNumber.length<10){
 								checkResultSpan.innerHTML="<font color=pink>사업자 등록번호는 10자 이상입니다.</font>";
 							}else{
 								let xhr=new XMLHttpRequest();
