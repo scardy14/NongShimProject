@@ -26,7 +26,6 @@ public class MoonCommentController implements Controller {
 		
 		
 		
-		
 		HttpSession session=request.getSession(false);
 		NongShimMemberVO mvo=(NongShimMemberVO) session.getAttribute("mvo");
 		String id = mvo.getId();//여기부분 세션에서 받아와야함 일단 임시로 아무거나 넣어둠.
@@ -36,7 +35,7 @@ public class MoonCommentController implements Controller {
 		
 		ProductPostDAO.getInstance().addCommentInMoon(id, no, comment);
 		//request.setAttribute("url", "ProductDetailController");
-		return "ProductDetailController.do";
+		return "redirect:ProductDetailController.do?postno="+request.getParameter("postno");
 	}
 
 }

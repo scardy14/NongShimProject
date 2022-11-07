@@ -102,10 +102,10 @@ create table buy_product_list(
 	id varchar2(100) not null,
 	post_no number not null,
 	ns_date date not null,
-	status varchar2(100) not null,
-	amount number not null,
+	status varchar2(100) DEFAULT '판매중'not null,
+	amount number DEFAULT 1 not null,
 	constraint buy_product_id_fk foreign key(id) references NongShim_Member(id) ON DELETE CASCADE,
-	constraint buy_product_product_no_fk foreign key(post_no) references NongShim_product_Post(post_no),
+	constraint buy_product_product_no_fk foreign key(post_no) references NongShim_product_Post(post_no) ON DELETE CASCADE,
 	constraint buy_product_pk primary key (id,post_no,ns_date)
 )
 
@@ -140,7 +140,7 @@ constraint comments_post_no_fk foreign key(post_no) references NongShim_product_
 constraint comments_pk primary key(id, post_no,comments_date)
 )
 
-DROP TABLE NongShim_productPostComments
+SELECT * FROM NongShim_productPostComments
 ----------------------------------------------------------------------------------------------------------
 ----------------------------------5.공지게시판 생성----------------------------------------------------------
 create table NongShim_Announce_Post(
