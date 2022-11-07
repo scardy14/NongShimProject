@@ -124,7 +124,7 @@ create table confirm_list(
 	product_amount varchar2(100) DEFAULT 1 not null,
 	post_status varchar2(100) DEFAULT '판매중' not null ,
 	constraint confirm_id_fk foreign key(id) references NongShim_Member(id) ON DELETE CASCADE,
-	constraint confirm_product_fk foreign key(post_no) references NongShim_product_Post(post_no),
+	constraint confirm_product_fk foreign key(post_no) references NongShim_product_Post(post_no) ON DELETE CASCADE,
 	constraint confirm_product_pk primary key(id,post_no)
 )
 
