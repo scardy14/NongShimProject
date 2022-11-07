@@ -14,8 +14,11 @@
 </head>
 <body>
 <div class="container pt-3">
-회원탈퇴가 완료되었습니다.
-<a href="${pageContext.request.contextPath}/index.jsp">Home</a>
+
+<script type="text/javascript">
+alert("비밀번호는 ${vo.id} 입니다.");
+location.href="index.jsp";
+</script>
 </div>
 </body>
 </html>
