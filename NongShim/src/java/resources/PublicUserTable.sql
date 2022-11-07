@@ -87,7 +87,7 @@ CREATE TABLE like_product(
 --						  [별명]									(내 테이블에서 fk로 지정할 컬럼)			[가져올 fk가 있는 테이블명](가져 올 fk의 컬럼)
   CONSTRAINT post_no_fk FOREIGN KEY (post_no) REFERENCES NongShim_product_Post(post_no) ON DELETE CASCADE,
 --						  [별명]									(내 테이블에서 fk로 지정할 컬럼)			[가져올 fk가 있는 테이블명](가져 올 fk의 컬럼)
-  CONSTRAINT id_fk FOREIGN KEY (id) REFERENCES NongShim_Member(id),
+  CONSTRAINT id_fk FOREIGN KEY (id) REFERENCES NongShim_Member(id) ON DELETE CASCADE,
 -- 							[별명]										 (내 테이블에서 만들 컬럼1,컬럼2)
   CONSTRAINT like_product_pk PRIMARY KEY (post_no, id)
 )
@@ -169,11 +169,11 @@ id VARCHAR2(100) NOT NULL,
 title varchar2(100) not null,
 content clob not null,
 hits number default 0 not null,
-nickname varchar2(100) DEFAULT '운영자' not null,
 register_Date date not null,
-CONSTRAINT fk_free_post FOREIGN KEY(id) REFERENCES NongShim_Member(id)
+CONSTRAINT fk_free_post FOREIGN KEY(id) REFERENCES NongShim_Member(id) ON DELETE CASCADE
 );
 CREATE SEQUENCE free_seq;
+ALTER TABLE NongShim_Free_Post_Comments DROP CONSTRAINT fk_free_post FOREIGN KEY(id) REFERENCES NongShim_Member(id) ON DELETE CASCADE
 
-SELECT * FROM NongShim_Announce_Post
+
 ----------------------------------------------------------------------------------------------------------

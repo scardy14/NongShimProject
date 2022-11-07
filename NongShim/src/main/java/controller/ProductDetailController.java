@@ -21,7 +21,7 @@ public class ProductDetailController implements Controller {
 		request.setAttribute("cocount", cocount);
 		
 		if(commentMode == null) {
-			commentMode = "hoo";
+			commentMode = "all";
 		}
 		HttpSession session=request.getSession(false);
 		//**********여기서부터 시험해보는거임**********************
@@ -37,8 +37,10 @@ public class ProductDetailController implements Controller {
 		ArrayList<CommentVO> commentlist= null;
 		if(commentMode.equals("hoo")) {
 			commentlist = ProductPostDAO.getInstance().showAllCommentByPostNo(postno, "후기");
-		} else {
+		} else if(commentMode.equals("moon")) {
 			commentlist = ProductPostDAO.getInstance().showAllCommentByPostNo(postno, "문의");
+		} else {
+			commentlist = ProductPostDAO.getInstance().showAllCommentByPostNo(postno, commentMode);
 		}
 		
 		
@@ -48,7 +50,7 @@ public class ProductDetailController implements Controller {
 		
 		
 		
-	
+		System.out.println(commentMode);
 		request.setAttribute("commentlist", commentlist);
 		request.setAttribute("vo",vo);
 		request.setAttribute("postno",postno);
