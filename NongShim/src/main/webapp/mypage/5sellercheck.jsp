@@ -21,15 +21,19 @@
 		class="collapse d-lg-block sidebar collapse bg-white">
 		<div class="position-sticky float:left">
 			<div class="list-group list-group-flush mx-3 mt-4">
-				<a href="MyPageUpdateMemberController.do"
+				<a href="MyPageUpdateMemberControllerMove.do"
 					class="list-group-item list-group-item-action py-2 ripple">
 					<i class="fas fa-chart-area fa-fw me-3"></i><span>내 정보</span></a> 
 				<a href="MyPagecustomerController.do"
 					class="list-group-item list-group-item-action py-2 ripple"><i
 					class="fas fa-lock fa-fw me-3"></i><span>구매</span></a>
-				<a href="MyPageSellerCheckMoveController.do" class="list-group-item list-group-item-action py-2 ripple active">
+					<c:choose>
+						<c:when test="${sessionScope.mvo.sellerInfo eq '일반'}">
+					<a href="MyPageSellerCheckMoveController.do" class="list-group-item list-group-item-action py-2 ripple active">
 						<i class="fas fa-chart-area fa-fw me-3"></i><span>판매인증</span>				
 					</a>
+					</c:when>
+					</c:choose>
 				<a href="MyPageSellerTotalController.do"
 					class="list-group-item list-group-item-action py-2 ripple"
 					aria-current="true"> <i
