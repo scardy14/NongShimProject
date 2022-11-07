@@ -2,7 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-
 <c:choose>
 		<c:when test="${sessionScope.mvo.nickName==vo.nickName}">	 
 				<td>
@@ -22,17 +21,16 @@
 		<input type="text" name = "content" value = "${postvo.content}"> --%>
 	</form>
 	<form action="DeletePostController.do" method="post" id="delete1">
-		<input type="hidden" name="no" value="${postvo.no}"> 
+		<input type = "hidden" name = "no" value = ${vo.postNo }>
 	</form>
-
-
->>>>>>> refs/heads/main
 
 <h3>${vo.title}</h3>
 <table class="table table-bordered">
 	<tr>
 		<td style="width: 15%; background-color: #d0fd7d;">작성자</td>
-		<td colspan="4">${vo.nickName}</td>
+		<td>${vo.nickName}</td>
+		<td style="background-color: #d0fd7d;">판매가격</td>
+		<td>${vo.productPoint}</td>
 	</tr>
 
 	<tr>
@@ -79,7 +77,7 @@ ${vo.content}
 <br>
 
 
-<table class="table table-bordered table-hover boardlist">
+<table class="table   boardlist">
 	<thead>
 		<tr style="background-color: #d0fd7d">
 			<th>번호</th>
@@ -95,8 +93,7 @@ ${vo.content}
 				<td>${commentlist.postno}</td>
 				<td>${commentlist.content}</td>
 				<td>${commentlist.category}</td>
-<%--				<td>${commentlist.id}</td>  --%>
-				<td>${sessionScope.mvo.nickName}</td>
+				<td>${commentlist.id}</td>
 				<td>${commentlist.writtenDate}</td>
 			</tr>
 		</c:forEach>

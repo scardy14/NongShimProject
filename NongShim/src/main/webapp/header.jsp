@@ -7,14 +7,14 @@
 <c:when test="${sessionScope.mvo==null}">
 	<a href="LoginControllerMove.do"><span style="color: white;">로그인</span></a> &nbsp;&nbsp;
 	<a href="RegisterControllerMove.do"><span style="color: white;">회원가입</span></a>&nbsp;&nbsp;
-	<a href="WritePostFormController.do"><span style="color: white;">고객센터</span></a>&nbsp;&nbsp;
+	<a href=""><span style="color: white;">고객센터</span></a>&nbsp;&nbsp;
 </c:when> 
 <c:otherwise>
 <span style="color: white;">이름:${sessionScope.mvo.name}</span>&nbsp;&nbsp;
 <span style="color: white;">아이디:${sessionScope.mvo.id}</span>&nbsp;&nbsp;
 <span style="color: white;">닉네임:${sessionScope.mvo.nickName}</span>&nbsp;&nbsp;
 <a href="LogoutController.do"><span style="color: white;">로그아웃</span></a>&nbsp;&nbsp;
-<a href="WritePostFormController.do"><span style="color: white;">고객센터</span></a>&nbsp;&nbsp;
+<a href=""><span style="color: white;">고객센터</span></a>&nbsp;&nbsp;
 </c:otherwise>
 </c:choose>
 
@@ -40,7 +40,7 @@
 		<td rowspan="2"><img src="images/ShoppingCart.PNG" style="width: 60px; height: 80px;"></td>
 	</tr>
 	<tr>
-		<td><a href="FindAnnouncePostListController.do">공지사항</a></td><td><a href="FindPostListByValueController.do">공구게시판	</a></td><td><a href="FindFreePostListController.do">자유게시판</a></td><td><a href="">포인트복권</a></td>
+		<td><a href="FindAnnouncePostListController.do">공지사항</a></td><td><a href="FindPostListByValueController.do">공구게시판</a></td><td><a href="FindFreePostListController.do">자유게시판</a></td><td><a href="">포인트복권</a></td>
 	</tr>
 </table>
 <br>

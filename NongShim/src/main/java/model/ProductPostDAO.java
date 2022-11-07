@@ -53,7 +53,7 @@ public class ProductPostDAO {
 	      
 	      try {
 	         con = getConnection();
-	         String sql = "select title,content, hits,nickname,comments,register_date,category,product_name,product_point,duration,min_customer,max_customer from NongShim_product_Post where post_no=?";
+	         String sql = "select title,content, hits,nickname,comments,register_date,category,product_name,product_point,to_char(duration, 'YYYY-MM-DD HH24:MI') AS duration,min_customer,max_customer from NongShim_product_Post where post_no=?";
 	         pst = con.prepareStatement(sql);
 	         pst.setLong(1, no);
 	         rs = pst.executeQuery();

@@ -24,9 +24,9 @@ public class ProductDetailController implements Controller {
 		//실수로 어떤메서드에는 String no가 들어가고 어떤 곳에는 long no가 들어감 ㅠㅠ ㅅㅂ
 		//한번에 맞출떄 통일하겠3
 		HttpSession session=request.getSession(false);
-		
 		@SuppressWarnings("unchecked")
 		ArrayList<Long> list1=(ArrayList<Long>)session.getAttribute("hitboard");
+		System.out.println(list1.size());
 		if(list1.contains(postno)==false) {
 			ProductPostDAO.getInstance().updateHits(postno);
 			list1.add(postno);// 조회수를 증가한 게시글번호를 리스트에 저장한다 
