@@ -27,10 +27,10 @@
 						aria-current="true"> <i
 						class="fas fa-tachometer-alt fa-fw me-3"></i><span>내 정보</span>
 					</a> <a href="MyPagecustomerController.do"
-						class="list-group-item list-group-item-action py-2 ripple">
+						class="list-group-item list-group-item-action py-2 ripple active">
 						<i class="fas fa-chart-area fa-fw me-3"></i><span>구매</span>
 					</a> <a href="MyPageSellerTotalController.do"
-						class="list-group-item list-group-item-action py-2 ripple active"><i
+						class="list-group-item list-group-item-action py-2 ripple"><i
 						class="fas fa-lock fa-fw me-3"></i><span>판매</span></a>
 				</div>
 			</div>
@@ -44,15 +44,17 @@
 					<table class="headertable">
 						<thead>
 							<tr style="background-color: #00ac00; color: white;" align="center">
-								<td>판매 중</td><td>판매종료</td>
+								<td>확인 중</td><td>발송완료</td>
 							</tr>
 							<tr align="center">
-								<td>${requestScope.selling}</td><td>${requestScope.sell}</td>
+								<td>${requestScope.buyingCount}</td><td>${requestScope.buyCount}</td>
 							</tr>
 						</thead>
 					</table>
 					<br><br>
-						<h2>내 판매 목록</h2>
+					<h3>
+						<a href="ProductDetailController.do?postno=${sellerInfo.postNo}">[${sellerInfo.status}]${sellerInfo.title}</a>
+					</h3>
 					</div>
 				</div>
 			</div>
@@ -70,52 +72,24 @@
 									<!-- 표 head -->
 									<tr>
 										<th class="text-center" scope="col">번호</th>
-										<th scope="col">상세</th>
-										<th class="text-center" scope="col"></th>
+										<th scope="col">아이디</th>
+										<th class="text-center" scope="col">이름</th>
+										<th>상품수량</th>
+										<th>발송여부</th>
+										<th>배송지</th>
+										<th>전화번호</th>
 									</tr>
 								</thead>
 								<%-- items 내 목록 --%>
 								<tbody class="text-left">
-									<c:forEach items="${requestScope.sellerList}" var="seller" varStatus="order">
+									<c:forEach items="${requestScope.list}" var="confirm" varStatus="order">
 										<tr class="inner-box">
 											<th scope="row" class="text-center">
-												<div class="event-date">
-													<span>${order.count}</span>
+												<div>
+													<span>상품 번호 ${order.count}</span>
 												</div>
 											</th>
-											<td>
-												<div class="event-wrap">
-													<h4>
-														<a href="ProductDetailController.do?postno=${seller.postNo}">[${seller.status}] ${seller.title}</a>
-													</h4>
-													<div class="meta">
-														<div class="organizers">
-															<span>판매수량:</span>
-														</div>
-														<div class="categories">
-															<span>참여자 수:</span>
-														</div>
-														<div class="time">
-															<span>판매종료 기간: ${seller.duration}</span>
-														</div>
-														<div class="progress position-relative">
-															<div class="progress-bar" role="progressbar"
-																style="width: 60%" aria-valuenow="60" aria-valuemin="0"
-																aria-valuemax="100" align="center"></div>
-															<small
-																class="justify-content-center d-flex position-absolute w-100">current/${seller.maxCustomer}</small>
-														</div>
-														<div>
-															<span>최소인원:</span>
-														</div>
-													</div>
-												</div>
-											</td>
-											<td>
-												<div class="primary-btn">
-													<a class="btn btn-primary" href="MyPageMyCustomerListController.do?postNo=${seller.postNo}">구매자 목록</a>
-												</div>
-											</td>
+											<td>${confirm.id}</td><td>${confirm.name}</td><td>${confirm.amount}</td><td>${confirm.status}</td><td>${confirm.address}</td><td>${confirm.tel}</td>
 										</tr>
 									</c:forEach>
 								</tbody>
