@@ -62,34 +62,11 @@
 				<div class="table-responsive">
 					<form action="MyPageSellerCheckController.do">
 						<input type="text" name="name" required="required" placeholder="이름" style="height: 40px;" value="${sessionScope.mvo.name}" readonly="readonly">
-						<input type="text" name="sellerNumber" id="sellerNumber" required="required" placeholder="사업자등록번호" style="height: 40px;" onkeyup="longCheck()">
+						<input type="text" name="sellerNumber" id="sellerNumber" required="required" placeholder="사업자등록번호" style="height: 40px;" onkeyup="longCheck()" maxlength="10" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
 						<span id="checkResult"></span>
 						<br><br>
 						<button type="submit" style="width: 190px; background-color: #00ac00; color: white;">판매자 인증</button>
 					</form>
-					<script type="text/javascript">
-						function longCheck(){
-							let sellerNumber=document.getElementById("sellerNumber").value; 
-							let checkResultSpan=document.getElementById("checkResult");
-							if(sellerNumber.length<10){
-								checkResultSpan.innerHTML="<font color=pink>사업자 등록번호는 10자 이상입니다.</font>";
-							}else{
-								let xhr=new XMLHttpRequest();
-								xhr.onreadystatechange=function(){
-									if(xhr.readyState==4&&xhr.status==200){
-										if(xhr.responseText=="ok"){
-											checkResultSpan.innerHTML="<font color=blue>인증 가능한 사업자 등록번호입니다.</font>";
-											checkFlag=true;
-										}else{
-											checkResultSpan.innerHTML="<font color=red>해당 번호의 사업자가 존재합니다.</font>";
-										}
-									}//if
-								}//function
-								xhr.open("get","${pageContext.request.contextPath}/MyPageSellerNumberCheckController.do?sellerNumber="+sellerNumber);
-								xhr.send();	
-						}
-					
-					</script>
 					<!-- 테이블 종료 -->
 				</div>
 				<!-- /col end-->
@@ -98,6 +75,28 @@
 		</div>
 	</div>
 </div>
+					<script type="text/javascript">
+
+						function longCheck(){
+							let sellerNumber=document.getElementById("sellerNumber").value; 
+							let checkResultSpan=document.getElementById("checkResult");
+							if(sellerNumber.length==10){
+								let xhr=new XMLHttpRequest();
+								xhr.onreadystatechange=function(){
+									if(xhr.readyState==4&&xhr.status==200){
+										if(xhr.responseText=="ok"){
+											checkResultSpan.innerHTML="<font color=blue>인증 가능한 사업자 등록번호입니다.</font>";
+											checkFlag=true;
+										}else{
+											checkResultSpan.innerHTML="<font color=red>해당 번호의 사업자가 존재합니다.</font>";
+										}//else
+									}//if
+								}//function
+								xhr.open("get","${pageContext.request.contextPath}/MyPageSellerNumberCheckController.do?sellerNumber="+sellerNumber);
+								xhr.send();	
+							}
+						}
+					</script>
 <style>
 /*출처: https://mdbootstrap.com/docs/standard/extended/sidebar/*/
 .sidebar {
