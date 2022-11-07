@@ -37,7 +37,6 @@ public class ProductPostDAO {
 	}
 
 	public Connection getConnection() throws SQLException {
-
 		return dataSource.getConnection();
 	}
 
@@ -110,12 +109,17 @@ public class ProductPostDAO {
 		PreparedStatement pstmt = null;
 		try {
 			con=dataSource.getConnection();
-			String sql="update NongShim_product_Post set title=?,content=? where post_No=?";
+			String sql="update NongShim_product_Post set title=?,content=?,category=?,product_Point=?, duration=?, min_Customer=?,max_Customer=? where post_No=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1,productpostVO.getTitle());
 			pstmt.setString(2,productpostVO.getContent());
-			pstmt.setLong(3,productpostVO.getPostNo());
-			pstmt.executeQuery();
+			pstmt.setString(3,productpostVO.getCategory());
+			pstmt.setLong(4,productpostVO.getProductPoint());
+			pstmt.setString(5,productpostVO.getDuration());
+			pstmt.setLong(6,productpostVO.getMinCustomer());
+			pstmt.setLong(7,productpostVO.getMaxCustomer());
+			pstmt.setLong(8,productpostVO.getPostNo());
+			pstmt.executeUpdate();
 		} finally {
 			closeAll(pstmt,con);
 		}
