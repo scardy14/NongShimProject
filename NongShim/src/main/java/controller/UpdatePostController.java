@@ -10,15 +10,14 @@ public class UpdatePostController implements Controller {
 
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		long no=Long.parseLong(request.getParameter("no"));
-		String category=request.getParameter("category");
-		long mincustomer = Long.parseLong(request.getParameter("minCustomer"));
-		long maxcustomer = Long.parseLong(request.getParameter("maxCustomer"));
-		long productpoint = Long.parseLong(request.getParameter("productPoint"));
-		String duration=request.getParameter("duration");
-		String title=request.getParameter("title");
-		String content=request.getParameter("content");
-		System.out.println("하이하이 완료");
+		 long no=Long.parseLong(request.getParameter("no")); 
+		 String	 category=request.getParameter("category"); 
+		 long mincustomer = Long.parseLong(request.getParameter("minCustomer")); 
+		 long maxcustomer = Long.parseLong(request.getParameter("maxCustomer")); 
+		 long productpoint = Long.parseLong(request.getParameter("productPoint"));
+		 String duration=request.getParameter("duration");
+		 String title=request.getParameter("title");
+		 String content=request.getParameter("content"); 		 	
 		ProductPostVO productpostVO = new ProductPostVO(no,title,content,category,productpoint,duration,mincustomer,maxcustomer);
 		ProductPostDAO.getInstance().updatePost(productpostVO);
 		return "redirect:FindPostListByValueController.do";
