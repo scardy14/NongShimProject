@@ -9,9 +9,9 @@ import model.ProductPostVO;
 public class UpdatePostFormController implements Controller {
 
 	@Override
-	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		ProductPostVO productpostvo = ProductPostDAO.getInstance().postDetailFind(no);
+	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {		
 		long no=Long.parseLong(request.getParameter("no"));
+		ProductPostVO productpostvo = ProductPostDAO.getInstance().postDetailFind(no);
 		request.setAttribute("url", "productboard/update-form.jsp");
 		return "mainpage.jsp";
 	}
