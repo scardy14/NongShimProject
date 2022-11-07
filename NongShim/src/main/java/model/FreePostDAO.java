@@ -126,9 +126,44 @@ public class FreePostDAO {
 		
 	}
 	
-	public void addComment() {
+	
+	
+	
+	
+	
+	
+	
+	
+	public void addComment(String id, long postno, String comment) throws SQLException {
+		PreparedStatement pst = null;
+		Connection con = null;
+		try {
+			con = getConnection();
+			String sql = "insert into NongShim_Free_Post_Comments values (?,?,sysdate,?)";
+			pst = con.prepareStatement(sql);
+			pst.setString(1, id);
+			pst.setLong(2, postno);
+			pst.setString(3, comment);
+			pst.executeUpdate();
+
+		} finally {
+			closeAll(pst, con);
+		}
 		
+		
+
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	public void updateComment() {
 		
 	}
