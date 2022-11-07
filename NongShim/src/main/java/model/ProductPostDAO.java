@@ -1,6 +1,7 @@
 package model;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -115,7 +116,7 @@ public class ProductPostDAO {
 			pstmt.setString(2,productpostVO.getContent());
 			pstmt.setString(3,productpostVO.getCategory());
 			pstmt.setLong(4,productpostVO.getProductPoint());
-			pstmt.setString(5,productpostVO.getDuration());
+			pstmt.setDate(5,Date.valueOf(productpostVO.getDuration()));
 			pstmt.setLong(6,productpostVO.getMinCustomer());
 			pstmt.setLong(7,productpostVO.getMaxCustomer());
 			pstmt.setLong(8,productpostVO.getPostNo());
@@ -255,6 +256,12 @@ public class ProductPostDAO {
 		try {
 			con = getConnection();
 			String sql = "INSERT INTO buy_product_list VALUES (?,?,sysdate,DEFAULT,DEFAULT)";
+			pst = con.prepareStatement(sql);
+			pst.setString(1, id);
+			pst.setLong(2, post_No);
+			rs = pst.executeUpdate();
+			pst.close();
+			sql = "INSERT INTO confirm_list VALUES(?,?,DEFAULT,DEFAULT)";
 			pst = con.prepareStatement(sql);
 			pst.setString(1, id);
 			pst.setLong(2, post_No);

@@ -108,7 +108,7 @@ create table buy_product_list(
 	constraint buy_product_product_no_fk foreign key(post_no) references NongShim_product_Post(post_no) ON DELETE CASCADE,
 	constraint buy_product_pk primary key (id,post_no,ns_date)
 )
-
+--sell_product_list는 안쓴는 테이블, 흔적은 남겨둠
 create table sell_product_list(
 	id varchar2(100) not null,
 	post_no number not null,
@@ -121,12 +121,15 @@ create table sell_product_list(
 create table confirm_list(
 	id varchar2(100) not null,
 	post_no number not null,
-	product_amount varchar2(100) not null,
-	post_status varchar2(100) not null,
+	product_amount varchar2(100) DEFAULT 1 not null,
+	post_status varchar2(100) DEFAULT '판매중' not null ,
 	constraint confirm_id_fk foreign key(id) references NongShim_Member(id) ON DELETE CASCADE,
 	constraint confirm_product_fk foreign key(post_no) references NongShim_product_Post(post_no),
 	constraint confirm_product_pk primary key(id,post_no)
 )
+
+
+SELECT * FROM confirm_list
 --------------------------------------------------------------------------------------------------------
 ------------------------------------4.상품게시판 댓글 생성----------------------------------------------------------
 create table NongShim_productPostComments(
