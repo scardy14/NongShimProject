@@ -173,7 +173,7 @@ public class ProductPostDAO {
 
 	}
 	
-	public ArrayList<CommentVO> showAllCommentByPostNo(long postno) throws SQLException {
+	public ArrayList<CommentVO> showAllCommentByPostNo(long postno, String mode) throws SQLException {
 		
 		ArrayList<CommentVO> list = new ArrayList<>();
 		ResultSet rs = null;
@@ -182,9 +182,10 @@ public class ProductPostDAO {
 		try {
 			con = getConnection();
 			//String sql= "select * from NongShim_productPostComments where post_No=?";
-			String sql= "select row_number() over(order by comments_date) as rnum,content,category,id,comments_date from NongShim_productPostComments where post_no=?";
+			String sql= "select row_number() over(order by comments_date) as rnum,content,category,id,to_char(comments_date,'YYYY-MM-DD HH24:MI') AS comments_date from NongShim_productPostComments where post_no=? AND category = ?";
 			pst = con.prepareStatement(sql);
 			pst.setLong(1, postno);
+			pst.setString(2, mode);
 			rs = pst.executeQuery();
 			
 			// select row_number() over(order by comments_date) as rnum,content,category,id,comments_date from NongShim_productPostComments where post_no=? ;
@@ -197,11 +198,6 @@ public class ProductPostDAO {
 			closeAll(rs, pst, con);
 		}
 		return list;
-		
-		
-		
-		
-		
 	}
 
 	public void updateComment(String content, String id, long no, String date) throws SQLException {
@@ -247,8 +243,25 @@ public class ProductPostDAO {
 
 	}
 
-	public void buyProduct() {
-
+	public boolean buyProduct(String id, Long post_No) throws SQLException {
+		boolean result = false;
+		int rs;
+		PreparedStatement pst = null;
+		Connection con = null;
+		try {
+			con = getConnection();
+			String sql = "INSERT INTO buy_product_list VALUES (?,?,sysdate,DEFAULT,DEFAULT)";
+			pst = con.prepareStatement(sql);
+			pst.setString(1, id);
+			pst.setLong(2, post_No);
+			rs = pst.executeUpdate();
+			if(rs==1) {
+				result = true;
+			}
+		} finally {
+			closeAll(pst, con);
+		}
+		return result;
 	}
 
 	public int getTotalPostCount() throws SQLException {
@@ -443,6 +456,7 @@ public class ProductPostDAO {
 			closeAll(pstmt, con);
 		}
 	}
+	
 	
 	
 	
