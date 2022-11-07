@@ -16,9 +16,9 @@
 </c:choose>
 
 	<form action="UpdatePostFormController.do" method="post" id="update">
-		<input type="text" name = "no" value = "${vo.postNo}">
-		<input type="text" name = "title" value = "${vo.title}">
-		<input type="text" name = "content" value = "${vo.content}">
+		<input type="hidden" name = "no" value = "${vo.postNo}">
+		<input type="hidden" name = "title" value = "${vo.title}">
+		<input type="hidden" name = "content" value = "${vo.content}">
 	</form>
 	<form action="DeletePostController.do" method="post" id="delete1">
 		<input type = "hidden" name = "no" value = ${vo.postNo }>
@@ -59,18 +59,11 @@ ${vo.content}
 <br>
 <button style="background-color: #d0fd7d;border-radius: 10px; width: 500px; height: 50px; border: none;" onclick="buyproduct()">구매하기</button><br>
 
-<br>	
-<hr>
-
-
-<br>
-<br>
-<button style="background-color: #d0fd7d;border-radius: 10px; width: 500px; height: 50px; border: none;" onclick="buyproduct()">구매하기</button><br>
 
 <br>	
 <hr>
 
->>>>>>> refs/heads/main
+
 <input type="text" style="width: 100%; height: 50px;" id="comment" required="required" placeholder="댓글입력">
 <br>
 <br>
