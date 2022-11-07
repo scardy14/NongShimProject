@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<c:choose>
+	<c:choose>
 		<c:when test="${sessionScope.mvo.nickName==vo.nickName}">	 
 				<td>
 					<div style="text-align: right;">
@@ -13,7 +13,10 @@
 					</div>
 				</td>
 		</c:when>
-</c:choose>
+				<c:otherwise>
+					<button onclick="location.href='FindPostListByValueController.do'" style="background-color: #00ac00; color: white; width: 5%; height: 30px;">목록</button>
+				</c:otherwise> 
+	</c:choose>
 
 	<form action="UpdatePostFormController.do" method="post" id="update">
 		<input type="hidden" name = "no" value = "${vo.postNo}">
@@ -21,7 +24,7 @@
 		<input type="hidden" name = "content" value = "${vo.content}">
 	</form>
 	<form action="DeletePostController.do" method="post" id="delete1">
-		<input type = "hidden" name = "no" value = ${vo.postNo }>
+		<input type = "hidden" name = "no" value = "${vo.postNo }">
 	</form>
 
 <h3>${vo.title}</h3>
