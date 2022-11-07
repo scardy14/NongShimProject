@@ -5,20 +5,20 @@
 		<table class="table">
 			<tr>
 				<td>
-				<input type="text" name="category" value="${requestScope.category}" required="required" placeholder="카테고리"  list="taglist" style="width: 95px; height: 29px;">
+				<input type="text" name="category" value="${productpostvo.category}" required="required" placeholder="카테고리"  list="taglist" style="width: 95px; height: 29px;">
 						<datalist id="taglist">
        			<option value="곡물"></option>
        			<option value="야채"></option>
        			<option value="과일"></option>       
        			<option value="기타"></option>       
         	 </datalist>
-			<input type="text" name="mincustomer" value="${requestScope.mincustomer}">
-			<input type="text" name="maxcustomer" value="${requestScope.maxcustomer}">
-			<input type="text" name="productpoint" value="${requestScope.productpoint}">
-			<input type="text" name="duration" value="${requestScope.duration}"><br><br>
-			<input style="width: 700px; height: 40px;" type="text" name="title" value="${requestScope.title}" required="required"><br><br>
-			<input style="width: 700px; height: 400px;" type="text" name="content" value="${requestScope.content}"><br>
-			<input type="hidden" name="no" value="${requestScope.no}">
+			<input type="text" name="mincustomer" value="${productpostvo.mincustomer}">
+			<input type="text" name="maxcustomer" value="${productpostvo.maxcustomer}">
+			<input type="text" name="productpoint" value="${productpostvo.productpoint}">
+			<input type="text" name="duration" value="${productpostvo.duration}"><br><br>
+			<input style="width: 700px; height: 40px;" type="text" name="title" value="${productpostvo.title}" required="required"><br><br>
+			<input style="width: 700px; height: 400px;" type="text" name="content" value="${productpostvo.content}"><br>
+			<input type="hidden" name="no" value="${productpostvo.postNo}">
 				</td>
 			</tr>
 		

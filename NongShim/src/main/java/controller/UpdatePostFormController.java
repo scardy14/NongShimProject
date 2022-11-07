@@ -12,6 +12,7 @@ public class UpdatePostFormController implements Controller {
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {		
 		long no=Long.parseLong(request.getParameter("no"));
 		ProductPostVO productpostvo = ProductPostDAO.getInstance().postDetailFind(no);
+		request.setAttribute("productpostvo", productpostvo);
 		request.setAttribute("url", "productboard/update-form.jsp");
 		return "mainpage.jsp";
 	}

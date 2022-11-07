@@ -9,8 +9,8 @@ public class DeletePostController implements Controller {
 
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		
-		long no=Long.parseLong(request.getParameter("no"));
+		Long no=Long.parseLong(request.getParameter("no"));
+		System.out.println(no);
 		 ProductPostDAO.getInstance().deletePost(no);
 
 		return "redirect:FindPostListByValueController.do";
