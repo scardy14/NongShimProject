@@ -102,17 +102,18 @@ create table buy_product_list(
 	id varchar2(100) not null,
 	post_no number not null,
 	ns_date date not null,
-	status varchar2(100) DEFAULT '판매중'not null,
+	status varchar2(100) DEFAULT '발송전'not null,
 	amount number DEFAULT 1 not null,
 	constraint buy_product_id_fk foreign key(id) references NongShim_Member(id) ON DELETE CASCADE,
 	constraint buy_product_product_no_fk foreign key(post_no) references NongShim_product_Post(post_no) ON DELETE CASCADE,
 	constraint buy_product_pk primary key (id,post_no,ns_date)
 )
+
 --sell_product_list는 안쓴는 테이블, 흔적은 남겨둠
 create table sell_product_list(
 	id varchar2(100) not null,
 	post_no number not null,
-	status varchar2(100) not null,
+	status varchar2(100) DEFAULT '판매중' not null,
 	constraint sell_product_id_fk foreign key(id) references NongShim_Member(id) ON DELETE CASCADE,
 	constraint sell_product_product_no_fk foreign key(post_no) references NongShim_product_Post(post_no),
 	constraint sell_product_pk primary key (id,post_no)
@@ -122,10 +123,11 @@ create table confirm_list(
 	id varchar2(100) not null,
 	post_no number not null,
 	product_amount varchar2(100) DEFAULT 1 not null,
-	post_status varchar2(100) DEFAULT '판매중' not null ,
+	post_status varchar2(100) DEFAULT '발송전' not null ,
+	ns_date DATE DEFAULT sysdate NOT NULL,
 	constraint confirm_id_fk foreign key(id) references NongShim_Member(id) ON DELETE CASCADE,
 	constraint confirm_product_fk foreign key(post_no) references NongShim_product_Post(post_no) ON DELETE CASCADE,
-	constraint confirm_product_pk primary key(id,post_no)
+	constraint confirm_product_pk primary key(id,post_no,ns_date)
 )
 
 
@@ -160,4 +162,18 @@ CREATE SEQUENCE announce_seq;
 
 SELECT * FROM NongShim_Announce_Post
 ----------------------------------------------------------------------------------------------------------
+----------------------------------6.자유게시판 생성----------------------------------------------------------
+create table NongShim_Free_Post(
+post_No number primary key,
+id VARCHAR2(100) NOT NULL,
+title varchar2(100) not null,
+content clob not null,
+hits number default 0 not null,
+nickname varchar2(100) DEFAULT '운영자' not null,
+register_Date date not null,
+CONSTRAINT fk_free_post FOREIGN KEY(id) REFERENCES NongShim_Member(id)
+);
+CREATE SEQUENCE free_seq;
 
+SELECT * FROM NongShim_Announce_Post
+----------------------------------------------------------------------------------------------------------

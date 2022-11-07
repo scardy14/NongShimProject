@@ -1,6 +1,5 @@
 package model;
 
-import java.lang.reflect.Array;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -9,7 +8,6 @@ import java.util.ArrayList;
 
 import javax.sql.DataSource;
 
-import member.NongShimMemberVO;
 
 public class MyPageDAO {
 	private static MyPageDAO instance = new MyPageDAO();
@@ -261,7 +259,7 @@ public class MyPageDAO {
 		}
 		return list;
 	}
-
+	
 	/**
 	 * 
 	 * MyBuyProductListCount(String status, String id) : 특정 상태인 구매목록 수
