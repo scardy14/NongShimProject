@@ -16,13 +16,12 @@
 </c:choose>
 
 	<form action="UpdatePostFormController.do" method="post" id="update">
-		<input type="hidden" name = "no" value = "${vo.postNo}">
-
+		<%-- <input type="text" name = "no" value = "${postvo.no}">
+		<input type="text" name = "title" value = "${postvo.title}">
+		<input type="text" name = "content" value = "${postvo.content}"> --%>
 	</form>
 	<form action="DeletePostController.do" method="post" id="delete1">
-		<input type="hidden" name="no" value="${vo.postNo}"> 
 		<input type = "hidden" name = "no" value = ${vo.postNo }>
-
 	</form>
 
 <h3>${vo.title}</h3>
@@ -57,22 +56,32 @@
 ${vo.content}
 <hr>
 
+<br>
+<br>
+<button style="background-color: #d0fd7d;border-radius: 10px; width: 500px; height: 50px; border: none;" onclick="buyproduct()">구매하기</button><br>
 
-
-
-댓글 쓰기
-<input type="text" style="width: 90%; height: 50px;" id="comment" required="required">
+<br>	
+<hr>
+<input type="text" style="width: 100%; height: 50px;" id="comment" required="required" placeholder="댓글입력">
 <br>
 <br>
 
 <input type="hidden" value="${postno}" id="postno">
-<button type="button" style="width: 10%; height: 50px;" onclick="moon()">문의글작성</button>
+<button type="button"  style="background-color: #d0fd7d;border-radius: 10px; height:40px ; border: none;" onclick="moon()">문의글작성</button>
+<button type="button"  style="background-color: #d0fd7d;border-radius: 10px; height:40px ; border: none; " onclick="hoo()">후기글작성</button>
 
-
-
-<button type="button" style="width: 10%; height: 50px;" onclick="hoo()">후기글작성</button>
-
-
+<div style="text-align: right;">
+<c:choose>
+	<c:when test="${commentMode=='hoo' }">
+		<input type = "checkbox" name = "checkbox" value = "hoo"  onclick= "commentMode(${vo.postNo },'hoo')" checked>후기
+		<input type = "checkbox" name = "checkbox" value = "moon" onclick = "commentMode(${vo.postNo },'moon')">문의
+	</c:when>
+	<c:otherwise>
+		<input type = "checkbox" name = "checkbox" value = "hoo"  onclick= "commentMode(${vo.postNo },'hoo')" >후기
+		<input type = "checkbox" name = "checkbox" value = "moon" onclick = "commentMode(${vo.postNo },'moon')" checked>문의
+	</c:otherwise>
+</c:choose>
+</div>
 
 <br>
 <br>
@@ -103,6 +112,10 @@ ${vo.content}
 
 
 
+<form id = "buyform" action="BuyProductController.do">
+	<input type = "hidden" name = "id" value = "${sessionScope.mvo.id }">
+	<input type = "hidden" name = "post_No" value = "${vo.postNo }">
+</form>
 
 
 
@@ -118,12 +131,10 @@ ${vo.content}
 
 <script>
 	function moon() {
-
 		let comment = document.getElementById("comment").value;
 		if(comment.length==0){
-			alert("입력된게 없습니다.")
-			return;
-			
+			alert("댓글을 입력해주세요");
+			return;	
 		}
 		let postno = document.getElementById("postno").value;
 		location.href = "MoonCommentController.do?comment=" + comment
@@ -131,31 +142,47 @@ ${vo.content}
 	}
 
 	function hoo() {
-
 		let comment = document.getElementById("comment").value;
 		if(comment.length==0){
-			alert("입력된게 없습니다.")
+			alert("댓글을 입력해주세요");
 			return;
-			
 		}
 		let postno = document.getElementById("postno").value;
 		location.href = "HooCommentController.do?comment=" + comment
 		+ "&postno=" + postno;;
 	}
-	      function update() {
-	  	    let id = document.getElementById("update");
-	  	      let result = confirm("게시물을 수정하시겠습니까?");
-	  	      if(result) {
-	  	          id.submit();
-	  	    }
-	  	}
-	  	  function delete1() {   
-	  	      let id = document.getElementById("delete1");
-	  	      let result = confirm("게시물을 삭제하시겠습니까?");
-	  	      if(result) {
-	  		         id.submit();
-	  	      }
-	  	  }
+	function update() {
+		let id = document.getElementById("update");
+		let result = confirm("게시물을 수정하시겠습니까?");
+		if(result) {
+			id.submit();
+		}
+	}
+	function delete1() {   
+		let id = document.getElementById("delete1");
+		let result = confirm("게시물을 삭제하시겠습니까?");
+		if(result) {
+			id.submit();
+		}
+	}
+	function buyproduct() {
+		let result = confirm("상품을 구매하시겠습니까?");
+		let buyform = document.getElementById("buyform");
+		if(result) {
+			buyform.submit();
+		}
+	}
+	function commentMode(postno, mode) {
+	/* 	let checkboxes = document.getElementsByName("checkbox");
+		let loop = checkboxes.length;
+		let checkbox = null;
+		for(let i = 0; i<loop;i++) {
+			if(checkboxes[i].checked) {
+				checkbox = checkboxes[i].value;
+			}
+		} */
+		location.href = "ProductDetailController.do?postno="+postno+"&checkbox="+mode;
+	}
 </script>
 
 
