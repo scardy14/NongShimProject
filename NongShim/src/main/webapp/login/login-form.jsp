@@ -8,6 +8,12 @@
 	<input type = "password" name = "password" required="required" placeholder="비밀번호" style="height: 40px"><br><hr>
 <button type = "submit" style="width: 190px;  background-color: #00ac00; color: white;">로그인</button> <br><br>
 </form>
+<form action="FindMemberByNameEmailControllerMove.do" method="post">
+<button type = "submit" style="width: 190px;  background-color: #00ac00; color: white;">아이디 찾기</button>
+</form>
+<form action="findPasswordByIdAccountNoMove.do" method="post">
+<button type = "submit" style="width: 190px;  background-color: #00ac00; color: white;">비밀번호 찾기</button> <br><br>
+</form>
 </c:when>
 
 <c:otherwise>

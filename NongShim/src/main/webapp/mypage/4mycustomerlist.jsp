@@ -26,12 +26,10 @@
 						class="list-group-item list-group-item-action py-2 ripple"
 						aria-current="true"> <i
 						class="fas fa-tachometer-alt fa-fw me-3"></i><span>내 정보</span>
-					</a> <a href="MyPagecustomerController.do"
-						class="list-group-item list-group-item-action py-2 ripple active">
-						<i class="fas fa-chart-area fa-fw me-3"></i><span>구매</span></a> 
-					<a href="MyPageSellerCheckMoveController.do"
-						class="list-group-item list-group-item-action py-2 ripple">
-						<i class="fas fa-chart-area fa-fw me-3"></i><span>판매인증</span>
+					</a> <a href="MyPagecustomerController.do" class="list-group-item list-group-item-action py-2 ripple">
+						<i class="fas fa-chart-area fa-fw me-3"></i><span>구매</span></a> 	
+					<a href="MyPageSellerCheckMoveController.do" class="list-group-item list-group-item-action py-2 ripple">
+						<i class="fas fa-chart-area fa-fw me-3"></i><span>판매인증</span>				
 					</a> <a href="MyPageSellerTotalController.do"
 						class="list-group-item list-group-item-action py-2 ripple"><i
 						class="fas fa-lock fa-fw me-3"></i><span>판매</span></a>
@@ -45,17 +43,10 @@
 				<div class="section-title text-left">
 					<div class="title-text">
 					<table class="headertable">
-						<thead>
-							<tr style="background-color: #00ac00; color: white;" align="center">
-								<td>확인 중</td><td>발송완료</td>
-							</tr>
-							<tr align="center">
-								<td>${requestScope.buyingCount}</td><td>${requestScope.buyCount}</td>
-							</tr>
-						</thead>
-					</table>
 					<br><br>
-						<h2>내 구매 목록</h2>
+					<h3>
+						<a href="ProductDetailController.do?postno=${postVO.postNo}">[상태 넣을까?]${postVO.title}</a>
+					</h3>
 					</div>
 				</div>
 			</div>
@@ -73,40 +64,24 @@
 									<!-- 표 head -->
 									<tr>
 										<th class="text-center" scope="col">번호</th>
-										<th scope="col">상세</th>
-										<th class="text-center" scope="col"></th>
+										<th scope="col">아이디</th>
+										<th class="text-center" scope="col">이름</th>
+										<th>상품수량</th>
+										<th>발송여부</th>
+										<th>배송지</th>
+										<th>전화번호</th>
 									</tr>
 								</thead>
 								<%-- items 내 목록 --%>
 								<tbody class="text-left">
-									<c:forEach items="${requestScope.list}" var="product" varStatus="order">
+									<c:forEach items="${requestScope.list}" var="confirm" varStatus="order">
 										<tr class="inner-box">
 											<th scope="row" class="text-center">
-												<div class="event-date">
-													<span>${order.count}</span>
+												<div>
+													<span>상품 번호 ${order.count}</span>
 												</div>
 											</th>
-											<td>
-												<div class="event-wrap">
-													<h4>
-														<a href="ProductDetailController.do?postno=${product.postNo}">[${product.status}] ${product.title}</a>
-													</h4>
-													<div class="meta">
-														<div class="organizers">
-															<span>구매 수량:${product.amount}</span>
-														</div>
-														<div>
-															<span>배송지:${sessionScope.mvo.address}</span>
-														</div>
-														<div>
-															<span>수령인:${sessionScope.mvo.name}</span>
-														</div>
-														<div>
-															<span>전화번호:${sessionScope.mvo.tel}</span>
-														</div>
-													</div>
-												</div>
-											</td>
+											<td>${confirm.id}</td><td>${confirm.name}</td><td>${confirm.amount}</td><td>${confirm.status}</td><td>${confirm.address}</td><td>${confirm.tel}</td>
 										</tr>
 									</c:forEach>
 								</tbody>
