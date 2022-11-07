@@ -43,7 +43,7 @@
 			type="hidden" id="id12" value="${sessionScope.mvo.id}">
 		
 		<button type="button" onclick="startAjax12()">좋아요♥</button>
-		<span id="likeCount">왜 여기 좋아요 누적개수 안떠!</span>
+		<span id="likeCount">${requestScope.cocount}</span>
 
 	</form>
 </div>

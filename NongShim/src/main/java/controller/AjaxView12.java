@@ -26,7 +26,7 @@ public class AjaxView12 extends HttpServlet {
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out=response.getWriter(); 
 		out.print(request.getAttribute("responsebody"));
-		request.setAttribute("howmany", request.getAttribute("responsebody"));
+		//request.setAttribute("howmany", request.getAttribute("responsebody"));
 		out.close();
 		
 	}

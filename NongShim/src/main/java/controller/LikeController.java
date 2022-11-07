@@ -37,6 +37,7 @@ public class LikeController implements Controller {
 		request.setAttribute("responsebody", totalLikes);
 		
 		
+		
 		//request.setAttribute("url", "ProductDetailController.do?postno="+ no);
 	//	return "mainpage.jsp";
 	

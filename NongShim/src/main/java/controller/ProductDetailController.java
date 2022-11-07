@@ -16,6 +16,10 @@ public class ProductDetailController implements Controller {
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		long postno= Long.parseLong(request.getParameter("postno")); 
 		String commentMode = request.getParameter("checkbox");
+		
+		long cocount=ProductPostDAO.getInstance().showTotalLike(postno);
+		request.setAttribute("cocount", cocount);
+		
 		if(commentMode == null) {
 			commentMode = "hoo";
 		}
