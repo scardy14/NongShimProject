@@ -261,7 +261,7 @@ public class ProductPostDAO {
 			pst.setLong(2, post_No);
 			rs = pst.executeUpdate();
 			pst.close();
-			sql = "INSERT INTO confirm_list VALUES(?,?,DEFAULT,DEFAULT)";
+			sql = "INSERT INTO confirm_list VALUES(?,?,DEFAULT,DEFAULT,DEFAULT)";
 			pst = con.prepareStatement(sql);
 			pst.setString(1, id);
 			pst.setLong(2, post_No);
