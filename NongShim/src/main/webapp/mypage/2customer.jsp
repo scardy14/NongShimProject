@@ -28,7 +28,10 @@
 						class="fas fa-tachometer-alt fa-fw me-3"></i><span>내 정보</span>
 					</a> <a href="MyPagecustomerController.do"
 						class="list-group-item list-group-item-action py-2 ripple active">
-						<i class="fas fa-chart-area fa-fw me-3"></i><span>구매</span>
+						<i class="fas fa-chart-area fa-fw me-3"></i><span>구매</span></a> 
+					<a href="MyPageSellerCheckMoveController.do"
+						class="list-group-item list-group-item-action py-2 ripple">
+						<i class="fas fa-chart-area fa-fw me-3"></i><span>판매인증</span>
 					</a> <a href="MyPageSellerTotalController.do"
 						class="list-group-item list-group-item-action py-2 ripple"><i
 						class="fas fa-lock fa-fw me-3"></i><span>판매</span></a>
@@ -52,7 +55,7 @@
 						</thead>
 					</table>
 					<br><br>
-						<h2>내 판매 목록</h2>
+						<h2>내 구매 목록</h2>
 					</div>
 				</div>
 			</div>
@@ -86,20 +89,20 @@
 											<td>
 												<div class="event-wrap">
 													<h4>
-														<a href="#">[${product.status}] 글제목</a>
+														<a href="ProductDetailController.do?postno=${product.postNo}">[${product.status}] ${product.title}</a>
 													</h4>
 													<div class="meta">
 														<div class="organizers">
 															<span>구매 수량:${product.amount}</span>
 														</div>
 														<div>
-															<span>배송지:</span>
+															<span>배송지:${sessionScope.mvo.address}</span>
 														</div>
 														<div>
-															<span>수령인:</span>
+															<span>수령인:${sessionScope.mvo.name}</span>
 														</div>
 														<div>
-															<span>최소인원:</span>
+															<span>전화번호:${sessionScope.mvo.tel}</span>
 														</div>
 													</div>
 												</div>

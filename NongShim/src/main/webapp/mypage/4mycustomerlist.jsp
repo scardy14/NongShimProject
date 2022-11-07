@@ -26,9 +26,10 @@
 						class="list-group-item list-group-item-action py-2 ripple"
 						aria-current="true"> <i
 						class="fas fa-tachometer-alt fa-fw me-3"></i><span>내 정보</span>
-					</a> <a href="MyPagecustomerController.do"
-						class="list-group-item list-group-item-action py-2 ripple active">
-						<i class="fas fa-chart-area fa-fw me-3"></i><span>구매</span>
+					</a> <a href="MyPagecustomerController.do" class="list-group-item list-group-item-action py-2 ripple">
+						<i class="fas fa-chart-area fa-fw me-3"></i><span>구매</span></a> 	
+					<a href="MyPageSellerCheckMoveController.do" class="list-group-item list-group-item-action py-2 ripple">
+						<i class="fas fa-chart-area fa-fw me-3"></i><span>판매인증</span>				
 					</a> <a href="MyPageSellerTotalController.do"
 						class="list-group-item list-group-item-action py-2 ripple"><i
 						class="fas fa-lock fa-fw me-3"></i><span>판매</span></a>
@@ -42,18 +43,9 @@
 				<div class="section-title text-left">
 					<div class="title-text">
 					<table class="headertable">
-						<thead>
-							<tr style="background-color: #00ac00; color: white;" align="center">
-								<td>확인 중</td><td>발송완료</td>
-							</tr>
-							<tr align="center">
-								<td>${requestScope.buyingCount}</td><td>${requestScope.buyCount}</td>
-							</tr>
-						</thead>
-					</table>
 					<br><br>
 					<h3>
-						<a href="ProductDetailController.do?postno=${sellerInfo.postNo}">[${sellerInfo.status}]${sellerInfo.title}</a>
+						<a href="ProductDetailController.do?postno=${postVO.postNo}">[상태 넣을까?]${postVO.title}</a>
 					</h3>
 					</div>
 				</div>

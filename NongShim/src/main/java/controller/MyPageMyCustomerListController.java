@@ -10,6 +10,8 @@ import member.NongShimMemberVO;
 import model.ConfirmListVO;
 import model.MyPageDAO;
 import model.MyPageProductPostVO;
+import model.ProductPostDAO;
+import model.ProductPostVO;
 
 public class MyPageMyCustomerListController implements Controller {
 
@@ -20,10 +22,12 @@ public class MyPageMyCustomerListController implements Controller {
 		//구매를 원하는 사람 목록 -> 내 아이디와 postNo로 찾아옴
 		String id=memberVO.getId();
 		ArrayList<ConfirmListVO> list=MyPageDAO.getInstance().confirmListbyIdandPostNo(id, request.getParameter("postNo"));
-		ArrayList<MyPageProductPostVO> sellerInfo=MyPageDAO.getInstance().mySellProductListTotal(id);
+		int postno=(int) Long.parseLong(request.getParameter("postNo"));
+		ProductPostVO postVO= ProductPostDAO.getInstance().postDetailFind(postno);
 		request.setAttribute("url","mypage/4mycustomerlist.jsp");
 		request.setAttribute("list", list);
-		request.setAttribute("sellerInfo", sellerInfo);
+		request.setAttribute("postVO", postVO);
+		request.setAttribute("postNo", postno);
 		return "mainpage.jsp";
 	}
 

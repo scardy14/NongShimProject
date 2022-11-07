@@ -7,10 +7,12 @@ public class ConfirmListVO {
 	private String status;
 	private String address;
 	private String tel;
+	private String postNo;
 	public ConfirmListVO() {
 		super();
 	}
-	public ConfirmListVO(String id, String name, long amount, String status, String address, String tel) {
+	public ConfirmListVO(String id, String name, long amount, String status, String address, String tel,
+			String postNo) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -18,6 +20,7 @@ public class ConfirmListVO {
 		this.status = status;
 		this.address = address;
 		this.tel = tel;
+		this.postNo = postNo;
 	}
 	public String getId() {
 		return id;
@@ -55,9 +58,17 @@ public class ConfirmListVO {
 	public void setTel(String tel) {
 		this.tel = tel;
 	}
+	public String getPostNo() {
+		return postNo;
+	}
+	public void setPostNo(String postNo) {
+		this.postNo = postNo;
+	}
 	@Override
 	public String toString() {
 		return "ConfirmListVO [id=" + id + ", name=" + name + ", amount=" + amount + ", status=" + status + ", address="
-				+ address + ", tel=" + tel + "]";
+				+ address + ", tel=" + tel + ", postNo=" + postNo + "]";
 	}
+	
+	
 }

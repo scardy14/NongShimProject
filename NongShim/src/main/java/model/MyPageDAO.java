@@ -122,15 +122,15 @@ public class MyPageDAO {
 		ResultSet rs = null;
 		try {
 			con = dataSource.getConnection();
-			StringBuilder sb = new StringBuilder(
-					"select post_no,title,id,register_date,status,duration,min_customer,max_customer ");
+			StringBuilder sb = new StringBuilder("select post_no,title,id,register_date,status,duration,min_customer,max_customer,");
+			sb.append("(7-(to_date(duration,'yyyy-mm-dd')-to_date(sysdate,'yyyy-mm-dd')))/7*100 as diff ");
 			sb.append("from NongShim_product_Post where id=? order by register_date desc");
 			pstmt = con.prepareStatement(sb.toString());
 			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				myPageProductPostVO = new MyPageProductPostVO(rs.getLong(1), rs.getString(2), rs.getString(3),
-						rs.getString(4), rs.getString(5), rs.getString(6), rs.getLong(7), rs.getLong(8));
+						rs.getString(4), rs.getString(5), rs.getString(6), rs.getLong(7), rs.getLong(8),rs.getLong(9));
 				list.add(myPageProductPostVO);
 			}
 		} finally {
@@ -253,7 +253,7 @@ public class MyPageDAO {
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				BuyProductVO buyProductVO = new BuyProductVO(rs.getString(1), rs.getLong(2), rs.getString(3),
-						rs.getString(4), rs.getLong(5));
+						rs.getString(4), rs.getLong(5),null);
 				list.add(buyProductVO);
 			}
 		} finally {
@@ -310,13 +310,15 @@ public class MyPageDAO {
 		ResultSet rs = null;
 		try {
 			con = dataSource.getConnection();
-			String sql = "select * from buy_product_list where id=? order by ns_date desc";
-			pstmt = con.prepareStatement(sql);
+			StringBuilder sb= new StringBuilder("select b.id, b.post_no,b.ns_date,b.status,b.amount, p.title ");
+			sb.append("from (select * from buy_product_list where id=?) b ");
+			sb.append("inner join NongShim_product_Post p on b.post_no=p.post_no order by ns_date desc");
+			pstmt = con.prepareStatement(sb.toString());
 			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				buyProductVO = new BuyProductVO(rs.getString(1), rs.getLong(2), rs.getString(3), rs.getString(4),
-						rs.getLong(5));
+						rs.getLong(5),rs.getString(6));
 				list.add(buyProductVO);
 			}
 		} finally {
@@ -383,6 +385,35 @@ public class MyPageDAO {
 		}
 		return sellerIdeVO;
 	}
+	
+	/**
+	 * sellerNumberCheck : 해당 번호 ajax view로 던져주기 위해 만듬
+	 * @param sellerNumber
+	 * @return
+	 * @throws SQLException
+	 */
+	
+	public boolean sellerNumberCheck(String sellerNumber) throws SQLException {
+		boolean flag=false;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			con = dataSource.getConnection();
+			String sql = "select * from seller_ide where company_register_num=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, sellerNumber);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				flag=true; 
+			}
+		} finally {
+			closeAll(rs, pstmt, con);
+		}
+		return flag;
+	}
+	
+	
 
 	/**
 	 * 
@@ -458,7 +489,7 @@ public class MyPageDAO {
 			 * sb.append("inner join  NongShim_Member m on c.id=m.id ");
 			 * sb.append("where c.id=? and post_no=?");
 			 */
-			String sql="select c.id, m.name, c.product_amount, c.post_status, m.address, m.tel from confirm_list c inner join  NongShim_Member m on c.id=m.id where c.id=? and post_no=?";
+			String sql="select c.id, m.name, c.product_amount, c.post_status, m.address, m.tel, c.post_no from confirm_list c inner join  NongShim_Member m on c.id=m.id where c.id=? and post_no=?";
 			pstmt=con.prepareStatement(sql);
 			//System.out.println(sb.toString());
 			pstmt.setString(1,id);
@@ -467,7 +498,7 @@ public class MyPageDAO {
 			System.out.println("****************");
 			while(rs.next()) {
 				System.out.println("1****************");
-				ConfirmListVO confirmList= new ConfirmListVO(rs.getString(1),rs.getString(2),rs.getLong(3),rs.getString(4),rs.getString(5),rs.getString(6));
+				ConfirmListVO confirmList= new ConfirmListVO(rs.getString(1),rs.getString(2),rs.getLong(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7));
 				System.out.println("list~");
 				list.add(confirmList);
 			}

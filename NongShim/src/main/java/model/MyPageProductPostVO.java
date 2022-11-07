@@ -44,7 +44,7 @@ public class MyPageProductPostVO {
 	
 	//mySellProductListTotal(id)
 	public MyPageProductPostVO(long postNo, String title, String id, String date, String status, String duration,
-			long minCustomer, long maxCustomer) {
+			long minCustomer, long maxCustomer, long productPoint) {
 		super();
 		this.postNo = postNo;
 		this.title = title;
@@ -54,6 +54,7 @@ public class MyPageProductPostVO {
 		this.duration = duration;
 		this.minCustomer = minCustomer;
 		this.maxCustomer = maxCustomer;
+		this.productPoint = productPoint;
 	}
 
 	//MySellProductList : '판매중' 또는 '판매 종료' 목록
