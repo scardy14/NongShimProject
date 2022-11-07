@@ -14,7 +14,7 @@ public class FreePostDAO {
 	private FreePostDAO() {
 		dataSource = DataSourceManager.getInstance().getDataSource();
 	}
-	public static FreePostDAO getInstnace() {
+	public static FreePostDAO getInstance() {
 		return instance;
 	}
 	public void closeAll(PreparedStatement pstmt, Connection con) throws SQLException {
@@ -54,7 +54,7 @@ public class FreePostDAO {
 		}
 		return result;
 	}
-	public ArrayList<FreePostVO> findFreePostList(Pagination pagination, String value) throws SQLException {
+	public ArrayList<FreePostVO> findFreePostList(Pagination pagination) throws SQLException {
 		ArrayList<FreePostVO> list = new ArrayList<>();
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
