@@ -77,6 +77,7 @@
 										<th>발송여부</th>
 										<th>배송지</th>
 										<th>전화번호</th>
+										<th>출고버튼</th>
 									</tr>
 								</thead>
 								<%-- items 내 목록 --%>
@@ -90,7 +91,13 @@
 											</th>
 											<td>${confirm.id}</td><td>${confirm.name}</td><td>${confirm.amount}</td><td>${confirm.status}</td><td>${confirm.address}</td><td>${confirm.tel}</td>
 											<td>
-											<button></button>
+											<form action="MyPageChangeSendProductController.do">
+											<input type="hidden" name="customerId" value="${confirm.id}">
+											<input type="hidden" name="postNo" value="${requestScope.postNo}">
+											<button>
+												발송완료
+											</button>
+											</form>
 											</td>
 										</tr>
 									</c:forEach>

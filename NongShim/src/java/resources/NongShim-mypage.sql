@@ -132,6 +132,12 @@ update NongShim_product_Post set status='판매종료' where duration <= sysdate
 select * from buy_product_list
 select * from buy_product_list where id='jdbc' and status='확인중' order by ns_date desc;
 
+-- 수정본
+select b.id,b.post_no,b.ns_date,b.status,b.amount,p.title
+from (select * from buy_product_list where id='jdbc' and status='확인중') b
+inner join NongShim_product_Post p on b.post_no=p.post_no
+order by ns_date desc
+
 --8. MyBuyProductListCount : 특정 상태인 구매목록 수
 select count(*) from buy_product_list
 select count(*) from buy_product_list where id='jdbc' and status='확인중';
@@ -205,3 +211,5 @@ select * from confirm_list;
 select c.id, c.post_no, p.title, p.category, p.status, p.duration 
 from (select * from like_product where id='jdk') c
 inner join NongShim_product_Post p on p.post_no=c.post_no;
+
+select c.id, m.name, c.product_amount, c.post_status, m.address, m.tel,post_no from confirm_list c inner join  NongShim_Member m on c.id=m.id where post_no=? order by ns_date

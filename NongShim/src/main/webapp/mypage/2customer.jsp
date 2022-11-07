@@ -38,7 +38,7 @@
 					<table class="headertable">
 						<thead>
 							<tr style="background-color: #00ac00; color: white;" align="center">
-								<td><button type = "button" style="border: none; background-color: #00ac00;" onclick="beforsend()"><span style="color: white;">발송전</span></button></td><td><button type = "button" style="border: none; background-color: #00ac00;" onclick="aftersend()"><span style="color: white;">발송전</span></button></td>
+								<td><button type = "button" style="border: none; background-color: #00ac00;" onclick="beforsend()"><span style="color: white;">발송전</span></button></td><td><button type = "button" style="border: none; background-color: #00ac00;" onclick="aftersend()"><span style="color: white;">발송완료</span></button></td>
 							</tr>
 							<tr align="center">
 								<td>${requestScope.beforesend}</td><td>${requestScope.aftersend}</td>

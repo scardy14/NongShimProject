@@ -143,7 +143,7 @@ public class MyPageDAO {
 	 * 
 	 * @jdk
 	 */
-	public boolean findCustomerConfirmListbyidandpostno(String customerId, long post_no) throws SQLException {
+	public boolean findCustomerConfirmListbyidandpostno(String customerId, String post_no) throws SQLException {
 		boolean flag = false;
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -153,7 +153,7 @@ public class MyPageDAO {
 			String sql = "select post_status from confirm_list where id=? and post_no=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, customerId);
-			pstmt.setLong(2, post_no);
+			pstmt.setString(2, post_no);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
 				flag = true;
@@ -185,7 +185,7 @@ public class MyPageDAO {
 	 * @jdk
 	 */
 
-	public boolean changeBuyState(String id, long post_no) throws SQLException {
+	public boolean changeBuyState(String id,String post_no) throws SQLException {
 		boolean flag = false;
 		int result = 0;
 		Connection con = null;
@@ -193,11 +193,16 @@ public class MyPageDAO {
 		try {
 			if (findCustomerConfirmListbyidandpostno(id, post_no) == true) {
 				con = dataSource.getConnection();
-				String sql = "update buy_product_list set status='발송완료' where id=? and post_no=?";
+				String sql = "update confirm_list set post_status='발송완료' where post_no=? and id=?";
 				pstmt = con.prepareStatement(sql);
-				pstmt.setString(1, id);
-				pstmt.setLong(2, post_no);
+				pstmt.setString(1, post_no);
+				pstmt.setString(2, id);
 				result = pstmt.executeUpdate();
+				pstmt.close();
+				String sql2="update buy_product_list set status='발송완료' where post_no=? and id=?";
+				pstmt=con.prepareStatement(sql2);
+				pstmt.setString(1, post_no);
+				pstmt.setString(2, id);
 				if (result > 0) {
 					flag = true;
 					// System.out.println("업데이트 완료");
@@ -250,14 +255,18 @@ public class MyPageDAO {
 		ResultSet rs = null;
 		try {
 			con = dataSource.getConnection();
-			String sql = "select * from buy_product_list where id=? and status=? order by ns_date desc";
-			pstmt = con.prepareStatement(sql);
+			//String sql = "select * from buy_product_list where id=? and status=? order by ns_date desc";
+			StringBuilder sb=new StringBuilder("select b.id,b.post_no,b.ns_date,b.status,b.amount,p.title ");
+			sb.append("from (select * from buy_product_list where id=? and status=?) b ");
+			sb.append("inner join NongShim_product_Post p on b.post_no=p.post_no ");
+			sb.append("order by ns_date desc");
+			pstmt = con.prepareStatement(sb.toString());
 			pstmt.setString(1, id);
 			pstmt.setString(2, status);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				BuyProductVO buyProductVO = new BuyProductVO(rs.getString(1), rs.getLong(2), rs.getString(3),
-						rs.getString(4), rs.getLong(5),null);
+						rs.getString(4), rs.getLong(5),rs.getString(6));
 				list.add(buyProductVO);
 			}
 		} finally {
@@ -479,6 +488,14 @@ public class MyPageDAO {
 		return myPageMemberVO;
 	}
 
+	/**
+	 * ConfirmListbyIdandPostNo(String postNo): 구매자 목록을 불러오는 메서드 
+	 * 																		order by가 되어있지 않음
+	 * @param postNo
+	 * @return
+	 * @throws SQLException
+	 */
+	
 	public ArrayList<ConfirmListVO> confirmListbyIdandPostNo(String postNo) throws SQLException {
 		ArrayList<ConfirmListVO> list = new ArrayList<>();
 		Connection con = null;
@@ -490,11 +507,8 @@ public class MyPageDAO {
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1,postNo);
 			rs=pstmt.executeQuery();
-			System.out.println("****************");
 			while(rs.next()) {
-				System.out.println("1****************");
 				ConfirmListVO confirmList= new ConfirmListVO(rs.getString(1),rs.getString(2),rs.getLong(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7));
-				System.out.println("list~");
 				list.add(confirmList);
 			}
 		} finally {

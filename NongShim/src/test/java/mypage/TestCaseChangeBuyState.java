@@ -13,7 +13,7 @@ public class TestCaseChangeBuyState {
 		//String id="java";
 		//long post_no=12;
 		String id="spring";
-		long post_no=14;
+		String post_no="14";
 		try {
 			boolean flag=MyPageDAO.getInstance().changeBuyState(id,post_no);
 			System.out.println(flag);
