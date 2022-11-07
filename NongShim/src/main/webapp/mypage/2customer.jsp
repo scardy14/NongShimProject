@@ -36,7 +36,7 @@
 					<table class="headertable">
 						<thead>
 							<tr style="background-color: #00ac00; color: white;" align="center">
-								<td><button type = "button" style="border: none; background-color: #00ac00;" onclick="beforesend()">발송전</button></td><td><button type = "button" style="border: none; background-color: #00ac00;" onclick="aftersend()">발송완료</button></td>
+								<td><button type = "button" style="border: none; background-color: #00ac00;" onclick="beforsend()"><span style="color: white;">발송전</span></button></td><td><button type = "button" style="border: none; background-color: #00ac00;" onclick="aftersend()"><span style="color: white;">발송전</span></button></td>
 							</tr>
 							<tr align="center">
 								<td>${requestScope.beforesend}</td><td>${requestScope.aftersend}</td>
@@ -145,12 +145,20 @@
     width: 100%;
   }
 </style>
-
+<form action = "MyPagecustomerController.do" id = "beforesendform">
+	<input type = "hidden" name = "mode" value = "발송전">
+</form>
+<form action = "MyPagecustomerController.do" id = "aftersendform">
+	<input type = "hidden" name = "mode" value = "발송완료">
+</form>
+	
 <script>
 	function beforsend() {
-		lotacion.href = "MyPagecustomerController.do?mode=발송전";
+		let beforesendform = document.getElementById("beforesendform");
+		beforesendform.submit();
 	}
 	function aftersend() {
-		lotacion.href = "MyPagecustomerController.do?mode=발송완료";
+		let aftersendform = document.getElementById("aftersendform");
+		aftersendform.submit();
 	}
 </script>
