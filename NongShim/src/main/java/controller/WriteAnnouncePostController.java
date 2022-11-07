@@ -24,7 +24,7 @@ public class WriteAnnouncePostController implements Controller{
 		
 		request.setAttribute("result", result);
 		request.setAttribute("url", "FindAnnouncePostListController.do");
-		return "FindAnnouncePostListController.do";
+		return "redirect:FindAnnouncePostListController.do";
 	}
 
 }
