@@ -86,7 +86,7 @@
 											<td>
 												<div class="event-wrap">
 													<h4>
-														<a href="ProductDetailController.do?postno="+${seller.postNo}>[${seller.status}] ${seller.title}</a>
+														<a href="ProductDetailController.do?postno=${seller.postNo}">[${seller.status}] ${seller.title}</a>
 													</h4>
 													<div class="meta">
 														<div class="organizers">
