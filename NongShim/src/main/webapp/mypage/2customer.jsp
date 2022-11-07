@@ -7,7 +7,7 @@
 			class="collapse d-lg-block sidebar collapse bg-white">
 			<div class="position-sticky float:left">
 				<div class="list-group list-group-flush mx-3 mt-4">
-					<a href="MyPageUpdateMemberController.do"
+					<a href="MyPageUpdateMemberControllerMove.do"
 						class="list-group-item list-group-item-action py-2 ripple"
 						aria-current="true"> <i
 						class="fas fa-tachometer-alt fa-fw me-3"></i><span>내 정보</span>
@@ -35,7 +35,7 @@
 								<td><button type = "button" style="border: none; background-color: #00ac00;" onclick="beforesend()">발송전</button></td><td><button type = "button" style="border: none; background-color: #00ac00;" onclick="aftersend()">발송완료</button></td>
 							</tr>
 							<tr align="center">
-								<td>${requestScope.buyingCount}</td><td>${requestScope.buyCount}</td>
+								<td>${requestScope.beforesend}</td><td>${requestScope.aftersend}</td>
 							</tr>
 						</thead>
 					</table>
@@ -144,9 +144,9 @@
 
 <script>
 	function beforsend() {
-		lotacion.href = ""
+		lotacion.href = "MyPagecustomerController.do?mode=발송전";
 	}
 	function aftersend() {
-		
+		lotacion.href = "MyPagecustomerController.do?mode=발송완료";
 	}
 </script>

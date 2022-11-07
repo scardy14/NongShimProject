@@ -161,4 +161,18 @@ CREATE SEQUENCE announce_seq;
 
 SELECT * FROM NongShim_Announce_Post
 ----------------------------------------------------------------------------------------------------------
+----------------------------------6.자유게시판 생성----------------------------------------------------------
+create table NongShim_Free_Post(
+post_No number primary key,
+id VARCHAR2(100) NOT NULL,
+title varchar2(100) not null,
+content clob not null,
+hits number default 0 not null,
+nickname varchar2(100) DEFAULT '운영자' not null,
+register_Date date not null,
+CONSTRAINT fk_free_post FOREIGN KEY(id) REFERENCES NongShim_Member(id)
+);
+CREATE SEQUENCE free_seq;
 
+SELECT * FROM NongShim_Announce_Post
+----------------------------------------------------------------------------------------------------------

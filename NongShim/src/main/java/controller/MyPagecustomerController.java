@@ -31,16 +31,19 @@ public class MyPagecustomerController implements Controller {
 		NongShimMemberVO mvo=(NongShimMemberVO) session.getAttribute("mvo");
 		String id=mvo.getId();
 		String mode = request.getParameter("mode");
+		if(mode==null) {
+			mode = "발송전";
+		}
 
-		 ArrayList<BuyProductVO> list=MyPageDAO.getInstance().myBuyProductListTotal(id); 
-		 String buying="구매중";
-		 String buy="구매완료"; 
+		 ArrayList<BuyProductVO> list=MyPageDAO.getInstance().myBuyProductList(mode,id); 
+		 String before="발송전";
+		 String after="발송완료"; 
 		 
-		 int buyingCount=MyPageDAO.getInstance().myBuyProductListCount(buying, id); 
-		 int buyCount=MyPageDAO.getInstance().myBuyProductListCount(buy, id);
+		 int beforeCount=MyPageDAO.getInstance().myBuyProductListCount(before, id); 
+		 int afterCount=MyPageDAO.getInstance().myBuyProductListCount(after, id);
 		 request.setAttribute("list", list); 
-		 request.setAttribute("buyingCount",buyingCount); 
-		 request.setAttribute("buyCount", buyCount);
+		 request.setAttribute("beforesend",beforeCount); 
+		 request.setAttribute("aftersend", afterCount);
 		 request.setAttribute("url","mypage/2customer.jsp");
 		 return "mainpage.jsp";
 	}
