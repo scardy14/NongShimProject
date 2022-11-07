@@ -33,12 +33,14 @@
 						<i class="fas fa-chart-area fa-fw me-3"></i><span>판매인증</span>				
 					</a>
 					</c:when>
-					</c:choose>
-				<a href="MyPageSellerTotalController.do"
+					<c:otherwise>
+					<a href="MyPageSellerTotalController.do"
 					class="list-group-item list-group-item-action py-2 ripple"
 					aria-current="true"> <i
 					class="fas fa-tachometer-alt fa-fw me-3"></i><span>판매</span>
-				</a> 	
+					</a> 	
+					</c:otherwise>
+					</c:choose>
 			</div>
 		</div>
 	</nav>

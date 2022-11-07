@@ -165,6 +165,12 @@ public class MyPageDAO {
 		return flag;
 	}
 
+	
+	
+	
+	
+	
+	
 	/**
 	 * -- ChangeBuyState(String id, long post_no) : 구매 작업에서 참여하기 눌렀으면 디폴트가 확인중이므로,
 	 * 매칭 고객정보에서 발송여부가 바뀌었을 때, 확인 중에서 발송완료로 변화
@@ -473,25 +479,16 @@ public class MyPageDAO {
 		return myPageMemberVO;
 	}
 
-	public ArrayList<ConfirmListVO> confirmListbyIdandPostNo(String id, String postNo) throws SQLException {
+	public ArrayList<ConfirmListVO> confirmListbyIdandPostNo(String postNo) throws SQLException {
 		ArrayList<ConfirmListVO> list = new ArrayList<>();
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
 			con = dataSource.getConnection();
-			/*
-			 * StringBuilder sb=new
-			 * StringBuilder("select c.id, m.name, c.product_amount, c.post_status, m.address, m.tel "
-			 * ); sb.append("from (select * from confirm_list) c ");
-			 * sb.append("inner join  NongShim_Member m on c.id=m.id ");
-			 * sb.append("where c.id=? and post_no=?");
-			 */
-			String sql="select c.id, m.name, c.product_amount, c.post_status, m.address, m.tel, c.post_no from confirm_list c inner join  NongShim_Member m on c.id=m.id where c.id=? and post_no=?";
+			 String sql="select c.id, m.name, c.product_amount, c.post_status, m.address, m.tel,post_no from confirm_list c inner join  NongShim_Member m on c.id=m.id where post_no=?";
 			pstmt=con.prepareStatement(sql);
-			//System.out.println(sb.toString());
-			pstmt.setString(1,id);
-			pstmt.setString(2, postNo);
+			pstmt.setString(1,postNo);
 			rs=pstmt.executeQuery();
 			System.out.println("****************");
 			while(rs.next()) {

@@ -34,10 +34,12 @@
 						<i class="fas fa-chart-area fa-fw me-3"></i><span>판매인증</span>				
 					</a>
 					</c:when>
-					</c:choose>
+					<c:otherwise>
 						 <a href="MyPageSellerTotalController.do"
 						class="list-group-item list-group-item-action py-2 ripple"><i
 						class="fas fa-lock fa-fw me-3"></i><span>판매</span></a>
+					</c:otherwise>
+					</c:choose>
 				</div>
 			</div>
 		</nav>
@@ -87,6 +89,9 @@
 												</div>
 											</th>
 											<td>${confirm.id}</td><td>${confirm.name}</td><td>${confirm.amount}</td><td>${confirm.status}</td><td>${confirm.address}</td><td>${confirm.tel}</td>
+											<td>
+											<button></button>
+											</td>
 										</tr>
 									</c:forEach>
 								</tbody>

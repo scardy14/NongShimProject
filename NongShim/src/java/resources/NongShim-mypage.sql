@@ -1,5 +1,10 @@
 -- 3. 좋아요 리스트
 drop table like_product;
+select * from like_product;
+
+commit
+
+select * from NONGSHIM_PRODUCT_POST;
 
 --							[내 테이블]
 CREATE TABLE like_product(
@@ -76,6 +81,8 @@ create table confirm_list(
 	constraint confirm_product_fk foreign key(post_no) references NongShim_product_Post(post_no),
 	constraint confirm_product_pk primary key(id,post_no)
 )
+
+
 
 insert into confirm_list values ('java','11','30','확인중');
 insert into confirm_list values ('spring','12','30','확인중');
@@ -158,13 +165,13 @@ select * from confirm_list
 
 --안됨
 select c.id, m.name, c.product_amount, c.post_status, m.address, m.tel
-from (select * from confirm_list where id='spring' and post_no='14') c
+from (select * from confirm_list where post_no='14') c
 inner join  NongShim_Member m on c.id=m.id;
 
 -- 안됨
-select c.id, m.name, c.product_amount, c.post_status, m.address, m.tel from confirm_list c inner join  NongShim_Member m on c.id=m.id where c.id='spring' and post_no='14';
+select c.id, m.name, c.product_amount, c.post_status, m.address, m.tel from confirm_list c inner join  NongShim_Member m on c.id=m.id where post_no='14';
 
---14. sysdate
+--14. sysdate 를 바탕으로 bar 만드는 구문
 
 select duration, to_char() from NongShim_product_Post where id='spring'
 
@@ -180,3 +187,21 @@ values (postNo_seq.nextval, '맛있는 햅쌀', '꼬들꼬들합니다','jdbc',d
 insert into NongShim_product_Post 
 values (postNo_seq.nextval, '탐스런 과일', '크고 달아요','java',default,'짱아','맛있네요',sysdate,'과일','판매중','청포도',100,sysdate+7,10,30);
 commit
+
+--15. like_product 
+insert into LIKE_PRODUCT values ('7','jdk');
+insert into LIKE_PRODUCT values ('8','java');
+insert into LIKE_PRODUCT values ('9','java');
+insert into LIKE_PRODUCT values ('4','spring');
+insert into LIKE_PRODUCT values ('5','spring');
+insert into LIKE_PRODUCT values ('6','spring');
+
+commit
+
+select * from NongShim_product_Post
+select * from LIKE_PRODUCT
+select * from confirm_list;
+
+select c.id, c.post_no, p.title, p.category, p.status, p.duration 
+from (select * from like_product where id='jdk') c
+inner join NongShim_product_Post p on p.post_no=c.post_no;

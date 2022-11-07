@@ -21,7 +21,7 @@ public class MyPageMyCustomerListController implements Controller {
 		NongShimMemberVO memberVO= (NongShimMemberVO) session.getAttribute("mvo");
 		//구매를 원하는 사람 목록 -> 내 아이디와 postNo로 찾아옴
 		String id=memberVO.getId();
-		ArrayList<ConfirmListVO> list=MyPageDAO.getInstance().confirmListbyIdandPostNo(id, request.getParameter("postNo"));
+		ArrayList<ConfirmListVO> list=MyPageDAO.getInstance().confirmListbyIdandPostNo(request.getParameter("postNo"));
 		int postno=(int) Long.parseLong(request.getParameter("postNo"));
 		ProductPostVO postVO= ProductPostDAO.getInstance().postDetailFind(postno);
 		request.setAttribute("url","mypage/4mycustomerlist.jsp");

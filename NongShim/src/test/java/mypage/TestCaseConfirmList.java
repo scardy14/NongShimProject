@@ -9,10 +9,9 @@ import model.MyPageDAO;
 public class TestCaseConfirmList {
 	public static void main(String[] args) {
 		ArrayList<ConfirmListVO> list=null;
-		String id="spring";
 		String postNo="14";
 		try {
-			list=MyPageDAO.getInstance().confirmListbyIdandPostNo(id,postNo);
+			list=MyPageDAO.getInstance().confirmListbyIdandPostNo(postNo);
 			System.out.println(list.toString());
 		} catch (SQLException e) {
 			e.printStackTrace();
