@@ -25,6 +25,34 @@
 	</form>
 
 <h3>${vo.title}</h3>
+
+<div style="text-align: right;">
+<form action="LikeController.do?postno12=${vo.postNo}&id12=${sessionScope.mvo.id }">
+<button>
+좋아요
+</button>
+${requestScope.likeTotal}
+
+</form>
+</div>
+
+<script>
+
+function likemethod(){
+	alert("좋아요를 누르셨습니다!")
+	location.href="LikeController.do"
+	//세션 mvo.id 로 아이디
+	//
+	
+	
+	
+}
+
+
+
+</script>
+
+<br>
 <table class="table table-bordered">
 	<tr>
 		<td style="width: 15%; background-color: #d0fd7d;">작성자</td>
