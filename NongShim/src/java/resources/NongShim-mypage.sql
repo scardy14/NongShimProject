@@ -219,5 +219,11 @@ inner join NongShim_product_Post p on p.post_no=c.post_no;
 --17. 자유게시판에 글쓰면 포인트 획득하도록 insert 해주기
 update NongShim_Member set point=point+'123456' where id='jdk';
 
---18. 포인트 입력 받고 테이블 만들어서 목록으로 띄워주기
+--18. 로또 포인트 입력 받고 테이블 만들어서 목록으로 띄워주기
+-- 안해도 됨
 
+--19. sql에 음수 입력 가능?
+update NongShim_Member set point=point-'1000000' where id='jdk';
+update NongShim_Member set point='0' where id='jdk';
+
+select * from NongShim_Member where id='jdk'
