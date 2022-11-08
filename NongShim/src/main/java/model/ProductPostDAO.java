@@ -183,12 +183,12 @@ public class ProductPostDAO {
 			con = getConnection();
 			String sql = null;
 			if(!mode.equals("all")) {
-				sql= "select post_No, content,category,id,to_char(comments_date,'YYYY-MM-DD HH24:MI') AS comments_date,comment_No from NongShim_productPostComments where post_no=? AND category = ? ORDER BY comments_date DESC";
+				sql= "select post_No, content,category,id,to_char(comments_date,'YYYY-MM-DD HH24:MI') AS comments_date,comment_No from NongShim_productPostComments where post_no=? AND category = ? ORDER BY comment_No DESC";
 				pst = con.prepareStatement(sql);
 				pst.setLong(1, postno);
 				pst.setString(2, mode);
 			} else {
-				sql = "select post_No, content,category,id,to_char(comments_date,'YYYY-MM-DD HH24:MI') AS comments_date,comment_No from NongShim_productPostComments where post_no=? ORDER BY comments_date DESC";
+				sql = "select post_No, content,category,id,to_char(comments_date,'YYYY-MM-DD HH24:MI') AS comments_date,comment_No from NongShim_productPostComments where post_no=? ORDER BY comments_No DESC";
 				pst = con.prepareStatement(sql);
 				pst.setLong(1, postno);
 			}
@@ -202,16 +202,36 @@ public class ProductPostDAO {
 		}
 		return list;
 	}
+	public CommentVO FindCommentByPostNo(long postno) throws SQLException {
+		CommentVO commentVO = null;
+		ResultSet rs = null;
+		PreparedStatement pst = null;
+		Connection con = null;
+		try {
+			con = getConnection();
+			String sql = "SELECT id,post_No,TO_CHAR(comments_date,'YYYY-MM-DD HH24:MI') AS writtenDATE, content, category, comment_No FROM NongShim_productPostComments WHERE comment_No = ?";
+			pst = con.prepareStatement(sql);
+			pst.setLong(1, postno);
+			rs = pst.executeQuery();
+			if (rs.next()) {
+				commentVO = new CommentVO(rs.getString(1), rs.getLong(2), rs.getString(3), rs.getString(4),
+						rs.getString(5),rs.getLong(6));
+			}
+		} finally {
+			closeAll(rs, pst, con);
+		}
+		return commentVO;
+	}
 
 	public void updateComment(long comment_No, String content) throws SQLException {
 		PreparedStatement pst = null;
 		Connection con = null;
 		try {
 			con = getConnection();
-			String sql = "update NONGSHIM_PRODUCTPOSTCOMMENTS set content = ? where id=? and post_no=? and comments_date=?";
+			String sql = "update NONGSHIM_PRODUCTPOSTCOMMENTS set content = ? where comment_No=?";
 			pst = con.prepareStatement(sql);
-			pst.setLong(1, comment_No);
-			pst.setString(2, content);
+			pst.setString(1, content);
+			pst.setLong(2, comment_No);
 			pst.executeUpdate();
 
 		} finally {

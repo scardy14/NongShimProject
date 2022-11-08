@@ -153,8 +153,8 @@ ${vo.content}
 <hr>
 
 
-<input type="text" style="width: 100%; height: 50px;" id="comment"
-	required="required" placeholder="댓글입력">
+<textarea  style="width: 100%; height: 50px;" id="comment"
+	required="required" placeholder="댓글입력"></textarea>
 <br>
 <br>
 
@@ -215,7 +215,7 @@ ${vo.content}
 		
 			<tr>
 				<td><input type = "hidden" id = "comment_No${commentno.count }" value = ${commentlist.comment_No }>${commentno.count}</td>
-				<td>${commentlist.content}</td>
+				<td><pre>${commentlist.content}</pre></td>
 				<td>${commentlist.category}</td>
 				<td>${commentlist.id}</td>
 				<c:choose>
@@ -303,7 +303,7 @@ ${vo.content}
 	}
 	function updatecomment(commentno) {
 		let comment_No = document.getElementById("comment_No"+commentno).value;
-		location.href="DeleteProductPostCommentController.do?comment_No="+comment_No;
+		location.href="UpdateProductPostCommentControllerMove.do?comment_No="+comment_No;
 
 	}
 	function deletecomment(commentno) {
