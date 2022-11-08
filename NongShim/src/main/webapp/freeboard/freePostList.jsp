@@ -1,14 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<h3>자유게시판</h3><br>
+<br>
 <table class="table table-bordered table-hover boardlist">
 	<thead>
-		<tr style="background-color: #d0fd7d">
-			<th>번호</th>
-			<th style="width: 45%">제목</th>
-			<th>작성자</th>
-			<th>작성일</th>
-			<th>조회수</th>
+		<tr style="background-color: #00ba00">
+			<th style="color: white;">번호</th>
+			<th style="width: 45%; color: white;">제목</th>
+			<th style="color: white;" >작성자</th>
+			<th style="color: white;">작성일</th>
+			<th style="color: white;">조회수</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -27,7 +29,7 @@
 <c:choose>	
 	<c:when test="${sessionScope.mvo!=null}">
 		<div style="text-align: right;">
-			<button type = "button" onclick="writefree()" style="background-color: #d0fd7d; color: 00ac00; border-radius: 10px; width: 80px; height: 40px; border: none;">글쓰기</button>
+			<button type = "button" onclick="writefree()" style="background-color: #00ba00; border-radius: 10px; width: 80px; height: 40px; border: none;"><span style="color: white;">글쓰기</span></button>
 		</div>
 	</c:when>
 </c:choose>
