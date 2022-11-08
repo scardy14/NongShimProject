@@ -47,9 +47,11 @@
 		</nav>
 	</header>
 	<div class="container pt-4">
+					<div align="left">
 					<h3>
 						내 찜 목록
 					</h3>
+					</div>
 					</div>
 			<!-- /.col end-->
 		<!-- row end-->

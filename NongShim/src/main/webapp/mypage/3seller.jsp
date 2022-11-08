@@ -54,7 +54,7 @@
 					<table class="headertable">
 						<thead>
 							<tr style="background-color: #00ac00; color: white;" align="center">
-								<td>판매 중</td><td>판매종료</td>
+								<td>판매 중</td><td>판매완료</td>
 							</tr>
 							<tr align="center">
 								<td>${requestScope.selling}</td><td>${requestScope.sell}</td>
