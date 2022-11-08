@@ -6,10 +6,10 @@
 		<tr>
 			<td>
 				<select name="category" style="width: 95px; height: 29px;">
+	       			<option value="기타">기타</option>
 	       			<option value="곡물">곡물</option>
 	       			<option value="야채">야채</option>
-	       			<option value="과일">과일</option>       
-	       			<option value="기타">기타</option>       
+	       			<option value="과일">과일</option>   
         	 	</select>
 				<input type="text" name="minCustomer" value="${productpostvo.minCustomer}" required="required" placeholder="최소인원수">
 				<input type="text" name="maxCustomer" value="${productpostvo.maxCustomer}" required="required" placeholder="최대인원수">
