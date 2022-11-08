@@ -198,10 +198,7 @@ public class ProductPostDAO {
 		try {
 			con = getConnection();
 
-			// String sql= "select * from NongShim_productPostComments where post_No=?";
-			//String sql = "select row_number() over(order by comments_date) as rnum,content,category,id,comments_date from NongShim_productPostComments where post_no=?";
-
-			//String sql= "select * from NongShim_productPostComments where post_No=?";
+			
 			String sql= "select row_number() over(order by comments_date) as rnum,content,category,id,to_char(comments_date,'YYYY-MM-DD HH24:MI') AS comments_date from NongShim_productPostComments where post_no=? AND category = ?";
 
 			pst = con.prepareStatement(sql);
@@ -209,9 +206,7 @@ public class ProductPostDAO {
 			pst.setString(2, mode);
 			rs = pst.executeQuery();
 
-			// select row_number() over(order by comments_date) as
-			// rnum,content,category,id,comments_date from NongShim_productPostComments
-			// where post_no=? ;
+		
 
 			while (rs.next()) {
 				list.add(new CommentVO(rs.getString(4), rs.getLong(1), rs.getString(5), rs.getString(2),
