@@ -54,7 +54,7 @@
 					<table class="headertable">
 					<br><br>
 					<h3>
-						<a href="ProductDetailController.do?postno=${postVO.postNo}">[${status}]${postVO.title}</a>
+						내 찜 목록
 					</h3>
 					</div>
 				</div>
