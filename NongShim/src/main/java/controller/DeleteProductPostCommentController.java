@@ -10,14 +10,11 @@ public class DeleteProductPostCommentController implements Controller {
 
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		String id = request.getParameter("id");
-		String comment = request.getParameter("comment");
-		String date = request.getParameter("date");
-		System.out.println(date);
-		long postNo = Long.parseLong(request.getParameter("postNo"));
+		long comment_No = Long.parseLong(request.getParameter("comment_No"));
+		String postNo = request.getParameter("post_No");
 		ProductPostDAO dao =ProductPostDAO.getInstance();
-		dao.deleteComment(id, postNo, comment);
-		return "index.jsp";
+		dao.deleteComment(comment_No);
+		return "redirect:ProductDetailController.do?postno="+postNo;
 	}
 
 }

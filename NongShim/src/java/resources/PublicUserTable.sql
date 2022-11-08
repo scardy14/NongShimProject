@@ -147,7 +147,7 @@ constraint comments_pk primary key(id, post_no,comments_date)
 )
 CREATE SEQUENCE product_comment_seq;
 SELECT * FROM NongShim_productPostComments
-SELECT * FROM NongShim_productPostComments WHERE comments_date = To_DATE('2022-11-07 13:43:31.0','YYYY-MM-DD HH24:MI:'); 
+SELECT * FROM NongShim_productPostComments WHERE comments_date = To_DATE('2022-11-07 13:43:31.0','YYYY-MM-DD HH24:MI:');
 ----------------------------------------------------------------------------------------------------------
 ----------------------------------5.공지게시판 생성----------------------------------------------------------
 create table NongShim_Announce_Post(
