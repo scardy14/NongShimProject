@@ -40,6 +40,8 @@
 						class="fas fa-lock fa-fw me-3"></i><span>판매</span></a>
 					</c:otherwise>
 					</c:choose>
+										<a href="MyPageFavoriteListController.do" class="list-group-item list-group-item-action py-2 ripple">
+						<i class="fas fa-chart-area fa-fw me-3"></i><span>찜목록</span></a>
 				</div>
 			</div>
 		</nav>
@@ -98,11 +100,7 @@
 													</h4>
 													<div class="meta">
 														<div class="organizers">
-															<span>최소/최대: ${seller.minCustomer}/${seller.maxCustomer}</span>
-														</div>
-														<div class="categories">
-															<span>구매자 수: inner join 써야할듯</span>
-															<span>판매 수: </span>
+															<span>최소/최대 인원수: ${seller.minCustomer}/${seller.maxCustomer}</span>
 														</div>
 														<div class="time">
 															<span>판매종료 기간: ${seller.duration}</span>
@@ -118,9 +116,14 @@
 												</div>
 											</td>
 											<td>
-												<div class="primary-btn">
+												<%-- <div class="primary-btn">
 													<a class="btn btn-primary" href="MyPageMyCustomerListController.do?postNo=${seller.postNo}">구매자 목록</a>
-												</div>
+												</div> --%>
+												<form action="MyPageMyCustomerListController.do">
+													<button>구매자 목록</button>
+													<input type="hidden" name="status" value="${seller.status}">
+													<input type="hidden" name="postNo" value="${seller.postNo}">
+												</form>
 											</td>
 										</tr>
 									</c:forEach>

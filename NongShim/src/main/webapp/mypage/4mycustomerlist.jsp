@@ -40,6 +40,8 @@
 						class="fas fa-lock fa-fw me-3"></i><span>판매</span></a>
 					</c:otherwise>
 					</c:choose>
+										<a href="MyPageFavoriteListController.do" class="list-group-item list-group-item-action py-2 ripple">
+						<i class="fas fa-chart-area fa-fw me-3"></i><span>찜목록</span></a>
 				</div>
 			</div>
 		</nav>
@@ -52,7 +54,7 @@
 					<table class="headertable">
 					<br><br>
 					<h3>
-						<a href="ProductDetailController.do?postno=${postVO.postNo}">[상태 넣을까?]${postVO.title}</a>
+						<a href="ProductDetailController.do?postno=${postVO.postNo}">[${status}]${postVO.title}</a>
 					</h3>
 					</div>
 				</div>
@@ -77,6 +79,7 @@
 										<th>발송여부</th>
 										<th>배송지</th>
 										<th>전화번호</th>
+										<th>출고버튼</th>
 									</tr>
 								</thead>
 								<%-- items 내 목록 --%>
@@ -90,7 +93,13 @@
 											</th>
 											<td>${confirm.id}</td><td>${confirm.name}</td><td>${confirm.amount}</td><td>${confirm.status}</td><td>${confirm.address}</td><td>${confirm.tel}</td>
 											<td>
-											<button></button>
+											<form action="MyPageChangeSendProductController.do">
+											<input type="hidden" name="customerId" value="${confirm.id}">
+											<input type="hidden" name="postNo" value="${requestScope.postNo}">
+											<button>
+												발송완료
+											</button>
+											</form>
 											</td>
 										</tr>
 									</c:forEach>
