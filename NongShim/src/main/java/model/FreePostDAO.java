@@ -14,7 +14,7 @@ public class FreePostDAO {
 	private FreePostDAO() {
 		dataSource = DataSourceManager.getInstance().getDataSource();
 	}
-	public static FreePostDAO getInstnace() {
+	public static FreePostDAO getInstance() {
 		return instance;
 	}
 	public void closeAll(PreparedStatement pstmt, Connection con) throws SQLException {
@@ -36,7 +36,25 @@ public class FreePostDAO {
 		return 0;
 	
 	}
-	public ArrayList<FreePostVO> findFreePostList(Pagination pagination, String value) throws SQLException {
+	public int findTotalFreePost() throws SQLException {
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
+		Connection con = null;
+		int result = 0;
+		try {
+			con = dataSource.getConnection();
+			String sql = "SELECT COUNT(*) FROM NongShim_Free_Post";
+			pstmt = con.prepareStatement(sql);
+			rs= pstmt.executeQuery();
+			if(rs.next()) {
+				result = rs.getInt(1);
+			}
+		} finally {
+			closeAll(rs, pstmt, con);
+		}
+		return result;
+	}
+	public ArrayList<FreePostVO> findFreePostList(Pagination pagination) throws SQLException {
 		ArrayList<FreePostVO> list = new ArrayList<>();
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
@@ -122,12 +140,24 @@ public class FreePostDAO {
 			closeAll(pstmt,con);
 		}
 	}
-	public void deletePost() {	
-		
+	public void deletePost(Long post_No) throws SQLException {	
+		PreparedStatement pstmt = null;
+		Connection con = null;
+		try {
+			con = dataSource.getConnection();
+			StringBuilder sb = new StringBuilder("");
+			sb.append("DELETE FROM NongShim_Free_Post ");
+			sb.append("WHERE post_No = ?");
+			pstmt = con.prepareStatement(sb.toString());
+			pstmt.setLong(1, post_No);
+			pstmt.executeUpdate();
+		} finally {
+			closeAll(pstmt, con);
+		}
 	}
 	
 	public void addComment() {
-		
+
 	}
 	public void updateComment() {
 		
@@ -138,24 +168,7 @@ public class FreePostDAO {
 	public void showAllCommentByPostNo() {
 		
 	}
-	public int getTotalPostCount() {
-		return 0;
-	}
-	public int getTotalPostCountValue() {
-		return 0;
-		
-	}
-	public int getTotalPostCountSearch() {
-		return 0;
-		
-	}
-	public void findPostListByValue() {
-		
-	}
-	public void findPostListBySearch() {
-		
-	}
-	
+
 	public void updateHits() {
 		
 	}
