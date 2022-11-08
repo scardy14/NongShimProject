@@ -7,7 +7,7 @@ import model.MyPageDAO;
 public class TestCasefindCustomerConfirmListbyidandpostno {
 	public static void main(String[] args) {
 		String customerId ="spring";
-		long post_no=14;
+		String post_no="14";
 		boolean flag=false;
 		try {
 			flag=MyPageDAO.getInstance().findCustomerConfirmListbyidandpostno(customerId,post_no);

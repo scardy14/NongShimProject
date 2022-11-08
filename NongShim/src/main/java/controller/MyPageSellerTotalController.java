@@ -26,6 +26,7 @@ public class MyPageSellerTotalController implements Controller {
 		String sell="판매완료";
 		int sellingCount =MyPageDAO.getInstance().mySellProductListCount(selling, id);
 		int sellCount=MyPageDAO.getInstance().mySellProductListCount(sell, id);
+		MyPageDAO.getInstance().statusUpdatebyDuration();
 		//System.out.println(list.toString());
 		request.setAttribute("sellerList",list);
 		request.setAttribute("url", "mypage/3seller.jsp");

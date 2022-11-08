@@ -18,6 +18,7 @@ public class MyPageSellerNumberCheckController implements Controller {
 			result="ok";
 		}
 		request.setAttribute("responsebody", result);
+		System.out.println(result);
 		return "AjaxView";
 	}
 

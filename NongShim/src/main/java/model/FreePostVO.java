@@ -8,6 +8,7 @@ public class FreePostVO {
 	private	Long hits;
 	private String nickname;
 	private String regitster_Date;
+	
 	public FreePostVO() {
 		super();
 		
