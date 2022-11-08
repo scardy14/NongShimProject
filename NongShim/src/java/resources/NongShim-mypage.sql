@@ -217,4 +217,5 @@ from (select * from like_product where id='java') c
 inner join NongShim_product_Post p on p.post_no=c.post_no;
 
 --17. 자유게시판에 글쓰면 포인트 획득하도록 insert 해주기
-update NongShim_Member set point='123456' where id='jdk';
+update NongShim_Member set point=point+'123456' where id='jdk';
+

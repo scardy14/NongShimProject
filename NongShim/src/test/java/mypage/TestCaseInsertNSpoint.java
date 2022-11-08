@@ -20,7 +20,7 @@ public class TestCaseInsertNSpoint {
 		try {
 			result=MyPageDAO.getInstance().insertNsPoint(id,point);
 			if(result>0) {
-				System.out.println("NS 포인트를"+point+"획득 하셨습니다");
+				System.out.println("NS 포인트를 "+point+" 획득 하셨습니다");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
