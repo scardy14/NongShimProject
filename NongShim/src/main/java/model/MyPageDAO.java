@@ -529,7 +529,7 @@ public class MyPageDAO {
 		ResultSet rs = null;
 		try {
 			con=dataSource.getConnection();
-			//테스트 해봄 근데 구매자 목록 처럼 되어야 하는데 안되는 중 ^^; 나중에 테스트 다시 해보길
+			//테스트 해봄 근데 구매자 목록 처럼 되어야 하는데 안되는 중 ^^; 나중에 테스트 다시 해보길 --> 완료
 			StringBuilder sb=new StringBuilder("select c.post_no, p.title, p.id, p.category, p.status, p.duration, p.min_Customer, p.max_Customer ");
 			sb.append("from (select * from like_product where id=?) c ");
 			sb.append("inner join NongShim_product_Post p on p.post_no=c.post_no");
@@ -545,6 +545,9 @@ public class MyPageDAO {
 			closeAll(rs, pstmt, con);
 		}
 		return list;
+	}
+
+	public void InsertNsPoint(String id, long point) {
 	}
 	
 	

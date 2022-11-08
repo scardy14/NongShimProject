@@ -207,6 +207,7 @@ commit
 select * from NongShim_product_Post
 select * from LIKE_PRODUCT
 select * from confirm_list;
+select * from NongShim_Member;
 
 select c.id, m.name, c.product_amount, c.post_status, m.address, m.tel,post_no from confirm_list c inner join  NongShim_Member m on c.id=m.id where post_no=? order by ns_date
 
@@ -214,3 +215,6 @@ select c.id, m.name, c.product_amount, c.post_status, m.address, m.tel,post_no f
 select p.id, c.post_no, p.title, p.category, p.status, p.duration, p.min_Customer, p.max_Customer
 from (select * from like_product where id='java') c
 inner join NongShim_product_Post p on p.post_no=c.post_no;
+
+--17. 자유게시판에 글쓰면 포인트 획득하도록 insert 해주기
+update NongShim_Member set point='123456' where id='jdk';

@@ -42,6 +42,8 @@
 		<input type="hidden" id="postno12" value="${vo.postNo}"> <input
 			type="hidden" id="id12" value="${sessionScope.mvo.id}">
 		
+		<button type="button" onclick="urlClip()">공유하기★</button>
+		
 		<button type="button" onclick="startAjax12()">좋아요♥</button>
 		<span id="likeCount">${requestScope.cocount}</span>
 
@@ -76,6 +78,25 @@ function startAjax12() {
 		xhr.send();
 
 }//startAjax12
+
+	//url 복사하는 function -- 참고: https://qh5944.tistory.com/158
+	function urlClip() {
+		var url=""; //""값이 없는 변수 설정
+		var textarea = document.createElement("textarea");//textarea 변수 할당
+		
+		document.body.appendChild(textarea);//textarea 생성
+		url = window.document.location.href;//현 위치 url 호출해서 url변수에 참조시킴
+		textarea.value = url;//윗줄의 값을 textarea의 value에 참조시킴
+		textarea.select();//textarea 설정
+		document.execCommand("copy");//클릭하면 복사
+		document.body.removeChild(textarea);//textarea 삭제
+		
+		alert("url이 복사되었습니다.")
+		
+	}//urlClip()
+
+
+
 </script>
 
 <br>
@@ -258,6 +279,7 @@ ${vo.content}
 		} */
 		location.href = "ProductDetailController.do?postno="+postno+"&checkbox="+mode;
 	}
+	
 </script>
 
 
