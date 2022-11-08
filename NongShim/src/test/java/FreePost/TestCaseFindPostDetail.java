@@ -1,6 +1,6 @@
 package FreePost;
 
-public class TestCaseFreePost {
+public class TestCaseFindPostDetail {
 	public static void main(String[] args) {
 		
 	}
