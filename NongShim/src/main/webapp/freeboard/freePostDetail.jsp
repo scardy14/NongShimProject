@@ -3,10 +3,10 @@
     <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <table class = "table table-bordered">
 	<tr>
-		<td style="width: 15%; background-color: #d0fd7d;">제목</td><td colspan="4">${FreePostVO.title }</td>
+		<td style="width: 15%; background-color: #d0fd7d;">제목</td><td colspan="4">${FreePostVO.nickname }</td>
 	</tr>
 	<tr>
-		<td style="width: 15%; background-color: #d0fd7d;">작성자</td><td style="width: 35%;">${FreePostVO.nickname }</td><td style="width: 15%; background-color: #d0fd7d;">게시글번호</td><td>${FreePostVO.post_No}</td>
+		<td style="width: 15%; background-color: #d0fd7d;">작성자</td><td style="width: 35%;">${FreePostVO.title }</td><td style="width: 15%; background-color: #d0fd7d;">게시글번호</td><td>${FreePostVO.post_No}</td>
 	</tr>
 	<tr>
 		<td style="background-color: #d0fd7d;">등록일자</td><td>${FreePostVO.register_Date }</td><td style="background-color: #d0fd7d;">조회수</td><td>${FreePostVO.hits }</td>
@@ -41,6 +41,9 @@
 	}
 	function deletepost() {
 		let deleteform = document.getElementById("deleteform");
-		deleteform.submit();
+		let result = confirm("게시물을 삭제하시겠습니까?");
+		if(result) {
+			deleteform.submit();
+		}
 	}
 </script>

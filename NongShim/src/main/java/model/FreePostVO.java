@@ -49,6 +49,15 @@ public class FreePostVO {
 		this.content = content;
 	}
 	
+	
+	
+	public FreePostVO(String id, String title, String content, String nickname) {
+		super();
+		this.id = id;
+		this.title = title;
+		this.content = content;
+		this.nickname = nickname;
+	}
 	public Long getPost_No() {
 		return post_No;
 	}
