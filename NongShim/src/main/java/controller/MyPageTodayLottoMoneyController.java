@@ -19,12 +19,12 @@ public class MyPageTodayLottoMoneyController implements Controller {
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session=request.getSession(false);
-		
+
+		//login controller에 iterator로 불러와서 list에 저장하고 아래로 호출
 		ArrayList<Integer> list=(ArrayList<Integer>) session.getAttribute("lottoNum");
 
-		//session의 아이디를 저장해놓고 블락
-		System.out.println(list.toString());
-		
+		//System.out.println(list.toString());
+
 		request.setAttribute("num5", list.get(0));
 		request.setAttribute("num4", list.get(1));
 		request.setAttribute("num3", list.get(2));
