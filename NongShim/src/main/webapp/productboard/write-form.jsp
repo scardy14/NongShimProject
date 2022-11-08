@@ -4,17 +4,16 @@
      
 <div class="container pt-3">
 <form method="post" action="WritePostController.do">
-	<input type = "text" name = "category" required="required" placeholder="카테고리"  list="taglist" style="width: 95px; height: 29px;">
-   			 <select id="taglist">
-       			<option value="곡물"></option>
-       			<option value="야채"></option>
-       			<option value="과일"></option>       
-       			<option value="기타"></option>       
-        	 </select>
+   		 <select name = "category" style="width: 95px; height: 29px;">
+   		 	<option value="기타">기타</option>
+       		<option value="곡물">곡물</option>
+       		<option value="야채">야채</option>
+       		<option value="과일">과일</option>       
+         </select>
          <input type="number" name="minCustomer" placeholder="최소인원수" required="required">
          <input type="number" name="maxCustomer" placeholder="최대인원수" required="required">
          <input type="number" name="productPoint" placeholder="포인트" required="required">
-         <input type="text" name="duration" placeholder="판매기간" required="required"><br><br>
+         <input type="date" name="duration" placeholder="판매기간" required="required"><br><br>
          <input style="width: 700px; height: 40px;" name="title" placeholder="제목을 입력해주세요" required="required" ><br><br>
          <input style="width: 700px; height: 400px;" name="content" placeholder="내용을 입력해주세요" required="required" ><br><br>
 

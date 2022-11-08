@@ -131,11 +131,12 @@ public class FreePostDAO {
 			con = dataSource.getConnection();
 			StringBuilder sb = new StringBuilder("");
 			sb.append("INSERT INTO NongShim_Free_Post ");
-			sb.append("VALUES (free_seq.nextval,?,?,?,DEFAULT,DEFAULT,SYSDATE)");
+			sb.append("VALUES (free_seq.nextval,?,?,?,?,DEFAULT,SYSDATE)");
 			pstmt = con.prepareStatement(sb.toString());
 			pstmt.setString(1, freepostVO.getId());
 			pstmt.setString(2, freepostVO.getTitle());
-			pstmt.setString(3, freepostVO.getContent());
+			pstmt.setString(3, freepostVO.getNickname());
+			pstmt.setString(4, freepostVO.getContent());
 			pstmt.executeUpdate();
 		} finally {
 			closeAll(pstmt, con);

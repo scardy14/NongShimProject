@@ -64,7 +64,7 @@ public class ProductPostVO {
 
 	// 장지영이 만든거에영 , WritePost 하기 위해 
 	public ProductPostVO(String title, String content, String id, String nickName, String comments, String category,
-			String status, String productName, long productPoint, long minCustomer, long maxCustomer) {
+			String status, String productName, long productPoint, String duration,long minCustomer, long maxCustomer) {
 		super();
 		this.title = title;
 		this.content = content;
@@ -75,6 +75,7 @@ public class ProductPostVO {
 		this.status = status;
 		this.productName = productName;
 		this.productPoint = productPoint;
+		this.duration = duration;
 		this.minCustomer = minCustomer;
 		this.maxCustomer = maxCustomer;
 	}

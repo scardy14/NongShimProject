@@ -1,5 +1,6 @@
 package model;
 
+import java.sql.Clob;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -52,7 +53,7 @@ public class ProductPostDAO {
 
 		try {
 			con = getConnection();
-			String sql = "select title,content, hits,nickname,comments,register_date,category,product_name,product_point,to_char(duration, 'YYYY-MM-DD HH24:MI') AS duration,min_customer,max_customer, id from NongShim_product_Post where post_no=?";
+			String sql = "select title,content, hits,nickname,comments,register_date,category,product_name,product_point,to_char(duration, 'YYYY-MM-DD') AS duration,min_customer,max_customer, id from NongShim_product_Post where post_no=?";
 			pst = con.prepareStatement(sql);
 			pst.setLong(1, no);
 			rs = pst.executeQuery();
@@ -85,7 +86,7 @@ public class ProductPostDAO {
 		PreparedStatement pstmt = null;
 		try {
 			con = dataSource.getConnection();
-			String sql = "INSERT INTO NongShim_product_Post VALUES (postNo_seq.nextval,?,?,?,default,?,?,sysdate,?,?,?,?,sysdate,?,? )";
+			String sql = "INSERT INTO NongShim_product_Post VALUES (postNo_seq.nextval,?,?,?,default,?,?,sysdate,?,?,?,?,?,?,? )";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, productpostVO.getTitle());
 			pstmt.setString(2, productpostVO.getContent());
@@ -96,8 +97,9 @@ public class ProductPostDAO {
 			pstmt.setString(7, productpostVO.getStatus());
 			pstmt.setString(8, productpostVO.getProductName());
 			pstmt.setLong(9, productpostVO.getProductPoint());
-			pstmt.setLong(10, productpostVO.getMinCustomer());
-			pstmt.setLong(11, productpostVO.getMaxCustomer());
+			pstmt.setDate(10, Date.valueOf(productpostVO.getDuration()));
+			pstmt.setLong(11, productpostVO.getMinCustomer());
+			pstmt.setLong(12, productpostVO.getMaxCustomer());
 			pstmt.executeUpdate();
 		} finally {
 			closeAll(pstmt, con);
@@ -144,7 +146,7 @@ public class ProductPostDAO {
 		Connection con = null;
 		try {
 			con = getConnection();
-			String sql = "insert into NONGSHIM_PRODUCTPOSTCOMMENTS values (?,?,sysdate,?,'문의')";
+			String sql = "insert into NONGSHIM_PRODUCTPOSTCOMMENTS values (?,?,sysdate,?,'문의',product_comment_seq.nextval)";
 			pst = con.prepareStatement(sql);
 			pst.setString(1, id);
 			pst.setLong(2, postno);
@@ -160,7 +162,7 @@ public class ProductPostDAO {
 		Connection con = null;
 		try {
 			con = getConnection();
-			String sql = "insert into NONGSHIM_PRODUCTPOSTCOMMENTS values (?,?,sysdate,?,'후기')";
+			String sql = "insert into NONGSHIM_PRODUCTPOSTCOMMENTS values (?,?,sysdate,?,'후기',product_comment_seq.nextval)";
 			pst = con.prepareStatement(sql);
 			pst.setString(1, id);
 			pst.setLong(2, postno);
@@ -182,19 +184,19 @@ public class ProductPostDAO {
 			con = getConnection();
 			String sql = null;
 			if(!mode.equals("all")) {
-				sql= "select post_No, content,category,id,to_char(comments_date,'YYYY-MM-DD HH24:MI') AS comments_date from NongShim_productPostComments where post_no=? AND category = ? ORDER BY comments_date DESC";
+				sql= "select post_No, content,category,id,to_char(comments_date,'YYYY-MM-DD HH24:MI') AS comments_date,comment_No from NongShim_productPostComments where post_no=? AND category = ? ORDER BY comments_date DESC";
 				pst = con.prepareStatement(sql);
 				pst.setLong(1, postno);
 				pst.setString(2, mode);
 			} else {
-				sql = "select post_No, content,category,id,to_char(comments_date,'YYYY-MM-DD HH24:MI') AS comments_date from NongShim_productPostComments where post_no=? ORDER BY comments_date DESC";
+				sql = "select post_No, content,category,id,to_char(comments_date,'YYYY-MM-DD HH24:MI') AS comments_date,comment_No from NongShim_productPostComments where post_no=? ORDER BY comments_date DESC";
 				pst = con.prepareStatement(sql);
 				pst.setLong(1, postno);
 			}
 			rs = pst.executeQuery();
 			while (rs.next()) {
 				list.add(new CommentVO(rs.getString(4), rs.getLong(1), rs.getString(5), rs.getString(2),
-						rs.getString(3)));
+						rs.getString(3),rs.getLong(6)));
 			}
 		} finally {
 			closeAll(rs, pst, con);
@@ -220,18 +222,18 @@ public class ProductPostDAO {
 		}
 	}
 
-	public void deleteComment(String id, long no, String date) throws SQLException {
+	public void deleteComment(String id, long no, String comment) throws SQLException {
 		PreparedStatement pst = null;
 		Connection con = null;
 		try {
+			System.out.println(id + no + comment);
 			con = getConnection();
-			String sql = "delete from NONGSHIM_PRODUCTPOSTCOMMENTS where id=? and post_no=? and comments_date=?";
+			String sql = "delete from NONGSHIM_PRODUCTPOSTCOMMENTS where id=? and post_no=? AND content = ?";
 			pst = con.prepareStatement(sql);
 			pst.setString(1, id);
 			pst.setLong(2, no);
-			pst.setString(3, date);
+			pst.setString(3, comment);
 			pst.executeUpdate();
-
 		} finally {
 			closeAll(pst, con);
 		}

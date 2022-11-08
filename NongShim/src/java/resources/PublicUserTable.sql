@@ -140,12 +140,14 @@ post_No number not null,
 comments_date date not null,
 content clob not null,
 category varchar2(100) not null,
+comment_No NUMBER NOT NULL,
 constraint comments_id_fk foreign key(id) references NongShim_Member(id) ON DELETE CASCADE, 
 constraint comments_post_no_fk foreign key(post_no) references NongShim_product_Post(post_no) ON DELETE CASCADE,
 constraint comments_pk primary key(id, post_no,comments_date)
 )
-
+CREATE SEQUENCE product_comment_seq;
 SELECT * FROM NongShim_productPostComments
+SELECT * FROM NongShim_productPostComments WHERE comments_date = To_DATE('2022-11-07 13:43:31.0','YYYY-MM-DD HH24:MI:'); 
 ----------------------------------------------------------------------------------------------------------
 ----------------------------------5.공지게시판 생성----------------------------------------------------------
 create table NongShim_Announce_Post(
@@ -158,6 +160,7 @@ nickname varchar2(100) DEFAULT '운영자' not null,
 register_Date date not null,
 CONSTRAINT fk_anounce_post FOREIGN KEY(id) REFERENCES NongShim_Member(id) ON DELETE CASCADE
 );
+
 CREATE SEQUENCE announce_seq;
 DROP TABLE NongShim_Announce_Post
 SELECT * FROM NongShim_Announce_Post
@@ -181,7 +184,6 @@ CONSTRAINT fk_free_post FOREIGN KEY(id) REFERENCES NongShim_Member(id) ON DELETE
 
 CREATE SEQUENCE free_seq;
 ALTER TABLE NongShim_Free_Post_Comments DROP CONSTRAINT fk_free_post FOREIGN KEY(id) REFERENCES NongShim_Member(id) ON DELETE CASCADE
-
 
 
 --------------------------------------------------------------------------------------------------------
