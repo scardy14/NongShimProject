@@ -15,9 +15,11 @@
 <body>
 <div class="container pt-3">
 <div align="left">
-<h3> 오늘의 당첨금</h3>
+<img alt="images/NsLotto.png" src="images/NsLotto.png" style="width:400px;">
+<br><br>
+<h3>★오늘의 당첨금★</h3>
 </div>
-	<table>
+	<table class="table table-bordered">
 		<thead>
 			<tr>
 				<td>등수</td><td>당첨 금액</td>
@@ -54,6 +56,12 @@
     		
             //랜덤값 생성 (1~100)
             //const ranNum = Math.floor((Math.random() * 99) +1)
+            
+            if(${sessionScope.mvo.point<50}){
+            	alert("포인트가 부족합니다.")
+            	location.href="MyPageTodayLottoMoneyController.do";
+            }
+            else{
             const ranNum = Math.floor((Math.random() * 15) +1)
             let res=''
     	      		  let num1=${requestScope.num1};
@@ -101,6 +109,7 @@
     	}
            alert(result+res);
            	location.href="MyPageInsertLottoMoneyController.do?result="+res;
+            }//else
         }
     </script>
 </div> <!-- container pt -->
