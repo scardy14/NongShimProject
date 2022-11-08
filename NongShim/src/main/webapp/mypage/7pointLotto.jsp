@@ -41,44 +41,66 @@
 	</table>
 
 <div>
-	<form action="MyPageInsertLottoMoneyController.do">
-		<button>
+	<form>
+		<button onclick="getPrize()" type="button">
 			경품 추첨
 		</button>
-		<input type="hidden" id="result" name="result" value=""/>
+		<!-- <input type="hidden" id="result" name="result" value=""/> -->
 	</form>
 </div>
 
     <script>
     	function  getPrize() {
+    		
             //랜덤값 생성 (1~100)
-            const ranNum = Math.floor((Math.random() * 99) +1)
-            
-            let num1=${requestScope.num1};
-            let num2=${requestScope.num2};
-            let num3=${requestScope.num3};
-            let num4=${requestScope.num4};
-            let num5=${requestScope.num5};
-
+            //const ranNum = Math.floor((Math.random() * 99) +1)
+            const ranNum = Math.floor((Math.random() * 15) +1)
+            let res=''
+    	      		  let num1=${requestScope.num1};
+     		          let num2=${requestScope.num2};
+            		  let num3=${requestScope.num3};
+              		  let num4=${requestScope.num4};
+            		  let num5=${requestScope.num5};
+           let result=''
             //경품 생성
-            let gift = [num1, num2, num3, num4, num5,'꽝!']
-            //확률 생성
-            const pbt = [50,0,0,0,0,50]
+            	//let gift = [num1, num2, num3, num4, num5,'꽝!']
+            	/*    //확률 생성
+            	const pbt = [5,7,9,11,13,55]
             //리턴 경품 값
-            let res = ''
-
+            	var res = ''
+	
             for (let i = 0; i < gift.length; i++) {
-
                 if(pbt[i] >= ranNum){
-                    res = gift[i]
-                    return res
+                    res = gift[i];
+                    //return res
                 }
                 else if (pbt[pbt.length - 1] < ranNum) {
-                    res = gift[gift.length - 1]
-                    return res
+                    res = gift[gift.length - 1];
+                    //return res
                 }
             }
-            document.getElementById("result").value=res
+    */
+    	if(ranNum==1) {
+    		result='1등 당첨!'
+    		res=num1
+    	} else if(ranNum==2){
+    		result='2등 당첨!'
+    		res=num2
+    	} else if(ranNum==3){
+    		result='3등 당첨!'
+    		res=num3
+    	} else if(ranNum==4){
+    		result='4등 당첨!'
+    		res=num4
+    	} else if(ranNum==5){
+    		result='5등 당첨!'
+    		res=num5
+    	} else {
+    		result='이런! 안타깝네요~ '
+    		res='꽝!'
+    	}
+           alert(result+res);
+           	location.href="MyPageInsertLottoMoneyController.do?result="+res;
         }
     </script>
 </div> <!-- container pt -->
