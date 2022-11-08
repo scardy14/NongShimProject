@@ -42,29 +42,15 @@
 
 <div>
 	<form action="MyPageInsertLottoMoneyController.do">
-		<input type="button" value="경품 추첨" id="id_btn">
-		<span id="id_out">결과</span>
+		<button>
+			경품 추첨
+		</button>
 		<input type="hidden" id="result" name="result" value=""/>
 	</form>
 </div>
 
     <script>
-   //<span id="id_out">결과</span>
-	    	document.addEventListener('DOMContentLoaded', () => {
-            const btnTag = document.querySelector('#id_btn')
-            const outTag = document.querySelector('#id_out')
-
-            btnTag.addEventListener('click', (event) => {
-               const result = getPrize()
-               outTag.textContent =result
-               btnTag.disabled = true;
-            })
-        })
-	
-
-        
-        const  = function() getPrize {
-        
+    	function  getPrize() {
             //랜덤값 생성 (1~100)
             const ranNum = Math.floor((Math.random() * 99) +1)
             
@@ -92,7 +78,7 @@
                     return res
                 }
             }
-            document.getElementById('result').value=res;
+            document.getElementById("result").value=res
         }
     </script>
 </div> <!-- container pt -->
