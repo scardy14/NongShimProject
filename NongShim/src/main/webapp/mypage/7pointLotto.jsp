@@ -51,7 +51,16 @@
 		</button>
 	</form>
 </div>
-</div>
+<h4> 오늘의 당첨금</h4>
+	<table>
+		<tr>
+			<th>등수</th><th>당첨금</th>
+		</tr>
+		<tr>
+			<td>1</td><td></td>
+		</tr>
+	</table>
+</div> <!-- container pt -->
 </div>
 </body>
 </html>
