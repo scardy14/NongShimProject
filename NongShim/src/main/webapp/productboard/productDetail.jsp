@@ -15,19 +15,6 @@
 
 <h3>${vo.title}</h3>
 
-<div style="text-align: right;">
-	<form>
-
-		<input type="hidden" id="postno12" value="${vo.postNo}"> <input
-			type="hidden" id="id12" value="${sessionScope.mvo.id}">
-		
-		<button type="button" onclick="urlClip()">공유하기★</button>
-		
-		<button type="button" onclick="startAjax12()">좋아요♥</button>
-		<span id="likeCount">${requestScope.cocount}</span>
-
-	</form>
-</div>
 
 <script>
 function startAjax12() {
@@ -107,26 +94,31 @@ function startAjax12() {
 	</tr>
 </table>
 
-${vo.content}
-
+${vo.content}<br>
+<br>
+<input type="hidden" id="postno12" value="${vo.postNo}">
+<input type="hidden" id="id12" value="${sessionScope.mvo.id}">
+<img src = "images/share.png" onclick="urlClip()" style="width: 40px; height: 40px;"> &nbsp;
+<img src="images/like.png" style="width: 50px; height: 50px; background-color: background;" onclick="startAjax12()">
+<span id="likeCount">${requestScope.cocount}</span>
 <br>
 <br>
 <c:choose>
 	<c:when test="${sessionScope.mvo !=null}">
 		<button
 			style="background-color: #00ba00 ;color: white; border-radius: 10px; width: 500px; height: 50px; border: none;"
-			onclick="buyproduct(true)">>>구매하기<<</button>
+			onclick="buyproduct(true)">구매하기</button>
 		<br>
 	</c:when>
 	<c:otherwise>
 		<button
 			style="background-color: #00ba00; border-radius: 10px; width: 500px; height: 50px; border: none;"
-			onclick="buyproduct(false)">>>구매하기<<<</button>
+			onclick="buyproduct(false)">구매하기</button>
 		<br>
 	</c:otherwise>
 </c:choose>
 <br>
-
+<div style="text-align: right;">
 <c:choose>
 	<c:when test="${sessionScope.mvo.id==vo.id}">
 		<td>
@@ -149,7 +141,7 @@ ${vo.content}
 			style="background-color: #00ba00; color: white; border: none; width: 60px; height: 30px;">목록</button>
 	</c:otherwise>
 </c:choose>
-
+</div>
 <hr>
 
 

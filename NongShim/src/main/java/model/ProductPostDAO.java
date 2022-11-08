@@ -188,7 +188,7 @@ public class ProductPostDAO {
 				pst.setLong(1, postno);
 				pst.setString(2, mode);
 			} else {
-				sql = "select post_No, content,category,id,to_char(comments_date,'YYYY-MM-DD HH24:MI') AS comments_date,comment_No from NongShim_productPostComments where post_no=? ORDER BY comments_No DESC";
+				sql = "select post_No, content,category,id,to_char(comments_date,'YYYY-MM-DD HH24:MI') AS comments_date,comment_No from NongShim_productPostComments where post_no=? ORDER BY comment_No DESC";
 				pst = con.prepareStatement(sql);
 				pst.setLong(1, postno);
 			}
