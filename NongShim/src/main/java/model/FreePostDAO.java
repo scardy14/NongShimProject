@@ -37,7 +37,12 @@ public class FreePostDAO {
 		return dataSource.getConnection();
 	}
 
+	public int findTotalPost() {
+		return 0;
+	}
+
 	public int findTatalPost() {
+
 		return 0;
 
 	}
@@ -78,6 +83,7 @@ public class FreePostDAO {
 			pstmt.setInt(1, pagination.getStartRowNumber());
 			pstmt.setInt(2, pagination.getEndRowNumber());
 			rs = pstmt.executeQuery();
+			
 			while (rs.next()) {
 				list.add(new FreePostVO(rs.getLong(1), rs.getString(2), rs.getLong(3), rs.getString(4),
 						rs.getString(5)));

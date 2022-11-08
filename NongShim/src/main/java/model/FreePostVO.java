@@ -7,7 +7,7 @@ public class FreePostVO {
 	private String content;
 	private	Long hits;
 	private String nickname;
-	private String regitster_Date;
+	private String register_Date;
 	
 	public FreePostVO() {
 		super();
@@ -23,7 +23,7 @@ public class FreePostVO {
 		this.content = content;
 		this.hits = hits;
 		this.nickname = nickname;
-		this.regitster_Date = regitster_Date;
+		this.register_Date = regitster_Date;
 	}
 	//게시글 리스트
 	public FreePostVO(Long post_No, String title, Long hits, String nickname, String regitster_Date) {
@@ -32,15 +32,14 @@ public class FreePostVO {
 		this.title = title;
 		this.hits = hits;
 		this.nickname = nickname;
-		this.regitster_Date = regitster_Date;
+		this.register_Date = regitster_Date;
 	}
 	// 게시글 작성
-	public FreePostVO(String id, String title, String content, String nickname) {
+	public FreePostVO(String id, String title, String content) {
 		super();
 		this.id = id;
 		this.title = title;
 		this.content = content;
-		this.nickname = nickname;
 	}
 	// 게시글 데이터 이동
 	public FreePostVO(Long post_No, String title, String content) {
@@ -49,6 +48,7 @@ public class FreePostVO {
 		this.title = title;
 		this.content = content;
 	}
+	
 	public Long getPost_No() {
 		return post_No;
 	}
@@ -85,16 +85,15 @@ public class FreePostVO {
 	public void setNickname(String nickname) {
 		this.nickname = nickname;
 	}
-	public String getRegitster_Date() {
-		return regitster_Date;
+	public String getRegister_Date() {
+		return register_Date;
 	}
-	public void setRegitster_Date(String regitster_Date) {
-		this.regitster_Date = regitster_Date;
-
+	public void setRegister_Date(String register_Date) {
+		this.register_Date = register_Date;
 	}
 	@Override
 	public String toString() {
 		return "FreePostVO [post_No=" + post_No + ", id=" + id + ", title=" + title + ", content=" + content + ", hits="
-				+ hits + ", nickname=" + nickname + ", regitster_Date=" + regitster_Date + "]";
+				+ hits + ", nickname=" + nickname + ", register_Date=" + register_Date + "]";
 	}
 }

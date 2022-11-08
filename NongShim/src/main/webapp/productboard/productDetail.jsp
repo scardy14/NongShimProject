@@ -213,15 +213,15 @@ ${vo.content}
 		</tr>
 	</thead>
 	<tbody>
-		<c:forEach items="${commentlist}" var="commentlist" varStatus="no">
+		<c:forEach items="${commentlist}" var="commentlist" varStatus="commentno">
 			<tr>
-				<td>${commentlist.postno }</td>
-				<td><span id = "commentcontent${no.current}">${commentlist.content}</span></td>
+				<td>${commentno.count}</td>
+				<td><span id = "commentcontent${commentno.count}">${commentlist.content}</span></td>
 				<td>${commentlist.category}</td>
-				<td><span id = "commentid${no.current}">${commentlist.id}</span></td>
+				<td><span id = "commentid${commentno.count}">${commentlist.id}</span></td>
 				<c:choose>
 					<c:when test="${commentlist.id==sessionScope.mvo.id }">
-						<td>${commentlist.writtenDate}</td><td><button style="border: none; background-color: #00ba00;" onclick="updatecomment(${no.current})"><span style="color: white;">수정</span></button></td><td><button style="border: none; background-color: #00ba00;" onclick="deletecomment('${no.current}');"><span style="color: white;">삭제</span></button></td>
+						<td>${commentlist.writtenDate}</td><td><button style="border: none; background-color: #00ba00;" onclick="updatecomment(${commentno.count})"><span style="color: white;">수정</span></button></td><td><button style="border: none; background-color: #00ba00;" onclick="deletecomment('${commentno.count}');"><span style="color: white;">삭제</span></button></td>
 					</c:when>
 					<c:otherwise>
 						<td>${commentlist.writtenDate}</td>
@@ -302,22 +302,18 @@ ${vo.content}
 		} */
 		location.href = "ProductDetailController.do?postno="+postno+"&checkbox="+mode;
 	}
-<<<<<<< HEAD
-	
-=======
 	function updatecomment(commentno) {
 		alert(commentno);
-		let id = document.getElementById("commmentid"+commentno).innerHTML;
-		let comment = document.getElementById("commmentcontent"+commentno).innerHTML;
-		alert("1");
+		let id = document.getElementById("commentid"+commentno).innerHTML;
+		let comment = document.getElementById("commentcontent"+commentno).innerHTML;
+
 	}
 	function deletecomment(commentno) {
 		alert(commentno);
-		let id = document.getElementById("commmentid"+commentno).innerHTML;
-		let comment = document.getElementById("commmentcontent"+commentno).innerHTML;
-		alert("1");
+		let id = document.getElementById("commentid"+commentno).innerHTML;
+		let comment = document.getElementById("commentcontent"+commentno).innerHTML;
+
 	}
->>>>>>> refs/heads/main
 </script>
 
 

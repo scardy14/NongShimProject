@@ -42,7 +42,6 @@ public class ProductPostDAO {
 	}
 
 	public ProductPostVO postDetailFind(long no) throws SQLException {
-
 		// 제목부분을 클릭한다고 가정
 		// 누르면 조회수도 하나 올려주고.
 		// updateHits도 만들어야할듯
@@ -70,10 +69,8 @@ public class ProductPostDAO {
 				String duration = rs.getString(10);
 				long mincustomer = rs.getLong(11);
 				long maxcustomer = rs.getLong(12);
-
 				pp = new ProductPostVO(no, title, content, hits, nick, comments, regdate, category, pname, ppoint,
 						duration, mincustomer, maxcustomer);
-
 			}
 		} finally {
 			closeAll(rs, pst, con);
@@ -110,9 +107,6 @@ public class ProductPostDAO {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		try {
-
-		
-
 			con=dataSource.getConnection();
 			String sql="update NongShim_product_Post set title=?,content=?,category=?,product_Point=?, duration=?, min_Customer=?,max_Customer=? where post_No=?";
 			pstmt=con.prepareStatement(sql);
@@ -125,7 +119,6 @@ public class ProductPostDAO {
 			pstmt.setLong(7,productpostVO.getMaxCustomer());
 			pstmt.setLong(8,productpostVO.getPostNo());
 			pstmt.executeUpdate();
-
 		} finally {
 			closeAll(pstmt, con);
 		}
@@ -146,7 +139,6 @@ public class ProductPostDAO {
 	}
 
 	public void addCommentInMoon(String id, long postno, String comment) throws SQLException {
-
 		PreparedStatement pst = null;
 		Connection con = null;
 		try {
@@ -157,15 +149,12 @@ public class ProductPostDAO {
 			pst.setLong(2, postno);
 			pst.setString(3, comment);
 			pst.executeUpdate();
-
 		} finally {
 			closeAll(pst, con);
 		}
-
 	}
 
 	public void addCommentInHoo(String id, long postno, String comment) throws SQLException {
-
 		PreparedStatement pst = null;
 		Connection con = null;
 		try {
@@ -176,21 +165,14 @@ public class ProductPostDAO {
 			pst.setLong(2, postno);
 			pst.setString(3, comment);
 			pst.executeUpdate();
-
 		} finally {
 			closeAll(pst, con);
 		}
-
 	}
 
 
 	
-
-
-	
 	public ArrayList<CommentVO> showAllCommentByPostNo(long postno, String mode) throws SQLException {
-		
-
 		ArrayList<CommentVO> list = new ArrayList<>();
 		ResultSet rs = null;
 		PreparedStatement pst = null;
@@ -199,12 +181,12 @@ public class ProductPostDAO {
 			con = getConnection();
 			String sql = null;
 			if(!mode.equals("all")) {
-				sql= "select row_number() over(order by comments_date) as rnum,content,category,id,to_char(comments_date,'YYYY-MM-DD HH24:MI') AS comments_date from NongShim_productPostComments where post_no=? AND category = ?";
+				sql= "select post_No, content,category,id,to_char(comments_date,'YYYY-MM-DD HH24:MI') AS comments_date from NongShim_productPostComments where post_no=? AND category = ? ORDER BY comments_date DESC";
 				pst = con.prepareStatement(sql);
 				pst.setLong(1, postno);
 				pst.setString(2, mode);
 			} else {
-				sql = "select row_number() over(order by comments_date) as rnum,content,category,id,to_char(comments_date,'YYYY-MM-DD HH24:MI') AS comments_date from NongShim_productPostComments where post_no=?";
+				sql = "select post_No, content,category,id,to_char(comments_date,'YYYY-MM-DD HH24:MI') AS comments_date from NongShim_productPostComments where post_no=? ORDER BY comments_date DESC";
 				pst = con.prepareStatement(sql);
 				pst.setLong(1, postno);
 			}
@@ -217,10 +199,6 @@ public class ProductPostDAO {
 			closeAll(rs, pst, con);
 		}
 		return list;
-
-
-
-
 	}
 
 	public void updateComment(String content, String id, long no, String date) throws SQLException {
@@ -242,7 +220,6 @@ public class ProductPostDAO {
 	}
 
 	public void deleteComment(String id, long no, String date) throws SQLException {
-
 		PreparedStatement pst = null;
 		Connection con = null;
 		try {
@@ -506,17 +483,13 @@ public class ProductPostDAO {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setLong(1, postno);
 			rs = pstmt.executeQuery();
-
 			if (rs.next()) {
-
 				totalLikes = rs.getLong(1);
 			}
-
 		} finally {
 			closeAll(rs,pstmt, con);
 		}
 		return totalLikes;
-
 	}
 
 	public void likeCancel(long postno, String id) throws SQLException {
@@ -549,17 +522,10 @@ public class ProductPostDAO {
 			pstmt.setString(2, id);
 			rs=pstmt.executeQuery();
 			if(rs.next()) {
-				
 				check=true;
-				
-				
-				
-				
 			}else {
 				check=false;
 			}
-			
-			
 		} finally {
 			closeAll(rs,pstmt, con);
 		}
