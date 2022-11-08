@@ -178,6 +178,7 @@ hits number default 0 not null,
 register_Date date not null,
 CONSTRAINT fk_free_post FOREIGN KEY(id) REFERENCES NongShim_Member(id) ON DELETE CASCADE
 );
+
 CREATE SEQUENCE free_seq;
 ALTER TABLE NongShim_Free_Post_Comments DROP CONSTRAINT fk_free_post FOREIGN KEY(id) REFERENCES NongShim_Member(id) ON DELETE CASCADE
 
