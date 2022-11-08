@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<div style="background-color: #00ac00; height: 27px;" align="right" >
+<div style="background-color: #00ba00; height: 27px;" align="right" >
 	
 <c:choose>
 <c:when test="${sessionScope.mvo==null}">

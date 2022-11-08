@@ -26,14 +26,14 @@
 
 <table class="table table-bordered table-hover boardlist">
 	<thead>
-		<tr style="background-color: #d0fd7d">
-			<th>번호</th>
-			<th>카테고리</th>
-			<th>상태</th>
-			<th style="width: 45%">제목</th>
-			<th>작성자</th>
-			<th>작성일</th>
-			<th>조회수</th>
+		<tr style="background-color: #00ba00">
+			<th style="color: white;">번호</th>
+			<th style="color: white;">카테고리</th>
+			<th style="color: white;">상태</th>
+			<th style="color: white;" style="width: 45%">제목</th>
+			<th style="color: white;">작성자</th>
+			<th style="color: white;">작성일</th>
+			<th style="color: white;">조회수</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -51,7 +51,7 @@
 	</tbody>
 </table>
 <div style="text-align: right;">
-	<button onclick="location.href='WritePostFormController.do'" style="background-color: #00ac00; color: white; width: 8%; height: 30px;">글쓰기</button><br><br>
+	<button onclick="location.href='WritePostFormController.do'" style="background-color: #00ba00; color: white; width: 8%; height: 30px; border: none; border-radius: 5px;"><span style="color: white;">글쓰기</span></button><br><br>
 </div>
 <!--
       pagination 
