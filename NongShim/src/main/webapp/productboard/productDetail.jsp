@@ -195,7 +195,14 @@ ${vo.content}
 				<td>${commentlist.content}</td>
 				<td>${commentlist.category}</td>
 				<td>${commentlist.id}</td>
-				<td>${commentlist.writtenDate}</td>
+				<c:choose>
+					<c:when test="${commentlist.id==sessionScope.mvo.id }">
+						<td>${commentlist.writtenDate}<button>수정하기</button><button>삭제하기</button></td>
+					</c:when>
+					<c:otherwise>
+						<td>${commentlist.writtenDate}</td>
+					</c:otherwise>
+				</c:choose>				
 			</tr>
 		</c:forEach>
 	</tbody>
