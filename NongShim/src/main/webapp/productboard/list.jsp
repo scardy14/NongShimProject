@@ -30,7 +30,7 @@
 			<th style="color: white;">번호</th>
 			<th style="color: white;">카테고리</th>
 			<th style="color: white;">상태</th>
-			<th style="color: white;" style="width: 45%">제목</th>
+			<th style="color: white; width: 40%;">제목</th>
 			<th style="color: white;">작성자</th>
 			<th style="color: white;">작성일</th>
 			<th style="color: white;">조회수</th>

@@ -53,6 +53,6 @@
 </ul>
 <script> 
 	function writefree() {
-		location.href="WriteFreePostFormController.do";
+		location.href="WriteFreePostFormController.do?pageNo="+element";
 	}
 </script>

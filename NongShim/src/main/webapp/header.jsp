@@ -13,6 +13,7 @@
 <span style="color: white;">이름:${sessionScope.mvo.name}</span>&nbsp;&nbsp;
 <span style="color: white;">아이디:${sessionScope.mvo.id}</span>&nbsp;&nbsp;
 <span style="color: white;">닉네임:${sessionScope.mvo.nickName}</span>&nbsp;&nbsp;
+<span style="color: white;">포인트:${sessionScope.mvo.point}</span>&nbsp;&nbsp;
 <a href="LogoutController.do"><span style="color: white;">로그아웃</span></a>&nbsp;&nbsp;
 <a href=""><span style="color: white;">고객센터</span></a>&nbsp;&nbsp;
 </c:otherwise>
@@ -40,7 +41,24 @@
 		<td rowspan="2"><img src="images/ShoppingCart.PNG" style="width: 60px; height: 80px;"></td>
 	</tr>
 	<tr>
-		<td><a href="FindAnnouncePostListController.do">공지사항</a></td><td><a href="FindPostListByValueController.do">공구게시판</a></td><td><a href="FindFreePostListController.do">자유게시판</a></td><td><a href="">포인트복권</a></td>
+		<td><a href="FindAnnouncePostListController.do">공지사항</a></td><td><a href="FindPostListByValueController.do">공구게시판</a></td><td><a href="FindFreePostListController.do">자유게시판</a></td>
+		<c:choose>
+		<c:when test="${sessionScope.mvo==null}">
+			<td>
+			<a href="#" onclick="return acceptLotto()">포인트복권</a>
+			</td>
+			<script>
+				function acceptLotto() {
+					alert("로그인 시에만 입장 가능 합니다.")
+				}
+			</script>
+		</c:when>
+		<c:otherwise>
+		<td>
+			<a href="MyPageTodayLottoMoneyController.do">포인트복권</a>
+		</td>
+		</c:otherwise>
+		</c:choose>
 	</tr>
 </table>
 <br>

@@ -15,7 +15,7 @@ import model.MyPageDAO;
 public class TestCaseInsertNSpoint {
 	public static void main(String[] args) {
 		long point=123456;
-		String id="java";
+		String id="jdk";
 		int result=0;
 		try {
 			result=MyPageDAO.getInstance().insertNsPoint(id,point);

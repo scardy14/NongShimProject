@@ -5,6 +5,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Random;
+import java.util.TreeSet;
 
 import javax.sql.DataSource;
 
@@ -570,6 +573,31 @@ public class MyPageDAO {
 			closeAll(pstmt, con);
 		}
 		return result;
+	}
+	
+	/**
+	 *  randomPointNumber() : 로또복권에 쓸 메서드
+	 *  5등부터 1등까지 저장 - > controller에서 각자 불러와서 "5" "4" "3" "2" "1"로 불러오기?
+	 * @return
+	 */
+
+	public TreeSet<Integer> randomPointNumber() {
+		TreeSet<Integer> set=new TreeSet<>();
+		Random random=new Random();
+		boolean flag=true;
+		int num=0;
+		while(flag) {
+		for(int i=0;i<5;i++) {
+			num=random.nextInt(1000);
+			set.add(num);
+			//System.out.println("출력");
+			//System.out.println(num);
+			if(set.size()==5) {
+				flag=false;
+			}
+			}
+		}
+		return set;
 	}
 	
 	

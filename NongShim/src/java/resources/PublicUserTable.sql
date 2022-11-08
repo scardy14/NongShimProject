@@ -147,7 +147,7 @@ constraint comments_pk primary key(id, post_no,comments_date)
 )
 CREATE SEQUENCE product_comment_seq;
 SELECT * FROM NongShim_productPostComments
-SELECT * FROM NongShim_productPostComments WHERE comments_date = To_DATE('2022-11-07 13:43:31.0','YYYY-MM-DD HH24:MI:'); 
+SELECT * FROM NongShim_productPostComments WHERE comments_date = To_DATE('2022-11-07 13:43:31.0','YYYY-MM-DD HH24:MI:');
 ----------------------------------------------------------------------------------------------------------
 ----------------------------------5.공지게시판 생성----------------------------------------------------------
 create table NongShim_Announce_Post(
@@ -190,7 +190,7 @@ UPDATE NongShim_free_Post set title='곱창에 싸먹을 쌈야채좀', content=
 --------------------------------------------------------------------------------------------------------
 ------------------------------------7.자유게시판 댓글 생성----------------------------------------------------------
 drop table NongShim_Free_Post_Comments
-
+drop SEQUENCE cm_seq; 
 
 create table NongShim_Free_Post_Comments(
 id varchar2(100) not null,
@@ -198,10 +198,16 @@ nickName varchar2(100) not null,
 post_No number not null,
 comments_date date not null,
 content clob not null,
+comment_no number not null,
 constraint comments_id_fk1 foreign key(id) references NongShim_Member(id) ON DELETE CASCADE, 
 constraint comments_post_no_fk1 foreign key(post_no) references NongShim_Free_Post(post_no) ON DELETE CASCADE,
 constraint comments_pk1 primary key(id, post_no,comments_date)
 )
 
 SELECT * FROM NongShim_Free_Post_Comments;
+CREATE SEQUENCE cm_seq;
 
+
+
+insert into NongShim_Free_Post_Comments values ('spring','임시닉네임',14,sysdate,'네애애',cm_seq.nextval)
+delete from NongShim_Free_Post_Comments where comment_no=2;
