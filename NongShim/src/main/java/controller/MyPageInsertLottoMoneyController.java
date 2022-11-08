@@ -16,7 +16,7 @@ public class MyPageInsertLottoMoneyController implements Controller {
 		String id=memberVO.getId();
 		String result=request.getParameter("result");
 		System.out.println("******************");
-		System.out.println(result);
+		System.out.println("result: "+result);
 		if(result.contains("꽝!")) {
 			return "MyPageTodayLottoMoneyController.do";
 		}else {
