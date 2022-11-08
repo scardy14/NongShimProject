@@ -11,7 +11,7 @@ public class UpdateFreePostFormControllerMove implements Controller {
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		FreePostDAO freepostDAO = FreePostDAO.getInstance();
-		long post_No=Long.parseLong(request.getParameter("post_No"));
+		Long post_No=Long.parseLong(request.getParameter("post_No"));
 		FreePostVO freepostVO = freepostDAO.findPostDetail(post_No);
 		request.setAttribute("freepostvo", freepostVO);
 		request.setAttribute("url","freeboard/update-form.jsp");

@@ -185,7 +185,8 @@ CONSTRAINT fk_free_post FOREIGN KEY(id) REFERENCES NongShim_Member(id) ON DELETE
 CREATE SEQUENCE free_seq;
 ALTER TABLE NongShim_Free_Post_Comments DROP CONSTRAINT fk_free_post FOREIGN KEY(id) REFERENCES NongShim_Member(id) ON DELETE CASCADE
 
-
+SELECT * FROM NongShim_Free_post
+UPDATE NongShim_free_Post set title='곱창에 싸먹을 쌈야채좀', content='맨날 부추에만 먹어서 질린데 추천좀' WHERE post_no=14;
 --------------------------------------------------------------------------------------------------------
 ------------------------------------7.자유게시판 댓글 생성----------------------------------------------------------
 drop table NongShim_Free_Post_Comments
