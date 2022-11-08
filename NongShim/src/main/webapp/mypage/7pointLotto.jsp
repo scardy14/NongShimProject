@@ -95,12 +95,6 @@
             document.getElementById('result').value=res;
         }
     </script>
-
-
-
-
-
-
 </div> <!-- container pt -->
 </body>
 </html>
