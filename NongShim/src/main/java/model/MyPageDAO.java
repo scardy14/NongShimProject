@@ -561,7 +561,7 @@ public class MyPageDAO {
 		int result=0;
 		try {
 			con=dataSource.getConnection();
-			String sql="update NongShim_Member set point=? where id=?";
+			String sql="update NongShim_Member set point=point+? where id=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setLong(1, point);
 			pstmt.setString(2, id);
