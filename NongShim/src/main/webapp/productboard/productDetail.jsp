@@ -3,7 +3,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 
-
+<input type = "hidden" id = "post_No" value = ${vo.postNo }>
 <form action="UpdatePostFormController.do" method="post" id="update">
 	<input type="hidden" name="no" value="${vo.postNo}"> <input
 		type="hidden" name="title" value="${vo.title}"> <input
@@ -303,12 +303,13 @@ ${vo.content}
 	}
 	function updatecomment(commentno) {
 		let comment_No = document.getElementById("comment_No"+commentno).value;
-		location.href="DeleteProductPostCommentController.do?id="+id+"&comment="+comment+"&date="+date+"&postNo="+commentpostNo;
+		location.href="DeleteProductPostCommentController.do?comment_No="+comment_No;
 
 	}
 	function deletecomment(commentno) {
 		let comment_No = document.getElementById("comment_No"+commentno).value;
-		location.href="DeleteProductPostCommentController.do?id="+id+"&comment="+comment+"&date="+date+"&postNo="+commentpostNo;
+		let post_No = document.getElementById("post_No").value;
+		location.href="DeleteProductPostCommentController.do?comment_No="+comment_No+"&post_No="+post_No;
 
 	}
 </script>

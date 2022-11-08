@@ -7,7 +7,8 @@ public class UpdateProductPostCommentController implements Controller {
 
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		// TODO Auto-generated method stub
+		String content = request.getParameter("content");
+		Long comment_No = Long.parseLong(request.getParameter("comment_No"));
 		return null;
 	}
 

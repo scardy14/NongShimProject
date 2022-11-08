@@ -1,6 +1,5 @@
 package model;
 
-import java.sql.Clob;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -204,17 +203,15 @@ public class ProductPostDAO {
 		return list;
 	}
 
-	public void updateComment(String content, String id, long no, String date) throws SQLException {
+	public void updateComment(long comment_No, String content) throws SQLException {
 		PreparedStatement pst = null;
 		Connection con = null;
 		try {
 			con = getConnection();
 			String sql = "update NONGSHIM_PRODUCTPOSTCOMMENTS set content = ? where id=? and post_no=? and comments_date=?";
 			pst = con.prepareStatement(sql);
-			pst.setString(1, content);
-			pst.setString(2, id);
-			pst.setLong(3, no);
-			pst.setString(4, date);
+			pst.setLong(1, comment_No);
+			pst.setString(2, content);
 			pst.executeUpdate();
 
 		} finally {
@@ -222,17 +219,14 @@ public class ProductPostDAO {
 		}
 	}
 
-	public void deleteComment(String id, long no, String comment) throws SQLException {
+	public void deleteComment(long comment_No) throws SQLException {
 		PreparedStatement pst = null;
 		Connection con = null;
 		try {
-			System.out.println(id + no + comment);
 			con = getConnection();
-			String sql = "delete from NONGSHIM_PRODUCTPOSTCOMMENTS where id=? and post_no=? AND content = ?";
+			String sql = "delete from NongShim_productPostComments where comment_No = ?";
 			pst = con.prepareStatement(sql);
-			pst.setString(1, id);
-			pst.setLong(2, no);
-			pst.setString(3, comment);
+			pst.setLong(1, comment_No);
 			pst.executeUpdate();
 		} finally {
 			closeAll(pst, con);
