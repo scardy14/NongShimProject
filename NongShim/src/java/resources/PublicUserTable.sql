@@ -163,9 +163,15 @@ DROP TABLE NongShim_Announce_Post
 SELECT * FROM NongShim_Announce_Post
 ----------------------------------------------------------------------------------------------------------
 ----------------------------------6.자유게시판 생성----------------------------------------------------------
+drop table NongShim_Free_Post;
+drop SEQUENCE free_seq;
+
+
+
 create table NongShim_Free_Post(
 post_No number primary key,
 id VARCHAR2(100) NOT NULL,
+nickName varchar2(100) not null,
 title varchar2(100) not null,
 content clob not null,
 hits number default 0 not null,
@@ -175,6 +181,7 @@ CONSTRAINT fk_free_post FOREIGN KEY(id) REFERENCES NongShim_Member(id) ON DELETE
 CREATE SEQUENCE free_seq;
 ALTER TABLE NongShim_Free_Post_Comments DROP CONSTRAINT fk_free_post FOREIGN KEY(id) REFERENCES NongShim_Member(id) ON DELETE CASCADE
 
+<<<<<<< HEAD
 create table NongShim_Free_Post_Comments(
 id varchar2(100) not null,
 nickName VARCHAR2(100) not null,
@@ -185,4 +192,28 @@ constraint comments_id_fk1 foreign key(id) references NongShim_Member(id) ON DEL
 constraint comments_post_no_fk1 foreign key(post_no) references NongShim_Free_Post(post_no) ON DELETE CASCADE,
 constraint comments_pk1 primary key(id, post_no,comments_date)
 )
+=======
+SELECT * FROM NongShim_Free_Post
+
+
+
+>>>>>>> refs/heads/main
 ----------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------
+------------------------------------7.자유게시판 댓글 생성----------------------------------------------------------
+drop table NongShim_Free_Post_Comments
+
+
+create table NongShim_Free_Post_Comments(
+id varchar2(100) not null,
+nickName varchar2(100) not null,
+post_No number not null,
+comments_date date not null,
+content clob not null,
+constraint comments_id_fk1 foreign key(id) references NongShim_Member(id) ON DELETE CASCADE, 
+constraint comments_post_no_fk1 foreign key(post_no) references NongShim_Free_Post(post_no) ON DELETE CASCADE,
+constraint comments_pk1 primary key(id, post_no,comments_date)
+)
+
+SELECT * FROM NongShim_Free_Post_Comments;
+
