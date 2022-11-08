@@ -25,7 +25,7 @@
 </table>
 
 <c:choose>	
-	<c:when test="${sessionScope.mvo.adminiInfo=='운영자'}">
+	<c:when test="${sessionScope.mvo!=null}">
 		<div style="text-align: right;">
 			<button type = "button" onclick="writefree()" style="background-color: #d0fd7d; color: 00ac00; border-radius: 10px; width: 80px; height: 40px; border: none;">글쓰기</button>
 		</div>

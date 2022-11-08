@@ -35,12 +35,11 @@ public class FreePostVO {
 		this.regitster_Date = regitster_Date;
 	}
 	// 게시글 작성
-	public FreePostVO(String id, String title, String content, String nickname) {
+	public FreePostVO(String id, String title, String content) {
 		super();
 		this.id = id;
 		this.title = title;
 		this.content = content;
-		this.nickname = nickname;
 	}
 	// 게시글 데이터 이동
 	public FreePostVO(Long post_No, String title, String content) {

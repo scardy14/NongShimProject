@@ -32,7 +32,7 @@ public class FreePostDAO {
 	public Connection getConnection() throws SQLException {
 		return dataSource.getConnection();
 	}
-	public int findTatalPost() {
+	public int findTotalPost() {
 		return 0;
 	
 	}

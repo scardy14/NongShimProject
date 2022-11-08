@@ -166,13 +166,14 @@ SELECT * FROM NongShim_Announce_Post
 create table NongShim_Free_Post(
 post_No number primary key,
 id VARCHAR2(100) NOT NULL,
+nickName varchar2(100) not null,
 title varchar2(100) not null,
 content clob not null,
 hits number default 0 not null,
-nickname varchar2(100) DEFAULT '운영자' not null,
 register_Date date not null,
-CONSTRAINT fk_free_post FOREIGN KEY(id) REFERENCES NongShim_Member(id)
+CONSTRAINT fk_free_post FOREIGN KEY(id) REFERENCES NongShim_Member(id) ON DELETE CASCADE
 );
+
 CREATE SEQUENCE free_seq;
 
 SELECT * FROM NongShim_Announce_Post
