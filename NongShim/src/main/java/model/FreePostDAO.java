@@ -134,8 +134,8 @@ public class FreePostDAO {
 			sb.append("VALUES (free_seq.nextval,?,?,?,?,DEFAULT,SYSDATE)");
 			pstmt = con.prepareStatement(sb.toString());
 			pstmt.setString(1, freepostVO.getId());
-			pstmt.setString(2, freepostVO.getTitle());
-			pstmt.setString(3, freepostVO.getNickname());
+			pstmt.setString(2, freepostVO.getNickname());
+			pstmt.setString(3, freepostVO.getTitle());
 			pstmt.setString(4, freepostVO.getContent());
 			pstmt.executeUpdate();
 		} finally {

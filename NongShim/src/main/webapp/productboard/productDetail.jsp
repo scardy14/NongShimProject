@@ -26,17 +26,6 @@ function startAjax12() {
       xhr.onreadystatechange=function(){
          
          if(xhr.readyState==4&&xhr.status==200){
-            //alert(xhr.responseText);
-            /*
-            if(xhr.responseText=="pushok"){
-               countSpan.innerHTML="${requestScope.likeTotal}";
-               
-            }else{
-               countSpan.innerHTML="${requestScope.likeTotal}";
-            }
-            
-         
-         */
             countSpan.innerHTML=xhr.responseText;
          }
       }//function
@@ -294,14 +283,6 @@ ${vo.content}<br>
       }
    }
    function commentMode(postno, mode) {
-   /*    let checkboxes = document.getElementsByName("checkbox");
-      let loop = checkboxes.length;
-      let checkbox = null;
-      for(let i = 0; i<loop;i++) {
-         if(checkboxes[i].checked) {
-            checkbox = checkboxes[i].value;
-         }
-      } */
       location.href = "ProductDetailController.do?postno="+postno+"&checkbox="+mode;
    }
    function updatecomment(commentno) {
