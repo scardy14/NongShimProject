@@ -47,7 +47,6 @@
 		</nav>
 	</header>
 	<div class="container pt-4">
-					<br><br>
 					<h3>
 						내 찜 목록
 					</h3>
