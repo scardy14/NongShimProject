@@ -44,12 +44,6 @@ public class ProductDetailController implements Controller {
 		}
 		
 		
-		
-		
-		
-		
-		
-		
 		System.out.println(commentMode);
 		request.setAttribute("commentlist", commentlist);
 		request.setAttribute("vo",vo);

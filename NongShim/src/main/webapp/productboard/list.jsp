@@ -60,7 +60,7 @@
 	<c:when test="${mode =='value' }">
 		<ul class="pagination justify-content-center" style="margin:20px 0">	
 			<c:if test="${pagination.previousPageGroup}">
-				<li class="page-item"><a class="page-link" onclick="sendpageandinfo(${pagination.endPageOfPageGroup-1})">Previous</a></li>
+				<li class="page-item"><a class="page-link" onclick="sendpageandinfo(${pagination.startPageOfPageGroup-1})">Previous</a></li>
 			</c:if>
 			<c:forEach begin="${pagination.startPageOfPageGroup}" end="${pagination.endPageOfPageGroup}" var="page">
 			<c:choose>
@@ -80,7 +80,7 @@
 	<c:otherwise>
 		<ul class="pagination justify-content-center" style="margin:20px 0">	
 			<c:if test="${pagination.previousPageGroup}">
-				<li class="page-item"><a class="page-link" onclick="sendpageandsearch(${pagination.endPageOfPageGroup-1})">Previous</a></li>
+				<li class="page-item"><a class="page-link" onclick="sendpageandsearch(${pagination.startPageOfPageGroup-1})">Previous</a></li>
 			</c:if>
 			<c:forEach begin="${pagination.startPageOfPageGroup}" end="${pagination.endPageOfPageGroup}" var="page">
 			<c:choose>
@@ -115,7 +115,7 @@
 	}
 	function sendpageandinfo(element) {
 		let checkboxes = document.getElementsByName("checkbox");
-		
+		alert(element);
 		let loop = checkboxes.length;
 		let checkbox = null;
 		for(let i = 0; i<loop;i++) {
@@ -126,6 +126,7 @@
 		location.href="FindPostListByValueController.do?pageNo="+element+"&checkbox="+checkbox;
 	}
 	function sendpageandsearch(element) {
+		
 		let inputbox = document.getElementById("inputbox").value;
 		location.href="FindPostListBySearchController.do?pageNo="+element+"&inputbox="+inputbox;		
 	}

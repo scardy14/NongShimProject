@@ -52,7 +52,7 @@ public class ProductPostDAO {
 
 		try {
 			con = getConnection();
-			String sql = "select title,content, hits,nickname,comments,register_date,category,product_name,product_point,to_char(duration, 'YYYY-MM-DD HH24:MI') AS duration,min_customer,max_customer from NongShim_product_Post where post_no=?";
+			String sql = "select title,content, hits,nickname,comments,register_date,category,product_name,product_point,to_char(duration, 'YYYY-MM-DD HH24:MI') AS duration,min_customer,max_customer, id from NongShim_product_Post where post_no=?";
 			pst = con.prepareStatement(sql);
 			pst.setLong(1, no);
 			rs = pst.executeQuery();
@@ -69,8 +69,9 @@ public class ProductPostDAO {
 				String duration = rs.getString(10);
 				long mincustomer = rs.getLong(11);
 				long maxcustomer = rs.getLong(12);
+				String id = rs.getString(13);
 				pp = new ProductPostVO(no, title, content, hits, nick, comments, regdate, category, pname, ppoint,
-						duration, mincustomer, maxcustomer);
+						duration, mincustomer, maxcustomer, id);
 			}
 		} finally {
 			closeAll(rs, pst, con);
