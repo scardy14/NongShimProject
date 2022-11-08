@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import model.ProductPostDAO;
 import model.ProductPostVO;
 
-public class UpdatePostController implements Controller {
+public class UpdateProductPostController implements Controller {
 
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {

@@ -6,14 +6,14 @@ import javax.servlet.http.HttpServletResponse;
 import model.FreePostDAO;
 import model.FreePostVO;
 
-public class UpdateFreePostFormController implements Controller {
+public class UpdateFreePostFormControllerMove implements Controller {
 
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		long no=Long.parseLong(request.getParameter("no"));
-
-		
-		return null;
+		FreePostVO freepostVO = FreePostDAO.getInstance().findPostDetail(no);
+		request.setAttribute("freepostvo", freepostVO);
+		request.setAttribute("url","freeboard/update-form.jsp");
+		return "mainpage.jsp";
 	}
-
 }
