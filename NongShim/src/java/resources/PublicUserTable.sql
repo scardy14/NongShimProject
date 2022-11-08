@@ -171,11 +171,12 @@ drop SEQUENCE free_seq;
 create table NongShim_Free_Post(
 post_No number primary key,
 id VARCHAR2(100) NOT NULL,
+nickName varchar2(100) not null,
 title varchar2(100) not null,
 content clob not null,
 hits number default 0 not null,
 register_Date date not null,
-CONSTRAINT fk_free_post FOREIGN KEY(id) REFERENCES NongShim_Member(id)
+CONSTRAINT fk_free_post FOREIGN KEY(id) REFERENCES NongShim_Member(id) ON DELETE CASCADE
 );
 CREATE SEQUENCE free_seq;
 
@@ -191,6 +192,7 @@ drop table NongShim_Free_Post_Comments
 
 create table NongShim_Free_Post_Comments(
 id varchar2(100) not null,
+nickName varchar2(100) not null,
 post_No number not null,
 comments_date date not null,
 content clob not null,
