@@ -2,28 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<c:choose>
-	<c:when test="${sessionScope.mvo.nickName==vo.nickName}">
-		<td>
-			<div style="text-align: right;">
-				<button onclick="location.href='FindPostListByValueController.do'"
-					style="background-color: #00ac00; color: white; width: 5%; height: 30px;">목록</button>
-				<button onclick="location.href='WritePostFormController.do'"
-					style="background-color: #00ac00; color: white; width: 8%; height: 30px;">글쓰기</button>
-				<button type="button"
-					style="background-color: #00ac00; color: white; width: 5%; height: 30px;"
-					onclick="update()">수정</button>
-				<button type="button"
-					style="background-color: #00ac00; color: white; width: 5%; height: 30px;"
-					onclick="delete1()">삭제</button>
-			</div>
-		</td>
-	</c:when>
-	<c:otherwise>
-		<button onclick="location.href='FindPostListByValueController.do'"
-			style="background-color: #00ac00; color: white; width: 5%; height: 30px;">목록</button>
-	</c:otherwise>
-</c:choose>
+
 
 <form action="UpdatePostFormController.do" method="post" id="update">
 	<input type="hidden" name="no" value="${vo.postNo}"> <input
@@ -41,6 +20,8 @@
 
 		<input type="hidden" id="postno12" value="${vo.postNo}"> <input
 			type="hidden" id="id12" value="${sessionScope.mvo.id}">
+		
+		<button type="button" onclick="urlClip()">공유하기★</button>
 		
 		<button type="button" onclick="startAjax12()">좋아요♥</button>
 		<span id="likeCount">${requestScope.cocount}</span>
@@ -76,33 +57,52 @@ function startAjax12() {
 		xhr.send();
 
 }//startAjax12
+
+	//url 복사하는 function -- 참고: https://qh5944.tistory.com/158
+	function urlClip() {
+		var url=""; //""값이 없는 변수 설정
+		var textarea = document.createElement("textarea");//textarea 변수 할당
+		
+		document.body.appendChild(textarea);//textarea 생성
+		url = window.document.location.href;//현 위치 url 호출해서 url변수에 참조시킴
+		textarea.value = url;//윗줄의 값을 textarea의 value에 참조시킴
+		textarea.select();//textarea 설정
+		document.execCommand("copy");//클릭하면 복사
+		document.body.removeChild(textarea);//textarea 삭제
+		
+		alert("url이 복사되었습니다.")
+		
+	}//urlClip()
+
+
+
 </script>
 
 <br>
 <table class="table table-bordered">
 	<tr>
-		<td style="width: 15%; background-color: #d0fd7d;">작성자</td>
+		<td style="width: 15%; background-color: #00ba00; color: white;">작성자</td>
 		<td>${vo.nickName}</td>
-		<td style="background-color: #d0fd7d;">판매가격</td>
+		<td style="background-color: #00ba00; color: white;">판매가격</td>
 		<td>${vo.productPoint}</td>
 	</tr>
 
 	<tr>
-		<td style="background-color: #d0fd7d;">등록일</td>
+		<td style="background-color: #00ba00; color: white;">등록일</td>
 		<td>${vo.date}</td>
-		<td style="background-color: #d0fd7d;">판매기간</td>
+		<td style="background-color: #00ba00; color: white;">판매기간</td>
 		<td>${vo.duration}</td>
 	</tr>
 	<tr>
-		<td style="background-color: #d0fd7d;">카테고리</td>
+		<td style="background-color: #00ba00; color: white;">카테고리</td>
 		<td>${vo.category}</td>
-		<td style="background-color: #d0fd7d;">조회수</td>
+		<td style="background-color: #00ba00; color: white;">조회수</td>
 		<td>${vo.hits}</td>
 	</tr>
 	<tr>
-		<td style="background-color: #d0fd7d;">최소공구인원</td>
+		<td style="background-color: #00ba00; color: white;">최소공구인원</td>
 		<td>${vo.minCustomer}</td>
-		<td style="background-color: #d0fd7d;">주문가능인원</td>
+		<td style="background-color: #00ba00; color: white;">주문가능인원</td>
 		<td>${vo.maxCustomer}</td>
 	</tr>
 </table>
@@ -114,19 +114,42 @@ ${vo.content}
 <c:choose>
 	<c:when test="${sessionScope.mvo !=null}">
 		<button
-			style="background-color: #d0fd7d; border-radius: 10px; width: 500px; height: 50px; border: none;"
+			style="background-color: #00ba00 ;color: white; border-radius: 10px; width: 500px; height: 50px; border: none;"
 			onclick="buyproduct(true)">구매하기</button>
 		<br>
 	</c:when>
 	<c:otherwise>
 		<button
-			style="background-color: #d0fd7d; border-radius: 10px; width: 500px; height: 50px; border: none;"
+			style="background-color: #00ba00; border-radius: 10px; width: 500px; height: 50px; border: none;"
 			onclick="buyproduct(false)">구매하기</button>
 		<br>
 	</c:otherwise>
 </c:choose>
-
 <br>
+
+<c:choose>
+	<c:when test="${sessionScope.mvo.id==vo.id}">
+		<td>
+			<div style="text-align: right;">
+				<button onclick="location.href='FindPostListByValueController.do'"
+					style="background-color: #00ba00; color: white; border: none; width: 60px; height: 30px; ">목록</button>
+				<button onclick="location.href='WritePostFormController.do'"
+					style="background-color: #00ba00; color: white; border: none; width: 60px; height: 30px;">글쓰기</button>
+				<button type="button"
+					style="background-color: #00ba00; color: white; border: none; width: 60px; height: 30px;"
+					onclick="update()">수정</button>
+				<button type="button"
+					style="background-color: #00ba00; color: white; border: none; width: 60px; height: 30px;"
+					onclick="delete1()">삭제</button>
+			</div>
+		</td>
+	</c:when>
+	<c:otherwise>
+		<button onclick="location.href='FindPostListByValueController.do'"
+			style="background-color: #00ba00; color: white; border: none; width: 60px; height: 30px;">목록</button>
+	</c:otherwise>
+</c:choose>
+
 <hr>
 
 
@@ -138,25 +161,37 @@ ${vo.content}
 
 <input type="hidden" value="${postno}" id="postno">
 <button type="button"
-	style="background-color: #d0fd7d; border-radius: 10px; height: 40px; border: none;"
-	onclick="moon()">문의글작성</button>
+	style="background-color: #00ba00; border-radius: 10px; height: 40px; border: none;"
+	onclick="moon()"><span style="color: white;">문의글작성</span></button>
 <button type="button"
-	style="background-color: #d0fd7d; border-radius: 10px; height: 40px; border: none;"
-	onclick="hoo()">후기글작성</button>
+	style="background-color: #00ba00; border-radius: 10px; height: 40px; border: none;"
+	onclick="hoo()"><span style="color: white;">후기글작성</span></button>
 
 <div style="text-align: right;">
 	<c:choose>
 		<c:when test="${commentMode=='hoo' }">
+			<input type="checkbox" name="checkbox" value="all"
+				onclick="commentMode(${vo.postNo },'all')" >전체
 			<input type="checkbox" name="checkbox" value="hoo"
 				onclick="commentMode(${vo.postNo },'hoo')" checked>후기
-		<input type="checkbox" name="checkbox" value="moon"
+			<input type="checkbox" name="checkbox" value="moon"
 				onclick="commentMode(${vo.postNo },'moon')">문의
-	</c:when>
+		</c:when>
+		<c:when test="${commentMode=='moon' }">
+			<input type="checkbox" name="checkbox" value="all"
+				onclick="commentMode(${vo.postNo },'all')" >전체
+			<input type="checkbox" name="checkbox" value="hoo"
+				onclick="commentMode(${vo.postNo },'hoo')" >후기
+			<input type="checkbox" name="checkbox" value="moon"
+				onclick="commentMode(${vo.postNo },'moon')" checked>문의
+		</c:when>
 		<c:otherwise>
+			<input type="checkbox" name="checkbox" value="all"
+				onclick="commentMode(${vo.postNo },'all')" checked>전체
 			<input type="checkbox" name="checkbox" value="hoo"
 				onclick="commentMode(${vo.postNo },'hoo')">후기
-		<input type="checkbox" name="checkbox" value="moon"
-				onclick="commentMode(${vo.postNo },'moon')" checked>문의
+			<input type="checkbox" name="checkbox" value="moon"
+				onclick="commentMode(${vo.postNo },'moon')">문의
 	</c:otherwise>
 	</c:choose>
 </div>
@@ -167,22 +202,31 @@ ${vo.content}
 
 <table class="table   boardlist">
 	<thead>
-		<tr style="background-color: #d0fd7d">
-			<th>번호</th>
-			<th>내용</th>
-			<th>카테고리</th>
-			<th>작성자</th>
-			<th>작성일</th>
+		<tr style="background-color: #00ba00">
+			<th style="width: 80px; color: white;">번호</th>
+			<th style="color: white;">내용</th>
+			<th style="width: 90px; color: white;">카테고리</th>
+			<th style="width: 100px; color: white;">작성자</th>
+			<th style="width: 150px; color: white;">작성일</th>
+			<th style="width: 80px;"></th>
+			<th style="width: 80px;"></th>			
 		</tr>
 	</thead>
 	<tbody>
-		<c:forEach items="${commentlist}" var="commentlist">
+		<c:forEach items="${commentlist}" var="commentlist" varStatus="no">
 			<tr>
-				<td>${commentlist.postno}</td>
-				<td>${commentlist.content}</td>
+				<td>${commentlist.postno }</td>
+				<td><span id = "commentcontent${no.current}">${commentlist.content}</span></td>
 				<td>${commentlist.category}</td>
-				<td>${commentlist.id}</td>
-				<td>${commentlist.writtenDate}</td>
+				<td><span id = "commentid${no.current}">${commentlist.id}</span></td>
+				<c:choose>
+					<c:when test="${commentlist.id==sessionScope.mvo.id }">
+						<td>${commentlist.writtenDate}</td><td><button style="border: none; background-color: #00ba00;" onclick="updatecomment(${no.current})"><span style="color: white;">수정</span></button></td><td><button style="border: none; background-color: #00ba00;" onclick="deletecomment('${no.current}');"><span style="color: white;">삭제</span></button></td>
+					</c:when>
+					<c:otherwise>
+						<td>${commentlist.writtenDate}</td>
+					</c:otherwise>
+				</c:choose>				
 			</tr>
 		</c:forEach>
 	</tbody>
@@ -258,6 +302,22 @@ ${vo.content}
 		} */
 		location.href = "ProductDetailController.do?postno="+postno+"&checkbox="+mode;
 	}
+<<<<<<< HEAD
+	
+=======
+	function updatecomment(commentno) {
+		alert(commentno);
+		let id = document.getElementById("commmentid"+commentno).innerHTML;
+		let comment = document.getElementById("commmentcontent"+commentno).innerHTML;
+		alert("1");
+	}
+	function deletecomment(commentno) {
+		alert(commentno);
+		let id = document.getElementById("commmentid"+commentno).innerHTML;
+		let comment = document.getElementById("commmentcontent"+commentno).innerHTML;
+		alert("1");
+	}
+>>>>>>> refs/heads/main
 </script>
 
 

@@ -4,7 +4,7 @@
 <form action="WriteAnnouncePostController.do" onsubmit="return false" id = "writeannounceform" method="post">
 <input style="width: 70%; height: 100px;" type = "text" name = "title" placeholder="제목" required="required"><br>
 <textarea style="width: 70%; height: 500px;" name = "content" placeholder="내용" required="required"></textarea><br>
-<button type = "button" style="background-color: #00ac00; color: white; border-radius: 10px; width: 100px; height: 50px;" onclick="writeannounce()">등록</button>
+<button type = "button" style="background-color: #00ba00; color: white; border-radius: 5px; width: 100px; height: 50px;" onclick="writeannounce()">등록</button>
 </form>
 
 <script>
