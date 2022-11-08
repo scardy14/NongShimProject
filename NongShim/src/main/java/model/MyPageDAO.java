@@ -546,8 +546,30 @@ public class MyPageDAO {
 		}
 		return list;
 	}
+	
+	/**
+	 * 	insertNsPoint(String id, long point) : 자유게시판에 글이나 댓글이 등록 되었을 때 포인트를 등록하게 하는 메서드
+	 * 
+	 * @param id
+	 * @param point
+	 * @throws SQLException
+	 */
 
-	public void InsertNsPoint(String id, long point) {
+	public int insertNsPoint(String id, long point) throws SQLException {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		int result=0;
+		try {
+			con=dataSource.getConnection();
+			String sql="update NongShim_Member set point=? where id=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setLong(1, point);
+			pstmt.setString(2, id);
+			result=pstmt.executeUpdate();
+		} finally {
+			closeAll(pstmt, con);
+		}
+		return result;
 	}
 	
 	
