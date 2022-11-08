@@ -41,6 +41,8 @@
 					</a> 	
 					</c:otherwise>
 					</c:choose>
+										<a href="MyPageFavoriteListController.do" class="list-group-item list-group-item-action py-2 ripple">
+						<i class="fas fa-chart-area fa-fw me-3"></i><span>찜목록</span></a>
 			</div>
 		</div>
 	</nav>

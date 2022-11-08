@@ -516,4 +516,37 @@ public class MyPageDAO {
 		}
 		return list;
 	}
+	/**
+	 * 		myFavoriteList(String id) : 내가 좋아요한 목록 가져오기
+	 * @param id
+	 * @return 
+	 * @throws SQLException 
+	 */
+	public ArrayList<MyPageProductPostVO> myFavoriteList(String id) throws SQLException {
+		ArrayList<MyPageProductPostVO> list=new ArrayList<>();
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			con=dataSource.getConnection();
+			//테스트 해봄 근데 구매자 목록 처럼 되어야 하는데 안되는 중 ^^; 나중에 테스트 다시 해보길
+			StringBuilder sb=new StringBuilder("select c.post_no, p.title,c.id, p.category, p.status, p.duration, p.min_Customer, p.max_Customer ");
+			sb.append("from (select * from like_product where id=?) c ");
+			sb.append("inner join NongShim_product_Post p on p.post_no=c.post_no");
+			pstmt=con.prepareStatement(sb.toString());
+			pstmt.setString(1, id);
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				MyPageProductPostVO productVO=new MyPageProductPostVO(rs.getLong(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getLong(7),rs.getLong(8));
+				list.add(productVO);
+				System.out.println(productVO);
+			}
+		} finally {
+			closeAll(rs, pstmt, con);
+		}
+		return list;
+	}
+	
+	
+	
 }
