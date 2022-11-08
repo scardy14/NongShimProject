@@ -539,7 +539,7 @@ public class MyPageDAO {
 			while(rs.next()) {
 				MyPageProductPostVO productVO=new MyPageProductPostVO(rs.getLong(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getLong(7),rs.getLong(8));
 				list.add(productVO);
-				System.out.println(productVO);
+				//System.out.println(productVO);
 			}
 		} finally {
 			closeAll(rs, pstmt, con);
