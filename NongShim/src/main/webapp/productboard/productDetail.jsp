@@ -115,13 +115,13 @@ ${vo.content}
 	<c:when test="${sessionScope.mvo !=null}">
 		<button
 			style="background-color: #00ba00 ;color: white; border-radius: 10px; width: 500px; height: 50px; border: none;"
-			onclick="buyproduct(true)">구매하기</button>
+			onclick="buyproduct(true)">>>구매하기<<</button>
 		<br>
 	</c:when>
 	<c:otherwise>
 		<button
 			style="background-color: #00ba00; border-radius: 10px; width: 500px; height: 50px; border: none;"
-			onclick="buyproduct(false)">구매하기</button>
+			onclick="buyproduct(false)">>>구매하기<<<</button>
 		<br>
 	</c:otherwise>
 </c:choose>
@@ -166,7 +166,7 @@ ${vo.content}
 <button type="button"
 	style="background-color: #00ba00; border-radius: 10px; height: 40px; border: none;"
 	onclick="hoo()"><span style="color: white;">후기글작성</span></button>
-
+<br>
 <div style="text-align: right;">
 	<c:choose>
 		<c:when test="${commentMode=='hoo' }">
@@ -196,8 +196,6 @@ ${vo.content}
 	</c:choose>
 </div>
 
-<br>
-<br>
 
 
 <table class="table   boardlist">
@@ -214,11 +212,12 @@ ${vo.content}
 	</thead>
 	<tbody>
 		<c:forEach items="${commentlist}" var="commentlist" varStatus="commentno">
+		
 			<tr>
-				<td>${commentno.count}</td>
-				<td><span id = "commentcontent${commentno.count}">${commentlist.content}</span></td>
+				<td><input type = "hidden" id = "comment_No${commentno.count }" value = ${commentlist.comment_No }>${commentno.count}</td>
+				<td>${commentlist.content}</td>
 				<td>${commentlist.category}</td>
-				<td><span id = "commentid${commentno.count}">${commentlist.id}</span></td>
+				<td>${commentlist.id}</td>
 				<c:choose>
 					<c:when test="${commentlist.id==sessionScope.mvo.id }">
 						<td>${commentlist.writtenDate}</td><td><button style="border: none; background-color: #00ba00;" onclick="updatecomment(${commentno.count})"><span style="color: white;">수정</span></button></td><td><button style="border: none; background-color: #00ba00;" onclick="deletecomment('${commentno.count}');"><span style="color: white;">삭제</span></button></td>
@@ -303,15 +302,13 @@ ${vo.content}
 		location.href = "ProductDetailController.do?postno="+postno+"&checkbox="+mode;
 	}
 	function updatecomment(commentno) {
-		alert(commentno);
-		let id = document.getElementById("commentid"+commentno).innerHTML;
-		let comment = document.getElementById("commentcontent"+commentno).innerHTML;
+		let comment_No = document.getElementById("comment_No"+commentno).value;
+		location.href="DeleteProductPostCommentController.do?id="+id+"&comment="+comment+"&date="+date+"&postNo="+commentpostNo;
 
 	}
 	function deletecomment(commentno) {
-		alert(commentno);
-		let id = document.getElementById("commentid"+commentno).innerHTML;
-		let comment = document.getElementById("commentcontent"+commentno).innerHTML;
+		let comment_No = document.getElementById("comment_No"+commentno).value;
+		location.href="DeleteProductPostCommentController.do?id="+id+"&comment="+comment+"&date="+date+"&postNo="+commentpostNo;
 
 	}
 </script>

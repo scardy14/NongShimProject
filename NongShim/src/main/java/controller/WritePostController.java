@@ -23,11 +23,12 @@ public class WritePostController implements Controller {
 		String comments = "맛있네요";
 		String status = "판매중";
 		String productname = "청포도";
+		String duration = request.getParameter("duration");
 		long productpoint = Long.parseLong(request.getParameter("productPoint"));
 		long mincustomer = Long.parseLong(request.getParameter("minCustomer"));
 		long maxcustomer = Long.parseLong(request.getParameter("maxCustomer"));
 		ProductPostVO productpostVO= new ProductPostVO(title,content,id,nickname,comments,category,status,
-				productname,productpoint,mincustomer,maxcustomer);  
+				productname,productpoint,duration, mincustomer,maxcustomer);  
 		ProductPostDAO.getInstance().writePost(productpostVO);
 		return "redirect:FindPostListByValueController.do"; 
 	}

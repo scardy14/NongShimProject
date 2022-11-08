@@ -7,6 +7,7 @@ public class CommentVO {
 	private String writtenDate;
 	private String content;
 	private String category;
+	private long comment_No;
 	
 	public CommentVO() {}
 
@@ -19,7 +20,16 @@ public class CommentVO {
 		this.category = category;
 	}
 	
-	
+
+	public CommentVO(String id, long postno, String writtenDate, String content, String category, long comment_No) {
+		super();
+		this.id = id;
+		this.postno = postno;
+		this.writtenDate = writtenDate;
+		this.content = content;
+		this.category = category;
+		this.comment_No = comment_No;
+	}
 
 	public String getId() {
 		return id;
@@ -59,6 +69,14 @@ public class CommentVO {
 
 	public void setCategory(String category) {
 		this.category = category;
+	}
+
+	public long getComment_No() {
+		return comment_No;
+	}
+
+	public void setComment_No(long comment_No) {
+		this.comment_No = comment_No;
 	};
 	
 	

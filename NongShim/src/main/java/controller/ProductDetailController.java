@@ -43,21 +43,12 @@ public class ProductDetailController implements Controller {
 			commentlist = ProductPostDAO.getInstance().showAllCommentByPostNo(postno, commentMode);
 		}
 		
-		
-		
-		
-		
-		
-		
-		
-		System.out.println(commentMode);
 		request.setAttribute("commentlist", commentlist);
 		request.setAttribute("vo",vo);
 		request.setAttribute("postno",postno);
 		request.setAttribute("url", "productboard/productDetail.jsp");
 		request.setAttribute("commentMode", commentMode);
 		return "mainpage.jsp";
-		
 		
 
 		
