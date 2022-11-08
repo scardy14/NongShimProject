@@ -206,3 +206,7 @@ constraint comments_pk1 primary key(id, post_no,comments_date)
 SELECT * FROM NongShim_Free_Post_Comments;
 CREATE SEQUENCE cm_seq;
 
+
+
+insert into NongShim_Free_Post_Comments values ('spring','임시닉네임',14,sysdate,'네애애',cm_seq.nextval)
+delete from NongShim_Free_Post_Comments where comment_no=2;

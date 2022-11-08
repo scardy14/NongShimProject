@@ -15,7 +15,8 @@ public class FreeCommentController implements Controller {
 
 		HttpSession session=request.getSession(false);
 		NongShimMemberVO mvo=(NongShimMemberVO) session.getAttribute("mvo");
-		String id = mvo.getId();//여기부분 세션에서 받아와야함 일단 임시로 아무거나 넣어둠.
+		String id = mvo.getId();
+		
 		String nick=mvo.getNickName();
 		long no=Long.parseLong(request.getParameter("postno"));
 		String comment= request.getParameter("comment");
@@ -23,7 +24,7 @@ public class FreeCommentController implements Controller {
 		
 		FreeCommentDAO.getInstance().addComment(id, nick, no, comment);              
 		//request.setAttribute("url", "ProductDetailController");
-		return "redirect:FindFreePostDetailController.do?postno="+request.getParameter("postno");
+		return "redirect:FindFreePostDetailController.do?post_No="+no;
 		
 	}
 

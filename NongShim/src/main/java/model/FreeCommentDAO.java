@@ -42,7 +42,7 @@ public class FreeCommentDAO {
 		Connection con = null;
 		try {
 			con = getConnection();
-			String sql = "insert into NongShim_Free_Post_Comments values (?,?,?,sysdate,?)";
+			String sql = "insert into NongShim_Free_Post_Comments values (?,?,?,sysdate,?,cm_seq.nextval)";
 			pst = con.prepareStatement(sql);
 			pst.setString(1, id);
 			pst.setString(2, nick);
