@@ -15,8 +15,8 @@
 		<c:forEach items="${list}" var="FreePostVO">
 			<tr>
 				<td>${FreePostVO.post_No}</td>
-				<td><a href="FindFreePostDetailController.do?post_No=${FreePostVO.post_No}">${FreePostVO.nickname}</a></td>
-				<td>${FreePostVO.title}</td>
+				<td><a href="FindFreePostDetailController.do?post_No=${FreePostVO.post_No}">${FreePostVO.title}</a></td>
+				<td>${FreePostVO.nickname}</td>
 				<td>${FreePostVO.register_Date}</td>
 				<td>${FreePostVO.hits}</td>
 			</tr>
@@ -51,6 +51,6 @@
 </ul>
 <script> 
 	function writefree() {
-		location.href="WriteFreePostFormController.do";
+		location.href="WriteFreePostFormController.do?pageNo="+element";
 	}
 </script>
