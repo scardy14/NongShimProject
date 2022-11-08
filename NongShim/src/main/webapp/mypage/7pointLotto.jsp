@@ -14,53 +14,93 @@
 </head>
 <body>
 <div class="container pt-3">
-<header>
-		<nav id="sidebarMenu"
-			class="collapse d-lg-block sidebar collapse bg-white">
-			<div class="position-sticky float:left">
-				<div class="list-group list-group-flush mx-3 mt-4">
-					<a href="MyPageUpdateMemberControllerMove.do"
-						class="list-group-item list-group-item-action py-2 ripple"
-						aria-current="true"> <i
-						class="fas fa-tachometer-alt fa-fw me-3"></i><span>내 정보</span>
-					</a> <a href="MyPagecustomerController.do" class="list-group-item list-group-item-action py-2 ripple">
-						<i class="fas fa-chart-area fa-fw me-3"></i><span>구매</span></a> 	
-					<c:choose>
-						<c:when test="${sessionScope.mvo.sellerInfo eq '일반'}">
-					<a href="MyPageSellerCheckMoveController.do" class="list-group-item list-group-item-action py-2 ripple">
-						<i class="fas fa-chart-area fa-fw me-3"></i><span>판매인증</span>				
-					</a>
-					</c:when>
-					<c:otherwise>
-						 <a href="MyPageSellerTotalController.do"
-						class="list-group-item list-group-item-action py-2 ripple"><i
-						class="fas fa-lock fa-fw me-3"></i><span>판매</span></a>
-					</c:otherwise>
-					</c:choose>
-					<a href="MyPageFavoriteListController.do" class="list-group-item list-group-item-action py-2 ripple active">
-						<i class="fas fa-chart-area fa-fw me-3"></i><span>찜목록</span></a>
-				</div>
-			</div>
-		</nav>
-	</header>
-	<div class="container pt-4">
-<div>
-	<form action="#">
-		<button>
-			포인트 복권 응모하기
-		</button>
-	</form>
+<div align="left">
+<h3> 오늘의 당첨금</h3>
 </div>
-<h4> 오늘의 당첨금</h4>
 	<table>
+		<thead>
+			<tr>
+				<td>등수</td><td>당첨 금액</td>
+			</tr>
+		</thead>
 		<tr>
-			<th>등수</th><th>당첨금</th>
+			<td>1</td><td>${requestScope.num1}</td>
 		</tr>
 		<tr>
-			<td>1</td><td></td>
+			<td>2</td><td>${requestScope.num2}</td>
+		</tr>
+		<tr>
+			<td>3</td><td>${requestScope.num3}</td>
+		</tr>
+		<tr>
+			<td>4</td><td>${requestScope.num4}</td>
+		</tr>
+		<tr>
+			<td>5</td><td>${requestScope.num5}</td>
 		</tr>
 	</table>
-</div> <!-- container pt -->
+
+<div>
+	<form action="MyPageInsertLottoMoneyController.do">
+		<input type="button" value="경품 추첨" id="id_btn">
+		<span id="id_out">결과</span>
+		<input type="hidden" id="result" name="result" value=""/>
+	</form>
 </div>
+
+    <script>
+   //<span id="id_out">결과</span>
+	    	document.addEventListener('DOMContentLoaded', () => {
+            const btnTag = document.querySelector('#id_btn')
+            const outTag = document.querySelector('#id_out')
+
+            btnTag.addEventListener('click', (event) => {
+               const result = getPrize()
+               outTag.textContent =result
+               btnTag.disabled = true;
+            })
+        })
+	
+
+        
+        const  = function() getPrize {
+        
+            //랜덤값 생성 (1~100)
+            const ranNum = Math.floor((Math.random() * 99) +1)
+            
+            let num1=${requestScope.num1};
+            let num2=${requestScope.num2};
+            let num3=${requestScope.num3};
+            let num4=${requestScope.num4};
+            let num5=${requestScope.num5};
+
+            //경품 생성
+            let gift = [num1, num2, num3, num4, num5,'꽝!']
+            //확률 생성
+            const pbt = [50,0,0,0,0,50]
+            //리턴 경품 값
+            let res = ''
+
+            for (let i = 0; i < gift.length; i++) {
+
+                if(pbt[i] >= ranNum){
+                    res = gift[i]
+                    return res
+                }
+                else if (pbt[pbt.length - 1] < ranNum) {
+                    res = gift[gift.length - 1]
+                    return res
+                }
+            }
+            document.getElementById('result').value=res;
+        }
+    </script>
+
+
+
+
+
+
+</div> <!-- container pt -->
 </body>
 </html>
