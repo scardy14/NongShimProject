@@ -94,10 +94,10 @@ public class ProductPostVO {
 	}
 	
 	//김민석 개인적으로 만든거. 위와 같은 이유로 냅둘것.
-	
+	//홍주영추가. 상세보기에서 아이디 필요해서 아이디 하나 추가함
 	public ProductPostVO(long postNo,String title, String content, long hits, String nickName, String comments, String date,
 			String category, String productName, long productPoint, String duration, long minCustomer,
-			long maxCustomer) {
+			long maxCustomer, String id) {
 		super();
 		this.postNo = postNo;
 		this.title = title;
@@ -112,6 +112,7 @@ public class ProductPostVO {
 		this.duration = duration;
 		this.minCustomer = minCustomer;
 		this.maxCustomer = maxCustomer;
+		this.id = id;
 	}
 
 	public ProductPostVO(long no) {
