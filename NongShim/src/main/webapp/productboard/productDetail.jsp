@@ -192,9 +192,9 @@ ${vo.content}
 		</tr>
 	</thead>
 	<tbody>
-		<c:forEach items="${commentlist}" var="commentlist" varStatus="no">
+		<c:forEach items="${commentlist}" var="commentlist" varStatus="commentno">
 			<tr>
-				<td>${commentlist.postno }</td>
+				<td>${commentno.count}</td>
 				<td><span id = "commentcontent${no.current}">${commentlist.content}</span></td>
 				<td>${commentlist.category}</td>
 				<td><span id = "commentid${no.current}">${commentlist.id}</span></td>
