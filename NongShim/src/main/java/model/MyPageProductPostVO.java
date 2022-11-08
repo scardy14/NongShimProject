@@ -72,6 +72,21 @@ public class MyPageProductPostVO {
 		this.minCustomer = minCustomer;
 		this.maxCustomer = maxCustomer;
 	}
+	
+	
+	//좋아요 목록에 사용할 생성자
+	public MyPageProductPostVO(long postNo, String title, String id, String category, String status, String duration,
+			long minCustomer, long maxCustomer) {
+		super();
+		this.postNo = postNo;
+		this.title = title;
+		this.id = id;
+		this.category = category;
+		this.status = status;
+		this.duration = duration;
+		this.minCustomer = minCustomer;
+		this.maxCustomer = maxCustomer;
+	}
 
 	public long getPostNo() {
 		return postNo;

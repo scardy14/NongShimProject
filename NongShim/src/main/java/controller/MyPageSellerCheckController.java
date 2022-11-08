@@ -19,7 +19,6 @@ public class MyPageSellerCheckController implements Controller {
 		SellerIdeVO sellerIdeVO=new SellerIdeVO(memberVO.getId(),request.getParameter("sellerNumber"));
 		MyPageDAO.getInstance().insertSellerCheck(sellerIdeVO);
 		MyPageDAO.getInstance().sellercheckUpdate(memberVO.getId());
-		request.setAttribute("url","mypage/1myinfo.jsp" );
-		return "mainpage.jsp";
+		return "redirect:mypage/5sellercheck-result.jsp";
 	}
 }

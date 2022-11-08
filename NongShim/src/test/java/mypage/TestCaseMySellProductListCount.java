@@ -4,7 +4,7 @@ import java.sql.SQLException;
 
 import model.MyPageDAO;
 
-public class TestMySellProductListCount {
+public class TestCaseMySellProductListCount {
 	public static void main(String[] args) {
 		String status="판매중";
 		String id="java";

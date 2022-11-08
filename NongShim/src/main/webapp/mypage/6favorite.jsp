@@ -40,7 +40,7 @@
 						class="fas fa-lock fa-fw me-3"></i><span>판매</span></a>
 					</c:otherwise>
 					</c:choose>
-										<a href="MyPageFavoriteListController.do" class="list-group-item list-group-item-action py-2 ripple">
+										<a href="MyPageFavoriteListController.do" class="list-group-item list-group-item-action py-2 ripple active">
 						<i class="fas fa-chart-area fa-fw me-3"></i><span>찜목록</span></a>
 				</div>
 			</div>
@@ -73,34 +73,25 @@
 									<!-- 표 head -->
 									<tr>
 										<th class="text-center" scope="col">순번</th>
-										<th scope="col">아이디</th>
-										<th class="text-center" scope="col">이름</th>
-										<th>상품수량</th>
-										<th>발송여부</th>
-										<th>배송지</th>
-										<th>전화번호</th>
-										<th>출고버튼</th>
+										<th scope="col">글제목</th>
+										<th class="text-center" scope="col">작성자</th>
+										<th>카테고리</th>
+										<th>상태</th>
+										<th>판매기간</th>
+										<th>최소인원</th>
+										<th>최대인원</th>
 									</tr>
 								</thead>
 								<%-- items 내 목록 --%>
 								<tbody class="text-left">
-									<c:forEach items="${requestScope.list}" var="confirm" varStatus="order">
+									<c:forEach items="${requestScope.list}" var="favorite" varStatus="order">
 										<tr class="inner-box">
 											<th scope="row" class="text-center">
 												<div>
 													<span>${order.count}</span>
 												</div>
 											</th>
-											<td>${confirm.id}</td><td>${confirm.name}</td><td>${confirm.amount}</td><td>${confirm.status}</td><td>${confirm.address}</td><td>${confirm.tel}</td>
-											<td>
-											<form action="MyPageChangeSendProductController.do">
-											<input type="hidden" name="customerId" value="${confirm.id}">
-											<input type="hidden" name="postNo" value="${requestScope.postNo}">
-											<button>
-												발송완료
-											</button>
-											</form>
-											</td>
+											<td><a href="ProductDetailController.do?postno=${favorite.postNo}">${favorite.title}</a></td><td>${favorite.id}</td><td>${favorite.category}</td><td>${favorite.status}</td><td>${favorite.duration}</td><td>${favorite.minCustomer}</td><td>${favorite.maxCustomer}</td>
 										</tr>
 									</c:forEach>
 								</tbody>
