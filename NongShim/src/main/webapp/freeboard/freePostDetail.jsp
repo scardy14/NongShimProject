@@ -42,7 +42,7 @@
       </c:when>
    </c:choose>
 </div>
-<form action="UpdateFreePostFormControllerMove.do" id="udpateform">
+<form action="UpdateFreePostFormController.do" id="udpateform">
    <input type="hidden" name="post_No" value=${FreePostVO.post_No }>
 </form>
 <form action="DeleteFreePostController.do" method="post" id="deleteform">
