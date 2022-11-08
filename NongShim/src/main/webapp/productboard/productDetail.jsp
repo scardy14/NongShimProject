@@ -93,7 +93,7 @@ ${vo.content}
 <c:choose>
 	<c:when test="${sessionScope.mvo !=null}">
 		<button
-			style="background-color: #color: white;; border-radius: 10px; width: 500px; height: 50px; border: none;"
+			style="background-color: #00ba00 ;color: white; border-radius: 10px; width: 500px; height: 50px; border: none;"
 			onclick="buyproduct(true)">구매하기</button>
 		<br>
 	</c:when>
@@ -105,8 +105,9 @@ ${vo.content}
 	</c:otherwise>
 </c:choose>
 <br>
+
 <c:choose>
-	<c:when test="${sessionScope.mvo.nickName==vo.nickName}">
+	<c:when test="${sessionScope.mvo.id==vo.id}">
 		<td>
 			<div style="text-align: right;">
 				<button onclick="location.href='FindPostListByValueController.do'"
@@ -140,10 +141,10 @@ ${vo.content}
 <input type="hidden" value="${postno}" id="postno">
 <button type="button"
 	style="background-color: #00ba00; border-radius: 10px; height: 40px; border: none;"
-	onclick="moon()">문의글작성</button>
+	onclick="moon()"><span style="color: white;">문의글작성</span></button>
 <button type="button"
 	style="background-color: #00ba00; border-radius: 10px; height: 40px; border: none;"
-	onclick="hoo()">후기글작성</button>
+	onclick="hoo()"><span style="color: white;">후기글작성</span></button>
 
 <div style="text-align: right;">
 	<c:choose>
@@ -181,23 +182,25 @@ ${vo.content}
 <table class="table   boardlist">
 	<thead>
 		<tr style="background-color: #00ba00">
-			<th>번호</th>
-			<th>내용</th>
-			<th>카테고리</th>
-			<th>작성자</th>
-			<th>작성일</th>
+			<th style="width: 80px; color: white;">번호</th>
+			<th style="color: white;">내용</th>
+			<th style="width: 90px; color: white;">카테고리</th>
+			<th style="width: 100px; color: white;">작성자</th>
+			<th style="width: 150px; color: white;">작성일</th>
+			<th style="width: 80px;"></th>
+			<th style="width: 80px;"></th>			
 		</tr>
 	</thead>
 	<tbody>
-		<c:forEach items="${commentlist}" var="commentlist">
+		<c:forEach items="${commentlist}" var="commentlist" varStatus="no">
 			<tr>
-				<td>${commentlist.postno}</td>
-				<td>${commentlist.content}</td>
+				<td>${commentlist.postno }</td>
+				<td><span id = "commentcontent${no.current}">${commentlist.content}</span></td>
 				<td>${commentlist.category}</td>
-				<td>${commentlist.id}</td>
+				<td><span id = "commentid${no.current}">${commentlist.id}</span></td>
 				<c:choose>
 					<c:when test="${commentlist.id==sessionScope.mvo.id }">
-						<td>${commentlist.writtenDate}<button>수정하기</button><button>삭제하기</button></td>
+						<td>${commentlist.writtenDate}</td><td><button style="border: none; background-color: #00ba00;" onclick="updatecomment(${no.current})"><span style="color: white;">수정</span></button></td><td><button style="border: none; background-color: #00ba00;" onclick="deletecomment('${no.current}');"><span style="color: white;">삭제</span></button></td>
 					</c:when>
 					<c:otherwise>
 						<td>${commentlist.writtenDate}</td>
@@ -277,6 +280,18 @@ ${vo.content}
 			}
 		} */
 		location.href = "ProductDetailController.do?postno="+postno+"&checkbox="+mode;
+	}
+	function updatecomment(commentno) {
+		alert(commentno);
+		let id = document.getElementById("commmentid"+commentno).innerHTML;
+		let comment = document.getElementById("commmentcontent"+commentno).innerHTML;
+		alert("1");
+	}
+	function deletecomment(commentno) {
+		alert(commentno);
+		let id = document.getElementById("commmentid"+commentno).innerHTML;
+		let comment = document.getElementById("commmentcontent"+commentno).innerHTML;
+		alert("1");
 	}
 </script>
 
