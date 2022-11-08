@@ -144,21 +144,32 @@ ${vo.content}<br>
 </div>
 <hr>
 
-
-<textarea  style="width: 100%; height: 50px;" id="comment"
-	required="required" placeholder="댓글입력"></textarea>
-<br>
-<br>
-
-
 <input type="hidden" value="${postno}" id="postno">
-<button type="button"
-	style="background-color: #00ba00; border-radius: 10px; height: 40px; border: none;"
-	onclick="moon()"><span style="color: white;">문의글작성</span></button>
-<button type="button"
-	style="background-color: #00ba00; border-radius: 10px; height: 40px; border: none;"
-	onclick="hoo()"><span style="color: white;">후기글작성</span></button>
+
+
+<table class = "">
+	<tr>
+		<td rowspan="2" style="width: 1000px;">
+		<textarea  style="width:100%; height: 80px;" id="comment"
+		required="required" placeholder="댓글입력"></textarea>
+		</td>
+		<td>
+		<button type="button"
+		style="background-color: #00ba00; border-radius: 10px; height: 40px; border: none;"
+		onclick="moon()"><span style="color: white;">문의글작성</span></button>
+		</td>
+	</tr>
+	<tr>
+		<td>
+		<button type="button"
+		style="background-color: #00ba00; border-radius: 10px; height: 40px; border: none;"
+		onclick="hoo()"><span style="color: white;">후기글작성</span></button>
+		</td>
+	</tr>
+</table>
 <br>
+<br>
+
 <div style="text-align: right;">
 	<c:choose>
 		<c:when test="${commentMode=='hoo' }">
