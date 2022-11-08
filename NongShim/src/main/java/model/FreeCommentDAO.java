@@ -55,17 +55,15 @@ public class FreeCommentDAO {
 		}
 	}
 
-	public void deleteComment(String id, long no, String date) throws SQLException {
+	public void deleteComment(long commentNo) throws SQLException {
 
 		PreparedStatement pst = null;
 		Connection con = null;
 		try {
 			con = getConnection();
-			String sql = "delete from NongShim_Free_Post_Comments where id=? and post_No=? and comments_date=?";
+			String sql = "delete from NongShim_Free_Post_Comments where comment_no=?";
 			pst = con.prepareStatement(sql);
-			pst.setString(1, id);
-			pst.setLong(2, no);
-			pst.setString(3, date);
+			
 			pst.executeUpdate();
 
 		} finally {

@@ -33,7 +33,13 @@ public class ProductDetailController implements Controller {
 				list1.add(postno);
 			}
 		}
+		
+		
+		
 		ProductPostVO vo= ProductPostDAO.getInstance().postDetailFind(postno);
+		
+		
+		
 		ArrayList<CommentVO> commentlist= null;
 		if(commentMode.equals("hoo")) {
 			commentlist = ProductPostDAO.getInstance().showAllCommentByPostNo(postno, "후기");

@@ -18,8 +18,8 @@
 <div style="text-align: right;">
 	<form>
 
-		<input type="hidden" id="postno12" value="${vo.postNo}"> <input
-			type="hidden" id="id12" value="${sessionScope.mvo.id}">
+		<input type="hidden" id="postno12" value="${vo.postNo}"> 
+		<input type="hidden" id="id12" value="${sessionScope.mvo.id}">
 		
 		<button type="button" onclick="urlClip()">공유하기★</button>
 		
