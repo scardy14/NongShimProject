@@ -228,6 +228,7 @@ ${vo.content}<br>
 <form id="buyform" action="BuyProductController.do">
    <input type="hidden" name="id" value="${sessionScope.mvo.id }">
    <input type="hidden" name="post_No" value="${vo.postNo }">
+   <input type="hidden" name="point" value="${vo.productPoint}">
 </form>
 
 

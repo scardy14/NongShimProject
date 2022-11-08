@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import member.NongShimMemberVO;
 import model.FreeCommentDAO;
+import model.MyPageDAO;
 import model.ProductPostDAO;
 
 public class FreeCommentController implements Controller {
@@ -24,6 +25,10 @@ public class FreeCommentController implements Controller {
 		
 		FreeCommentDAO.getInstance().addComment(id, nick, no, comment);              
 		//request.setAttribute("url", "ProductDetailController");
+		
+		//댓글 등록시 포인트 받기
+		MyPageDAO.getInstance().insertNsPoint(id, 50);
+		
 		return "redirect:FindFreePostDetailController.do?post_No="+no;
 		
 	}
