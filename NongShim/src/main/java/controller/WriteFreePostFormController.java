@@ -7,7 +7,8 @@ public class WriteFreePostFormController implements Controller {
 
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		return null;
+		request.setAttribute("url", "freeboard/write-form.jsp");
+		return "mainpage.jsp";
 	}
 
 }

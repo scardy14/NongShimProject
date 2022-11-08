@@ -41,6 +41,9 @@
 	}
 	function deletepost() {
 		let deleteform = document.getElementById("deleteform");
-		deleteform.submit();
+		let result = confirm("게시물을 삭제하시겠습니까?");
+		if(result) {
+			deleteform.submit();
+		}
 	}
 </script>
