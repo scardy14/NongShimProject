@@ -50,9 +50,8 @@
 		</c:forEach>
 	</tbody>
 </table>
-
 <c:choose>
-	<c:when test="${sessionScope.mvo!=null}">
+	<c:when test="${sessionScope.mvo.sellerInfo == '판매자'}">
 		<div style="text-align: right;">
 			<button onclick="location.href='WritePostFormController.do'" style="background-color: #00ba00; color: white; width: 8%; height: 30px; border: none; border-radius: 5px;"><span style="color: white;">글쓰기</span></button><br><br>
 		</div>

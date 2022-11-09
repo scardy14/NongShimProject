@@ -283,9 +283,12 @@ ${vo.content}<br>
       if(!result) {
          alert("로그인 후 이용해주세요");
       } else {
-         let result = confirm("상품을 구매하시겠습니까?");
-         let buyform = document.getElementById("buyform");
-         buyform.submit();
+         let checkbuy = confirm("상품을 구매하시겠습니까?");
+         if(checkbuy) {
+        	 let buyform = document.getElementById("buyform");
+             buyform.submit(); 
+         }
+         
       }
    }
    function commentMode(postno, mode) {

@@ -588,6 +588,52 @@ public class MyPageDAO {
 		}
 		return result;
 	}
+	public long getNsPoint(String id) throws SQLException {
+		long result=0;
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs = null;
+		try {
+			con=dataSource.getConnection();
+			String sql="SELECT point FROM NongShim_Member WHERE id=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				result=rs.getLong(1);
+			}
+		} finally {
+			closeAll(pstmt, con);
+		}
+		return result;
+	}
+	
+	public long butproductNSPoint(String id, long point) throws SQLException {
+		long result=0;
+
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs = null;
+		try {
+			con=dataSource.getConnection();
+			String sql="update NongShim_Member set point=point+? where id=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setLong(1, point);
+			pstmt.setString(2, id);
+			pstmt.executeUpdate();
+			pstmt.close();
+			String sql2="select point from NongShim_Member where id=?";
+			pstmt=con.prepareStatement(sql2);
+			pstmt.setString(1, id);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				result=rs.getLong(1);
+			}
+		} finally {
+			closeAll(pstmt, con);
+		}
+		return result;
+	}
 	
 	/**
 	 *  randomPointNumber() : 로또복권에 쓸 메서드

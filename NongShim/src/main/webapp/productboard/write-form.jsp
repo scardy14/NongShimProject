@@ -19,7 +19,7 @@
 
 	<div class="text-center">
 		<button type="submit" class="btn btn-success">등록</button>
-		<button type="submit" class="btn btn-success">목록</button>	
+		<button type="button" class="btn btn-success"  onclick="location.href='FindPostListByValueController.do'">목록</button>	
 	</div>
 	</form>
 	

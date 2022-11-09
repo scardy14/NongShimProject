@@ -34,7 +34,8 @@ CREATE TABLE NongShim_Member(
 	constraint tel_uq unique(tel),
 	constraint nick_uq unique(nickName)
 )
-UPDATE NongShim_Member SET point = 1000000 WHERE id = 'scardy'
+SELECT * FROM NongShim_Member WHERE id = 'scardy'
+UPDATE NongShim_Member SET point = '0' WHERE id = 'scardy'
 SELECT * FROM NongShim_Member
 
 insert into NongShim_Member

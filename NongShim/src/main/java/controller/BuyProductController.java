@@ -1,11 +1,8 @@
 package controller;
 
-import java.io.PrintWriter;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import member.NongShimMemberVO;
 import model.MyPageDAO;
 import model.ProductPostDAO;
@@ -17,7 +14,6 @@ public class BuyProductController implements Controller{
 		String id = request.getParameter("id");
 		Long post_No = Long.parseLong(request.getParameter("post_No"));
 		ProductPostDAO dao = ProductPostDAO.getInstance();
-		boolean result = dao.buyProduct(id, post_No);
 		request.setAttribute("post_No", post_No);
 		
 		
@@ -31,12 +27,13 @@ public class BuyProductController implements Controller{
 		HttpSession session=request.getSession(false);
 		NongShimMemberVO memberVO=(NongShimMemberVO) session.getAttribute("mvo");
 		String myId=memberVO.getId();
-		long myPoint=memberVO.getPoint();
+		long myPoint=MyPageDAO.getInstance().getNsPoint(id);
 		
 		String path=null;
 		
 		if(myPoint+point2>=0) {
 			MyPageDAO.getInstance().insertNsPoint(myId, point2);
+			dao.buyProduct(id, post_No);
 			path="productboard/buy-ok.jsp";
 		} else {
 			path="productboard/buy-fail.jsp";
