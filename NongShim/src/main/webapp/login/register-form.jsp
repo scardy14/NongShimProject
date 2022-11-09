@@ -110,7 +110,7 @@ function checkRegisterForm2(event){
 				if(xhr.readyState==4&&xhr.status==200){
 					if(xhr.responseText=="ok"){
 						checkResultSpan.innerHTML="<font color=blue>사용가능한 전화번호입니다.</font>";
-						checkFlag=true;
+						checkFlag2=true;
 					}else{
 						checkResultSpan.innerHTML="<font color=red>전화번호를 다시 입력하세요</font>";
 					}

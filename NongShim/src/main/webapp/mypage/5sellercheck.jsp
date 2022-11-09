@@ -64,10 +64,11 @@
 		<div class="tab-content" id="myTabContent">
 			<div class="tab-pane fade active show" id="home" role="tabpanel">
 				<div class="table-responsive">
-					<form action="MyPageSellerCheckController.do">
+					<form action="MyPageSellerCheckController.do" onsubmit="checkRegisterForm(event)">
 						<input type="text" name="name" required="required" placeholder="이름" style="height: 40px;" value="${sessionScope.mvo.name}" readonly="readonly">
-						<input type="text" name="sellerNumber" id="sellerNumber" required="required" placeholder="사업자등록번호" style="height: 40px;" onkeyup="longCheck()" maxlength="10" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
-						<span id="checkResult"></span>
+						<input type="text" name="sellerNumber" id="sellerNumber" required="required" placeholder="사업자등록번호" style="height: 40px;"
+						 onkeyup="longCheck()" maxlength="10" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
+						 <span id="checkResult"></span><br>
 						<br><br>
 						<button type="submit" style="width: 190px; background-color: #00ac00; color: white;">판매자 인증</button>
 					</form>
@@ -79,12 +80,47 @@
 		</div>
 	</div>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 					<script type="text/javascript">
 
+					let checkFlag=false;
+					
+					function checkRegisterForm(event){
+						if(checkFlag==false){
+							alert("판매자 인증을 다시 확인하세요");
+							event.preventDefault();
+						}
+					}
+					
 						function longCheck(){
 							let sellerNumber=document.getElementById("sellerNumber").value; 
 							let checkResultSpan=document.getElementById("checkResult");
-							if(sellerNumber.length==10){
+							
+							if(sellerNumber.length<10){
+								checkResultSpan.innerHTML="<font color=pink>사업자 등록번호를 10자로 등록하세요.</font>";
+							}
+								else{
 								let xhr=new XMLHttpRequest();
 								xhr.onreadystatechange=function(){
 									if(xhr.readyState==4&&xhr.status==200){
