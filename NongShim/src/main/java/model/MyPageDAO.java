@@ -120,14 +120,10 @@ public class MyPageDAO {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		System.out.println(id);
-		System.out.println(mode);
-		System.out.println(pagination.getStartRowNumber());
-		System.out.println(pagination.getEndRowNumber());
 		try {
 			con = dataSource.getConnection();
-			StringBuilder sb = new StringBuilder("select  ");
-			sb.append("from (select row_number() over(order by register_date desc) as rnum, post_no,title,id,to_char(register_date, 'YYYY-MM-DD') AS register_date,status,duration,min_customer,max_customer,product_point from NongShim_product_Post where id=? AND status = ?)  ");
+			StringBuilder sb = new StringBuilder("select rnum, post_no, title,id,register_date,status,duration,min_customer,max_customer,product_point ");
+			sb.append("from (select row_number() over(order by register_date desc) as rnum, post_no,title,id,to_char(register_date, 'YYYY-MM-DD') AS register_date,status,to_char(duration, 'YYYY-MM-DD') AS duration,min_customer,max_customer,product_point from NongShim_product_Post where id=? AND status = ?)  ");
 			sb.append("where rnum between ? and ?");
 			pstmt = con.prepareStatement(sb.toString());
 			pstmt.setString(1, id);
@@ -136,7 +132,7 @@ public class MyPageDAO {
 			pstmt.setLong(4, pagination.getEndRowNumber());
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
-				myPageProductPostVO = new MyPageProductPostVO(rs.getLong(10), rs.getLong(1), rs.getString());
+				myPageProductPostVO = new MyPageProductPostVO(rs.getLong(1), rs.getLong(2), rs.getString(3), rs.getString(4), rs.getString(5),rs.getString(6), rs.getString(7), rs.getLong(8), rs.getLong(9), rs.getLong(10));
 				list.add(myPageProductPostVO);
 			}
 		} finally {

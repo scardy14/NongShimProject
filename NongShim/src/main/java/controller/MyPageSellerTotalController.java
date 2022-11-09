@@ -46,6 +46,7 @@ public class MyPageSellerTotalController implements Controller {
 		request.setAttribute("selling", sellingCount);
 		request.setAttribute("sell", sellCount);
 		request.setAttribute("pagination", pagination);
+		request.setAttribute("mode", mode);
 		return "mainpage.jsp";
 	}
 

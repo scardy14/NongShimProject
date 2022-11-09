@@ -111,7 +111,7 @@
 										<tr class="inner-box">
 											<th scope="row" class="text-center">
 												<div class="event-date">
-													<span>${order.count}</span>
+													<span>${seller.rnum}</span>
 												</div>
 											</th>
 											<td>
@@ -160,7 +160,7 @@
 		</div>
 		</div>
 		<c:choose>
-			<c:when test="${mode=='발송전' }">
+			<c:when test="${mode=='판매중' }">
 				<ul class="pagination justify-content-center" style="margin:20px 0">	
 					<c:if test="${pagination.previousPageGroup}">
 						<li class="page-item"><a class="page-link" onclick="sellingproduct(${pagination.startPageOfPageGroup-1},'판매중')">Previous</a></li>
@@ -210,9 +210,9 @@
 		location.href="MyPageSellerTotalController.do?mode=판매완료";
 	}
 	function sellingproduct(pageNo,mode) {
-		location.href="MyPagecustomerController.do?pageNo="+pageNo+"&mode="+mode;		
+		location.href="MyPageSellerTotalController.do?pageNo="+pageNo+"&mode="+mode;		
 	}
 	function soldproduct(pageNo,mode) {
-		location.href="MyPagecustomerController.do?pageNo="+pageNo+"&mode="+mode;
+		location.href="MyPageSellerTotalController.do?pageNo="+pageNo+"&mode="+mode;
 	}
 </script>
