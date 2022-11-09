@@ -3,19 +3,19 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <table class="table table-bordered ">
    <tr>
-      <td style="background-color: #00ba00;">등록일자</td>
+      <td style="background-color: #00ba00; color: white;">등록일자</td>
       <td>${FreePostVO.register_Date }</td>
-      <td style="background-color: #00ba00;">조회수</td>
+      <td style="background-color: #00ba00; color: white;">조회수</td>
       <td>${FreePostVO.hits }</td>
 	</tr>
 	<tr>
-      <td style="width: 15%; background-color: #00ba00;">제목</td>
+      <td style="width: 15%; background-color: #00ba00; color: white;">제목</td>
       <td colspan="4">${FreePostVO.title}</td>
    </tr>
    <tr>   
-      <td style="width: 15%; background-color: #00ba00;">작성자</td>
+      <td style="width: 15%; background-color: #00ba00; color: white;">작성자</td>
       <td style="width: 35%;">${FreePostVO.nickname }</td>
-      <td style="width: 15%; background-color: #00ba00;">게시글번호</td>
+      <td style="width: 15%; background-color: #00ba00; color: white;">게시글번호</td>
       <td>${FreePostVO.post_No}</td>
    </tr>
 
@@ -26,24 +26,25 @@
 
 <div style="text-align: right;">
    <button type="button" onclick="toList()"
-      style="background-color: #00ba00; border-radius: 10px; width: 80px; height: 40px; border: none;">
+      style="background-color: #00ba00; border-radius: 10px; width: 60px; height: 30px; border: none;"> 
       <span style="color: white;">목록</span>
    </button>
    <c:choose>
 
       <c:when test="${sessionScope.mvo.id== FreePostVO.id}">
          <button type="button" onclick="updatepost()"
-            style="background-color: #00ba00; border-radius: 10px; width: 80px; height: 40px; border: none;">
+            style="background-color: #00ba00; border-radius: 10px; width: 60px; height: 30px; border: none;">
             <span style="color: white;">수정</span>
          </button>
          <button type="button" onclick="deletepost()"
-            style="background-color: #00ba00; border-radius: 10px; width: 80px; height: 40px; border: none;">
+            style="background-color: #00ba00; border-radius: 10px; width: 60px; height: 30px; border: none;">
             <span style="color: white;">삭제</span>
          </button>
       </c:when>
    </c:choose>
 </div>
-<<<<<<< HEAD
+<hr>
+
 <form action="UpdateFreePostFormControllerMove.do" id="udpateform">
    <input type="hidden" name="post_No" value=${FreePostVO.post_No }>
 </form>
@@ -60,7 +61,7 @@
 <button type="button"
    style="background-color: #00ba00; border-radius: 10px; height: 40px; border: none;"
    onclick="MoveToFreeCommentController()">
-   <span style="color: white;">댓글등록</span>
+   <span style="color: white;">댓글 등록</span>
 </button>
 
 <br>
