@@ -25,10 +25,9 @@ public class MyPageSellerTotalController implements Controller {
 		////////////////////////////
 		MyPageDAO dao = MyPageDAO.getInstance();
 		String pageNo=request.getParameter("pageNo");
-			System.out.println(pageNo);
 		Pagination pagination=null;
 		int totalPostCount;
-		totalPostCount = dao.myBuyProductListCount(mode, id);
+		totalPostCount = dao.mySellProductListCount(mode, id);
 		if(pageNo==null) {
 			pagination=new Pagination(totalPostCount);
 		}else {
@@ -46,6 +45,8 @@ public class MyPageSellerTotalController implements Controller {
 		request.setAttribute("url", "mypage/3seller.jsp");
 		request.setAttribute("selling", sellingCount);
 		request.setAttribute("sell", sellCount);
+		request.setAttribute("pagination", pagination);
+		request.setAttribute("mode", mode);
 		return "mainpage.jsp";
 	}
 

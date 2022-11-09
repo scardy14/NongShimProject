@@ -122,8 +122,8 @@ public class MyPageDAO {
 		ResultSet rs = null;
 		try {
 			con = dataSource.getConnection();
-			StringBuilder sb = new StringBuilder("select post_no,id,register_date,category,status,product_name,product_point,duration,min_customer,max_customer, rnum ");
-			sb.append("from (select row_number() over(order by register_date desc) as rnum, post_no,id,register_date,category,status,product_name,product_point,duration,min_customer,max_customer from NongShim_product_Post where id=? AND status = ?)  ");
+			StringBuilder sb = new StringBuilder("select rnum, post_no, title,id,register_date,status,duration,min_customer,max_customer,product_point ");
+			sb.append("from (select row_number() over(order by register_date desc) as rnum, post_no,title,id,to_char(register_date, 'YYYY-MM-DD') AS register_date,status,to_char(duration, 'YYYY-MM-DD') AS duration,min_customer,max_customer,product_point from NongShim_product_Post where id=? AND status = ?)  ");
 			sb.append("where rnum between ? and ?");
 			pstmt = con.prepareStatement(sb.toString());
 			pstmt.setString(1, id);
@@ -132,8 +132,7 @@ public class MyPageDAO {
 			pstmt.setLong(4, pagination.getEndRowNumber());
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
-				myPageProductPostVO = new MyPageProductPostVO(rs.getLong(10), rs.getLong(1), rs.getString(2), rs.getString(3),
-						rs.getString(4), rs.getString(5), rs.getString(6), rs.getLong(7), rs.getLong(8),rs.getLong(9));
+				myPageProductPostVO = new MyPageProductPostVO(rs.getLong(1), rs.getLong(2), rs.getString(3), rs.getString(4), rs.getString(5),rs.getString(6), rs.getString(7), rs.getLong(8), rs.getLong(9), rs.getLong(10));
 				list.add(myPageProductPostVO);
 			}
 		} finally {
@@ -564,6 +563,52 @@ public class MyPageDAO {
 	 */
 
 	public long insertNsPoint(String id, long point) throws SQLException {
+		long result=0;
+
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs = null;
+		try {
+			con=dataSource.getConnection();
+			String sql="update NongShim_Member set point=point+? where id=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setLong(1, point);
+			pstmt.setString(2, id);
+			pstmt.executeUpdate();
+			pstmt.close();
+			String sql2="select point from NongShim_Member where id=?";
+			pstmt=con.prepareStatement(sql2);
+			pstmt.setString(1, id);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				result=rs.getLong(1);
+			}
+		} finally {
+			closeAll(pstmt, con);
+		}
+		return result;
+	}
+	public long getNsPoint(String id) throws SQLException {
+		long result=0;
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs = null;
+		try {
+			con=dataSource.getConnection();
+			String sql="SELECT point FROM NongShim_Member WHERE id=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				result=rs.getLong(1);
+			}
+		} finally {
+			closeAll(pstmt, con);
+		}
+		return result;
+	}
+	
+	public long butproductNSPoint(String id, long point) throws SQLException {
 		long result=0;
 
 		Connection con=null;
