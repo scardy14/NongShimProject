@@ -28,20 +28,24 @@ public class LoginController implements Controller {
 			
 			//민석이가 조회수 기능을 위해 한줄 추가했습니다.
 			session.setAttribute("hitboard", new ArrayList<Long>());
+			session.setAttribute("hitboardAnnounce", new ArrayList<Long>());
+			session.setAttribute("hitboardFree", new ArrayList<Long>());
 			
 			//로또
-			
 			ArrayList<Integer> list=new ArrayList<>();
 			TreeSet<Integer> set=MyPageDAO.getInstance().randomPointNumber();
 			Iterator<Integer> iter = set.iterator();
 			while(iter.hasNext()) { // iterator에 다음 값이 있다면
 				list.add(iter.next()); // iter에서 값 꺼내서 list에 저장
 			}
-			
+			//로또 넘버 세션값에 저장
 			session.setAttribute("lottoNum", list);
 			
+			//포인트만 세션값에 저장
+			long nsPoint=mvo.getPoint();
+			session.setAttribute("nsPoint",nsPoint);
+
 		}
-		
 		return viewPath;
 	}
 

@@ -16,12 +16,13 @@ public class TestCaseInsertNSpoint {
 	public static void main(String[] args) {
 		long point=123456;
 		String id="jdk";
-		int result=0;
+		long result=0;
 		try {
 			result=MyPageDAO.getInstance().insertNsPoint(id,point);
-			if(result>0) {
-				System.out.println("NS 포인트를 "+point+" 획득 하셨습니다");
-			}
+			//if(result>0) {
+				//System.out.println("NS 포인트를 "+point+" 획득 하셨습니다");
+			//}
+			System.out.println(result);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

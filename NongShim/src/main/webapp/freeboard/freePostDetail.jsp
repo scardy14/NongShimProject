@@ -100,6 +100,10 @@
 <script>
    function MoveToFreeCommentController() {
       let comment = document.getElementById("comment").value;
+      if(comment.length==0){
+          alert("댓글을 입력해주세요");
+          return;   
+       }
       let postno = document.getElementById("postno").value;
       location.href = "FreeCommentController.do?comment=" + comment
             + "&postno=" + postno;

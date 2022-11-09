@@ -1,21 +1,42 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>customer</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
-<script
-	src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
-<script
-	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
-</head>
+<style>
+/*출처: https://mdbootstrap.com/docs/standard/extended/sidebar/*/
+.sidebar {
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	padding: 58px 0 0;
+	width: 150px;
+	z-index: 600;
+}
+
+@media ( max-width : 991.98px) {
+	.sidebar {
+		width: 100%;
+	}
+}
+
+.sidebar .active {
+	border-radius: 5px;
+	box-shadow: 0 2px 5px 0 rgb(0 0 0/ 16%), 0 2px 10px 0 rgb(0 0 0/ 12%);
+}
+
+.sidebar-sticky {
+	position: relative;
+	top: 0;
+	height: calc(100vh - 48px);
+	padding-top: 0.5rem;
+	overflow-x: hidden;
+	overflow-y: auto;
+	/* Scrollable contents if viewport is shorter than content. */
+}
+  .headertable {
+    width: 100%;
+  }
+</style>
 <body>
 	<header>
 		<nav id="sidebarMenu"
@@ -53,8 +74,8 @@
 					<div class="title-text">
 					<table class="headertable">
 						<thead>
-							<tr style="background-color: #00ac00; color: white;" align="center">
-								<td>판매 중</td><td>판매완료</td>
+							<tr style="background-color: #00ba00; color: white;" align="center">
+								<td><button style="background-color: #00ba00; border: none;" onclick="sellinglist()"><span style="color: white;">판매 중</span></button></td><td><button style="background-color: #00ba00; border: none;" onclick="soldlist()"><span style="color: white;">판매완료</span></button></td>
 							</tr>
 							<tr align="center">
 								<td>${requestScope.selling}</td><td>${requestScope.sell}</td>
@@ -138,41 +159,60 @@
 			</div>
 		</div>
 		</div>
-		<style>
-/*출처: https://mdbootstrap.com/docs/standard/extended/sidebar/*/
-.sidebar {
-	position: fixed;
-	top: 0;
-	bottom: 0;
-	left: 0;
-	padding: 58px 0 0;
-	width: 150px;
-	z-index: 600;
-}
-
-@media ( max-width : 991.98px) {
-	.sidebar {
-		width: 100%;
-	}
-}
-
-.sidebar .active {
-	border-radius: 5px;
-	box-shadow: 0 2px 5px 0 rgb(0 0 0/ 16%), 0 2px 10px 0 rgb(0 0 0/ 12%);
-}
-
-.sidebar-sticky {
-	position: relative;
-	top: 0;
-	height: calc(100vh - 48px);
-	padding-top: 0.5rem;
-	overflow-x: hidden;
-	overflow-y: auto;
-	/* Scrollable contents if viewport is shorter than content. */
-}
-  .headertable {
-    width: 100%;
-  }
-</style>
+		<c:choose>
+			<c:when test="${mode=='발송전' }">
+				<ul class="pagination justify-content-center" style="margin:20px 0">	
+					<c:if test="${pagination.previousPageGroup}">
+						<li class="page-item"><a class="page-link" onclick="sellingproduct(${pagination.startPageOfPageGroup-1},'판매중')">Previous</a></li>
+					</c:if>
+					<c:forEach begin="${pagination.startPageOfPageGroup}" end="${pagination.endPageOfPageGroup}" var="page">
+					<c:choose>
+						<c:when test="${pagination.nowPage==page}">
+							<li class="page-item active"><a class="page-link" onclick="sellingproduct(${page},'판매중')">${page}</a></li>
+						</c:when>
+						<c:otherwise>
+							<li class="page-item"><a class="page-link" onclick="sellingproduct(${page},'판매중')">${page}</a></li>
+						</c:otherwise>
+					</c:choose>	
+					</c:forEach>
+					<c:if test="${pagination.nextPageGroup}">
+				  		<li class="page-item"><a class="page-link" onclick="sellingproduct(${pagination.endPageOfPageGroup+1},'판매중')">Next</a></li>     
+				  	</c:if>	
+				</ul>
+			</c:when>
+			<c:otherwise>
+				<ul class="pagination justify-content-center" style="margin:20px 0">	
+					<c:if test="${pagination.previousPageGroup}">
+						<li class="page-item"><a class="page-link" onclick="soldproduct(${pagination.startPageOfPageGroup-1},'판매완료')">Previous</a></li>
+					</c:if>
+					<c:forEach begin="${pagination.startPageOfPageGroup}" end="${pagination.endPageOfPageGroup}" var="page">
+					<c:choose>
+						<c:when test="${pagination.nowPage==page}">
+							<li class="page-item active"><a class="page-link" onclick="soldproduct(${page},'판매완료')">${page}</a></li>
+						</c:when>
+						<c:otherwise>
+							<li class="page-item"><a class="page-link" onclick="soldproduct(${page},'판매완료')">${page}</a></li>
+						</c:otherwise>
+					</c:choose>	
+					</c:forEach>
+					<c:if test="${pagination.nextPageGroup}">
+				  		<li class="page-item"><a class="page-link" onclick="soldproduct(${pagination.endPageOfPageGroup+1},'판매완료')">Next</a></li>     
+				  	</c:if>	
+				</ul>
+			</c:otherwise>
+		</c:choose>
 </body>
-</html>
+<script>
+	function sellinglist() {
+		location.href="MyPageSellerTotalController.do?mode=판매중";
+	}
+	function soldlist() {
+		location.href="MyPageSellerTotalController.do?mode=판매완료";
+	}
+	function sellingproduct(pageNo,mode) {
+		location.href="MyPagecustomerController.do?pageNo="+pageNo+"&mode="+mode;		
+	}
+	function soldproduct(pageNo,mode) {
+		location.href="MyPagecustomerController.do?pageNo="+pageNo+"&mode="+mode;
+	}
+</script>

@@ -123,18 +123,36 @@ public class NongShimMemberDAO {
 		return result;
 	}
 	
-	public boolean check_Regist(String account_No,String email,String nickName) throws SQLException {
+	public boolean checkTel(String tel) throws SQLException {
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		boolean result=false;
 		try {
 			con=dataSource.getConnection();
-			String sql="select count(*) from NongShim_Member where account_No=? and  email=? and nickName=?";
+			String sql="select count(*) from NongShim_Member where tel=?";
 			pstmt=con.prepareStatement(sql);
-			pstmt.setString(1, account_No);
-			pstmt.setString(2, email);
-			pstmt.setString(3,nickName );
+			pstmt.setString(1,tel);
+			rs=pstmt.executeQuery();
+			if(rs.next()&&rs.getInt(1)>0) {
+				result=true;
+			}
+		}finally {
+			closeAll(rs, pstmt, con);
+		}
+		return result;
+	}
+	
+	public boolean check_account_No(String accountNo) throws SQLException {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		boolean result=false;
+		try {
+			con=dataSource.getConnection();
+			String sql="select count(*) from NongShim_Member where account_No=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, accountNo);
 			rs=pstmt.executeQuery();
 			if(rs.next()&&rs.getInt(1)>0) {
 				result=true;

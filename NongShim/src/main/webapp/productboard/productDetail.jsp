@@ -86,7 +86,11 @@ ${vo.content}<br>
 <input type="hidden" id="postno12" value="${vo.postNo}">
 <input type="hidden" id="id12" value="${sessionScope.mvo.id}">
 <img src = "images/share.png" onclick="urlClip()" style="width: 40px; height: 40px;"> &nbsp;
-<img src="images/like.png" style="width: 50px; height: 50px; background-color: background;" onclick="startAjax12()">
+<c:choose>
+<c:when test="${sessionScope.mvo==null}">
+<img src="images/like.png" style="width: 50px; height: 50px; background-color: background;" onclick=""></c:when>
+<c:otherwise><img src="images/like.png" style="width: 50px; height: 50px; background-color: background;" onclick="startAjax12()"></c:otherwise>
+</c:choose>
 <span id="likeCount">${requestScope.cocount}</span>
 <br>
 <br>
@@ -133,7 +137,8 @@ ${vo.content}<br>
 
 <input type="hidden" value="${postno}" id="postno">
 
-
+   <c:choose>
+   <c:when test="${sessionScope.mvo!=null}">
 <table class = "">
    <tr>
       <td rowspan="2" style="width: 1000px;">
@@ -154,6 +159,8 @@ ${vo.content}<br>
       </td>
    </tr>
 </table>
+   </c:when>
+      </c:choose>
 <br>
 <br>
 

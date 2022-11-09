@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.Random;
 import java.util.TreeSet;
 
@@ -115,7 +114,7 @@ public class MyPageDAO {
 	 * @jdk
 	 */
 
-	public ArrayList<MyPageProductPostVO> mySellProductListTotal(String id) throws SQLException {
+	public ArrayList<MyPageProductPostVO> mySellProductListTotal(String id, String mode, Pagination pagination) throws SQLException {
 		ArrayList<MyPageProductPostVO> list = new ArrayList<>();
 		MyPageProductPostVO myPageProductPostVO = null;
 		Connection con = null;
@@ -123,14 +122,17 @@ public class MyPageDAO {
 		ResultSet rs = null;
 		try {
 			con = dataSource.getConnection();
-			StringBuilder sb = new StringBuilder("select post_no,title,id,register_date,status,duration,min_customer,max_customer,");
-			sb.append("(7-(to_date(duration,'yyyy-mm-dd')-to_date(sysdate,'yyyy-mm-dd')))/7*100 as diff ");
-			sb.append("from NongShim_product_Post where id=? order by register_date desc");
+			StringBuilder sb = new StringBuilder("select post_no,id,register_date,category,status,product_name,product_point,duration,min_customer,max_customer, rnum ");
+			sb.append("from (select row_number() over(order by register_date desc) as rnum, post_no,id,register_date,category,status,product_name,product_point,duration,min_customer,max_customer from NongShim_product_Post where id=? AND status = ?)  ");
+			sb.append("where rnum between ? and ?");
 			pstmt = con.prepareStatement(sb.toString());
 			pstmt.setString(1, id);
+			pstmt.setString(2,mode);
+			pstmt.setLong(3, pagination.getStartRowNumber());
+			pstmt.setLong(4, pagination.getEndRowNumber());
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
-				myPageProductPostVO = new MyPageProductPostVO(rs.getLong(1), rs.getString(2), rs.getString(3),
+				myPageProductPostVO = new MyPageProductPostVO(rs.getLong(10), rs.getLong(1), rs.getString(2), rs.getString(3),
 						rs.getString(4), rs.getString(5), rs.getString(6), rs.getLong(7), rs.getLong(8),rs.getLong(9));
 				list.add(myPageProductPostVO);
 			}
@@ -200,15 +202,17 @@ public class MyPageDAO {
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, post_no);
 				pstmt.setString(2, id);
-				result = pstmt.executeUpdate();
+				pstmt.executeUpdate();
 				pstmt.close();
+				
 				String sql2="update buy_product_list set status='발송완료' where post_no=? and id=?";
 				pstmt=con.prepareStatement(sql2);
 				pstmt.setString(1, post_no);
 				pstmt.setString(2, id);
+				pstmt.executeUpdate();
 				if (result > 0) {
 					flag = true;
-					// System.out.println("업데이트 완료");
+					System.out.println("업데이트 완료");
 				}
 			}
 		} finally {
@@ -250,8 +254,7 @@ public class MyPageDAO {
 	 * @return
 	 * @throws SQLException
 	 */
-
-	public ArrayList<BuyProductVO> myBuyProductList(String status, String id) throws SQLException {
+	public ArrayList<BuyProductVO> myBuyProductList(String status, String id, Pagination pagination) throws SQLException {
 		ArrayList<BuyProductVO> list = new ArrayList<>();
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -259,16 +262,18 @@ public class MyPageDAO {
 		try {
 			con = dataSource.getConnection();
 			//String sql = "select * from buy_product_list where id=? and status=? order by ns_date desc";
-			StringBuilder sb=new StringBuilder("select b.id,b.post_no,b.ns_date,b.status,b.amount,p.title ");
-			sb.append("from (select * from buy_product_list where id=? and status=?) b ");
+			StringBuilder sb=new StringBuilder("select b.id, b.post_no,b.ns_date,b.status,b.amount, p.title, rnum ");
+			sb.append("from (select row_number() over(order by ns_date desc) as rnum,id,post_no,ns_date,status,amount from buy_product_list where id=? AND status = ?) b ");
 			sb.append("inner join NongShim_product_Post p on b.post_no=p.post_no ");
-			sb.append("order by ns_date desc");
+			sb.append("where rnum between ? and ?");
 			pstmt = con.prepareStatement(sb.toString());
 			pstmt.setString(1, id);
 			pstmt.setString(2, status);
+			pstmt.setLong(3, pagination.getStartRowNumber());
+			pstmt.setLong(4, pagination.getEndRowNumber());
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
-				BuyProductVO buyProductVO = new BuyProductVO(rs.getString(1), rs.getLong(2), rs.getString(3),
+				BuyProductVO buyProductVO = new BuyProductVO(rs.getLong(7),rs.getString(1), rs.getLong(2), rs.getString(3),
 						rs.getString(4), rs.getLong(5),rs.getString(6));
 				list.add(buyProductVO);
 			}
@@ -558,17 +563,27 @@ public class MyPageDAO {
 	 * @throws SQLException
 	 */
 
-	public int insertNsPoint(String id, long point) throws SQLException {
+	public long insertNsPoint(String id, long point) throws SQLException {
+		long result=0;
+
 		Connection con=null;
 		PreparedStatement pstmt=null;
-		int result=0;
+		ResultSet rs = null;
 		try {
 			con=dataSource.getConnection();
 			String sql="update NongShim_Member set point=point+? where id=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setLong(1, point);
 			pstmt.setString(2, id);
-			result=pstmt.executeUpdate();
+			pstmt.executeUpdate();
+			pstmt.close();
+			String sql2="select point from NongShim_Member where id=?";
+			pstmt=con.prepareStatement(sql2);
+			pstmt.setString(1, id);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				result=rs.getLong(1);
+			}
 		} finally {
 			closeAll(pstmt, con);
 		}
