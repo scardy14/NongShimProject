@@ -25,10 +25,9 @@ public class MyPageSellerTotalController implements Controller {
 		////////////////////////////
 		MyPageDAO dao = MyPageDAO.getInstance();
 		String pageNo=request.getParameter("pageNo");
-			System.out.println(pageNo);
 		Pagination pagination=null;
 		int totalPostCount;
-		totalPostCount = dao.myBuyProductListCount(mode, id);
+		totalPostCount = dao.mySellProductListCount(mode, id);
 		if(pageNo==null) {
 			pagination=new Pagination(totalPostCount);
 		}else {

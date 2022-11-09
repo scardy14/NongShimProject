@@ -120,6 +120,10 @@ public class MyPageDAO {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
+		System.out.println(id);
+		System.out.println(mode);
+		System.out.println(pagination.getStartRowNumber());
+		System.out.println(pagination.getEndRowNumber());
 		try {
 			con = dataSource.getConnection();
 			StringBuilder sb = new StringBuilder("select post_no,id,register_date,category,status,product_name,product_point,duration,min_customer,max_customer, rnum ");
@@ -132,7 +136,16 @@ public class MyPageDAO {
 			pstmt.setLong(4, pagination.getEndRowNumber());
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
-				System.out.println(rs.getString(1));
+				System.out.println(rs.getLong(1));
+				System.out.println(rs.getString(2));
+				System.out.println(rs.getString(3));
+				System.out.println(rs.getString(4));
+				System.out.println(rs.getString(5));
+				System.out.println(rs.getString(6));
+				System.out.println(rs.getLong(7));
+				System.out.println(rs.getLong(8));
+				System.out.println(rs.getLong(9));
+				System.out.println(rs.getLong(10));
 				myPageProductPostVO = new MyPageProductPostVO(rs.getLong(10), rs.getLong(1), rs.getString(2), rs.getString(3),
 						rs.getString(4), rs.getString(5), rs.getString(6), rs.getLong(7), rs.getLong(8),rs.getLong(9));
 				list.add(myPageProductPostVO);
