@@ -28,6 +28,8 @@ public class LoginController implements Controller {
 			
 			//민석이가 조회수 기능을 위해 한줄 추가했습니다.
 			session.setAttribute("hitboard", new ArrayList<Long>());
+			session.setAttribute("hitboardAnnounce", new ArrayList<Long>());
+			session.setAttribute("hitboardFree", new ArrayList<Long>());
 			
 			//로또
 			

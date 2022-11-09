@@ -101,11 +101,11 @@ public class FreePostDAO {
 		Connection con = null;
 		try {
 			con = dataSource.getConnection();
-			String sql = "UPDATE NongShim_Free_Post SET hits=hits +1 WHERE post_No = ? ";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setLong(1, post_No);
-			pstmt.executeUpdate();
-			pstmt.close();
+			/*
+			 * String sql = "UPDATE NongShim_Free_Post SET hits=hits +1 WHERE post_No = ? ";
+			 * pstmt = con.prepareStatement(sql); pstmt.setLong(1, post_No);
+			 * pstmt.executeUpdate(); pstmt.close();
+			 */
 			StringBuilder sb = new StringBuilder("");
 			sb.append(
 					"SELECT post_No, id, title, content, hits, nickname, TO_CHAR(register_Date, 'YYYY-MM-DD') AS register_Date ");
@@ -193,6 +193,20 @@ public class FreePostDAO {
 
 	public void updateHits() {
 
+	}
+	
+	public void updateHits(long postno) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			con = dataSource.getConnection();
+			String sql = "UPDATE NongShim_Free_Post SET hits=hits+1 WHERE post_No=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setLong(1, postno);
+			pstmt.executeUpdate();
+		} finally {
+			closeAll(pstmt, con);
+		}
 	}
 
 }
