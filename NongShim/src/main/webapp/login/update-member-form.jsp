@@ -15,6 +15,68 @@
 	<button type = "submit" style="width: 190px;   background-color: #00ac00; color: white;">회원정보 수정</button>
 </form>
 
+
+
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>개인정보</th>
+        <th>수정</th>
+
+      </tr>
+    </thead>
+    <tbody>
+    
+      <tr>
+        <td>비밀번호</td>
+        <td>Doe</td>
+      </tr>
+      
+      <tr>
+        <td>비밀번호확인</td>
+        <td>Moe</td>
+      </tr>
+      
+      <tr>
+        <td>이름</td>
+        <td>Dooley</td>
+      </tr>
+      
+       <tr>
+        <td>주소</td>
+        <td>Doe</td>
+      </tr>
+      
+      
+       <tr>
+        <td>닉네임</td>
+        <td>Doe</td>
+      </tr>
+      
+      
+       <tr>
+        <td>이메일</td>
+        <td>Doe</td>
+      </tr>
+      
+      	<tr>
+         <td>이메일</td>
+        <td>Doe</td>
+      </tr>
+      	<tr>
+         <td>전화번호</td>
+        <td>Doe</td>
+      </tr>
+      	<tr>
+          <td>계좌</td>
+        <td>Doe</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+
 <form action="deleteMemberController.do" method="post">
 		<input type="hidden" name="id" value="${sessionScope.mvo.id}">
 	<button type = "submit" style="width: 190px;   background-color: #00ac00; color: white;">회원 탈퇴</button>

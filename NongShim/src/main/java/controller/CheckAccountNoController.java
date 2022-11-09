@@ -5,13 +5,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import member.NongShimMemberDAO;
 
-public class CheckTelController implements Controller {
+public class CheckAccountNoController implements Controller {
 
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-		String tel=request.getParameter("tel");
-		boolean result=NongShimMemberDAO.getInstance().checkTel(tel);
+		String accountNo=request.getParameter("accountNo");
+		boolean result=NongShimMemberDAO.getInstance().check_account_No(accountNo);
 		String message=null;
 		if(result) // id가 중복된다는 의미 
 			message="fail";
@@ -20,5 +20,4 @@ public class CheckTelController implements Controller {
 		request.setAttribute("responsebody", message);//AjaxViewServlet이 클라이언트에게 응답하도록 저장 
 		return "AjaxView";
 	}
-
 }
