@@ -53,6 +53,8 @@
 </form>
 
 <%--댓글부분 --%>
+<c:choose>
+<c:when test="${sessionScope.mvo!=null}">
 <input type="text" style="width: 100%; height: 50px;" id="comment"
    required="required" placeholder="댓글입력">
 <br>
@@ -63,7 +65,8 @@
    onclick="MoveToFreeCommentController()">
    <span style="color: white;">댓글 등록</span>
 </button>
-
+</c:when>
+</c:choose>
 <br>
 <br>
 
