@@ -52,14 +52,6 @@
 </table>
 
 <c:choose>
-	<c:when test="${sessionScope.mvo!=null}">
-		<div style="text-align: right;">
-			<button onclick="location.href='WritePostFormController.do'" style="background-color: #00ba00; color: white; width: 8%; height: 30px; border: none; border-radius: 5px;"><span style="color: white;">글쓰기</span></button><br><br>
-		</div>
-	</c:when>
-</c:choose>
-
-<c:choose>
 <c:when test="${sessionScope.mvo==null}">
 <div style="text-align: right;">
 	<button onclick="" style="background-color: #00ba00; color: white; width: 8%; height: 30px; border: none; border-radius: 5px;"><span style="color: white;">글쓰기</span></button><br><br>

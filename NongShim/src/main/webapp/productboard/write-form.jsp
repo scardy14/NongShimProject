@@ -18,8 +18,8 @@
          <input style="width: 700px; height: 400px;" name="content" placeholder="내용을 입력해주세요" required="required" ><br><br>
 
 	<div class="text-center">
-		<button type="submit" class="btn btn-success">등록</button>
-		<button type="submit" class="btn btn-success">목록</button>	
+		<button type="submit" style="background-color: #00ba00; color: white; width: 5%; height: 30px;">등록</button>
+		<button type="button" onclick="location.href='FindPostListByValueController.do'" style="background-color: #00ac00; color: white; width: 5%; height: 30px;">목록</button>
 	</div>
 	</form>
 	

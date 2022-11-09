@@ -23,8 +23,8 @@
 		
 		</table>
 		<div style="text-align: center;">
-				<button type="submit" style="background-color: #00ac00; color: white; width: 5%; height: 30px;">등록</button>
-				<button type="button" onclick="location.href='FindPostListByValueController.do'" style="background-color: #00ac00; color: white; width: 5%; height: 30px;">목록</button>
+				<button type="submit" style="background-color: #00ba00; color: white; border: none; width: 5%; height: 30px;">등록</button>
+				<button type="button" onclick="location.href='FindPostListByValueController.do'" style="background-color: #00ba00; color: white; border: none; width: 5%;  height: 30px;">목록</button>
 		</div>
 </form>
 
