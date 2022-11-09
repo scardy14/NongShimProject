@@ -5,11 +5,9 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import member.NongShimMemberVO;
 import model.ConfirmListVO;
 import model.MyPageDAO;
-import model.MyPageProductPostVO;
 import model.ProductPostDAO;
 import model.ProductPostVO;
 

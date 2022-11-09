@@ -15,8 +15,12 @@ public class MyPageInsertLottoMoneyController implements Controller {
 		NongShimMemberVO memberVO=(NongShimMemberVO) session.getAttribute("mvo");
 		String id=memberVO.getId();
 		String result=request.getParameter("result");
-		System.out.println("******************");
-		System.out.println("result: "+result);
+		//System.out.println("******************");
+		//System.out.println("result: "+result);
+		
+		//복권 구매시 point 50원 차감
+		MyPageDAO.getInstance().insertNsPoint(id, -50);
+		
 		if(result.contains("꽝!")) {
 			return "MyPageTodayLottoMoneyController.do";
 		}else {

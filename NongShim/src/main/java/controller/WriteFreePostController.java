@@ -1,11 +1,14 @@
 package controller;
 
+import java.io.PrintWriter;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import member.NongShimMemberVO;
 import model.FreePostDAO;
 import model.FreePostVO;
+import model.MyPageDAO;
 
 
 public class WriteFreePostController implements Controller {
@@ -22,6 +25,10 @@ public class WriteFreePostController implements Controller {
 
 		FreePostVO freePostVO=new FreePostVO(id, title, content, nickname);
 		FreePostDAO.getInstance().writePost(freePostVO);
+		
+		//글쓰고 포인트 받기 -->  된다면 받은 포인트를 session에 재할당 해보기
+		MyPageDAO.getInstance().insertNsPoint(id, 100);
+		
 		return "redirect:FindFreePostListController.do";
-	} 
+		} 
 	}

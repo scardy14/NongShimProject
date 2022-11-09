@@ -9,8 +9,6 @@ import javax.servlet.http.HttpSession;
 import member.NongShimMemberVO;
 import model.BuyProductVO;
 import model.MyPageDAO;
-import model.ProductPostDAO;
-import model.ProductPostVO;
 /**
  * 	마이페이지에서 구매 버튼을 눌렀을 때 실행되는 메서드
  * 확인중	확인 완료
