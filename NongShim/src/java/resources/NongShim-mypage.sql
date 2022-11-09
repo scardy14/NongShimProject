@@ -227,3 +227,21 @@ update NongShim_Member set point=point-'1000000' where id='jdk';
 update NongShim_Member set point='0' where id='jdk';
 
 select * from NongShim_Member where id='jdk'
+
+
+-- 20. 마이페이지 내가 구매한 목록 페이지 네이션용
+select rnum, b.id, b.post_no,b.ns_date,b.status,b.amount, p.title
+from (select row_number() over(order by ns_date desc) as rnum,id,post_no,ns_date,status,amount from buy_product_list where id='java') b
+inner join NongShim_product_Post p on b.post_no=p.post_no
+where rnum between 4 and 6; 
+
+--21. 마이페이지 나의 판매 목록 페이지 네이션 용
+
+select post_no,id,register_date,category,status,product_name,product_point,duration,min_customer,max_customer 
+from NongShim_product_Post where id='java' order by register_date desc;
+
+select rnum, post_no,id,register_date,category,status,product_name,product_point,duration,min_customer,max_customer
+from (select row_number() over(order by register_date desc) as rnum, post_no,id,register_date,category,status,product_name,product_point,duration,min_customer,max_customer from NongShim_product_Post where id='java')
+where rnum between 4 and 6;
+
+select row_number() over(order by register_date desc) as rnum from NongShim_product_Post where id='java'

@@ -558,17 +558,27 @@ public class MyPageDAO {
 	 * @throws SQLException
 	 */
 
-	public int insertNsPoint(String id, long point) throws SQLException {
+	public long insertNsPoint(String id, long point) throws SQLException {
+		long result=0;
+
 		Connection con=null;
 		PreparedStatement pstmt=null;
-		int result=0;
+		ResultSet rs = null;
 		try {
 			con=dataSource.getConnection();
 			String sql="update NongShim_Member set point=point+? where id=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setLong(1, point);
 			pstmt.setString(2, id);
-			result=pstmt.executeUpdate();
+			pstmt.executeUpdate();
+			pstmt.close();
+			String sql2="select point from NongShim_Member where id=?";
+			pstmt=con.prepareStatement(sql2);
+			pstmt.setString(1, id);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				result=rs.getLong(1);
+			}
 		} finally {
 			closeAll(pstmt, con);
 		}
