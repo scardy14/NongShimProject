@@ -115,7 +115,6 @@
 	}
 	function sendpageandinfo(element) {
 		let checkboxes = document.getElementsByName("checkbox");
-		alert(element);
 		let loop = checkboxes.length;
 		let checkbox = null;
 		for(let i = 0; i<loop;i++) {
@@ -126,7 +125,6 @@
 		location.href="FindPostListByValueController.do?pageNo="+element+"&checkbox="+checkbox;
 	}
 	function sendpageandsearch(element) {
-		
 		let inputbox = document.getElementById("inputbox").value;
 		location.href="FindPostListBySearchController.do?pageNo="+element+"&inputbox="+inputbox;		
 	}

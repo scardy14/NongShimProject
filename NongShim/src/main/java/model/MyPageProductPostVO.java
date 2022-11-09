@@ -1,6 +1,7 @@
 package model;
 
 public class MyPageProductPostVO {
+	private long rnum;
 	private long postNo; // 글번호
 	private String title; // 글제목
 	private String content; //글내용
@@ -20,6 +21,32 @@ public class MyPageProductPostVO {
 	public MyPageProductPostVO() {
 		super();
 	}
+	
+	
+
+	public MyPageProductPostVO(long rnum, long postNo, String title, String content, String id, long hits,
+			String nickName, String comments, String date, String category, String status, String productName,
+			long productPoint, String duration, long minCustomer, long maxCustomer) {
+		super();
+		this.rnum = rnum;
+		this.postNo = postNo;
+		this.title = title;
+		this.content = content;
+		this.id = id;
+		this.hits = hits;
+		this.nickName = nickName;
+		this.comments = comments;
+		this.date = date;
+		this.category = category;
+		this.status = status;
+		this.productName = productName;
+		this.productPoint = productPoint;
+		this.duration = duration;
+		this.minCustomer = minCustomer;
+		this.maxCustomer = maxCustomer;
+	}
+
+
 
 	public MyPageProductPostVO(long postNo, String title, String content, String id, long hits, String nickName,
 			String comments, String date, String category, String status, String productName, long productPoint,
@@ -43,9 +70,10 @@ public class MyPageProductPostVO {
 	}
 	
 	//mySellProductListTotal(id)
-	public MyPageProductPostVO(long postNo, String title, String id, String date, String status, String duration,
+	public MyPageProductPostVO(long rnum, long postNo, String title, String id, String date, String status, String duration,
 			long minCustomer, long maxCustomer, long productPoint) {
 		super();
+		this.rnum = rnum;
 		this.postNo = postNo;
 		this.title = title;
 		this.id = id;
@@ -206,6 +234,14 @@ public class MyPageProductPostVO {
 
 	public void setMaxCustomer(long maxCustomer) {
 		this.maxCustomer = maxCustomer;
+	}
+	
+	public Long getRnum() {
+		return rnum;
+	}
+
+	public void setRnum(Long rnum) {
+		this.rnum = rnum;
 	}
 
 	@Override

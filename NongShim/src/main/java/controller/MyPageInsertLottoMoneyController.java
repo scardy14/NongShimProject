@@ -18,15 +18,17 @@ public class MyPageInsertLottoMoneyController implements Controller {
 		//System.out.println("******************");
 		//System.out.println("result: "+result);
 		
+		long nsPoint=(long) session.getAttribute("nsPoint");
 		//복권 구매시 point 50원 차감
-		MyPageDAO.getInstance().insertNsPoint(id, -50);
+		nsPoint=MyPageDAO.getInstance().insertNsPoint(id, -50);
 		
 		if(result.contains("꽝!")) {
 			return "MyPageTodayLottoMoneyController.do";
 		}else {
 		long point=Long.parseLong(result);
-		MyPageDAO.getInstance().insertNsPoint(id, point);
+		nsPoint=MyPageDAO.getInstance().insertNsPoint(id, point);
 		}
+		session.setAttribute("nsPoint", nsPoint);
 		return "MyPageTodayLottoMoneyController.do";
 	}
 

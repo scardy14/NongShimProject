@@ -34,7 +34,7 @@ CREATE TABLE NongShim_Member(
 	constraint tel_uq unique(tel),
 	constraint nick_uq unique(nickName)
 )
-
+UPDATE NongShim_Member SET point = 1000000 WHERE id = 'scardy'
 SELECT * FROM NongShim_Member
 
 insert into NongShim_Member
@@ -108,7 +108,12 @@ create table buy_product_list(
 	constraint buy_product_product_no_fk foreign key(post_no) references NongShim_product_Post(post_no) ON DELETE CASCADE,
 	constraint buy_product_pk primary key (id,post_no,ns_date)
 )
+SELECT * FROM buy_product_list
 
+select rnum, b.id, b.post_no,b.ns_date,b.status,b.amount, p.title
+from (select row_number() over(order by ns_date desc) as rnum,id,post_no,ns_date,status,amount from buy_product_list where id='jdk' AND status = '발송전') b
+inner join NongShim_product_Post p on b.post_no=p.post_no
+where rnum between 1 and 6; 
 --sell_product_list는 안쓴는 테이블, 흔적은 남겨둠
 create table sell_product_list(
 	id varchar2(100) not null,
