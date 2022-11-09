@@ -1,10 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
-
 <input type = "hidden" id = "post_No" value = ${vo.postNo }>
-<form action="UpdatePostFormController.do" method="post" id="update">
+<form action="UpdatePostFormControllerMove.do" method="post" id="update">
    <input type="hidden" name="no" value="${vo.postNo}"> <input
       type="hidden" name="title" value="${vo.title}"> <input
       type="hidden" name="content" value="${vo.content}">
@@ -18,7 +16,7 @@
 
 <script>
 function startAjax12() {
-   //alert("눌렷는가");
+   //alert("눌렸는가");
     let postno=document.getElementById("postno12");
    let id=document.getElementById("id12");
    let countSpan=document.getElementById("likeCount");
@@ -131,7 +129,7 @@ ${vo.content}<br>
    </c:when>
    <c:otherwise>
       <button onclick="location.href='FindPostListByValueController.do'"
-         style="background-color: #00ba00; color: white; border: none; width: 60px; height: 30px;">목록</button>
+       		  style="background-color: #00ba00; color: white; border: none; width: 60px; height: 30px;">목록</button>
    </c:otherwise>
 </c:choose>
 </div>

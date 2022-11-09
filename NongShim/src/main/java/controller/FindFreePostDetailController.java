@@ -21,6 +21,7 @@ public class FindFreePostDetailController implements Controller {
      
         ArrayList<FreeCommentVO> commentlist= null;
         commentlist = FreeCommentDAO.getInstance().showAllCommentByPostNo(postno);
+  
       // 조회수 수정하는 부분 
         HttpSession session=request.getSession(false);
         if(session.getAttribute("mvo")!=null) {
@@ -33,11 +34,11 @@ public class FindFreePostDetailController implements Controller {
 			}
 		}
  //조회수 끝.
+
         request.setAttribute("FreePostVO", freepostDAO.findPostDetail(postno));
         request.setAttribute("commentlist", commentlist);
         request.setAttribute("postno",postno);
         request.setAttribute("url", "freeboard/freePostDetail.jsp");
         return "mainpage.jsp";
 	}
-
 }

@@ -29,7 +29,7 @@
 <c:choose>
 	<c:when test="${sessionScope.mvo.adminiInfo=='운영자'}">
 		<div style="text-align: right;">
-			<button type = "button" onclick="writeannounce()" style="background-color: #00ba00; border-radius: 5px; width: 80px; height: 40px; border: none;"><span style="color: white;">글쓰기</span></button>
+			<button type = "button" onclick="writeannounce()" style="background-color: #00ba00; border-radius: 10px; width: 80px; height: 40px; border: none;"><span style="color: white;">글쓰기</span></button>
 		</div>
 	</c:when>
 </c:choose>

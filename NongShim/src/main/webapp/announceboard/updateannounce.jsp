@@ -6,7 +6,7 @@
 <textarea style="width: 70%; height: 40px;"  name = "title" placeholder="제목" required="required">${announcePostVO.title }</textarea><br>
 <textarea style="width: 70%; height: 300px;"  name = "content" placeholder="내용" required="required">${announcePostVO.content }</textarea><br>
 </form>
-<button type = "button" onclick="updateannounce()" style="background-color: 00ba00; border: none; border-radius: 5px; width: 80px; height: 40px;"><span style="color: white;">수정하기</span></button>
+<button type = "button" onclick="updateannounce()" style="background-color: #00ba00; border: none; border-radius: 5px; width: 80px; height: 40px;"><span style="color: white;">수정하기</span></button>
 
 <script>
 	function updateannounce() {

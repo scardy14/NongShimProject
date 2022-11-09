@@ -17,15 +17,15 @@
 </table>
 
 <div style="text-align: right;">
-<button type = "button" onclick = "toList()" style="background-color: #00ba00;border-radius: 5px; width: 80px; height: 40px; border: none;"><span style="color: white;">목록으로</span></button>
+<button type = "button" onclick = "toList()" style="background-color: #00ba00;border-radius: 5px; width: 80px; height: 40px; border: none;"><span style="color: white;">목록</span></button>
 <c:choose>
 <c:when test="${sessionScope.mvo.id== AnnouncePostVO.id}">
-<button type = "button" onclick = "updatepost()" style="background-color: #00ba00;border-radius: 5px; width: 80px; height: 40px; border: none;"><span style="color: white;">수정하기</span></button>
-<button type = "button" onclick = "deletepost()" style="background-color: #00ba00;border-radius: 5px; width: 80px; height: 40px; border: none;"><span style="color: white;">삭제하기</span></button>
+<button type = "button" onclick = "updatepost()" style="background-color: #00ba00;border-radius: 5px; width: 80px; height: 40px; border: none;"><span style="color: white;">수정</span></button>
+<button type = "button" onclick = "deletepost()" style="background-color: #00ba00;border-radius: 5px; width: 80px; height: 40px; border: none;"><span style="color: white;">삭제</span></button>
 </c:when>
 </c:choose>
 </div>
-<form action = "UpdateAnnouncePostControllerMove.do" id = "udpateform">
+<form action = "UpdateAnnouncePostControllerMove.do" id = "updateform">
 	<input type = "hidden" name = "post_No" value = ${AnnouncePostVO.post_No }>
 </form>
 <form action="DeleteAnnouncePostController.do" method="post" id = "deleteform">
@@ -36,7 +36,7 @@
 		location.href="FindAnnouncePostListController.do";
 	}
 	function updatepost() {
-		let udpateform = document.getElementById("udpateform");
+		let udpateform = document.getElementById("updateform");
 		udpateform.submit();
 	}
 	function deletepost() {
