@@ -203,15 +203,17 @@ public class MyPageDAO {
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, post_no);
 				pstmt.setString(2, id);
-				result = pstmt.executeUpdate();
+				pstmt.executeUpdate();
 				pstmt.close();
+				
 				String sql2="update buy_product_list set status='발송완료' where post_no=? and id=?";
 				pstmt=con.prepareStatement(sql2);
 				pstmt.setString(1, post_no);
 				pstmt.setString(2, id);
+				pstmt.executeUpdate();
 				if (result > 0) {
 					flag = true;
-					// System.out.println("업데이트 완료");
+					System.out.println("업데이트 완료");
 				}
 			}
 		} finally {

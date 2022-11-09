@@ -245,3 +245,9 @@ from (select row_number() over(order by register_date desc) as rnum, post_no,id,
 where rnum between 4 and 6;
 
 select row_number() over(order by register_date desc) as rnum from NongShim_product_Post where id='java'
+
+
+-- 22. 마이페이지 나의 판매 목록 상태 변경 안됨 
+select * from buy_product_list;
+
+update buy_product_list set status='발송완료' where post_no='4' and id='jdk'

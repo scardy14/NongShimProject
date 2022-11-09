@@ -97,6 +97,7 @@
 											<form action="MyPageChangeSendProductController.do">
 											<input type="hidden" name="customerId" value="${confirm.id}">
 											<input type="hidden" name="postNo" value="${requestScope.postNo}">
+											<input type="hidden" name="status" value="${status}">
 											<button>
 												발송완료
 											</button>
