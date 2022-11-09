@@ -13,7 +13,7 @@
 <span style="color: white;">이름:${sessionScope.mvo.name}</span>&nbsp;&nbsp;
 <span style="color: white;">아이디:${sessionScope.mvo.id}</span>&nbsp;&nbsp;
 <span style="color: white;">닉네임:${sessionScope.mvo.nickName}</span>&nbsp;&nbsp;
-<span style="color: white;">포인트:${sessionScope.mvo.point}</span>&nbsp;&nbsp;
+<span style="color: white;">포인트:${sessionScope.nsPoint}</span>&nbsp;&nbsp;
 <a href="LogoutController.do"><span style="color: white;">로그아웃</span></a>&nbsp;&nbsp;
 <a href=""><span style="color: white;">고객센터</span></a>&nbsp;&nbsp;
 </c:otherwise>
