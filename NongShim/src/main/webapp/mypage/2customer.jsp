@@ -76,7 +76,7 @@
 										<tr class="inner-box">
 											<th scope="row" class="text-center">
 												<div class="event-date">
-													<span>${order.count}</span>
+													<span>${product.rnum}</span>
 												</div>
 											</th>
 											<td>
@@ -113,6 +113,49 @@
 			</div>
 		</div>
 		</div>
+		<c:choose>
+			<c:when test="${mode=='발송전' }">
+				<ul class="pagination justify-content-center" style="margin:20px 0">	
+					<c:if test="${pagination.previousPageGroup}">
+						<li class="page-item"><a class="page-link" onclick="buyingproduct(${pagination.startPageOfPageGroup-1},'발송전')">Previous</a></li>
+					</c:if>
+					<c:forEach begin="${pagination.startPageOfPageGroup}" end="${pagination.endPageOfPageGroup}" var="page">
+					<c:choose>
+						<c:when test="${pagination.nowPage==page}">
+							<li class="page-item active"><a class="page-link" onclick="buyingproduct(${page},'발송전')">${page}</a></li>
+						</c:when>
+						<c:otherwise>
+							<li class="page-item"><a class="page-link" onclick="buyingproduct(${page},'발송전')">${page}</a></li>
+						</c:otherwise>
+					</c:choose>	
+					</c:forEach>
+					<c:if test="${pagination.nextPageGroup}">
+				  		<li class="page-item"><a class="page-link" onclick="buyingproduct(${pagination.endPageOfPageGroup+1},'발송전')">Next</a></li>     
+				  	</c:if>	
+				</ul>
+			</c:when>
+			<c:otherwise>
+				<ul class="pagination justify-content-center" style="margin:20px 0">	
+					<c:if test="${pagination.previousPageGroup}">
+						<li class="page-item"><a class="page-link" onclick="boughtproduct(${pagination.startPageOfPageGroup-1},'발송완료')">Previous</a></li>
+					</c:if>
+					<c:forEach begin="${pagination.startPageOfPageGroup}" end="${pagination.endPageOfPageGroup}" var="page">
+					<c:choose>
+						<c:when test="${pagination.nowPage==page}">
+							<li class="page-item active"><a class="page-link" onclick="boughtproduct(${page},'발송완료')">${page}</a></li>
+						</c:when>
+						<c:otherwise>
+							<li class="page-item"><a class="page-link" onclick="boughtproduct(${page},'발송완료')">${page}</a></li>
+						</c:otherwise>
+					</c:choose>	
+					</c:forEach>
+					<c:if test="${pagination.nextPageGroup}">
+				  		<li class="page-item"><a class="page-link" onclick="boughtproduct(${pagination.endPageOfPageGroup+1},'발송완료')">Next</a></li>     
+				  	</c:if>	
+				</ul>
+			</c:otherwise>
+		</c:choose>
+		
 		<style>
 /*출처: https://mdbootstrap.com/docs/standard/extended/sidebar/*/
 .sidebar {
@@ -164,5 +207,11 @@
 	function aftersend() {
 		let aftersendform = document.getElementById("aftersendform");
 		aftersendform.submit();
+	}
+	function buyingproduct(pageNo,mode) {
+		location.href="MyPagecustomerController.do?pageNo="+pageNo+"&mode="+mode;		
+	}
+	function boughtproduct(pageNo,mode) {
+		location.href="MyPagecustomerController.do?pageNo="+pageNo+"&mode="+mode;
 	}
 </script>

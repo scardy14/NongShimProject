@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import member.NongShimMemberVO;
 import model.BuyProductVO;
 import model.MyPageDAO;
+import model.Pagination;
 /**
  * 	마이페이지에서 구매 버튼을 눌렀을 때 실행되는 메서드
  * 확인중	확인 완료
@@ -28,12 +29,23 @@ public class MyPagecustomerController implements Controller {
 		HttpSession session=request.getSession(false);
 		NongShimMemberVO mvo=(NongShimMemberVO) session.getAttribute("mvo");
 		String id=mvo.getId();
+		MyPageDAO dao = MyPageDAO.getInstance();
 		String mode = request.getParameter("mode");
+			System.out.println(mode);
 		if(mode==null) {
 			mode = "발송전";
 		}
-
-		 ArrayList<BuyProductVO> list=MyPageDAO.getInstance().myBuyProductList(mode,id); 
+		String pageNo=request.getParameter("pageNo");
+			System.out.println(pageNo);
+		Pagination pagination=null;
+		int totalPostCount;
+		totalPostCount = dao.myBuyProductListCount(mode, id);
+		if(pageNo==null) {
+			pagination=new Pagination(totalPostCount);
+		}else {
+			pagination=new Pagination(totalPostCount,Integer.parseInt(pageNo));
+		}		
+		 ArrayList<BuyProductVO> list=dao.myBuyProductList(mode,id, pagination); 
 		 String before="발송전";
 		 String after="발송완료"; 
 		 
@@ -43,6 +55,8 @@ public class MyPagecustomerController implements Controller {
 		 request.setAttribute("beforesend",beforeCount); 
 		 request.setAttribute("aftersend", afterCount);
 		 request.setAttribute("url","mypage/2customer.jsp");
+		 request.setAttribute("mode", mode);
+		 request.setAttribute("pagination", pagination);
 		 return "mainpage.jsp";
 	}
 
