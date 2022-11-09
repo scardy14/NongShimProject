@@ -12,8 +12,8 @@ public class TestCaseChangeBuyState {
 		// 성공하는 경우
 		//String id="java";
 		//long post_no=12;
-		String id="spring";
-		String post_no="14";
+		String id="jdk";
+		String post_no="111";
 		try {
 			boolean flag=MyPageDAO.getInstance().changeBuyState(id,post_no);
 			System.out.println(flag);
