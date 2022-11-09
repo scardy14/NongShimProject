@@ -69,6 +69,9 @@ CONSTRAINT fk_pp FOREIGN KEY(id) REFERENCES NongShim_Member(id) ON DELETE CASCAD
 );
 SELECT * FROM NONGSHIM_PRODUCT_POST
 
+select post_no,id,register_date,category,status,product_name,product_point,duration,min_customer,max_customer, rnum
+from (select row_number() over(order by register_date desc) as rnum, post_no,id,register_date,category,status,product_name,product_point,duration,min_customer,max_customer from NongShim_product_Post where id='jdk' AND status = '판매중')
+where rnum between 1 and 20
 CREATE SEQUENCE postNo_seq;
 
 insert into NongShim_product_Post
