@@ -33,10 +33,10 @@
 </header>
 <div class="container pt-4"></div>
 <div class="row">
-	<div class="col-lg-12">
-		<div class="section-title text-left">
+	<div class="col-lg-10">
+		<div class="section-title text-left offset-sm-1">
 			<div class="title-text">
-				<h2>내 판매 목록</h2>
+				<h2>내 정보 수정</h2>
 			</div>
 		</div>
 	</div>
