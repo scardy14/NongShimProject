@@ -129,7 +129,7 @@ ${vo.content}<br>
    </c:when>
    <c:otherwise>
       <button onclick="location.href='FindPostListByValueController.do'"
-       		  style="background-color: #00ba00; color: white; border: none; width: 60px; height: 30px;">목록</button>
+       		  style="background-color: #00ba00; border-radius: 10px; color: white; border: none; width: 60px; height: 30px;">목록</button>
    </c:otherwise>
 </c:choose>
 </div>

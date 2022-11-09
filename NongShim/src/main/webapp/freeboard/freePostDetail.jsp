@@ -25,11 +25,11 @@
 </table>
 
 <div style="text-align: right;">
-   <button type="button" onclick="toList()"
-      style="background-color: #00ba00; border-radius: 10px; width: 60px; height: 30px; border: none;"> 
-      <span style="color: white;">목록</span>
-   </button>
-   <c:choose>
+   		<button type="button" onclick="toList()"
+    	  style="background-color: #00ba00; border-radius: 10px; width: 60px; height: 30px; border: none;"> 
+   		   <span style="color: white;">목록</span>
+ 		  </button>
+   		<c:choose>
 
       <c:when test="${sessionScope.mvo.id== FreePostVO.id}">
          <button type="button" onclick="updatepost()"
